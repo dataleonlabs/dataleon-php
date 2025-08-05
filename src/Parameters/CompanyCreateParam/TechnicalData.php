@@ -12,7 +12,10 @@ use Dataleon\Core\Contracts\BaseModel;
  * Technical metadata and callback configuration.
  *
  * @phpstan-type technical_data_alias = array{
- *   callbackURL?: string, callbackURLNotification?: string, language?: string
+ *   callbackURL?: string,
+ *   callbackURLNotification?: string,
+ *   language?: string,
+ *   rawData?: bool,
  * }
  */
 final class TechnicalData implements BaseModel
@@ -37,6 +40,12 @@ final class TechnicalData implements BaseModel
     #[Api(optional: true)]
     public ?string $language;
 
+    /**
+     * Flag indicating whether to include raw data in the response.
+     */
+    #[Api('raw_data', optional: true)]
+    public ?bool $rawData;
+
     public function __construct()
     {
         self::introspect();
@@ -52,12 +61,14 @@ final class TechnicalData implements BaseModel
         ?string $callbackURL = null,
         ?string $callbackURLNotification = null,
         ?string $language = null,
+        ?bool $rawData = null,
     ): self {
         $obj = new self;
 
         null !== $callbackURL && $obj->callbackURL = $callbackURL;
         null !== $callbackURLNotification && $obj->callbackURLNotification = $callbackURLNotification;
         null !== $language && $obj->language = $language;
+        null !== $rawData && $obj->rawData = $rawData;
 
         return $obj;
     }
@@ -89,6 +100,16 @@ final class TechnicalData implements BaseModel
     public function setLanguage(string $language): self
     {
         $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Flag indicating whether to include raw data in the response.
+     */
+    public function setRawData(bool $rawData): self
+    {
+        $this->rawData = $rawData;
 
         return $this;
     }
