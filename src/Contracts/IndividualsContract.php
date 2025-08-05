@@ -11,10 +11,6 @@ use Dataleon\Parameters\IndividualCreateParam\TechnicalData;
 use Dataleon\Parameters\IndividualListParam;
 use Dataleon\Parameters\IndividualListParam\State;
 use Dataleon\Parameters\IndividualListParam\Status;
-use Dataleon\Parameters\IndividualRetrieveParam;
-use Dataleon\Parameters\IndividualUpdateParam;
-use Dataleon\Parameters\IndividualUpdateParam\Person as Person1;
-use Dataleon\Parameters\IndividualUpdateParam\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
 
 interface IndividualsContract
@@ -29,29 +25,6 @@ interface IndividualsContract
      */
     public function create(
         array|IndividualCreateParam $params,
-        ?RequestOptions $requestOptions = null,
-    ): Individual;
-
-    /**
-     * @param array{document?: bool, scope?: string}|IndividualRetrieveParam $params
-     */
-    public function retrieve(
-        string $individualID,
-        array|IndividualRetrieveParam $params,
-        ?RequestOptions $requestOptions = null,
-    ): Individual;
-
-    /**
-     * @param array{
-     *   workspaceID: string,
-     *   person?: Person1,
-     *   sourceID?: string,
-     *   technicalData?: TechnicalData1,
-     * }|IndividualUpdateParam $params
-     */
-    public function update(
-        string $individualID,
-        array|IndividualUpdateParam $params,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
@@ -73,9 +46,4 @@ interface IndividualsContract
         array|IndividualListParam $params,
         ?RequestOptions $requestOptions = null,
     ): array;
-
-    public function delete(
-        string $individualID,
-        ?RequestOptions $requestOptions = null
-    ): mixed;
 }
