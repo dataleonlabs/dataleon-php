@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Parameters\IndividualCreateParam;
+namespace Dataleon\Parameters\IndividualUpdateParam;
 
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\Model;
