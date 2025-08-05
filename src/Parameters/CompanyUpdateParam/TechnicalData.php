@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Parameters\IndividualCreateParam;
+namespace Dataleon\Parameters\CompanyUpdateParam;
 
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\Model;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
- * Technical metadata related to the request or processing.
+ * Technical metadata and callback configuration.
  *
  * @phpstan-type technical_data_alias = array{
  *   callbackURL?: string,
@@ -23,19 +23,19 @@ final class TechnicalData implements BaseModel
     use Model;
 
     /**
-     * URL to call back upon completion of processing.
+     * URL to receive a callback once the company is processed.
      */
     #[Api('callback_url', optional: true)]
     public ?string $callbackURL;
 
     /**
-     * URL for receive notifications about the processing state or status.
+     * URL to receive notifications about the processing state and status.
      */
     #[Api('callback_url_notification', optional: true)]
     public ?string $callbackURLNotification;
 
     /**
-     * Preferred language for communication (e.g., "eng", "fra").
+     * Preferred language for responses or notifications (e.g., "eng", "fra").
      */
     #[Api(optional: true)]
     public ?string $language;
@@ -74,7 +74,7 @@ final class TechnicalData implements BaseModel
     }
 
     /**
-     * URL to call back upon completion of processing.
+     * URL to receive a callback once the company is processed.
      */
     public function setCallbackURL(string $callbackURL): self
     {
@@ -84,7 +84,7 @@ final class TechnicalData implements BaseModel
     }
 
     /**
-     * URL for receive notifications about the processing state or status.
+     * URL to receive notifications about the processing state and status.
      */
     public function setCallbackURLNotification(
         string $callbackURLNotification
@@ -95,7 +95,7 @@ final class TechnicalData implements BaseModel
     }
 
     /**
-     * Preferred language for communication (e.g., "eng", "fra").
+     * Preferred language for responses or notifications (e.g., "eng", "fra").
      */
     public function setLanguage(string $language): self
     {

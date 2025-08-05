@@ -26,6 +26,7 @@ use Dataleon\Core\Contracts\BaseModel;
  *   needReviewAt?: \DateTimeInterface|null,
  *   notificationConfirmation?: bool,
  *   qrCode?: string,
+ *   rawData?: bool,
  *   rejectedAt?: \DateTimeInterface|null,
  *   startedAt?: \DateTimeInterface,
  *   transferAt?: \DateTimeInterface,
@@ -121,6 +122,12 @@ final class TechnicalData implements BaseModel
     public ?string $qrCode;
 
     /**
+     * Flag indicating whether to include raw data in the response.
+     */
+    #[Api('raw_data', optional: true)]
+    public ?bool $rawData;
+
+    /**
      * Timestamp when the request or process was rejected; null if not rejected.
      */
     #[Api('rejected_at', optional: true)]
@@ -170,6 +177,7 @@ final class TechnicalData implements BaseModel
         ?\DateTimeInterface $needReviewAt = null,
         ?bool $notificationConfirmation = null,
         ?string $qrCode = null,
+        ?bool $rawData = null,
         ?\DateTimeInterface $rejectedAt = null,
         ?\DateTimeInterface $startedAt = null,
         ?\DateTimeInterface $transferAt = null,
@@ -191,6 +199,7 @@ final class TechnicalData implements BaseModel
         null !== $needReviewAt && $obj->needReviewAt = $needReviewAt;
         null !== $notificationConfirmation && $obj->notificationConfirmation = $notificationConfirmation;
         null !== $qrCode && $obj->qrCode = $qrCode;
+        null !== $rawData && $obj->rawData = $rawData;
         null !== $rejectedAt && $obj->rejectedAt = $rejectedAt;
         null !== $startedAt && $obj->startedAt = $startedAt;
         null !== $transferAt && $obj->transferAt = $transferAt;
@@ -338,6 +347,16 @@ final class TechnicalData implements BaseModel
     public function setQrCode(string $qrCode): self
     {
         $this->qrCode = $qrCode;
+
+        return $this;
+    }
+
+    /**
+     * Flag indicating whether to include raw data in the response.
+     */
+    public function setRawData(bool $rawData): self
+    {
+        $this->rawData = $rawData;
 
         return $this;
     }
