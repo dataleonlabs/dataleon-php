@@ -11,6 +11,10 @@ use Dataleon\Parameters\CompanyCreateParam\TechnicalData;
 use Dataleon\Parameters\CompanyListParam;
 use Dataleon\Parameters\CompanyListParam\State;
 use Dataleon\Parameters\CompanyListParam\Status;
+use Dataleon\Parameters\CompanyRetrieveParam;
+use Dataleon\Parameters\CompanyUpdateParam;
+use Dataleon\Parameters\CompanyUpdateParam\Company as Company1;
+use Dataleon\Parameters\CompanyUpdateParam\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
 
 interface CompaniesContract
@@ -26,6 +30,29 @@ interface CompaniesContract
     public function create(
         array|CompanyCreateParam $params,
         ?RequestOptions $requestOptions = null
+    ): CompanyRegistration;
+
+    /**
+     * @param array{document?: bool, scope?: string}|CompanyRetrieveParam $params
+     */
+    public function retrieve(
+        string $companyID,
+        array|CompanyRetrieveParam $params,
+        ?RequestOptions $requestOptions = null,
+    ): CompanyRegistration;
+
+    /**
+     * @param array{
+     *   company: Company1,
+     *   workspaceID: string,
+     *   sourceID?: string,
+     *   technicalData?: TechnicalData1,
+     * }|CompanyUpdateParam $params
+     */
+    public function update(
+        string $companyID,
+        array|CompanyUpdateParam $params,
+        ?RequestOptions $requestOptions = null,
     ): CompanyRegistration;
 
     /**
@@ -46,4 +73,9 @@ interface CompaniesContract
         array|CompanyListParam $params,
         ?RequestOptions $requestOptions = null
     ): array;
+
+    public function delete(
+        string $companyID,
+        ?RequestOptions $requestOptions = null
+    ): mixed;
 }
