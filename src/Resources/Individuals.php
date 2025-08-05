@@ -15,10 +15,6 @@ use Dataleon\Parameters\IndividualCreateParam\TechnicalData;
 use Dataleon\Parameters\IndividualListParam;
 use Dataleon\Parameters\IndividualListParam\State;
 use Dataleon\Parameters\IndividualListParam\Status;
-use Dataleon\Parameters\IndividualRetrieveParam;
-use Dataleon\Parameters\IndividualUpdateParam;
-use Dataleon\Parameters\IndividualUpdateParam\Person as Person1;
-use Dataleon\Parameters\IndividualUpdateParam\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
 use Dataleon\Resources\Individuals\Documents;
 
@@ -61,61 +57,6 @@ final class Individuals implements IndividualsContract
     }
 
     /**
-     * Get an individual by ID.
-     *
-     * @param array{document?: bool, scope?: string}|IndividualRetrieveParam $params
-     */
-    public function retrieve(
-        string $individualID,
-        array|IndividualRetrieveParam $params,
-        ?RequestOptions $requestOptions = null,
-    ): Individual {
-        [$parsed, $options] = IndividualRetrieveParam::parseRequest(
-            $params,
-            $requestOptions
-        );
-        $resp = $this->client->request(
-            method: 'get',
-            path: ['individuals/%1$s', $individualID],
-            query: $parsed,
-            options: $options,
-        );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(Individual::class, value: $resp);
-    }
-
-    /**
-     * Update an individual by ID.
-     *
-     * @param array{
-     *   workspaceID: string,
-     *   person?: Person1,
-     *   sourceID?: string,
-     *   technicalData?: TechnicalData1,
-     * }|IndividualUpdateParam $params
-     */
-    public function update(
-        string $individualID,
-        array|IndividualUpdateParam $params,
-        ?RequestOptions $requestOptions = null,
-    ): Individual {
-        [$parsed, $options] = IndividualUpdateParam::parseRequest(
-            $params,
-            $requestOptions
-        );
-        $resp = $this->client->request(
-            method: 'put',
-            path: ['individuals/%1$s', $individualID],
-            body: (object) $parsed,
-            options: $options,
-        );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(Individual::class, value: $resp);
-    }
-
-    /**
      * Get all individuals.
      *
      * @param array{
@@ -148,19 +89,5 @@ final class Individuals implements IndividualsContract
 
         // @phpstan-ignore-next-line;
         return Conversion::coerce(new ListOf(Individual::class), value: $resp);
-    }
-
-    /**
-     * Delete an individual by ID.
-     */
-    public function delete(
-        string $individualID,
-        ?RequestOptions $requestOptions = null
-    ): mixed {
-        return $this->client->request(
-            method: 'delete',
-            path: ['individuals/%1$s', $individualID],
-            options: $requestOptions,
-        );
     }
 }
