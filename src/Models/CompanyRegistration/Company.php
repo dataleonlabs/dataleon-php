@@ -7,7 +7,6 @@ namespace Dataleon\Models\CompanyRegistration;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\Model;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Models\CompanyRegistration\Company\Contact;
 
 /**
  * Main information about the company being registered, including legal name, registration ID, and address.
@@ -15,7 +14,6 @@ use Dataleon\Models\CompanyRegistration\Company\Contact;
  * @phpstan-type company_alias = array{
  *   address?: string,
  *   commercialName?: string,
- *   contact?: Contact,
  *   country?: string,
  *   email?: string,
  *   employerIdentificationNumber?: string,
@@ -46,12 +44,6 @@ final class Company implements BaseModel
      */
     #[Api('commercial_name', optional: true)]
     public ?string $commercialName;
-
-    /**
-     * Contact information for the company, including email, phone number, and address.
-     */
-    #[Api(optional: true)]
-    public ?Contact $contact;
 
     /**
      * Country code where the company is registered.
@@ -145,7 +137,6 @@ final class Company implements BaseModel
     public static function new(
         ?string $address = null,
         ?string $commercialName = null,
-        ?Contact $contact = null,
         ?string $country = null,
         ?string $email = null,
         ?string $employerIdentificationNumber = null,
@@ -164,7 +155,6 @@ final class Company implements BaseModel
 
         null !== $address && $obj->address = $address;
         null !== $commercialName && $obj->commercialName = $commercialName;
-        null !== $contact && $obj->contact = $contact;
         null !== $country && $obj->country = $country;
         null !== $email && $obj->email = $email;
         null !== $employerIdentificationNumber && $obj->employerIdentificationNumber = $employerIdentificationNumber;
@@ -198,16 +188,6 @@ final class Company implements BaseModel
     public function setCommercialName(string $commercialName): self
     {
         $this->commercialName = $commercialName;
-
-        return $this;
-    }
-
-    /**
-     * Contact information for the company, including email, phone number, and address.
-     */
-    public function setContact(Contact $contact): self
-    {
-        $this->contact = $contact;
 
         return $this;
     }
