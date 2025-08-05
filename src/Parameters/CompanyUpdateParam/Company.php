@@ -2,27 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Models\CompanyRegistration;
+namespace Dataleon\Parameters\CompanyUpdateParam;
 
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\Model;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Models\CompanyRegistration\Company\Contact;
 
 /**
- * Main information about the company being registered, including legal name, registration ID, and address.
+ * Main information about the company being registered.
  *
  * @phpstan-type company_alias = array{
+ *   name: string,
  *   address?: string,
  *   commercialName?: string,
- *   contact?: Contact,
  *   country?: string,
  *   email?: string,
  *   employerIdentificationNumber?: string,
  *   legalForm?: string,
- *   name?: string,
  *   phoneNumber?: string,
- *   registrationDate?: \DateTimeInterface,
+ *   registrationDate?: string,
  *   registrationID?: string,
  *   shareCapital?: string,
  *   status?: string,
@@ -36,25 +34,25 @@ final class Company implements BaseModel
     use Model;
 
     /**
-     * Full registered address of the company.
+     * Legal name of the company.
+     */
+    #[Api]
+    public string $name;
+
+    /**
+     * Registered address of the company.
      */
     #[Api(optional: true)]
     public ?string $address;
 
     /**
-     * Trade or commercial name of the company.
+     * Commercial or trade name of the company, if different from the legal name.
      */
     #[Api('commercial_name', optional: true)]
     public ?string $commercialName;
 
     /**
-     * Contact information for the company, including email, phone number, and address.
-     */
-    #[Api(optional: true)]
-    public ?Contact $contact;
-
-    /**
-     * Country code where the company is registered.
+     * ISO 3166-1 alpha-2 country code of company registration (e.g., "FR" for France).
      */
     #[Api(optional: true)]
     public ?string $country;
@@ -72,37 +70,31 @@ final class Company implements BaseModel
     public ?string $employerIdentificationNumber;
 
     /**
-     * Legal form or structure of the company (e.g., LLC, SARL).
+     * Legal structure of the company (e.g., SARL, SAS).
      */
     #[Api('legal_form', optional: true)]
     public ?string $legalForm;
 
     /**
-     * Legal registered name of the company.
-     */
-    #[Api(optional: true)]
-    public ?string $name;
-
-    /**
-     * Contact phone number for the company, including country code.
+     * Contact phone number for the company.
      */
     #[Api('phone_number', optional: true)]
     public ?string $phoneNumber;
 
     /**
-     * Date when the company was officially registered.
+     * Date of official company registration in YYYY-MM-DD format.
      */
     #[Api('registration_date', optional: true)]
-    public ?\DateTimeInterface $registrationDate;
+    public ?string $registrationDate;
 
     /**
-     * Official company registration number or ID.
+     * Official company registration identifier.
      */
     #[Api('registration_id', optional: true)]
     public ?string $registrationID;
 
     /**
-     * Total share capital of the company, including currency.
+     * Declared share capital of the company, usually in euros.
      */
     #[Api('share_capital', optional: true)]
     public ?string $shareCapital;
@@ -114,19 +106,19 @@ final class Company implements BaseModel
     public ?string $status;
 
     /**
-     * Tax identification number for the company.
+     * National tax identifier (e.g., VAT or TIN).
      */
     #[Api('tax_identification_number', optional: true)]
     public ?string $taxIdentificationNumber;
 
     /**
-     * Type of company within the workspace, e.g., main or affiliated.
+     * Type of company, such as "main" or "affiliated".
      */
     #[Api(optional: true)]
     public ?string $type;
 
     /**
-     * Official website URL of the company.
+     * Company’s official website URL.
      */
     #[Api('website_url', optional: true)]
     public ?string $websiteURL;
@@ -143,16 +135,15 @@ final class Company implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function new(
+        string $name,
         ?string $address = null,
         ?string $commercialName = null,
-        ?Contact $contact = null,
         ?string $country = null,
         ?string $email = null,
         ?string $employerIdentificationNumber = null,
         ?string $legalForm = null,
-        ?string $name = null,
         ?string $phoneNumber = null,
-        ?\DateTimeInterface $registrationDate = null,
+        ?string $registrationDate = null,
         ?string $registrationID = null,
         ?string $shareCapital = null,
         ?string $status = null,
@@ -162,14 +153,14 @@ final class Company implements BaseModel
     ): self {
         $obj = new self;
 
+        $obj->name = $name;
+
         null !== $address && $obj->address = $address;
         null !== $commercialName && $obj->commercialName = $commercialName;
-        null !== $contact && $obj->contact = $contact;
         null !== $country && $obj->country = $country;
         null !== $email && $obj->email = $email;
         null !== $employerIdentificationNumber && $obj->employerIdentificationNumber = $employerIdentificationNumber;
         null !== $legalForm && $obj->legalForm = $legalForm;
-        null !== $name && $obj->name = $name;
         null !== $phoneNumber && $obj->phoneNumber = $phoneNumber;
         null !== $registrationDate && $obj->registrationDate = $registrationDate;
         null !== $registrationID && $obj->registrationID = $registrationID;
@@ -183,7 +174,17 @@ final class Company implements BaseModel
     }
 
     /**
-     * Full registered address of the company.
+     * Legal name of the company.
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Registered address of the company.
      */
     public function setAddress(string $address): self
     {
@@ -193,7 +194,7 @@ final class Company implements BaseModel
     }
 
     /**
-     * Trade or commercial name of the company.
+     * Commercial or trade name of the company, if different from the legal name.
      */
     public function setCommercialName(string $commercialName): self
     {
@@ -203,17 +204,7 @@ final class Company implements BaseModel
     }
 
     /**
-     * Contact information for the company, including email, phone number, and address.
-     */
-    public function setContact(Contact $contact): self
-    {
-        $this->contact = $contact;
-
-        return $this;
-    }
-
-    /**
-     * Country code where the company is registered.
+     * ISO 3166-1 alpha-2 country code of company registration (e.g., "FR" for France).
      */
     public function setCountry(string $country): self
     {
@@ -244,7 +235,7 @@ final class Company implements BaseModel
     }
 
     /**
-     * Legal form or structure of the company (e.g., LLC, SARL).
+     * Legal structure of the company (e.g., SARL, SAS).
      */
     public function setLegalForm(string $legalForm): self
     {
@@ -254,17 +245,7 @@ final class Company implements BaseModel
     }
 
     /**
-     * Legal registered name of the company.
-     */
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Contact phone number for the company, including country code.
+     * Contact phone number for the company.
      */
     public function setPhoneNumber(string $phoneNumber): self
     {
@@ -274,18 +255,17 @@ final class Company implements BaseModel
     }
 
     /**
-     * Date when the company was officially registered.
+     * Date of official company registration in YYYY-MM-DD format.
      */
-    public function setRegistrationDate(
-        \DateTimeInterface $registrationDate
-    ): self {
+    public function setRegistrationDate(string $registrationDate): self
+    {
         $this->registrationDate = $registrationDate;
 
         return $this;
     }
 
     /**
-     * Official company registration number or ID.
+     * Official company registration identifier.
      */
     public function setRegistrationID(string $registrationID): self
     {
@@ -295,7 +275,7 @@ final class Company implements BaseModel
     }
 
     /**
-     * Total share capital of the company, including currency.
+     * Declared share capital of the company, usually in euros.
      */
     public function setShareCapital(string $shareCapital): self
     {
@@ -315,7 +295,7 @@ final class Company implements BaseModel
     }
 
     /**
-     * Tax identification number for the company.
+     * National tax identifier (e.g., VAT or TIN).
      */
     public function setTaxIdentificationNumber(
         string $taxIdentificationNumber
@@ -326,7 +306,7 @@ final class Company implements BaseModel
     }
 
     /**
-     * Type of company within the workspace, e.g., main or affiliated.
+     * Type of company, such as "main" or "affiliated".
      */
     public function setType(string $type): self
     {
@@ -336,7 +316,7 @@ final class Company implements BaseModel
     }
 
     /**
-     * Official website URL of the company.
+     * Company’s official website URL.
      */
     public function setWebsiteURL(string $websiteURL): self
     {
