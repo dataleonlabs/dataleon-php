@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 (2025-08-06)
+
+Full Changelog: [v0.1.0...v0.1.1](https://github.com/dataleonlabs/dataleon-php/compare/v0.1.0...v0.1.1)
+
+### Bug Fixes
+
+* **client:** rename param to params ([0b1cea7](https://github.com/dataleonlabs/dataleon-php/commit/0b1cea76448ce0eb163192d04bfeb6d6ae504522))
+
 ## 0.1.0 (2025-08-05)
 
 Full Changelog: [v0.0.2...v0.1.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.0.2...v0.1.0)
