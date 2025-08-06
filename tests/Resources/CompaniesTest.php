@@ -3,14 +3,14 @@
 namespace Tests\Resources;
 
 use Dataleon\Client;
-use Dataleon\Parameters\CompanyCreateParam;
-use Dataleon\Parameters\CompanyCreateParam\Company;
-use Dataleon\Parameters\CompanyCreateParam\TechnicalData;
-use Dataleon\Parameters\CompanyListParam;
-use Dataleon\Parameters\CompanyRetrieveParam;
-use Dataleon\Parameters\CompanyUpdateParam;
-use Dataleon\Parameters\CompanyUpdateParam\Company as Company1;
-use Dataleon\Parameters\CompanyUpdateParam\TechnicalData as TechnicalData1;
+use Dataleon\Parameters\CompanyCreateParams;
+use Dataleon\Parameters\CompanyCreateParams\Company;
+use Dataleon\Parameters\CompanyCreateParams\TechnicalData;
+use Dataleon\Parameters\CompanyListParams;
+use Dataleon\Parameters\CompanyRetrieveParams;
+use Dataleon\Parameters\CompanyUpdateParams;
+use Dataleon\Parameters\CompanyUpdateParams\Company as Company1;
+use Dataleon\Parameters\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -45,7 +45,7 @@ final class CompaniesTest extends TestCase
             ->client
             ->companies
             ->create(
-                CompanyCreateParam::new(
+                CompanyCreateParams::new(
                     company: Company::new(name: 'ACME Corp'),
                     workspaceID: 'wk_123'
                 )
@@ -66,7 +66,7 @@ final class CompaniesTest extends TestCase
             ->client
             ->companies
             ->create(
-                CompanyCreateParam::new(
+                CompanyCreateParams::new(
                     company: Company::new(name: 'ACME Corp')
                         ->setAddress('123 rue Exemple, Paris')
                         ->setCommercialName('ACME')
@@ -106,7 +106,7 @@ final class CompaniesTest extends TestCase
         $result = $this
             ->client
             ->companies
-            ->retrieve('company_id', new CompanyRetrieveParam)
+            ->retrieve('company_id', new CompanyRetrieveParams)
         ;
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -124,7 +124,7 @@ final class CompaniesTest extends TestCase
             ->companies
             ->update(
                 'company_id',
-                CompanyUpdateParam::new(
+                CompanyUpdateParams::new(
                     company: Company1::new(name: 'ACME Corp'),
                     workspaceID: 'wk_123'
                 )
@@ -146,7 +146,7 @@ final class CompaniesTest extends TestCase
             ->companies
             ->update(
                 'company_id',
-                CompanyUpdateParam::new(
+                CompanyUpdateParams::new(
                     company: Company1::new(name: 'ACME Corp')
                         ->setAddress('123 rue Exemple, Paris')
                         ->setCommercialName('ACME')
@@ -183,7 +183,7 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('skipped: tests are disabled for the time being');
         }
 
-        $result = $this->client->companies->list(new CompanyListParam);
+        $result = $this->client->companies->list(new CompanyListParams);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

@@ -9,16 +9,16 @@ use Dataleon\Contracts\CompaniesContract;
 use Dataleon\Core\Conversion;
 use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Models\CompanyRegistration;
-use Dataleon\Parameters\CompanyCreateParam;
-use Dataleon\Parameters\CompanyCreateParam\Company;
-use Dataleon\Parameters\CompanyCreateParam\TechnicalData;
-use Dataleon\Parameters\CompanyListParam;
-use Dataleon\Parameters\CompanyListParam\State;
-use Dataleon\Parameters\CompanyListParam\Status;
-use Dataleon\Parameters\CompanyRetrieveParam;
-use Dataleon\Parameters\CompanyUpdateParam;
-use Dataleon\Parameters\CompanyUpdateParam\Company as Company1;
-use Dataleon\Parameters\CompanyUpdateParam\TechnicalData as TechnicalData1;
+use Dataleon\Parameters\CompanyCreateParams;
+use Dataleon\Parameters\CompanyCreateParams\Company;
+use Dataleon\Parameters\CompanyCreateParams\TechnicalData;
+use Dataleon\Parameters\CompanyListParams;
+use Dataleon\Parameters\CompanyListParams\State;
+use Dataleon\Parameters\CompanyListParams\Status;
+use Dataleon\Parameters\CompanyRetrieveParams;
+use Dataleon\Parameters\CompanyUpdateParams;
+use Dataleon\Parameters\CompanyUpdateParams\Company as Company1;
+use Dataleon\Parameters\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
 use Dataleon\Resources\Companies\Documents;
 
@@ -39,13 +39,13 @@ final class Companies implements CompaniesContract
      *   workspaceID: string,
      *   sourceID?: string,
      *   technicalData?: TechnicalData,
-     * }|CompanyCreateParam $params
+     * }|CompanyCreateParams $params
      */
     public function create(
-        array|CompanyCreateParam $params,
+        array|CompanyCreateParams $params,
         ?RequestOptions $requestOptions = null
     ): CompanyRegistration {
-        [$parsed, $options] = CompanyCreateParam::parseRequest(
+        [$parsed, $options] = CompanyCreateParams::parseRequest(
             $params,
             $requestOptions
         );
@@ -63,14 +63,14 @@ final class Companies implements CompaniesContract
     /**
      * Get a company by ID.
      *
-     * @param array{document?: bool, scope?: string}|CompanyRetrieveParam $params
+     * @param array{document?: bool, scope?: string}|CompanyRetrieveParams $params
      */
     public function retrieve(
         string $companyID,
-        array|CompanyRetrieveParam $params,
+        array|CompanyRetrieveParams $params,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        [$parsed, $options] = CompanyRetrieveParam::parseRequest(
+        [$parsed, $options] = CompanyRetrieveParams::parseRequest(
             $params,
             $requestOptions
         );
@@ -93,14 +93,14 @@ final class Companies implements CompaniesContract
      *   workspaceID: string,
      *   sourceID?: string,
      *   technicalData?: TechnicalData1,
-     * }|CompanyUpdateParam $params
+     * }|CompanyUpdateParams $params
      */
     public function update(
         string $companyID,
-        array|CompanyUpdateParam $params,
+        array|CompanyUpdateParams $params,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        [$parsed, $options] = CompanyUpdateParam::parseRequest(
+        [$parsed, $options] = CompanyUpdateParams::parseRequest(
             $params,
             $requestOptions
         );
@@ -127,15 +127,15 @@ final class Companies implements CompaniesContract
      *   state?: State::*,
      *   status?: Status::*,
      *   workspaceID?: string,
-     * }|CompanyListParam $params
+     * }|CompanyListParams $params
      *
      * @return list<CompanyRegistration>
      */
     public function list(
-        array|CompanyListParam $params,
+        array|CompanyListParams $params,
         ?RequestOptions $requestOptions = null
     ): array {
-        [$parsed, $options] = CompanyListParam::parseRequest(
+        [$parsed, $options] = CompanyListParams::parseRequest(
             $params,
             $requestOptions
         );

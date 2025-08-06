@@ -6,8 +6,8 @@ namespace Dataleon\Contracts\Companies;
 
 use Dataleon\Models\Individuals\DocumentResponse;
 use Dataleon\Models\Individuals\GenericDocument;
-use Dataleon\Parameters\Companies\DocumentUploadParam;
-use Dataleon\Parameters\Companies\DocumentUploadParam\DocumentType;
+use Dataleon\Parameters\Companies\DocumentUploadParams;
+use Dataleon\Parameters\Companies\DocumentUploadParams\DocumentType;
 use Dataleon\RequestOptions;
 
 interface DocumentsContract
@@ -20,11 +20,11 @@ interface DocumentsContract
     /**
      * @param array{
      *   documentType: DocumentType::*, file?: string, url?: string
-     * }|DocumentUploadParam $params
+     * }|DocumentUploadParams $params
      */
     public function upload(
         string $companyID,
-        array|DocumentUploadParam $params,
+        array|DocumentUploadParams $params,
         ?RequestOptions $requestOptions = null,
     ): GenericDocument;
 }
