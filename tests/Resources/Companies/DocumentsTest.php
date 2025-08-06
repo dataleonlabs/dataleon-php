@@ -3,7 +3,7 @@
 namespace Tests\Resources\Companies;
 
 use Dataleon\Client;
-use Dataleon\Parameters\Companies\DocumentUploadParam;
+use Dataleon\Parameters\Companies\DocumentUploadParams;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -52,7 +52,7 @@ final class DocumentsTest extends TestCase
             ->documents
             ->upload(
                 'company_id',
-                DocumentUploadParam::new(documentType: 'bank_statements')
+                DocumentUploadParams::new(documentType: 'bank_statements')
             )
         ;
 
@@ -72,7 +72,7 @@ final class DocumentsTest extends TestCase
             ->documents
             ->upload(
                 'company_id',
-                DocumentUploadParam::new(
+                DocumentUploadParams::new(
                     documentType: 'bank_statements',
                     file: 'file',
                     url: 'https://example.com/sample.pdf',
