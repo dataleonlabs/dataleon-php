@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Dataleon\Contracts;
 
 use Dataleon\Models\Individual;
-use Dataleon\Parameters\IndividualCreateParam;
-use Dataleon\Parameters\IndividualCreateParam\Person;
-use Dataleon\Parameters\IndividualCreateParam\TechnicalData;
-use Dataleon\Parameters\IndividualListParam;
-use Dataleon\Parameters\IndividualListParam\State;
-use Dataleon\Parameters\IndividualListParam\Status;
-use Dataleon\Parameters\IndividualRetrieveParam;
-use Dataleon\Parameters\IndividualUpdateParam;
-use Dataleon\Parameters\IndividualUpdateParam\Person as Person1;
-use Dataleon\Parameters\IndividualUpdateParam\TechnicalData as TechnicalData1;
+use Dataleon\Parameters\IndividualCreateParams;
+use Dataleon\Parameters\IndividualCreateParams\Person;
+use Dataleon\Parameters\IndividualCreateParams\TechnicalData;
+use Dataleon\Parameters\IndividualListParams;
+use Dataleon\Parameters\IndividualListParams\State;
+use Dataleon\Parameters\IndividualListParams\Status;
+use Dataleon\Parameters\IndividualRetrieveParams;
+use Dataleon\Parameters\IndividualUpdateParams;
+use Dataleon\Parameters\IndividualUpdateParams\Person as Person1;
+use Dataleon\Parameters\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
 
 interface IndividualsContract
@@ -25,19 +25,19 @@ interface IndividualsContract
      *   person?: Person,
      *   sourceID?: string,
      *   technicalData?: TechnicalData,
-     * }|IndividualCreateParam $params
+     * }|IndividualCreateParams $params
      */
     public function create(
-        array|IndividualCreateParam $params,
+        array|IndividualCreateParams $params,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
     /**
-     * @param array{document?: bool, scope?: string}|IndividualRetrieveParam $params
+     * @param array{document?: bool, scope?: string}|IndividualRetrieveParams $params
      */
     public function retrieve(
         string $individualID,
-        array|IndividualRetrieveParam $params,
+        array|IndividualRetrieveParams $params,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
@@ -47,11 +47,11 @@ interface IndividualsContract
      *   person?: Person1,
      *   sourceID?: string,
      *   technicalData?: TechnicalData1,
-     * }|IndividualUpdateParam $params
+     * }|IndividualUpdateParams $params
      */
     public function update(
         string $individualID,
-        array|IndividualUpdateParam $params,
+        array|IndividualUpdateParams $params,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
@@ -65,12 +65,12 @@ interface IndividualsContract
      *   state?: State::*,
      *   status?: Status::*,
      *   workspaceID?: string,
-     * }|IndividualListParam $params
+     * }|IndividualListParams $params
      *
      * @return list<Individual>
      */
     public function list(
-        array|IndividualListParam $params,
+        array|IndividualListParams $params,
         ?RequestOptions $requestOptions = null,
     ): array;
 
