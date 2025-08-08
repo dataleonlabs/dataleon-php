@@ -28,7 +28,7 @@ To use this package, install via Composer by adding the following to your applic
     }
   ],
   "require": {
-    "dataleon/dataleon": "dev-main"
+    "placeholder/placeholder": "dev-main"
   }
 }
 ```
