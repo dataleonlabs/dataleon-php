@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 (2025-08-08)
+
+Full Changelog: [v0.1.1...v0.1.1](https://github.com/dataleonlabs/dataleon-php/compare/v0.1.1...v0.1.1)
+
+### Chores
+
+* fix package name ([e5a5aa5](https://github.com/dataleonlabs/dataleon-php/commit/e5a5aa5ee3767c53b5f0f4b742e95b99c3b382c5))
+
 ## 0.1.1 (2025-08-06)
 
 Full Changelog: [v0.1.0...v0.1.1](https://github.com/dataleonlabs/dataleon-php/compare/v0.1.0...v0.1.1)
