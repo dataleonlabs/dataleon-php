@@ -3,7 +3,7 @@
 namespace Tests\Resources\Individuals;
 
 use Dataleon\Client;
-use Dataleon\Parameters\Individuals\DocumentUploadParams;
+use Dataleon\Models\Individuals\DocumentUploadParams;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

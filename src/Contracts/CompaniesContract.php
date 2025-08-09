@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Dataleon\Contracts;
 
+use Dataleon\Models\CompanyCreateParams;
+use Dataleon\Models\CompanyCreateParams\Company;
+use Dataleon\Models\CompanyCreateParams\TechnicalData;
+use Dataleon\Models\CompanyListParams;
+use Dataleon\Models\CompanyListParams\State;
+use Dataleon\Models\CompanyListParams\Status;
 use Dataleon\Models\CompanyRegistration;
-use Dataleon\Parameters\CompanyCreateParams;
-use Dataleon\Parameters\CompanyCreateParams\Company;
-use Dataleon\Parameters\CompanyCreateParams\TechnicalData;
-use Dataleon\Parameters\CompanyListParams;
-use Dataleon\Parameters\CompanyListParams\State;
-use Dataleon\Parameters\CompanyListParams\Status;
-use Dataleon\Parameters\CompanyRetrieveParams;
-use Dataleon\Parameters\CompanyUpdateParams;
-use Dataleon\Parameters\CompanyUpdateParams\Company as Company1;
-use Dataleon\Parameters\CompanyUpdateParams\TechnicalData as TechnicalData1;
+use Dataleon\Models\CompanyRetrieveParams;
+use Dataleon\Models\CompanyUpdateParams;
+use Dataleon\Models\CompanyUpdateParams\Company as Company1;
+use Dataleon\Models\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
 
 interface CompaniesContract

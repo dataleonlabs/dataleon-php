@@ -8,9 +8,9 @@ use Dataleon\Client;
 use Dataleon\Contracts\Individuals\DocumentsContract;
 use Dataleon\Core\Conversion;
 use Dataleon\Models\Individuals\DocumentResponse;
+use Dataleon\Models\Individuals\DocumentUploadParams;
+use Dataleon\Models\Individuals\DocumentUploadParams\DocumentType;
 use Dataleon\Models\Individuals\GenericDocument;
-use Dataleon\Parameters\Individuals\DocumentUploadParams;
-use Dataleon\Parameters\Individuals\DocumentUploadParams\DocumentType;
 use Dataleon\RequestOptions;
 
 final class Documents implements DocumentsContract

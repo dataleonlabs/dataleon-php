@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Dataleon\Contracts\Individuals;
 
 use Dataleon\Models\Individuals\DocumentResponse;
+use Dataleon\Models\Individuals\DocumentUploadParams;
+use Dataleon\Models\Individuals\DocumentUploadParams\DocumentType;
 use Dataleon\Models\Individuals\GenericDocument;
-use Dataleon\Parameters\Individuals\DocumentUploadParams;
-use Dataleon\Parameters\Individuals\DocumentUploadParams\DocumentType;
 use Dataleon\RequestOptions;
 
 interface DocumentsContract
