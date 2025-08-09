@@ -3,14 +3,14 @@
 namespace Tests\Resources;
 
 use Dataleon\Client;
-use Dataleon\Parameters\CompanyCreateParams;
-use Dataleon\Parameters\CompanyCreateParams\Company;
-use Dataleon\Parameters\CompanyCreateParams\TechnicalData;
-use Dataleon\Parameters\CompanyListParams;
-use Dataleon\Parameters\CompanyRetrieveParams;
-use Dataleon\Parameters\CompanyUpdateParams;
-use Dataleon\Parameters\CompanyUpdateParams\Company as Company1;
-use Dataleon\Parameters\CompanyUpdateParams\TechnicalData as TechnicalData1;
+use Dataleon\Models\CompanyCreateParams;
+use Dataleon\Models\CompanyCreateParams\Company;
+use Dataleon\Models\CompanyCreateParams\TechnicalData;
+use Dataleon\Models\CompanyListParams;
+use Dataleon\Models\CompanyRetrieveParams;
+use Dataleon\Models\CompanyUpdateParams;
+use Dataleon\Models\CompanyUpdateParams\Company as Company1;
+use Dataleon\Models\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
