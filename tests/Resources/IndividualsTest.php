@@ -3,14 +3,14 @@
 namespace Tests\Resources;
 
 use Dataleon\Client;
-use Dataleon\Parameters\IndividualCreateParams;
-use Dataleon\Parameters\IndividualCreateParams\Person;
-use Dataleon\Parameters\IndividualCreateParams\TechnicalData;
-use Dataleon\Parameters\IndividualListParams;
-use Dataleon\Parameters\IndividualRetrieveParams;
-use Dataleon\Parameters\IndividualUpdateParams;
-use Dataleon\Parameters\IndividualUpdateParams\Person as Person1;
-use Dataleon\Parameters\IndividualUpdateParams\TechnicalData as TechnicalData1;
+use Dataleon\Models\IndividualCreateParams;
+use Dataleon\Models\IndividualCreateParams\Person;
+use Dataleon\Models\IndividualCreateParams\TechnicalData;
+use Dataleon\Models\IndividualListParams;
+use Dataleon\Models\IndividualRetrieveParams;
+use Dataleon\Models\IndividualUpdateParams;
+use Dataleon\Models\IndividualUpdateParams\Person as Person1;
+use Dataleon\Models\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

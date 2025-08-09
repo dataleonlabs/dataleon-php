@@ -7,10 +7,10 @@ namespace Dataleon\Resources\Companies;
 use Dataleon\Client;
 use Dataleon\Contracts\Companies\DocumentsContract;
 use Dataleon\Core\Conversion;
+use Dataleon\Models\Companies\DocumentUploadParams;
+use Dataleon\Models\Companies\DocumentUploadParams\DocumentType;
 use Dataleon\Models\Individuals\DocumentResponse;
 use Dataleon\Models\Individuals\GenericDocument;
-use Dataleon\Parameters\Companies\DocumentUploadParams;
-use Dataleon\Parameters\Companies\DocumentUploadParams\DocumentType;
 use Dataleon\RequestOptions;
 
 final class Documents implements DocumentsContract
