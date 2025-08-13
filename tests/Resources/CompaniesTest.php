@@ -3,14 +3,14 @@
 namespace Tests\Resources;
 
 use Dataleon\Client;
-use Dataleon\Models\CompanyCreateParams;
-use Dataleon\Models\CompanyCreateParams\Company;
-use Dataleon\Models\CompanyCreateParams\TechnicalData;
-use Dataleon\Models\CompanyListParams;
-use Dataleon\Models\CompanyRetrieveParams;
-use Dataleon\Models\CompanyUpdateParams;
-use Dataleon\Models\CompanyUpdateParams\Company as Company1;
-use Dataleon\Models\CompanyUpdateParams\TechnicalData as TechnicalData1;
+use Dataleon\Companies\CompanyCreateParams;
+use Dataleon\Companies\CompanyCreateParams\Company;
+use Dataleon\Companies\CompanyCreateParams\TechnicalData;
+use Dataleon\Companies\CompanyListParams;
+use Dataleon\Companies\CompanyRetrieveParams;
+use Dataleon\Companies\CompanyUpdateParams;
+use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
+use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -41,16 +41,11 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this
-            ->client
-            ->companies
-            ->create(
-                CompanyCreateParams::new(
-                    company: Company::new(name: 'ACME Corp'),
-                    workspaceID: 'wk_123'
-                )
-            )
-        ;
+        $params = CompanyCreateParams::from(
+            company: Company::from(name: 'ACME Corp'),
+            workspaceID: 'wk_123'
+        );
+        $result = $this->client->companies->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -62,36 +57,31 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this
-            ->client
-            ->companies
-            ->create(
-                CompanyCreateParams::new(
-                    company: Company::new(name: 'ACME Corp')
-                        ->setAddress('123 rue Exemple, Paris')
-                        ->setCommercialName('ACME')
-                        ->setCountry('FR')
-                        ->setEmail('info@acme.fr')
-                        ->setEmployerIdentificationNumber('EIN123456')
-                        ->setLegalForm('SARL')
-                        ->setPhoneNumber('+33 1 23 45 67 89')
-                        ->setRegistrationDate('2010-05-15')
-                        ->setRegistrationID('RCS123456')
-                        ->setShareCapital('100000')
-                        ->setStatus('active')
-                        ->setTaxIdentificationNumber('FR123456789')
-                        ->setType('main')
-                        ->setWebsiteURL('https://acme.fr'),
-                    workspaceID: 'wk_123',
-                    sourceID: 'ID54410069066',
-                    technicalData: (new TechnicalData)
-                        ->setCallbackURL('https://example.com/callback')
-                        ->setCallbackURLNotification('https://example.com/notify')
-                        ->setLanguage('fra')
-                        ->setRawData(true),
-                )
-            )
-        ;
+        $params = CompanyCreateParams::from(
+            company: Company::from(name: 'ACME Corp')
+                ->setAddress('123 rue Exemple, Paris')
+                ->setCommercialName('ACME')
+                ->setCountry('FR')
+                ->setEmail('info@acme.fr')
+                ->setEmployerIdentificationNumber('EIN123456')
+                ->setLegalForm('SARL')
+                ->setPhoneNumber('+33 1 23 45 67 89')
+                ->setRegistrationDate('2010-05-15')
+                ->setRegistrationID('RCS123456')
+                ->setShareCapital('100000')
+                ->setStatus('active')
+                ->setTaxIdentificationNumber('FR123456789')
+                ->setType('main')
+                ->setWebsiteURL('https://acme.fr'),
+            workspaceID: 'wk_123',
+            sourceID: 'ID54410069066',
+            technicalData: (new TechnicalData)
+                ->setCallbackURL('https://example.com/callback')
+                ->setCallbackURLNotification('https://example.com/notify')
+                ->setLanguage('fra')
+                ->setRawData(true),
+        );
+        $result = $this->client->companies->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -103,11 +93,8 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this
-            ->client
-            ->companies
-            ->retrieve('company_id', new CompanyRetrieveParams)
-        ;
+        $params = (new CompanyRetrieveParams);
+        $result = $this->client->companies->retrieve('company_id', $params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -119,17 +106,11 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this
-            ->client
-            ->companies
-            ->update(
-                'company_id',
-                CompanyUpdateParams::new(
-                    company: Company1::new(name: 'ACME Corp'),
-                    workspaceID: 'wk_123'
-                )
-            )
-        ;
+        $params = CompanyUpdateParams::from(
+            company: Company1::from(name: 'ACME Corp'),
+            workspaceID: 'wk_123'
+        );
+        $result = $this->client->companies->update('company_id', $params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -141,37 +122,31 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this
-            ->client
-            ->companies
-            ->update(
-                'company_id',
-                CompanyUpdateParams::new(
-                    company: Company1::new(name: 'ACME Corp')
-                        ->setAddress('123 rue Exemple, Paris')
-                        ->setCommercialName('ACME')
-                        ->setCountry('FR')
-                        ->setEmail('info@acme.fr')
-                        ->setEmployerIdentificationNumber('EIN123456')
-                        ->setLegalForm('SARL')
-                        ->setPhoneNumber('+33 1 23 45 67 89')
-                        ->setRegistrationDate('2010-05-15')
-                        ->setRegistrationID('RCS123456')
-                        ->setShareCapital('100000')
-                        ->setStatus('active')
-                        ->setTaxIdentificationNumber('FR123456789')
-                        ->setType('main')
-                        ->setWebsiteURL('https://acme.fr'),
-                    workspaceID: 'wk_123',
-                    sourceID: 'ID54410069066',
-                    technicalData: (new TechnicalData1)
-                        ->setCallbackURL('https://example.com/callback')
-                        ->setCallbackURLNotification('https://example.com/notify')
-                        ->setLanguage('fra')
-                        ->setRawData(true),
-                )
-            )
-        ;
+        $params = CompanyUpdateParams::from(
+            company: Company1::from(name: 'ACME Corp')
+                ->setAddress('123 rue Exemple, Paris')
+                ->setCommercialName('ACME')
+                ->setCountry('FR')
+                ->setEmail('info@acme.fr')
+                ->setEmployerIdentificationNumber('EIN123456')
+                ->setLegalForm('SARL')
+                ->setPhoneNumber('+33 1 23 45 67 89')
+                ->setRegistrationDate('2010-05-15')
+                ->setRegistrationID('RCS123456')
+                ->setShareCapital('100000')
+                ->setStatus('active')
+                ->setTaxIdentificationNumber('FR123456789')
+                ->setType('main')
+                ->setWebsiteURL('https://acme.fr'),
+            workspaceID: 'wk_123',
+            sourceID: 'ID54410069066',
+            technicalData: (new TechnicalData1)
+                ->setCallbackURL('https://example.com/callback')
+                ->setCallbackURLNotification('https://example.com/notify')
+                ->setLanguage('fra')
+                ->setRawData(true),
+        );
+        $result = $this->client->companies->update('company_id', $params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -183,7 +158,8 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->companies->list(new CompanyListParams);
+        $params = (new CompanyListParams);
+        $result = $this->client->companies->list($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

@@ -3,7 +3,7 @@
 namespace Tests\Resources\Companies;
 
 use Dataleon\Client;
-use Dataleon\Models\Companies\DocumentUploadParams;
+use Dataleon\Companies\Documents\DocumentUploadParams;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -46,14 +46,12 @@ final class DocumentsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
+        $params = DocumentUploadParams::from(documentType: 'bank_statements');
         $result = $this
             ->client
             ->companies
             ->documents
-            ->upload(
-                'company_id',
-                DocumentUploadParams::new(documentType: 'bank_statements')
-            )
+            ->upload('company_id', $params)
         ;
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -66,18 +64,16 @@ final class DocumentsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
+        $params = DocumentUploadParams::from(
+            documentType: 'bank_statements',
+            file: 'file',
+            url: 'https://example.com/sample.pdf',
+        );
         $result = $this
             ->client
             ->companies
             ->documents
-            ->upload(
-                'company_id',
-                DocumentUploadParams::new(
-                    documentType: 'bank_statements',
-                    file: 'file',
-                    url: 'https://example.com/sample.pdf',
-                )
-            )
+            ->upload('company_id', $params)
         ;
 
         $this->assertTrue(true); // @phpstan-ignore-line
