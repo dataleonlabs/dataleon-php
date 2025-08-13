@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Dataleon\Contracts\Companies;
 
-use Dataleon\Models\Companies\DocumentUploadParams;
-use Dataleon\Models\Companies\DocumentUploadParams\DocumentType;
-use Dataleon\Models\Individuals\DocumentResponse;
-use Dataleon\Models\Individuals\GenericDocument;
+use Dataleon\Companies\Documents\DocumentUploadParams;
+use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
+use Dataleon\Individuals\Documents\DocumentResponse;
+use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
 
 interface DocumentsContract

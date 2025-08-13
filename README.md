@@ -41,10 +41,12 @@ To use this package, install via Composer by adding the following to your applic
 <?php
 
 use Dataleon\Client;
+use Dataleon\Individuals\IndividualCreateParams;
 
 $client = new Client(apiKey: getenv("DATALEON_API_KEY") ?: "My API Key");
 
-$individual = $client->individuals->create(["workspaceID" => "wk_123"]);
+$params = IndividualCreateParams::from(workspaceID: "wk_123");
+$individual = $client->individuals->create($params);
 
 var_dump($individual->id);
 ```
@@ -57,9 +59,11 @@ When the library is unable to connect to the API, or if the API returns a non-su
 <?php
 
 use Dataleon\Errors\APIConnectionError;
+use Dataleon\Individuals\IndividualCreateParams;
 
 try {
-    $Individuals = $client->individuals->create(["workspaceID" => "wk_123"]);
+    $params = IndividualCreateParams::from(workspaceID: "wk_123");
+    $Individuals = $client->individuals->create($params);
 } catch (APIConnectionError $e) {
     echo "The server could not be reached", PHP_EOL;
     var_dump($e->getPrevious());
@@ -99,14 +103,17 @@ You can use the `max_retries` option to configure or disable this:
 <?php
 
 use Dataleon\Client;
+use Dataleon\RequestOptions;
+use Dataleon\Individuals\IndividualCreateParams;
 
 // Configure the default for all requests:
 $client = new Client(maxRetries: 0);
+$params = IndividualCreateParams::from(workspaceID: "wk_123");
 
 // Or, configure per-request:
-$client->individuals->create(
-  ["workspaceID" => "wk_123"], requestOptions: ["maxRetries" => 5]
-);
+$result = $client
+  ->individuals
+  ->create($params, new RequestOptions(maxRetries: 5));
 ```
 
 ## Advanced concepts
@@ -122,13 +129,19 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 ```php
 <?php
 
-$individual = $client->individuals->create(
-  ["workspaceID" => "wk_123"],
-  requestOptions: [
-    "extraQueryParams" => ["my_query_parameter" => "value"],
-    "extraBodyParams" => ["my_body_parameter" => "value"],
-    "extraHeaders" => ["my-header" => "value"],
-  ],
+use Dataleon\RequestOptions;
+use Dataleon\Individuals\IndividualCreateParams;
+
+$params = IndividualCreateParams::from(workspaceID: "wk_123");
+$individual = $client
+  ->individuals
+  ->create(
+  $params,
+  new RequestOptions(
+    extraQueryParams: ["my_query_parameter" => "value"],
+    extraBodyParams: ["my_body_parameter" => "value"],
+    extraHeaders: ["my-header" => "value"],
+  ),
 );
 
 var_dump($individual["my_undocumented_property"]);
