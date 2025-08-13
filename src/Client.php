@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Dataleon;
 
+use Dataleon\Companies\CompaniesService;
 use Dataleon\Core\BaseClient;
-use Dataleon\Resources\Companies;
-use Dataleon\Resources\Individuals;
+use Dataleon\Individuals\IndividualsService;
 
 class Client extends BaseClient
 {
     public string $apiKey;
 
-    public Individuals $individuals;
+    public IndividualsService $individuals;
 
-    public Companies $companies;
+    public CompaniesService $companies;
 
     public function __construct(?string $apiKey = null, ?string $baseUrl = null)
     {
@@ -32,8 +32,8 @@ class Client extends BaseClient
             options: new RequestOptions,
         );
 
-        $this->individuals = new Individuals($this);
-        $this->companies = new Companies($this);
+        $this->individuals = new IndividualsService($this);
+        $this->companies = new CompaniesService($this);
     }
 
     /** @return array<string, string> */

@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Dataleon\Contracts;
 
-use Dataleon\Models\Individual;
-use Dataleon\Models\IndividualCreateParams;
-use Dataleon\Models\IndividualCreateParams\Person;
-use Dataleon\Models\IndividualCreateParams\TechnicalData;
-use Dataleon\Models\IndividualListParams;
-use Dataleon\Models\IndividualListParams\State;
-use Dataleon\Models\IndividualListParams\Status;
-use Dataleon\Models\IndividualRetrieveParams;
-use Dataleon\Models\IndividualUpdateParams;
-use Dataleon\Models\IndividualUpdateParams\Person as Person1;
-use Dataleon\Models\IndividualUpdateParams\TechnicalData as TechnicalData1;
+use Dataleon\Individuals\Individual;
+use Dataleon\Individuals\IndividualCreateParams;
+use Dataleon\Individuals\IndividualCreateParams\Person;
+use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
+use Dataleon\Individuals\IndividualListParams;
+use Dataleon\Individuals\IndividualListParams\State;
+use Dataleon\Individuals\IndividualListParams\Status;
+use Dataleon\Individuals\IndividualRetrieveParams;
+use Dataleon\Individuals\IndividualUpdateParams;
+use Dataleon\Individuals\IndividualUpdateParams\Person as Person1;
+use Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
 
 interface IndividualsContract
