@@ -123,6 +123,20 @@ final class Company implements BaseModel
     #[Api('website_url', optional: true)]
     public ?string $websiteURL;
 
+    /**
+     * `new Company()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * Company::with(name: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new Company)->withName(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -134,7 +148,7 @@ final class Company implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         string $name,
         ?string $address = null,
         ?string $commercialName = null,
@@ -176,152 +190,167 @@ final class Company implements BaseModel
     /**
      * Legal name of the company.
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Registered address of the company.
      */
-    public function setAddress(string $address): self
+    public function withAddress(string $address): self
     {
-        $this->address = $address;
+        $obj = clone $this;
+        $obj->address = $address;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Commercial or trade name of the company, if different from the legal name.
      */
-    public function setCommercialName(string $commercialName): self
+    public function withCommercialName(string $commercialName): self
     {
-        $this->commercialName = $commercialName;
+        $obj = clone $this;
+        $obj->commercialName = $commercialName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * ISO 3166-1 alpha-2 country code of company registration (e.g., "FR" for France).
      */
-    public function setCountry(string $country): self
+    public function withCountry(string $country): self
     {
-        $this->country = $country;
+        $obj = clone $this;
+        $obj->country = $country;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Contact email address for the company.
      */
-    public function setEmail(string $email): self
+    public function withEmail(string $email): self
     {
-        $this->email = $email;
+        $obj = clone $this;
+        $obj->email = $email;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Employer Identification Number (EIN) or equivalent.
      */
-    public function setEmployerIdentificationNumber(
+    public function withEmployerIdentificationNumber(
         string $employerIdentificationNumber
     ): self {
-        $this->employerIdentificationNumber = $employerIdentificationNumber;
+        $obj = clone $this;
+        $obj->employerIdentificationNumber = $employerIdentificationNumber;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Legal structure of the company (e.g., SARL, SAS).
      */
-    public function setLegalForm(string $legalForm): self
+    public function withLegalForm(string $legalForm): self
     {
-        $this->legalForm = $legalForm;
+        $obj = clone $this;
+        $obj->legalForm = $legalForm;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Contact phone number for the company.
      */
-    public function setPhoneNumber(string $phoneNumber): self
+    public function withPhoneNumber(string $phoneNumber): self
     {
-        $this->phoneNumber = $phoneNumber;
+        $obj = clone $this;
+        $obj->phoneNumber = $phoneNumber;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Date of official company registration in YYYY-MM-DD format.
      */
-    public function setRegistrationDate(string $registrationDate): self
+    public function withRegistrationDate(string $registrationDate): self
     {
-        $this->registrationDate = $registrationDate;
+        $obj = clone $this;
+        $obj->registrationDate = $registrationDate;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Official company registration identifier.
      */
-    public function setRegistrationID(string $registrationID): self
+    public function withRegistrationID(string $registrationID): self
     {
-        $this->registrationID = $registrationID;
+        $obj = clone $this;
+        $obj->registrationID = $registrationID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Declared share capital of the company, usually in euros.
      */
-    public function setShareCapital(string $shareCapital): self
+    public function withShareCapital(string $shareCapital): self
     {
-        $this->shareCapital = $shareCapital;
+        $obj = clone $this;
+        $obj->shareCapital = $shareCapital;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Current status of the company (e.g., active, inactive).
      */
-    public function setStatus(string $status): self
+    public function withStatus(string $status): self
     {
-        $this->status = $status;
+        $obj = clone $this;
+        $obj->status = $status;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * National tax identifier (e.g., VAT or TIN).
      */
-    public function setTaxIdentificationNumber(
+    public function withTaxIdentificationNumber(
         string $taxIdentificationNumber
     ): self {
-        $this->taxIdentificationNumber = $taxIdentificationNumber;
+        $obj = clone $this;
+        $obj->taxIdentificationNumber = $taxIdentificationNumber;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Type of company, such as "main" or "affiliated".
      */
-    public function setType(string $type): self
+    public function withType(string $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Company’s official website URL.
      */
-    public function setWebsiteURL(string $websiteURL): self
+    public function withWebsiteURL(string $websiteURL): self
     {
-        $this->websiteURL = $websiteURL;
+        $obj = clone $this;
+        $obj->websiteURL = $websiteURL;
 
-        return $this;
+        return $obj;
     }
 }

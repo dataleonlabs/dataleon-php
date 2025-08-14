@@ -162,7 +162,7 @@ final class TechnicalData implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?int $apiVersion = null,
         ?\DateTimeInterface $approvedAt = null,
         ?string $callbackURL = null,
@@ -211,193 +211,212 @@ final class TechnicalData implements BaseModel
     /**
      * Version number of the API used.
      */
-    public function setAPIVersion(int $apiVersion): self
+    public function withAPIVersion(int $apiVersion): self
     {
-        $this->apiVersion = $apiVersion;
+        $obj = clone $this;
+        $obj->apiVersion = $apiVersion;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Timestamp when the request or process was approved.
      */
-    public function setApprovedAt(\DateTimeInterface $approvedAt): self
+    public function withApprovedAt(\DateTimeInterface $approvedAt): self
     {
-        $this->approvedAt = $approvedAt;
+        $obj = clone $this;
+        $obj->approvedAt = $approvedAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * URL to receive callback data from the AML system.
      */
-    public function setCallbackURL(string $callbackURL): self
+    public function withCallbackURL(string $callbackURL): self
     {
-        $this->callbackURL = $callbackURL;
+        $obj = clone $this;
+        $obj->callbackURL = $callbackURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * URL to receive notification updates about the processing status.
      */
-    public function setCallbackURLNotification(
+    public function withCallbackURLNotification(
         string $callbackURLNotification
     ): self {
-        $this->callbackURLNotification = $callbackURLNotification;
+        $obj = clone $this;
+        $obj->callbackURLNotification = $callbackURLNotification;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Flag to indicate if notifications are disabled.
      */
-    public function setDisableNotification(bool $disableNotification): self
+    public function withDisableNotification(bool $disableNotification): self
     {
-        $this->disableNotification = $disableNotification;
+        $obj = clone $this;
+        $obj->disableNotification = $disableNotification;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Timestamp when notifications were disabled; null if never disabled.
      */
-    public function setDisableNotificationDate(
+    public function withDisableNotificationDate(
         ?\DateTimeInterface $disableNotificationDate
     ): self {
-        $this->disableNotificationDate = $disableNotificationDate;
+        $obj = clone $this;
+        $obj->disableNotificationDate = $disableNotificationDate;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Export format defined by the API (e.g., "json", "xml").
      */
-    public function setExportType(string $exportType): self
+    public function withExportType(string $exportType): self
     {
-        $this->exportType = $exportType;
+        $obj = clone $this;
+        $obj->exportType = $exportType;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Timestamp when the process finished.
      */
-    public function setFinishedAt(\DateTimeInterface $finishedAt): self
+    public function withFinishedAt(\DateTimeInterface $finishedAt): self
     {
-        $this->finishedAt = $finishedAt;
+        $obj = clone $this;
+        $obj->finishedAt = $finishedAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * IP address of the our system handling the request.
      */
-    public function setIP(string $ip): self
+    public function withIP(string $ip): self
     {
-        $this->ip = $ip;
+        $obj = clone $this;
+        $obj->ip = $ip;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Language preference used in the client workspace (e.g., "fra").
      */
-    public function setLanguage(string $language): self
+    public function withLanguage(string $language): self
     {
-        $this->language = $language;
+        $obj = clone $this;
+        $obj->language = $language;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * IP address of the end client (final user) captured.
      */
-    public function setLocationIP(string $locationIP): self
+    public function withLocationIP(string $locationIP): self
     {
-        $this->locationIP = $locationIP;
+        $obj = clone $this;
+        $obj->locationIP = $locationIP;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Timestamp indicating when the request or process needs review; null if none.
      */
-    public function setNeedReviewAt(?\DateTimeInterface $needReviewAt): self
+    public function withNeedReviewAt(?\DateTimeInterface $needReviewAt): self
     {
-        $this->needReviewAt = $needReviewAt;
+        $obj = clone $this;
+        $obj->needReviewAt = $needReviewAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Flag indicating if notification confirmation is required or received.
      */
-    public function setNotificationConfirmation(
+    public function withNotificationConfirmation(
         bool $notificationConfirmation
     ): self {
-        $this->notificationConfirmation = $notificationConfirmation;
+        $obj = clone $this;
+        $obj->notificationConfirmation = $notificationConfirmation;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Indicates whether QR code is enabled ("true" or "false").
      */
-    public function setQrCode(string $qrCode): self
+    public function withQrCode(string $qrCode): self
     {
-        $this->qrCode = $qrCode;
+        $obj = clone $this;
+        $obj->qrCode = $qrCode;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Flag indicating whether to include raw data in the response.
      */
-    public function setRawData(bool $rawData): self
+    public function withRawData(bool $rawData): self
     {
-        $this->rawData = $rawData;
+        $obj = clone $this;
+        $obj->rawData = $rawData;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Timestamp when the request or process was rejected; null if not rejected.
      */
-    public function setRejectedAt(?\DateTimeInterface $rejectedAt): self
+    public function withRejectedAt(?\DateTimeInterface $rejectedAt): self
     {
-        $this->rejectedAt = $rejectedAt;
+        $obj = clone $this;
+        $obj->rejectedAt = $rejectedAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Timestamp when the process started.
      */
-    public function setStartedAt(\DateTimeInterface $startedAt): self
+    public function withStartedAt(\DateTimeInterface $startedAt): self
     {
-        $this->startedAt = $startedAt;
+        $obj = clone $this;
+        $obj->startedAt = $startedAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Date/time of data transfer.
      */
-    public function setTransferAt(\DateTimeInterface $transferAt): self
+    public function withTransferAt(\DateTimeInterface $transferAt): self
     {
-        $this->transferAt = $transferAt;
+        $obj = clone $this;
+        $obj->transferAt = $transferAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Mode of data transfer.
      */
-    public function setTransferMode(string $transferMode): self
+    public function withTransferMode(string $transferMode): self
     {
-        $this->transferMode = $transferMode;
+        $obj = clone $this;
+        $obj->transferMode = $transferMode;
 
-        return $this;
+        return $obj;
     }
 }

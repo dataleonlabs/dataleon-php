@@ -46,7 +46,7 @@ final class DocumentsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = DocumentUploadParams::from(documentType: 'bank_statements');
+        $params = DocumentUploadParams::with(documentType: 'bank_statements');
         $result = $this
             ->client
             ->companies
@@ -64,7 +64,7 @@ final class DocumentsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = DocumentUploadParams::from(
+        $params = DocumentUploadParams::with(
             documentType: 'bank_statements',
             file: 'file',
             url: 'https://example.com/sample.pdf',

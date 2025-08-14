@@ -41,8 +41,8 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = CompanyCreateParams::from(
-            company: Company::from(name: 'ACME Corp'),
+        $params = CompanyCreateParams::with(
+            company: Company::with(name: 'ACME Corp'),
             workspaceID: 'wk_123'
         );
         $result = $this->client->companies->create($params);
@@ -57,29 +57,29 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = CompanyCreateParams::from(
-            company: Company::from(name: 'ACME Corp')
-                ->setAddress('123 rue Exemple, Paris')
-                ->setCommercialName('ACME')
-                ->setCountry('FR')
-                ->setEmail('info@acme.fr')
-                ->setEmployerIdentificationNumber('EIN123456')
-                ->setLegalForm('SARL')
-                ->setPhoneNumber('+33 1 23 45 67 89')
-                ->setRegistrationDate('2010-05-15')
-                ->setRegistrationID('RCS123456')
-                ->setShareCapital('100000')
-                ->setStatus('active')
-                ->setTaxIdentificationNumber('FR123456789')
-                ->setType('main')
-                ->setWebsiteURL('https://acme.fr'),
+        $params = CompanyCreateParams::with(
+            company: Company::with(name: 'ACME Corp')
+                ->withAddress('123 rue Exemple, Paris')
+                ->withCommercialName('ACME')
+                ->withCountry('FR')
+                ->withEmail('info@acme.fr')
+                ->withEmployerIdentificationNumber('EIN123456')
+                ->withLegalForm('SARL')
+                ->withPhoneNumber('+33 1 23 45 67 89')
+                ->withRegistrationDate('2010-05-15')
+                ->withRegistrationID('RCS123456')
+                ->withShareCapital('100000')
+                ->withStatus('active')
+                ->withTaxIdentificationNumber('FR123456789')
+                ->withType('main')
+                ->withWebsiteURL('https://acme.fr'),
             workspaceID: 'wk_123',
             sourceID: 'ID54410069066',
             technicalData: (new TechnicalData)
-                ->setCallbackURL('https://example.com/callback')
-                ->setCallbackURLNotification('https://example.com/notify')
-                ->setLanguage('fra')
-                ->setRawData(true),
+                ->withCallbackURL('https://example.com/callback')
+                ->withCallbackURLNotification('https://example.com/notify')
+                ->withLanguage('fra')
+                ->withRawData(true),
         );
         $result = $this->client->companies->create($params);
 
@@ -106,8 +106,8 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = CompanyUpdateParams::from(
-            company: Company1::from(name: 'ACME Corp'),
+        $params = CompanyUpdateParams::with(
+            company: Company1::with(name: 'ACME Corp'),
             workspaceID: 'wk_123'
         );
         $result = $this->client->companies->update('company_id', $params);
@@ -122,29 +122,29 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = CompanyUpdateParams::from(
-            company: Company1::from(name: 'ACME Corp')
-                ->setAddress('123 rue Exemple, Paris')
-                ->setCommercialName('ACME')
-                ->setCountry('FR')
-                ->setEmail('info@acme.fr')
-                ->setEmployerIdentificationNumber('EIN123456')
-                ->setLegalForm('SARL')
-                ->setPhoneNumber('+33 1 23 45 67 89')
-                ->setRegistrationDate('2010-05-15')
-                ->setRegistrationID('RCS123456')
-                ->setShareCapital('100000')
-                ->setStatus('active')
-                ->setTaxIdentificationNumber('FR123456789')
-                ->setType('main')
-                ->setWebsiteURL('https://acme.fr'),
+        $params = CompanyUpdateParams::with(
+            company: Company1::with(name: 'ACME Corp')
+                ->withAddress('123 rue Exemple, Paris')
+                ->withCommercialName('ACME')
+                ->withCountry('FR')
+                ->withEmail('info@acme.fr')
+                ->withEmployerIdentificationNumber('EIN123456')
+                ->withLegalForm('SARL')
+                ->withPhoneNumber('+33 1 23 45 67 89')
+                ->withRegistrationDate('2010-05-15')
+                ->withRegistrationID('RCS123456')
+                ->withShareCapital('100000')
+                ->withStatus('active')
+                ->withTaxIdentificationNumber('FR123456789')
+                ->withType('main')
+                ->withWebsiteURL('https://acme.fr'),
             workspaceID: 'wk_123',
             sourceID: 'ID54410069066',
             technicalData: (new TechnicalData1)
-                ->setCallbackURL('https://example.com/callback')
-                ->setCallbackURLNotification('https://example.com/notify')
-                ->setLanguage('fra')
-                ->setRawData(true),
+                ->withCallbackURL('https://example.com/callback')
+                ->withCallbackURLNotification('https://example.com/notify')
+                ->withLanguage('fra')
+                ->withRawData(true),
         );
         $result = $this->client->companies->update('company_id', $params);
 

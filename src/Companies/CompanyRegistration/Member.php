@@ -208,7 +208,7 @@ final class Member implements BaseModel
      * @param null|Source::* $source
      * @param null|Type::* $type
      */
-    public static function from(
+    public static function with(
         ?string $id = null,
         ?string $address = null,
         ?\DateTimeInterface $birthday = null,
@@ -264,51 +264,56 @@ final class Member implements BaseModel
         return $obj;
     }
 
-    public function setID(string $id): self
+    public function withID(string $id): self
     {
-        $this->id = $id;
+        $obj = clone $this;
+        $obj->id = $id;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Address of the member, which may include street, city, postal code, and country.
      */
-    public function setAddress(string $address): self
+    public function withAddress(string $address): self
     {
-        $this->address = $address;
+        $obj = clone $this;
+        $obj->address = $address;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Birthday (available only if type = person).
      */
-    public function setBirthday(\DateTimeInterface $birthday): self
+    public function withBirthday(\DateTimeInterface $birthday): self
     {
-        $this->birthday = $birthday;
+        $obj = clone $this;
+        $obj->birthday = $birthday;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Birthplace (available only if type = person).
      */
-    public function setBirthplace(string $birthplace): self
+    public function withBirthplace(string $birthplace): self
     {
-        $this->birthplace = $birthplace;
+        $obj = clone $this;
+        $obj->birthplace = $birthplace;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * ISO 3166-1 alpha-2 country code of the member's address (e.g., "FR" for France).
      */
-    public function setCountry(string $country): self
+    public function withCountry(string $country): self
     {
-        $this->country = $country;
+        $obj = clone $this;
+        $obj->country = $country;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -316,141 +321,155 @@ final class Member implements BaseModel
      *
      * @param list<GenericDocument> $documents
      */
-    public function setDocuments(array $documents): self
+    public function withDocuments(array $documents): self
     {
-        $this->documents = $documents;
+        $obj = clone $this;
+        $obj->documents = $documents;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Email address of the member, which may be used for communication or verification purposes.
      */
-    public function setEmail(string $email): self
+    public function withEmail(string $email): self
     {
-        $this->email = $email;
+        $obj = clone $this;
+        $obj->email = $email;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * First name (available only if type = person).
      */
-    public function setFirstName(string $firstName): self
+    public function withFirstName(string $firstName): self
     {
-        $this->firstName = $firstName;
+        $obj = clone $this;
+        $obj->firstName = $firstName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Indicates whether the member is a beneficial owner of the company, meaning they have significant control or ownership.
      */
-    public function setIsBeneficialOwner(bool $isBeneficialOwner): self
+    public function withIsBeneficialOwner(bool $isBeneficialOwner): self
     {
-        $this->isBeneficialOwner = $isBeneficialOwner;
+        $obj = clone $this;
+        $obj->isBeneficialOwner = $isBeneficialOwner;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Indicates whether the member is a delegator, meaning they have authority to act on behalf of the company.
      */
-    public function setIsDelegator(bool $isDelegator): self
+    public function withIsDelegator(bool $isDelegator): self
     {
-        $this->isDelegator = $isDelegator;
+        $obj = clone $this;
+        $obj->isDelegator = $isDelegator;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Last name (available only if type = person).
      */
-    public function setLastName(string $lastName): self
+    public function withLastName(string $lastName): self
     {
-        $this->lastName = $lastName;
+        $obj = clone $this;
+        $obj->lastName = $lastName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Indicates whether liveness verification was performed for the member, typically in the context of identity checks.
      */
-    public function setLivenessVerification(bool $livenessVerification): self
+    public function withLivenessVerification(bool $livenessVerification): self
     {
-        $this->livenessVerification = $livenessVerification;
+        $obj = clone $this;
+        $obj->livenessVerification = $livenessVerification;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Company name (available only if type = company).
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Percentage of ownership the member has in the company, expressed as an integer between 0 and 100.
      */
-    public function setOwnershipPercentage(int $ownershipPercentage): self
+    public function withOwnershipPercentage(int $ownershipPercentage): self
     {
-        $this->ownershipPercentage = $ownershipPercentage;
+        $obj = clone $this;
+        $obj->ownershipPercentage = $ownershipPercentage;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Contact phone number of the member, including country code and area code.
      */
-    public function setPhoneNumber(string $phoneNumber): self
+    public function withPhoneNumber(string $phoneNumber): self
     {
-        $this->phoneNumber = $phoneNumber;
+        $obj = clone $this;
+        $obj->phoneNumber = $phoneNumber;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Postal code of the member's address, typically a numeric or alphanumeric code.
      */
-    public function setPostalCode(string $postalCode): self
+    public function withPostalCode(string $postalCode): self
     {
-        $this->postalCode = $postalCode;
+        $obj = clone $this;
+        $obj->postalCode = $postalCode;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Official registration identifier of the member, such as a national ID or company registration number.
      */
-    public function setRegistrationID(string $registrationID): self
+    public function withRegistrationID(string $registrationID): self
     {
-        $this->registrationID = $registrationID;
+        $obj = clone $this;
+        $obj->registrationID = $registrationID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Type of relationship the member has with the company, such as "shareholder", "director", or "beneficial_owner".
      */
-    public function setRelation(string $relation): self
+    public function withRelation(string $relation): self
     {
-        $this->relation = $relation;
+        $obj = clone $this;
+        $obj->relation = $relation;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Role of the member within the company, such as "legal_representative", "director", or "manager".
      */
-    public function setRoles(string $roles): self
+    public function withRoles(string $roles): self
     {
-        $this->roles = $roles;
+        $obj = clone $this;
+        $obj->roles = $roles;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -458,31 +477,34 @@ final class Member implements BaseModel
      *
      * @param Source::* $source
      */
-    public function setSource(string $source): self
+    public function withSource(string $source): self
     {
-        $this->source = $source;
+        $obj = clone $this;
+        $obj->source = $source;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Current state of the member in the workflow, such as "WAITING", "STARTED", "RUNNING", or "PROCESSED".
      */
-    public function setState(string $state): self
+    public function withState(string $state): self
     {
-        $this->state = $state;
+        $obj = clone $this;
+        $obj->state = $state;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Status of the member in the system, indicating whether they are approved, pending, or rejected. Possible values include "approved", "need_review", "rejected".
      */
-    public function setStatus(string $status): self
+    public function withStatus(string $status): self
     {
-        $this->status = $status;
+        $obj = clone $this;
+        $obj->status = $status;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -490,20 +512,22 @@ final class Member implements BaseModel
      *
      * @param Type::* $type
      */
-    public function setType(string $type): self
+    public function withType(string $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Identifier of the workspace to which the member belongs, used for organizational purposes.
      */
-    public function setWorkspaceID(string $workspaceID): self
+    public function withWorkspaceID(string $workspaceID): self
     {
-        $this->workspaceID = $workspaceID;
+        $obj = clone $this;
+        $obj->workspaceID = $workspaceID;
 
-        return $this;
+        return $obj;
     }
 }

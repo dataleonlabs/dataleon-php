@@ -92,7 +92,7 @@ final class Person implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $birthday = null,
         ?string $email = null,
         ?string $faceImageSignedURL = null,
@@ -121,90 +121,99 @@ final class Person implements BaseModel
     /**
      * Date of birth, formatted as DD/MM/YYYY.
      */
-    public function setBirthday(string $birthday): self
+    public function withBirthday(string $birthday): self
     {
-        $this->birthday = $birthday;
+        $obj = clone $this;
+        $obj->birthday = $birthday;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Email address of the individual.
      */
-    public function setEmail(string $email): self
+    public function withEmail(string $email): self
     {
-        $this->email = $email;
+        $obj = clone $this;
+        $obj->email = $email;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Signed URL linking to the person’s face image.
      */
-    public function setFaceImageSignedURL(string $faceImageSignedURL): self
+    public function withFaceImageSignedURL(string $faceImageSignedURL): self
     {
-        $this->faceImageSignedURL = $faceImageSignedURL;
+        $obj = clone $this;
+        $obj->faceImageSignedURL = $faceImageSignedURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * First (given) name of the person.
      */
-    public function setFirstName(string $firstName): self
+    public function withFirstName(string $firstName): self
     {
-        $this->firstName = $firstName;
+        $obj = clone $this;
+        $obj->firstName = $firstName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Full name of the person, typically concatenation of first and last names.
      */
-    public function setFullName(string $fullName): self
+    public function withFullName(string $fullName): self
     {
-        $this->fullName = $fullName;
+        $obj = clone $this;
+        $obj->fullName = $fullName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Gender of the individual (e.g., "M" for male, "F" for female).
      */
-    public function setGender(string $gender): self
+    public function withGender(string $gender): self
     {
-        $this->gender = $gender;
+        $obj = clone $this;
+        $obj->gender = $gender;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Last (family) name of the person.
      */
-    public function setLastName(string $lastName): self
+    public function withLastName(string $lastName): self
     {
-        $this->lastName = $lastName;
+        $obj = clone $this;
+        $obj->lastName = $lastName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Maiden name of the person, if applicable.
      */
-    public function setMaidenName(string $maidenName): self
+    public function withMaidenName(string $maidenName): self
     {
-        $this->maidenName = $maidenName;
+        $obj = clone $this;
+        $obj->maidenName = $maidenName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Contact phone number including country code.
      */
-    public function setPhoneNumber(string $phoneNumber): self
+    public function withPhoneNumber(string $phoneNumber): self
     {
-        $this->phoneNumber = $phoneNumber;
+        $obj = clone $this;
+        $obj->phoneNumber = $phoneNumber;
 
-        return $this;
+        return $obj;
     }
 }

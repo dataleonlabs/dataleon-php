@@ -64,7 +64,7 @@ final class Contact implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $department = null,
         ?string $email = null,
         ?string $firstName = null,
@@ -85,50 +85,55 @@ final class Contact implements BaseModel
     /**
      * Department of the contact person.
      */
-    public function setDepartment(string $department): self
+    public function withDepartment(string $department): self
     {
-        $this->department = $department;
+        $obj = clone $this;
+        $obj->department = $department;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Email address of the contact person.
      */
-    public function setEmail(string $email): self
+    public function withEmail(string $email): self
     {
-        $this->email = $email;
+        $obj = clone $this;
+        $obj->email = $email;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * First name of the contact person.
      */
-    public function setFirstName(string $firstName): self
+    public function withFirstName(string $firstName): self
     {
-        $this->firstName = $firstName;
+        $obj = clone $this;
+        $obj->firstName = $firstName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Last name of the contact person.
      */
-    public function setLastName(string $lastName): self
+    public function withLastName(string $lastName): self
     {
-        $this->lastName = $lastName;
+        $obj = clone $this;
+        $obj->lastName = $lastName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Phone number of the contact person.
      */
-    public function setPhoneNumber(string $phoneNumber): self
+    public function withPhoneNumber(string $phoneNumber): self
     {
-        $this->phoneNumber = $phoneNumber;
+        $obj = clone $this;
+        $obj->phoneNumber = $phoneNumber;
 
-        return $this;
+        return $obj;
     }
 }

@@ -48,7 +48,7 @@ final class Property implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $name = null,
         ?string $type = null,
         ?string $value = null
@@ -65,30 +65,33 @@ final class Property implements BaseModel
     /**
      * Name/key of the property.
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Data type of the property value.
      */
-    public function setType(string $type): self
+    public function withType(string $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Value associated with the property name.
      */
-    public function setValue(string $value): self
+    public function withValue(string $value): self
     {
-        $this->value = $value;
+        $obj = clone $this;
+        $obj->value = $value;
 
-        return $this;
+        return $obj;
     }
 }

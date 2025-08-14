@@ -54,7 +54,7 @@ final class Tag implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $key = null,
         ?bool $private = null,
         ?string $type = null,
@@ -73,40 +73,44 @@ final class Tag implements BaseModel
     /**
      * Name of the tag used to identify the metadata field.
      */
-    public function setKey(string $key): self
+    public function withKey(string $key): self
     {
-        $this->key = $key;
+        $obj = clone $this;
+        $obj->key = $key;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Indicates whether the tag is private (not visible to external users).
      */
-    public function setPrivate(bool $private): self
+    public function withPrivate(bool $private): self
     {
-        $this->private = $private;
+        $obj = clone $this;
+        $obj->private = $private;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Data type of the tag value (e.g., "string", "number", "boolean").
      */
-    public function setType(string $type): self
+    public function withType(string $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Value assigned to the tag.
      */
-    public function setValue(string $value): self
+    public function withValue(string $value): self
     {
-        $this->value = $value;
+        $obj = clone $this;
+        $obj->value = $value;
 
-        return $this;
+        return $obj;
     }
 }

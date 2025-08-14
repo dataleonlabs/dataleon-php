@@ -60,7 +60,7 @@ final class Check implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?bool $masked = null,
         ?string $message = null,
         ?string $name = null,
@@ -81,50 +81,55 @@ final class Check implements BaseModel
     /**
      * Indicates whether the result or data is masked/hidden.
      */
-    public function setMasked(bool $masked): self
+    public function withMasked(bool $masked): self
     {
-        $this->masked = $masked;
+        $obj = clone $this;
+        $obj->masked = $masked;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Additional message or explanation about the check result.
      */
-    public function setMessage(string $message): self
+    public function withMessage(string $message): self
     {
-        $this->message = $message;
+        $obj = clone $this;
+        $obj->message = $message;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Name or type of the check performed.
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Result of the check, true if passed.
      */
-    public function setValidate(bool $validate): self
+    public function withValidate(bool $validate): self
     {
-        $this->validate = $validate;
+        $obj = clone $this;
+        $obj->validate = $validate;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Importance or weight of the check, often used in scoring.
      */
-    public function setWeight(int $weight): self
+    public function withWeight(int $weight): self
     {
-        $this->weight = $weight;
+        $obj = clone $this;
+        $obj->weight = $weight;
 
-        return $this;
+        return $obj;
     }
 }

@@ -37,7 +37,7 @@ final class Table implements BaseModel
      *
      * @param null|list<mixed> $operation
      */
-    public static function from(?array $operation = null): self
+    public static function with(?array $operation = null): self
     {
         $obj = new self;
 
@@ -51,10 +51,11 @@ final class Table implements BaseModel
      *
      * @param list<mixed> $operation
      */
-    public function setOperation(array $operation): self
+    public function withOperation(array $operation): self
     {
-        $this->operation = $operation;
+        $obj = clone $this;
+        $obj->operation = $operation;
 
-        return $this;
+        return $obj;
     }
 }
