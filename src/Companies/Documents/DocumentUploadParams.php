@@ -42,6 +42,20 @@ final class DocumentUploadParams implements BaseModel
     #[Api(optional: true)]
     public ?string $url;
 
+    /**
+     * `new DocumentUploadParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * DocumentUploadParams::with(documentType: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new DocumentUploadParams)->withDocumentType(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -55,7 +69,7 @@ final class DocumentUploadParams implements BaseModel
      *
      * @param DocumentType::* $documentType
      */
-    public static function from(
+    public static function with(
         string $documentType,
         ?string $file = null,
         ?string $url = null
@@ -75,30 +89,33 @@ final class DocumentUploadParams implements BaseModel
      *
      * @param DocumentType::* $documentType
      */
-    public function setDocumentType(string $documentType): self
+    public function withDocumentType(string $documentType): self
     {
-        $this->documentType = $documentType;
+        $obj = clone $this;
+        $obj->documentType = $documentType;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * File to upload (required).
      */
-    public function setFile(string $file): self
+    public function withFile(string $file): self
     {
-        $this->file = $file;
+        $obj = clone $this;
+        $obj->file = $file;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * URL of the file to upload (either `file` or `url` is required).
      */
-    public function setURL(string $url): self
+    public function withURL(string $url): self
     {
-        $this->url = $url;
+        $obj = clone $this;
+        $obj->url = $url;
 
-        return $this;
+        return $obj;
     }
 }

@@ -50,6 +50,20 @@ final class CompanyCreateParams implements BaseModel
     #[Api('technical_data', optional: true)]
     public ?TechnicalData $technicalData;
 
+    /**
+     * `new CompanyCreateParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * CompanyCreateParams::with(company: ..., workspaceID: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new CompanyCreateParams)->withCompany(...)->withWorkspaceID(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -61,7 +75,7 @@ final class CompanyCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         Company $company,
         string $workspaceID,
         ?string $sourceID = null,
@@ -81,40 +95,44 @@ final class CompanyCreateParams implements BaseModel
     /**
      * Main information about the company being registered.
      */
-    public function setCompany(Company $company): self
+    public function withCompany(Company $company): self
     {
-        $this->company = $company;
+        $obj = clone $this;
+        $obj->company = $company;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Unique identifier of the workspace in which the company is being created.
      */
-    public function setWorkspaceID(string $workspaceID): self
+    public function withWorkspaceID(string $workspaceID): self
     {
-        $this->workspaceID = $workspaceID;
+        $obj = clone $this;
+        $obj->workspaceID = $workspaceID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Optional identifier to track the origin of the request or integration from your system.
      */
-    public function setSourceID(string $sourceID): self
+    public function withSourceID(string $sourceID): self
     {
-        $this->sourceID = $sourceID;
+        $obj = clone $this;
+        $obj->sourceID = $sourceID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Technical metadata and callback configuration.
      */
-    public function setTechnicalData(TechnicalData $technicalData): self
+    public function withTechnicalData(TechnicalData $technicalData): self
     {
-        $this->technicalData = $technicalData;
+        $obj = clone $this;
+        $obj->technicalData = $technicalData;
 
-        return $this;
+        return $obj;
     }
 }

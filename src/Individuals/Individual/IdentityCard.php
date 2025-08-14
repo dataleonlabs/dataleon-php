@@ -134,7 +134,7 @@ final class IdentityCard implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $id = null,
         ?string $backDocumentSignedURL = null,
         ?string $birthPlace = null,
@@ -175,152 +175,167 @@ final class IdentityCard implements BaseModel
     /**
      * Unique identifier for the document.
      */
-    public function setID(string $id): self
+    public function withID(string $id): self
     {
-        $this->id = $id;
+        $obj = clone $this;
+        $obj->id = $id;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Signed URL linking to the back image of the document.
      */
-    public function setBackDocumentSignedURL(
+    public function withBackDocumentSignedURL(
         string $backDocumentSignedURL
     ): self {
-        $this->backDocumentSignedURL = $backDocumentSignedURL;
+        $obj = clone $this;
+        $obj->backDocumentSignedURL = $backDocumentSignedURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Place of birth as indicated on the document.
      */
-    public function setBirthPlace(string $birthPlace): self
+    public function withBirthPlace(string $birthPlace): self
     {
-        $this->birthPlace = $birthPlace;
+        $obj = clone $this;
+        $obj->birthPlace = $birthPlace;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Date of birth in DD/MM/YYYY format as shown on the document.
      */
-    public function setBirthday(string $birthday): self
+    public function withBirthday(string $birthday): self
     {
-        $this->birthday = $birthday;
+        $obj = clone $this;
+        $obj->birthday = $birthday;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Country code issuing the document (ISO 3166-1 alpha-2).
      */
-    public function setCountry(string $country): self
+    public function withCountry(string $country): self
     {
-        $this->country = $country;
+        $obj = clone $this;
+        $obj->country = $country;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Expiration date of the document, in YYYY-MM-DD format.
      */
-    public function setExpirationDate(string $expirationDate): self
+    public function withExpirationDate(string $expirationDate): self
     {
-        $this->expirationDate = $expirationDate;
+        $obj = clone $this;
+        $obj->expirationDate = $expirationDate;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * First name as shown on the document.
      */
-    public function setFirstName(string $firstName): self
+    public function withFirstName(string $firstName): self
     {
-        $this->firstName = $firstName;
+        $obj = clone $this;
+        $obj->firstName = $firstName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Signed URL linking to the front image of the document.
      */
-    public function setFrontDocumentSignedURL(
+    public function withFrontDocumentSignedURL(
         string $frontDocumentSignedURL
     ): self {
-        $this->frontDocumentSignedURL = $frontDocumentSignedURL;
+        $obj = clone $this;
+        $obj->frontDocumentSignedURL = $frontDocumentSignedURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Gender indicated on the document (e.g., "M" or "F").
      */
-    public function setGender(string $gender): self
+    public function withGender(string $gender): self
     {
-        $this->gender = $gender;
+        $obj = clone $this;
+        $obj->gender = $gender;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Date when the document was issued, in YYYY-MM-DD format.
      */
-    public function setIssueDate(string $issueDate): self
+    public function withIssueDate(string $issueDate): self
     {
-        $this->issueDate = $issueDate;
+        $obj = clone $this;
+        $obj->issueDate = $issueDate;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Last name as shown on the document.
      */
-    public function setLastName(string $lastName): self
+    public function withLastName(string $lastName): self
     {
-        $this->lastName = $lastName;
+        $obj = clone $this;
+        $obj->lastName = $lastName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * First line of the Machine Readable Zone (MRZ) on the document.
      */
-    public function setMrzLine1(string $mrzLine1): self
+    public function withMrzLine1(string $mrzLine1): self
     {
-        $this->mrzLine1 = $mrzLine1;
+        $obj = clone $this;
+        $obj->mrzLine1 = $mrzLine1;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Second line of the MRZ on the document.
      */
-    public function setMrzLine2(string $mrzLine2): self
+    public function withMrzLine2(string $mrzLine2): self
     {
-        $this->mrzLine2 = $mrzLine2;
+        $obj = clone $this;
+        $obj->mrzLine2 = $mrzLine2;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Third line of the MRZ if applicable; otherwise null.
      */
-    public function setMrzLine3(?string $mrzLine3): self
+    public function withMrzLine3(?string $mrzLine3): self
     {
-        $this->mrzLine3 = $mrzLine3;
+        $obj = clone $this;
+        $obj->mrzLine3 = $mrzLine3;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Type of document (e.g., passport, identity card).
      */
-    public function setType(string $type): self
+    public function withType(string $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 }

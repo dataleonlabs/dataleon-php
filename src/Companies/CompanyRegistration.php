@@ -141,7 +141,7 @@ final class CompanyRegistration implements BaseModel
      * @param null|list<Member> $members
      * @param null|list<Property> $properties
      */
-    public static function from(
+    public static function with(
         ?array $amlSuspicions = null,
         ?Certificat $certificat = null,
         ?array $checks = null,
@@ -178,21 +178,23 @@ final class CompanyRegistration implements BaseModel
      *
      * @param list<AmlSuspicion> $amlSuspicions
      */
-    public function setAmlSuspicions(array $amlSuspicions): self
+    public function withAmlSuspicions(array $amlSuspicions): self
     {
-        $this->amlSuspicions = $amlSuspicions;
+        $obj = clone $this;
+        $obj->amlSuspicions = $amlSuspicions;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Digital certificate associated with the company, if any, including its creation timestamp and filename.
      */
-    public function setCertificat(Certificat $certificat): self
+    public function withCertificat(Certificat $certificat): self
     {
-        $this->certificat = $certificat;
+        $obj = clone $this;
+        $obj->certificat = $certificat;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -200,21 +202,23 @@ final class CompanyRegistration implements BaseModel
      *
      * @param list<Check> $checks
      */
-    public function setChecks(array $checks): self
+    public function withChecks(array $checks): self
     {
-        $this->checks = $checks;
+        $obj = clone $this;
+        $obj->checks = $checks;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Main information about the company being registered, including legal name, registration ID, and address.
      */
-    public function setCompany(Company $company): self
+    public function withCompany(Company $company): self
     {
-        $this->company = $company;
+        $obj = clone $this;
+        $obj->company = $company;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -222,11 +226,12 @@ final class CompanyRegistration implements BaseModel
      *
      * @param list<GenericDocument> $documents
      */
-    public function setDocuments(array $documents): self
+    public function withDocuments(array $documents): self
     {
-        $this->documents = $documents;
+        $obj = clone $this;
+        $obj->documents = $documents;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -234,21 +239,23 @@ final class CompanyRegistration implements BaseModel
      *
      * @param list<Member> $members
      */
-    public function setMembers(array $members): self
+    public function withMembers(array $members): self
     {
-        $this->members = $members;
+        $obj = clone $this;
+        $obj->members = $members;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Admin or internal portal URL for viewing the company's details, typically used by internal users.
      */
-    public function setPortalURL(string $portalURL): self
+    public function withPortalURL(string $portalURL): self
     {
-        $this->portalURL = $portalURL;
+        $obj = clone $this;
+        $obj->portalURL = $portalURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -256,50 +263,55 @@ final class CompanyRegistration implements BaseModel
      *
      * @param list<Property> $properties
      */
-    public function setProperties(array $properties): self
+    public function withProperties(array $properties): self
     {
-        $this->properties = $properties;
+        $obj = clone $this;
+        $obj->properties = $properties;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Risk assessment associated with the company, including a risk code, reason, and confidence score.
      */
-    public function setRisk(Risk $risk): self
+    public function withRisk(Risk $risk): self
     {
-        $this->risk = $risk;
+        $obj = clone $this;
+        $obj->risk = $risk;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Optional identifier indicating the source of the company record, useful for tracking or integration purposes.
      */
-    public function setSourceID(string $sourceID): self
+    public function withSourceID(string $sourceID): self
     {
-        $this->sourceID = $sourceID;
+        $obj = clone $this;
+        $obj->sourceID = $sourceID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Technical metadata related to the request, such as IP address, QR code settings, and callback URLs.
      */
-    public function setTechnicalData(TechnicalData $technicalData): self
+    public function withTechnicalData(TechnicalData $technicalData): self
     {
-        $this->technicalData = $technicalData;
+        $obj = clone $this;
+        $obj->technicalData = $technicalData;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Public-facing webview URL for the company’s identification process, allowing external access to the company data.
      */
-    public function setWebviewURL(string $webviewURL): self
+    public function withWebviewURL(string $webviewURL): self
     {
-        $this->webviewURL = $webviewURL;
+        $obj = clone $this;
+        $obj->webviewURL = $webviewURL;
 
-        return $this;
+        return $obj;
     }
 }

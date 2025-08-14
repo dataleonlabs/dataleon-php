@@ -42,7 +42,7 @@ final class IndividualRetrieveParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?bool $document = null,
         ?string $scope = null
     ): self {
@@ -57,20 +57,22 @@ final class IndividualRetrieveParams implements BaseModel
     /**
      * Include document information.
      */
-    public function setDocument(bool $document): self
+    public function withDocument(bool $document): self
     {
-        $this->document = $document;
+        $obj = clone $this;
+        $obj->document = $document;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Scope filter (id or scope).
      */
-    public function setScope(string $scope): self
+    public function withScope(string $scope): self
     {
-        $this->scope = $scope;
+        $obj = clone $this;
+        $obj->scope = $scope;
 
-        return $this;
+        return $obj;
     }
 }

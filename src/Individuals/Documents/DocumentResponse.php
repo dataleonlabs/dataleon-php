@@ -46,7 +46,7 @@ final class DocumentResponse implements BaseModel
      *
      * @param null|list<Document> $documents
      */
-    public static function from(
+    public static function with(
         ?array $documents = null,
         ?int $totalDocument = null
     ): self {
@@ -63,20 +63,22 @@ final class DocumentResponse implements BaseModel
      *
      * @param list<Document> $documents
      */
-    public function setDocuments(array $documents): self
+    public function withDocuments(array $documents): self
     {
-        $this->documents = $documents;
+        $obj = clone $this;
+        $obj->documents = $documents;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Total number of documents available in the response.
      */
-    public function setTotalDocument(int $totalDocument): self
+    public function withTotalDocument(int $totalDocument): self
     {
-        $this->totalDocument = $totalDocument;
+        $obj = clone $this;
+        $obj->totalDocument = $totalDocument;
 
-        return $this;
+        return $obj;
     }
 }

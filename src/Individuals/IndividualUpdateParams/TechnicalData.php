@@ -57,7 +57,7 @@ final class TechnicalData implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $callbackURL = null,
         ?string $callbackURLNotification = null,
         ?string $language = null,
@@ -76,41 +76,45 @@ final class TechnicalData implements BaseModel
     /**
      * URL to call back upon completion of processing.
      */
-    public function setCallbackURL(string $callbackURL): self
+    public function withCallbackURL(string $callbackURL): self
     {
-        $this->callbackURL = $callbackURL;
+        $obj = clone $this;
+        $obj->callbackURL = $callbackURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * URL for receive notifications about the processing state or status.
      */
-    public function setCallbackURLNotification(
+    public function withCallbackURLNotification(
         string $callbackURLNotification
     ): self {
-        $this->callbackURLNotification = $callbackURLNotification;
+        $obj = clone $this;
+        $obj->callbackURLNotification = $callbackURLNotification;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Preferred language for communication (e.g., "eng", "fra").
      */
-    public function setLanguage(string $language): self
+    public function withLanguage(string $language): self
     {
-        $this->language = $language;
+        $obj = clone $this;
+        $obj->language = $language;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Flag indicating whether to include raw data in the response.
      */
-    public function setRawData(bool $rawData): self
+    public function withRawData(bool $rawData): self
     {
-        $this->rawData = $rawData;
+        $obj = clone $this;
+        $obj->rawData = $rawData;
 
-        return $this;
+        return $obj;
     }
 }

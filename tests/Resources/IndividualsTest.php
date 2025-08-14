@@ -41,7 +41,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = IndividualCreateParams::from(workspaceID: 'wk_123');
+        $params = IndividualCreateParams::with(workspaceID: 'wk_123');
         $result = $this->client->individuals->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -54,22 +54,22 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = IndividualCreateParams::from(
+        $params = IndividualCreateParams::with(
             workspaceID: 'wk_123',
             person: (new Person)
-                ->setBirthday('15/05/1985')
-                ->setEmail('john.doe@example.com')
-                ->setFirstName('John')
-                ->setGender('M')
-                ->setLastName('Doe')
-                ->setMaidenName('John Doe')
-                ->setPhoneNumber('+33 1 23 45 67 89'),
+                ->withBirthday('15/05/1985')
+                ->withEmail('john.doe@example.com')
+                ->withFirstName('John')
+                ->withGender('M')
+                ->withLastName('Doe')
+                ->withMaidenName('John Doe')
+                ->withPhoneNumber('+33 1 23 45 67 89'),
             sourceID: 'ID54410069066',
             technicalData: (new TechnicalData)
-                ->setCallbackURL('https://example.com/callback')
-                ->setCallbackURLNotification('https://example.com/notify')
-                ->setLanguage('fra')
-                ->setRawData(true),
+                ->withCallbackURL('https://example.com/callback')
+                ->withCallbackURLNotification('https://example.com/notify')
+                ->withLanguage('fra')
+                ->withRawData(true),
         );
         $result = $this->client->individuals->create($params);
 
@@ -96,7 +96,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = IndividualUpdateParams::from(workspaceID: 'wk_123');
+        $params = IndividualUpdateParams::with(workspaceID: 'wk_123');
         $result = $this->client->individuals->update('individual_id', $params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -109,22 +109,22 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = IndividualUpdateParams::from(
+        $params = IndividualUpdateParams::with(
             workspaceID: 'wk_123',
             person: (new Person1)
-                ->setBirthday('15/05/1985')
-                ->setEmail('john.doe@example.com')
-                ->setFirstName('John')
-                ->setGender('M')
-                ->setLastName('Doe')
-                ->setMaidenName('John Doe')
-                ->setPhoneNumber('+33 1 23 45 67 89'),
+                ->withBirthday('15/05/1985')
+                ->withEmail('john.doe@example.com')
+                ->withFirstName('John')
+                ->withGender('M')
+                ->withLastName('Doe')
+                ->withMaidenName('John Doe')
+                ->withPhoneNumber('+33 1 23 45 67 89'),
             sourceID: 'ID54410069066',
             technicalData: (new TechnicalData1)
-                ->setCallbackURL('https://example.com/callback')
-                ->setCallbackURLNotification('https://example.com/notify')
-                ->setLanguage('fra')
-                ->setRawData(true),
+                ->withCallbackURL('https://example.com/callback')
+                ->withCallbackURLNotification('https://example.com/notify')
+                ->withLanguage('fra')
+                ->withRawData(true),
         );
         $result = $this->client->individuals->update('individual_id', $params);
 

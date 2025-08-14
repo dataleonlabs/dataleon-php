@@ -51,7 +51,7 @@ final class Value implements BaseModel
      *
      * @param null|list<int> $value
      */
-    public static function from(
+    public static function with(
         ?float $confidence = null,
         ?string $name = null,
         ?array $value = null
@@ -68,21 +68,23 @@ final class Value implements BaseModel
     /**
      * Confidence score (between 0 and 1) for the extracted value.
      */
-    public function setConfidence(float $confidence): self
+    public function withConfidence(float $confidence): self
     {
-        $this->confidence = $confidence;
+        $obj = clone $this;
+        $obj->confidence = $confidence;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Name or label of the extracted field.
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -90,10 +92,11 @@ final class Value implements BaseModel
      *
      * @param list<int> $value
      */
-    public function setValue(array $value): self
+    public function withValue(array $value): self
     {
-        $this->value = $value;
+        $obj = clone $this;
+        $obj->value = $value;
 
-        return $this;
+        return $obj;
     }
 }

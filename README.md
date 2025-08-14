@@ -45,7 +45,7 @@ use Dataleon\Individuals\IndividualCreateParams;
 
 $client = new Client(apiKey: getenv("DATALEON_API_KEY") ?: "My API Key");
 
-$params = IndividualCreateParams::from(workspaceID: "wk_123");
+$params = IndividualCreateParams::with(workspaceID: "wk_123");
 $individual = $client->individuals->create($params);
 
 var_dump($individual->id);
@@ -61,9 +61,9 @@ When the library is unable to connect to the API, or if the API returns a non-su
 use Dataleon\Errors\APIConnectionError;
 use Dataleon\Individuals\IndividualCreateParams;
 
+$params = IndividualCreateParams::with(workspaceID: "wk_123");
 try {
-    $params = IndividualCreateParams::from(workspaceID: "wk_123");
-    $Individuals = $client->individuals->create($params);
+  $Individuals = $client->individuals->create($params);
 } catch (APIConnectionError $e) {
     echo "The server could not be reached", PHP_EOL;
     var_dump($e->getPrevious());
@@ -108,10 +108,9 @@ use Dataleon\Individuals\IndividualCreateParams;
 
 // Configure the default for all requests:
 $client = new Client(maxRetries: 0);
-$params = IndividualCreateParams::from(workspaceID: "wk_123");
+$params = IndividualCreateParams::with(workspaceID: "wk_123");
 
-// Or, configure per-request:
-$result = $client
+// Or, configure per-request:$result = $client
   ->individuals
   ->create($params, new RequestOptions(maxRetries: 5));
 ```
@@ -132,7 +131,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 use Dataleon\RequestOptions;
 use Dataleon\Individuals\IndividualCreateParams;
 
-$params = IndividualCreateParams::from(workspaceID: "wk_123");
+$params = IndividualCreateParams::with(workspaceID: "wk_123");
 $individual = $client
   ->individuals
   ->create(
