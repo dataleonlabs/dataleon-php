@@ -96,7 +96,7 @@ final class IndividualListParams implements BaseModel
      * @param null|State::* $state
      * @param null|Status::* $status
      */
-    public static function from(
+    public static function with(
         ?\DateTimeInterface $endDate = null,
         ?int $limit = null,
         ?int $offset = null,
@@ -123,51 +123,56 @@ final class IndividualListParams implements BaseModel
     /**
      * Filter individuals created before this date (format YYYY-MM-DD).
      */
-    public function setEndDate(\DateTimeInterface $endDate): self
+    public function withEndDate(\DateTimeInterface $endDate): self
     {
-        $this->endDate = $endDate;
+        $obj = clone $this;
+        $obj->endDate = $endDate;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Number of results to return (between 1 and 100).
      */
-    public function setLimit(int $limit): self
+    public function withLimit(int $limit): self
     {
-        $this->limit = $limit;
+        $obj = clone $this;
+        $obj->limit = $limit;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Number of results to offset (must be ≥ 0).
      */
-    public function setOffset(int $offset): self
+    public function withOffset(int $offset): self
     {
-        $this->offset = $offset;
+        $obj = clone $this;
+        $obj->offset = $offset;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Filter by source ID.
      */
-    public function setSourceID(string $sourceID): self
+    public function withSourceID(string $sourceID): self
     {
-        $this->sourceID = $sourceID;
+        $obj = clone $this;
+        $obj->sourceID = $sourceID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Filter individuals created after this date (format YYYY-MM-DD).
      */
-    public function setStartDate(\DateTimeInterface $startDate): self
+    public function withStartDate(\DateTimeInterface $startDate): self
     {
-        $this->startDate = $startDate;
+        $obj = clone $this;
+        $obj->startDate = $startDate;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -175,11 +180,12 @@ final class IndividualListParams implements BaseModel
      *
      * @param State::* $state
      */
-    public function setState(string $state): self
+    public function withState(string $state): self
     {
-        $this->state = $state;
+        $obj = clone $this;
+        $obj->state = $state;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -187,20 +193,22 @@ final class IndividualListParams implements BaseModel
      *
      * @param Status::* $status
      */
-    public function setStatus(string $status): self
+    public function withStatus(string $status): self
     {
-        $this->status = $status;
+        $obj = clone $this;
+        $obj->status = $status;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Filter by workspace ID.
      */
-    public function setWorkspaceID(string $workspaceID): self
+    public function withWorkspaceID(string $workspaceID): self
     {
-        $this->workspaceID = $workspaceID;
+        $obj = clone $this;
+        $obj->workspaceID = $workspaceID;
 
-        return $this;
+        return $obj;
     }
 }

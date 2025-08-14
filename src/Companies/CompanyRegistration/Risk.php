@@ -46,7 +46,7 @@ final class Risk implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $code = null,
         ?string $reason = null,
         ?float $score = null
@@ -63,30 +63,33 @@ final class Risk implements BaseModel
     /**
      * Risk category or code identifier.
      */
-    public function setCode(string $code): self
+    public function withCode(string $code): self
     {
-        $this->code = $code;
+        $obj = clone $this;
+        $obj->code = $code;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Explanation or justification for the assigned risk.
      */
-    public function setReason(string $reason): self
+    public function withReason(string $reason): self
     {
-        $this->reason = $reason;
+        $obj = clone $this;
+        $obj->reason = $reason;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Numeric risk score between 0.0 and 1.0 indicating severity or confidence.
      */
-    public function setScore(float $score): self
+    public function withScore(float $score): self
     {
-        $this->score = $score;
+        $obj = clone $this;
+        $obj->score = $score;
 
-        return $this;
+        return $obj;
     }
 }

@@ -83,7 +83,7 @@ final class AmlSuspicion implements BaseModel
      *
      * @param null|Type::* $type
      */
-    public static function from(
+    public static function with(
         ?string $caption = null,
         ?bool $checked = null,
         ?string $relation = null,
@@ -108,61 +108,67 @@ final class AmlSuspicion implements BaseModel
     /**
      * Human-readable description or title for the suspicious finding.
      */
-    public function setCaption(string $caption): self
+    public function withCaption(string $caption): self
     {
-        $this->caption = $caption;
+        $obj = clone $this;
+        $obj->caption = $caption;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Indicates whether this suspicion has been manually reviewed or confirmed.
      */
-    public function setChecked(bool $checked): self
+    public function withChecked(bool $checked): self
     {
-        $this->checked = $checked;
+        $obj = clone $this;
+        $obj->checked = $checked;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Nature of the relationship between the entity and the suspicious activity (e.g., "linked", "associated").
      */
-    public function setRelation(string $relation): self
+    public function withRelation(string $relation): self
     {
-        $this->relation = $relation;
+        $obj = clone $this;
+        $obj->relation = $relation;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Version of the evaluation schema or rule engine used.
      */
-    public function setSchema(string $schema): self
+    public function withSchema(string $schema): self
     {
-        $this->schema = $schema;
+        $obj = clone $this;
+        $obj->schema = $schema;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Risk score between 0.0 and 1.0 indicating the severity of the suspicion.
      */
-    public function setScore(float $score): self
+    public function withScore(float $score): self
     {
-        $this->score = $score;
+        $obj = clone $this;
+        $obj->score = $score;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * URL identifying the source system or service providing this suspicion.
      */
-    public function setSource(string $source): self
+    public function withSource(string $source): self
     {
-        $this->source = $source;
+        $obj = clone $this;
+        $obj->source = $source;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -170,10 +176,11 @@ final class AmlSuspicion implements BaseModel
      *
      * @param Type::* $type
      */
-    public function setType(string $type): self
+    public function withType(string $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 }

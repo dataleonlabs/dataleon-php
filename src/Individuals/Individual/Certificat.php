@@ -48,7 +48,7 @@ final class Certificat implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $id = null,
         ?\DateTimeInterface $createdAt = null,
         ?string $filename = null,
@@ -65,30 +65,33 @@ final class Certificat implements BaseModel
     /**
      * Unique identifier for the certificate.
      */
-    public function setID(string $id): self
+    public function withID(string $id): self
     {
-        $this->id = $id;
+        $obj = clone $this;
+        $obj->id = $id;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Timestamp when the certificate was created.
      */
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->createdAt = $createdAt;
+        $obj = clone $this;
+        $obj->createdAt = $createdAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Name of the certificate file.
      */
-    public function setFilename(string $filename): self
+    public function withFilename(string $filename): self
     {
-        $this->filename = $filename;
+        $obj = clone $this;
+        $obj->filename = $filename;
 
-        return $this;
+        return $obj;
     }
 }

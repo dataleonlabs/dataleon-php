@@ -140,7 +140,7 @@ final class Kbis implements BaseModel
      *
      * @param null|list<Member> $members
      */
-    public static function from(
+    public static function with(
         ?string $activities = null,
         ?string $address = null,
         ?string $capitalSocial = null,
@@ -181,102 +181,112 @@ final class Kbis implements BaseModel
     /**
      * Declared business activities.
      */
-    public function setActivities(string $activities): self
+    public function withActivities(string $activities): self
     {
-        $this->activities = $activities;
+        $obj = clone $this;
+        $obj->activities = $activities;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Official address of the company.
      */
-    public function setAddress(string $address): self
+    public function withAddress(string $address): self
     {
-        $this->address = $address;
+        $obj = clone $this;
+        $obj->address = $address;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Registered social capital of the company.
      */
-    public function setCapitalSocial(string $capitalSocial): self
+    public function withCapitalSocial(string $capitalSocial): self
     {
-        $this->capitalSocial = $capitalSocial;
+        $obj = clone $this;
+        $obj->capitalSocial = $capitalSocial;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Date of closure, if applicable.
      */
-    public function setClosureDate(\DateTimeInterface $closureDate): self
+    public function withClosureDate(\DateTimeInterface $closureDate): self
     {
-        $this->closureDate = $closureDate;
+        $obj = clone $this;
+        $obj->closureDate = $closureDate;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Official name of the company.
      */
-    public function setCompanyName(string $companyName): self
+    public function withCompanyName(string $companyName): self
     {
-        $this->companyName = $companyName;
+        $obj = clone $this;
+        $obj->companyName = $companyName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Date when the document was issued.
      */
-    public function setDocumentDate(\DateTimeInterface $documentDate): self
+    public function withDocumentDate(\DateTimeInterface $documentDate): self
     {
-        $this->documentDate = $documentDate;
+        $obj = clone $this;
+        $obj->documentDate = $documentDate;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Fixed identifier for the document type.
      */
-    public function setDocumentType(string $documentType): self
+    public function withDocumentType(string $documentType): self
     {
-        $this->documentType = $documentType;
+        $obj = clone $this;
+        $obj->documentType = $documentType;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Date of the first fiscal closure.
      */
-    public function setFirstClosureDate(
+    public function withFirstClosureDate(
         \DateTimeInterface $firstClosureDate
     ): self {
-        $this->firstClosureDate = $firstClosureDate;
+        $obj = clone $this;
+        $obj->firstClosureDate = $firstClosureDate;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Registry office that issued the document.
      */
-    public function setFromGreffe(string $fromGreffe): self
+    public function withFromGreffe(string $fromGreffe): self
     {
-        $this->fromGreffe = $fromGreffe;
+        $obj = clone $this;
+        $obj->fromGreffe = $fromGreffe;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Legal form of the company (e.g., SAS, SARL).
      */
-    public function setLegalForm(string $legalForm): self
+    public function withLegalForm(string $legalForm): self
     {
-        $this->legalForm = $legalForm;
+        $obj = clone $this;
+        $obj->legalForm = $legalForm;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -284,51 +294,56 @@ final class Kbis implements BaseModel
      *
      * @param list<Member> $members
      */
-    public function setMembers(array $members): self
+    public function withMembers(array $members): self
     {
-        $this->members = $members;
+        $obj = clone $this;
+        $obj->members = $members;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Business registry number or NGestion.
      */
-    public function setNgestion(string $ngestion): self
+    public function withNgestion(string $ngestion): self
     {
-        $this->ngestion = $ngestion;
+        $obj = clone $this;
+        $obj->ngestion = $ngestion;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * RCS (Company Registration Number).
      */
-    public function setRcsNumber(string $rcsNumber): self
+    public function withRcsNumber(string $rcsNumber): self
     {
-        $this->rcsNumber = $rcsNumber;
+        $obj = clone $this;
+        $obj->rcsNumber = $rcsNumber;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Date of registration with the registry.
      */
-    public function setRegistrationDate(
+    public function withRegistrationDate(
         \DateTimeInterface $registrationDate
     ): self {
-        $this->registrationDate = $registrationDate;
+        $obj = clone $this;
+        $obj->registrationDate = $registrationDate;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * SIREN number of the company.
      */
-    public function setSirenInfo(string $sirenInfo): self
+    public function withSirenInfo(string $sirenInfo): self
     {
-        $this->sirenInfo = $sirenInfo;
+        $obj = clone $this;
+        $obj->sirenInfo = $sirenInfo;
 
-        return $this;
+        return $obj;
     }
 }

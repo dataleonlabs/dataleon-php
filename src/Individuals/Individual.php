@@ -200,7 +200,7 @@ final class Individual implements BaseModel
      * @param null|list<Property> $properties
      * @param null|list<Tag> $tags
      */
-    public static function from(
+    public static function with(
         ?string $id = null,
         ?array $amlSuspicions = null,
         ?string $authURL = null,
@@ -251,11 +251,12 @@ final class Individual implements BaseModel
     /**
      * Unique identifier of the individual.
      */
-    public function setID(string $id): self
+    public function withID(string $id): self
     {
-        $this->id = $id;
+        $obj = clone $this;
+        $obj->id = $id;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -263,31 +264,34 @@ final class Individual implements BaseModel
      *
      * @param list<AmlSuspicion> $amlSuspicions
      */
-    public function setAmlSuspicions(array $amlSuspicions): self
+    public function withAmlSuspicions(array $amlSuspicions): self
     {
-        $this->amlSuspicions = $amlSuspicions;
+        $obj = clone $this;
+        $obj->amlSuspicions = $amlSuspicions;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * URL to authenticate the individual, usually for document signing or onboarding.
      */
-    public function setAuthURL(string $authURL): self
+    public function withAuthURL(string $authURL): self
     {
-        $this->authURL = $authURL;
+        $obj = clone $this;
+        $obj->authURL = $authURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Digital certificate associated with the individual, if any.
      */
-    public function setCertificat(Certificat $certificat): self
+    public function withCertificat(Certificat $certificat): self
     {
-        $this->certificat = $certificat;
+        $obj = clone $this;
+        $obj->certificat = $certificat;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -295,21 +299,23 @@ final class Individual implements BaseModel
      *
      * @param list<Check> $checks
      */
-    public function setChecks(array $checks): self
+    public function withChecks(array $checks): self
     {
-        $this->checks = $checks;
+        $obj = clone $this;
+        $obj->checks = $checks;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Timestamp of the individual's creation in ISO 8601 format.
      */
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->createdAt = $createdAt;
+        $obj = clone $this;
+        $obj->createdAt = $createdAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -317,51 +323,56 @@ final class Individual implements BaseModel
      *
      * @param list<GenericDocument> $documents
      */
-    public function setDocuments(array $documents): self
+    public function withDocuments(array $documents): self
     {
-        $this->documents = $documents;
+        $obj = clone $this;
+        $obj->documents = $documents;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Reference to the individual's identity document.
      */
-    public function setIdentityCard(IdentityCard $identityCard): self
+    public function withIdentityCard(IdentityCard $identityCard): self
     {
-        $this->identityCard = $identityCard;
+        $obj = clone $this;
+        $obj->identityCard = $identityCard;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Internal sequential number or reference for the individual.
      */
-    public function setNumber(int $number): self
+    public function withNumber(int $number): self
     {
-        $this->number = $number;
+        $obj = clone $this;
+        $obj->number = $number;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Personal details of the individual, such as name, date of birth, and contact info.
      */
-    public function setPerson(Person $person): self
+    public function withPerson(Person $person): self
     {
-        $this->person = $person;
+        $obj = clone $this;
+        $obj->person = $person;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Admin or internal portal URL for viewing the individual's details.
      */
-    public function setPortalURL(string $portalURL): self
+    public function withPortalURL(string $portalURL): self
     {
-        $this->portalURL = $portalURL;
+        $obj = clone $this;
+        $obj->portalURL = $portalURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -369,51 +380,56 @@ final class Individual implements BaseModel
      *
      * @param list<Property> $properties
      */
-    public function setProperties(array $properties): self
+    public function withProperties(array $properties): self
     {
-        $this->properties = $properties;
+        $obj = clone $this;
+        $obj->properties = $properties;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Risk assessment associated with the individual.
      */
-    public function setRisk(Risk $risk): self
+    public function withRisk(Risk $risk): self
     {
-        $this->risk = $risk;
+        $obj = clone $this;
+        $obj->risk = $risk;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Optional identifier indicating the source of the individual record.
      */
-    public function setSourceID(string $sourceID): self
+    public function withSourceID(string $sourceID): self
     {
-        $this->sourceID = $sourceID;
+        $obj = clone $this;
+        $obj->sourceID = $sourceID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Current operational state in the workflow (e.g., WAITING, IN_PROGRESS, COMPLETED).
      */
-    public function setState(string $state): self
+    public function withState(string $state): self
     {
-        $this->state = $state;
+        $obj = clone $this;
+        $obj->state = $state;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Overall processing status of the individual (e.g., rejected, need_review, approved).
      */
-    public function setStatus(string $status): self
+    public function withStatus(string $status): self
     {
-        $this->status = $status;
+        $obj = clone $this;
+        $obj->status = $status;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -421,40 +437,44 @@ final class Individual implements BaseModel
      *
      * @param list<Tag> $tags
      */
-    public function setTags(array $tags): self
+    public function withTags(array $tags): self
     {
-        $this->tags = $tags;
+        $obj = clone $this;
+        $obj->tags = $tags;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Technical metadata related to the request (e.g., QR code settings, language).
      */
-    public function setTechnicalData(TechnicalData $technicalData): self
+    public function withTechnicalData(TechnicalData $technicalData): self
     {
-        $this->technicalData = $technicalData;
+        $obj = clone $this;
+        $obj->technicalData = $technicalData;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Public-facing webview URL for the individual’s identification process.
      */
-    public function setWebviewURL(string $webviewURL): self
+    public function withWebviewURL(string $webviewURL): self
     {
-        $this->webviewURL = $webviewURL;
+        $obj = clone $this;
+        $obj->webviewURL = $webviewURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Identifier of the workspace to which the individual belongs.
      */
-    public function setWorkspaceID(string $workspaceID): self
+    public function withWorkspaceID(string $workspaceID): self
     {
-        $this->workspaceID = $workspaceID;
+        $obj = clone $this;
+        $obj->workspaceID = $workspaceID;
 
-        return $this;
+        return $obj;
     }
 }

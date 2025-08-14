@@ -85,7 +85,7 @@ final class Document implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $id = null,
         ?string $documentType = null,
         ?string $filename = null,
@@ -112,80 +112,88 @@ final class Document implements BaseModel
     /**
      * Unique identifier of the document.
      */
-    public function setID(string $id): self
+    public function withID(string $id): self
     {
-        $this->id = $id;
+        $obj = clone $this;
+        $obj->id = $id;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Functional type of the document (e.g., identity document, invoice).
      */
-    public function setDocumentType(string $documentType): self
+    public function withDocumentType(string $documentType): self
     {
-        $this->documentType = $documentType;
+        $obj = clone $this;
+        $obj->documentType = $documentType;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Original filename of the uploaded document.
      */
-    public function setFilename(string $filename): self
+    public function withFilename(string $filename): self
     {
-        $this->filename = $filename;
+        $obj = clone $this;
+        $obj->filename = $filename;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Human-readable name of the document.
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Secure URL to access the document.
      */
-    public function setSignedURL(string $signedURL): self
+    public function withSignedURL(string $signedURL): self
     {
-        $this->signedURL = $signedURL;
+        $obj = clone $this;
+        $obj->signedURL = $signedURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Processing state of the document (e.g., WAITING, STARTED, RUNNING, PROCESSED).
      */
-    public function setState(string $state): self
+    public function withState(string $state): self
     {
-        $this->state = $state;
+        $obj = clone $this;
+        $obj->state = $state;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Validation status of the document (e.g., need_review, approved, rejected).
      */
-    public function setStatus(string $status): self
+    public function withStatus(string $status): self
     {
-        $this->status = $status;
+        $obj = clone $this;
+        $obj->status = $status;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Identifier of the workspace to which the document belongs.
      */
-    public function setWorkspaceID(string $workspaceID): self
+    public function withWorkspaceID(string $workspaceID): self
     {
-        $this->workspaceID = $workspaceID;
+        $obj = clone $this;
+        $obj->workspaceID = $workspaceID;
 
-        return $this;
+        return $obj;
     }
 }

@@ -188,7 +188,7 @@ final class Member implements BaseModel
      *
      * @param null|Type::* $type
      */
-    public static function from(
+    public static function with(
         ?string $id = null,
         ?string $address = null,
         ?\DateTimeInterface $birthday = null,
@@ -243,201 +243,221 @@ final class Member implements BaseModel
     /**
      * Unique identifier for the member.
      */
-    public function setID(string $id): self
+    public function withID(string $id): self
     {
-        $this->id = $id;
+        $obj = clone $this;
+        $obj->id = $id;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Address of the member.
      */
-    public function setAddress(string $address): self
+    public function withAddress(string $address): self
     {
-        $this->address = $address;
+        $obj = clone $this;
+        $obj->address = $address;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Birth date of the person (only if type = person).
      */
-    public function setBirthday(\DateTimeInterface $birthday): self
+    public function withBirthday(\DateTimeInterface $birthday): self
     {
-        $this->birthday = $birthday;
+        $obj = clone $this;
+        $obj->birthday = $birthday;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Place of birth (only if type = person).
      */
-    public function setBirthplace(string $birthplace): self
+    public function withBirthplace(string $birthplace): self
     {
-        $this->birthplace = $birthplace;
+        $obj = clone $this;
+        $obj->birthplace = $birthplace;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Country of residence or registration.
      */
-    public function setCountry(string $country): self
+    public function withCountry(string $country): self
     {
-        $this->country = $country;
+        $obj = clone $this;
+        $obj->country = $country;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Email address of the member.
      */
-    public function setEmail(string $email): self
+    public function withEmail(string $email): self
     {
-        $this->email = $email;
+        $obj = clone $this;
+        $obj->email = $email;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * First name of the person (only if type = person).
      */
-    public function setFirstName(string $firstName): self
+    public function withFirstName(string $firstName): self
     {
-        $this->firstName = $firstName;
+        $obj = clone $this;
+        $obj->firstName = $firstName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Indicates if this member is a beneficial owner.
      */
-    public function setIsBeneficialOwner(bool $isBeneficialOwner): self
+    public function withIsBeneficialOwner(bool $isBeneficialOwner): self
     {
-        $this->isBeneficialOwner = $isBeneficialOwner;
+        $obj = clone $this;
+        $obj->isBeneficialOwner = $isBeneficialOwner;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Indicates if this member is a delegator.
      */
-    public function setIsDelegator(bool $isDelegator): self
+    public function withIsDelegator(bool $isDelegator): self
     {
-        $this->isDelegator = $isDelegator;
+        $obj = clone $this;
+        $obj->isDelegator = $isDelegator;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Last name of the person (only if type = person).
      */
-    public function setLastName(string $lastName): self
+    public function withLastName(string $lastName): self
     {
-        $this->lastName = $lastName;
+        $obj = clone $this;
+        $obj->lastName = $lastName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Indicates if the member passed liveness verification.
      */
-    public function setLivenessVerification(bool $livenessVerification): self
+    public function withLivenessVerification(bool $livenessVerification): self
     {
-        $this->livenessVerification = $livenessVerification;
+        $obj = clone $this;
+        $obj->livenessVerification = $livenessVerification;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Name of the company (only if type = company).
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Ownership percentage held by the member.
      */
-    public function setOwnershipPercentage(int $ownershipPercentage): self
+    public function withOwnershipPercentage(int $ownershipPercentage): self
     {
-        $this->ownershipPercentage = $ownershipPercentage;
+        $obj = clone $this;
+        $obj->ownershipPercentage = $ownershipPercentage;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Phone number of the member.
      */
-    public function setPhoneNumber(string $phoneNumber): self
+    public function withPhoneNumber(string $phoneNumber): self
     {
-        $this->phoneNumber = $phoneNumber;
+        $obj = clone $this;
+        $obj->phoneNumber = $phoneNumber;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Postal code of the member's address.
      */
-    public function setPostalCode(string $postalCode): self
+    public function withPostalCode(string $postalCode): self
     {
-        $this->postalCode = $postalCode;
+        $obj = clone $this;
+        $obj->postalCode = $postalCode;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Company registration number (if type = company).
      */
-    public function setRegistrationID(string $registrationID): self
+    public function withRegistrationID(string $registrationID): self
     {
-        $this->registrationID = $registrationID;
+        $obj = clone $this;
+        $obj->registrationID = $registrationID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Type of relation (e.g., shareholder, director).
      */
-    public function setRelation(string $relation): self
+    public function withRelation(string $relation): self
     {
-        $this->relation = $relation;
+        $obj = clone $this;
+        $obj->relation = $relation;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Roles held by the member (e.g., legal_representative or shareholder).
      */
-    public function setRoles(string $roles): self
+    public function withRoles(string $roles): self
     {
-        $this->roles = $roles;
+        $obj = clone $this;
+        $obj->roles = $roles;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Source of the data (e.g., gouv, user, company).
      */
-    public function setSource(string $source): self
+    public function withSource(string $source): self
     {
-        $this->source = $source;
+        $obj = clone $this;
+        $obj->source = $source;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Current status of the member.
      */
-    public function setStatus(string $status): self
+    public function withStatus(string $status): self
     {
-        $this->status = $status;
+        $obj = clone $this;
+        $obj->status = $status;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -445,20 +465,22 @@ final class Member implements BaseModel
      *
      * @param Type::* $type
      */
-    public function setType(string $type): self
+    public function withType(string $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Workspace identifier for internal tracking.
      */
-    public function setWorkspaceID(string $workspaceID): self
+    public function withWorkspaceID(string $workspaceID): self
     {
-        $this->workspaceID = $workspaceID;
+        $obj = clone $this;
+        $obj->workspaceID = $workspaceID;
 
-        return $this;
+        return $obj;
     }
 }

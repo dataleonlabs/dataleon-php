@@ -113,7 +113,7 @@ final class GenericDocument implements BaseModel
      * @param null|list<Table> $tables
      * @param null|list<Value> $values
      */
-    public static function from(
+    public static function with(
         ?string $id = null,
         ?array $checks = null,
         ?\DateTimeInterface $createdAt = null,
@@ -144,11 +144,12 @@ final class GenericDocument implements BaseModel
     /**
      * Unique identifier of the document.
      */
-    public function setID(string $id): self
+    public function withID(string $id): self
     {
-        $this->id = $id;
+        $obj = clone $this;
+        $obj->id = $id;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -156,71 +157,78 @@ final class GenericDocument implements BaseModel
      *
      * @param list<Check> $checks
      */
-    public function setChecks(array $checks): self
+    public function withChecks(array $checks): self
     {
-        $this->checks = $checks;
+        $obj = clone $this;
+        $obj->checks = $checks;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Timestamp when the document was created or uploaded.
      */
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->createdAt = $createdAt;
+        $obj = clone $this;
+        $obj->createdAt = $createdAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Type/category of the document.
      */
-    public function setDocumentType(string $documentType): self
+    public function withDocumentType(string $documentType): self
     {
-        $this->documentType = $documentType;
+        $obj = clone $this;
+        $obj->documentType = $documentType;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Name or label for the document.
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Signed URL for accessing the document file.
      */
-    public function setSignedURL(string $signedURL): self
+    public function withSignedURL(string $signedURL): self
     {
-        $this->signedURL = $signedURL;
+        $obj = clone $this;
+        $obj->signedURL = $signedURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Current processing state of the document (e.g., WAITING, PROCESSED).
      */
-    public function setState(string $state): self
+    public function withState(string $state): self
     {
-        $this->state = $state;
+        $obj = clone $this;
+        $obj->state = $state;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Status of the document reception or approval.
      */
-    public function setStatus(string $status): self
+    public function withStatus(string $status): self
     {
-        $this->status = $status;
+        $obj = clone $this;
+        $obj->status = $status;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -228,11 +236,12 @@ final class GenericDocument implements BaseModel
      *
      * @param list<Table> $tables
      */
-    public function setTables(array $tables): self
+    public function withTables(array $tables): self
     {
-        $this->tables = $tables;
+        $obj = clone $this;
+        $obj->tables = $tables;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -240,10 +249,11 @@ final class GenericDocument implements BaseModel
      *
      * @param list<Value> $values
      */
-    public function setValues(array $values): self
+    public function withValues(array $values): self
     {
-        $this->values = $values;
+        $obj = clone $this;
+        $obj->values = $values;
 
-        return $this;
+        return $obj;
     }
 }

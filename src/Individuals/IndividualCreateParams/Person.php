@@ -83,7 +83,7 @@ final class Person implements BaseModel
      *
      * @param null|Gender::* $gender
      */
-    public static function from(
+    public static function with(
         ?string $birthday = null,
         ?string $email = null,
         ?string $firstName = null,
@@ -108,31 +108,34 @@ final class Person implements BaseModel
     /**
      * Date of birth in DD/MM/YYYY format.
      */
-    public function setBirthday(string $birthday): self
+    public function withBirthday(string $birthday): self
     {
-        $this->birthday = $birthday;
+        $obj = clone $this;
+        $obj->birthday = $birthday;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Email address of the individual.
      */
-    public function setEmail(string $email): self
+    public function withEmail(string $email): self
     {
-        $this->email = $email;
+        $obj = clone $this;
+        $obj->email = $email;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * First name of the individual.
      */
-    public function setFirstName(string $firstName): self
+    public function withFirstName(string $firstName): self
     {
-        $this->firstName = $firstName;
+        $obj = clone $this;
+        $obj->firstName = $firstName;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -140,40 +143,44 @@ final class Person implements BaseModel
      *
      * @param Gender::* $gender
      */
-    public function setGender(string $gender): self
+    public function withGender(string $gender): self
     {
-        $this->gender = $gender;
+        $obj = clone $this;
+        $obj->gender = $gender;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Last name (family name) of the individual.
      */
-    public function setLastName(string $lastName): self
+    public function withLastName(string $lastName): self
     {
-        $this->lastName = $lastName;
+        $obj = clone $this;
+        $obj->lastName = $lastName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Maiden name, if applicable.
      */
-    public function setMaidenName(string $maidenName): self
+    public function withMaidenName(string $maidenName): self
     {
-        $this->maidenName = $maidenName;
+        $obj = clone $this;
+        $obj->maidenName = $maidenName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Phone number of the individual.
      */
-    public function setPhoneNumber(string $phoneNumber): self
+    public function withPhoneNumber(string $phoneNumber): self
     {
-        $this->phoneNumber = $phoneNumber;
+        $obj = clone $this;
+        $obj->phoneNumber = $phoneNumber;
 
-        return $this;
+        return $obj;
     }
 }
