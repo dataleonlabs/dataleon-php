@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 (2025-08-15)
+
+Full Changelog: [v0.1.1...v0.2.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.1.1...v0.2.0)
+
+### Features
+
+* **api:** api update ([5b054d9](https://github.com/dataleonlabs/dataleon-php/commit/5b054d9aacf4fb7c6af6463f862a6329545c8371))
+
 ## 0.1.1 (2025-08-15)
 
 Full Changelog: [v0.1.1...v0.1.1](https://github.com/dataleonlabs/dataleon-php/compare/v0.1.1...v0.1.1)
