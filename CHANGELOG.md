@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.1 (2025-08-15)
+
+Full Changelog: [v0.1.1...v0.1.1](https://github.com/dataleonlabs/dataleon-php/compare/v0.1.1...v0.1.1)
+
+### Features
+
+* **api:** api update ([f581a07](https://github.com/dataleonlabs/dataleon-php/commit/f581a07ddcced0a3ecb041e35da124db77ee2110))
+* **client:** use with for constructors ([ed15253](https://github.com/dataleonlabs/dataleon-php/commit/ed15253baf190379f4592e9c3e93d75ac5b12332))
+
+
+### Chores
+
+* fix package name ([e5a5aa5](https://github.com/dataleonlabs/dataleon-php/commit/e5a5aa5ee3767c53b5f0f4b742e95b99c3b382c5))
+* **internal:** codegen related update ([1817ee3](https://github.com/dataleonlabs/dataleon-php/commit/1817ee3b085631e655e7529e048ec0e86031c9c1))
+* **internal:** codegen related update ([eddaddb](https://github.com/dataleonlabs/dataleon-php/commit/eddaddb83022e912a0158cee83877ba0a382519b))
+* **internal:** update comment in script ([050e157](https://github.com/dataleonlabs/dataleon-php/commit/050e1570f5f13496cb2abe8015e528ce0556828e))
+* move parameters into models namespace ([2a49a69](https://github.com/dataleonlabs/dataleon-php/commit/2a49a692573b5fa62840b2eb9ecfd15734c54a6d))
+* update @stainless-api/prism-cli to v5.15.0 ([8567b62](https://github.com/dataleonlabs/dataleon-php/commit/8567b62f97e21721ffddd0affa72ea7ed03b6c14))
+
 ## 0.1.1 (2025-08-06)
 
 Full Changelog: [v0.1.0...v0.1.1](https://github.com/dataleonlabs/dataleon-php/compare/v0.1.0...v0.1.1)
