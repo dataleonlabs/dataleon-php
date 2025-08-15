@@ -28,7 +28,6 @@ use Dataleon\Core\Contracts\BaseModel;
  *   qrCode?: string,
  *   rawData?: bool,
  *   rejectedAt?: \DateTimeInterface|null,
- *   sessionDuration?: int,
  *   startedAt?: \DateTimeInterface,
  *   transferAt?: \DateTimeInterface,
  *   transferMode?: string,
@@ -135,12 +134,6 @@ final class TechnicalData implements BaseModel
     public ?\DateTimeInterface $rejectedAt;
 
     /**
-     * Duration of the user session in seconds.
-     */
-    #[Api('session_duration', optional: true)]
-    public ?int $sessionDuration;
-
-    /**
      * Timestamp when the process started.
      */
     #[Api('started_at', optional: true)]
@@ -186,7 +179,6 @@ final class TechnicalData implements BaseModel
         ?string $qrCode = null,
         ?bool $rawData = null,
         ?\DateTimeInterface $rejectedAt = null,
-        ?int $sessionDuration = null,
         ?\DateTimeInterface $startedAt = null,
         ?\DateTimeInterface $transferAt = null,
         ?string $transferMode = null,
@@ -209,7 +201,6 @@ final class TechnicalData implements BaseModel
         null !== $qrCode && $obj->qrCode = $qrCode;
         null !== $rawData && $obj->rawData = $rawData;
         null !== $rejectedAt && $obj->rejectedAt = $rejectedAt;
-        null !== $sessionDuration && $obj->sessionDuration = $sessionDuration;
         null !== $startedAt && $obj->startedAt = $startedAt;
         null !== $transferAt && $obj->transferAt = $transferAt;
         null !== $transferMode && $obj->transferMode = $transferMode;
@@ -392,17 +383,6 @@ final class TechnicalData implements BaseModel
     {
         $obj = clone $this;
         $obj->rejectedAt = $rejectedAt;
-
-        return $obj;
-    }
-
-    /**
-     * Duration of the user session in seconds.
-     */
-    public function withSessionDuration(int $sessionDuration): self
-    {
-        $obj = clone $this;
-        $obj->sessionDuration = $sessionDuration;
 
         return $obj;
     }
