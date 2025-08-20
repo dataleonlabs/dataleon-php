@@ -29,20 +29,26 @@ final class CompaniesService implements CompaniesContract
     /**
      * Create a new company.
      *
-     * @param array{
-     *   company: Company,
-     *   workspaceID: string,
-     *   sourceID?: string,
-     *   technicalData?: TechnicalData,
-     * }|CompanyCreateParams $params
+     * @param Company $company main information about the company being registered
+     * @param string $workspaceID unique identifier of the workspace in which the company is being created
+     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
+     * @param TechnicalData $technicalData technical metadata and callback configuration
      */
     public function create(
-        array|CompanyCreateParams $params,
-        ?RequestOptions $requestOptions = null
+        $company,
+        $workspaceID,
+        $sourceID = null,
+        $technicalData = null,
+        ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
         [$parsed, $options] = CompanyCreateParams::parseRequest(
-            $params,
-            $requestOptions
+            [
+                'company' => $company,
+                'workspaceID' => $workspaceID,
+                'sourceID' => $sourceID,
+                'technicalData' => $technicalData,
+            ],
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',
@@ -58,15 +64,17 @@ final class CompaniesService implements CompaniesContract
     /**
      * Get a company by ID.
      *
-     * @param array{document?: bool, scope?: string}|CompanyRetrieveParams $params
+     * @param bool $document Include document signed url
+     * @param string $scope Scope filter (id or scope)
      */
     public function retrieve(
         string $companyID,
-        array|CompanyRetrieveParams $params,
+        $document = null,
+        $scope = null,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
         [$parsed, $options] = CompanyRetrieveParams::parseRequest(
-            $params,
+            ['document' => $document, 'scope' => $scope],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -83,21 +91,27 @@ final class CompaniesService implements CompaniesContract
     /**
      * Update a company by ID.
      *
-     * @param array{
-     *   company: Company1,
-     *   workspaceID: string,
-     *   sourceID?: string,
-     *   technicalData?: TechnicalData1,
-     * }|CompanyUpdateParams $params
+     * @param Company1 $company main information about the company being registered
+     * @param string $workspaceID unique identifier of the workspace in which the company is being created
+     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
+     * @param TechnicalData1 $technicalData technical metadata and callback configuration
      */
     public function update(
         string $companyID,
-        array|CompanyUpdateParams $params,
+        $company,
+        $workspaceID,
+        $sourceID = null,
+        $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
         [$parsed, $options] = CompanyUpdateParams::parseRequest(
-            $params,
-            $requestOptions
+            [
+                'company' => $company,
+                'workspaceID' => $workspaceID,
+                'sourceID' => $sourceID,
+                'technicalData' => $technicalData,
+            ],
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'put',
@@ -113,26 +127,40 @@ final class CompaniesService implements CompaniesContract
     /**
      * Get all companies.
      *
-     * @param array{
-     *   endDate?: \DateTimeInterface,
-     *   limit?: int,
-     *   offset?: int,
-     *   sourceID?: string,
-     *   startDate?: \DateTimeInterface,
-     *   state?: State::*,
-     *   status?: Status::*,
-     *   workspaceID?: string,
-     * }|CompanyListParams $params
+     * @param \DateTimeInterface $endDate Filter companies created before this date (format YYYY-MM-DD)
+     * @param int $limit Number of results to return (between 1 and 100)
+     * @param int $offset Number of results to skip (must be ≥ 0)
+     * @param string $sourceID Filter by source ID
+     * @param \DateTimeInterface $startDate Filter companies created after this date (format YYYY-MM-DD)
+     * @param State::* $state Filter by company state (must be one of the allowed values)
+     * @param Status::* $status Filter by individual status (must be one of the allowed values)
+     * @param string $workspaceID Filter by workspace ID
      *
      * @return list<CompanyRegistration>
      */
     public function list(
-        array|CompanyListParams $params,
-        ?RequestOptions $requestOptions = null
+        $endDate = null,
+        $limit = null,
+        $offset = null,
+        $sourceID = null,
+        $startDate = null,
+        $state = null,
+        $status = null,
+        $workspaceID = null,
+        ?RequestOptions $requestOptions = null,
     ): array {
         [$parsed, $options] = CompanyListParams::parseRequest(
-            $params,
-            $requestOptions
+            [
+                'endDate' => $endDate,
+                'limit' => $limit,
+                'offset' => $offset,
+                'sourceID' => $sourceID,
+                'startDate' => $startDate,
+                'state' => $state,
+                'status' => $status,
+                'workspaceID' => $workspaceID,
+            ],
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'get',

@@ -37,19 +37,27 @@ To use this package, install via Composer by adding the following to your applic
 
 ## Usage
 
+This library uses named parameters to specify optional arguments.
+Parameters with a default value must be set by name.
+
 ```php
 <?php
 
 use Dataleon\Client;
-use Dataleon\Individuals\IndividualCreateParams;
 
 $client = new Client(apiKey: getenv("DATALEON_API_KEY") ?: "My API Key");
 
-$params = IndividualCreateParams::with(workspaceID: "wk_123");
+$individual = $client->individuals->create(workspaceID: "wk_123");
 
-$individual = $client->individuals->create($params);
 var_dump($individual->id);
 ```
+
+## Value Objects
+
+It is recommended to use the `with` constructor `Dog::with(name: "Joey")`
+and named parameters to initialize value objects.
+
+However builders are provided as well `(new Dog)->withName("Joey")`.
 
 ### Handling errors
 
@@ -59,19 +67,17 @@ When the library is unable to connect to the API, or if the API returns a non-su
 <?php
 
 use Dataleon\Errors\APIConnectionError;
-use Dataleon\Individuals\IndividualCreateParams;
 
-$params = IndividualCreateParams::with(workspaceID: "wk_123");
 try {
-  $Individuals = $client->individuals->create($params);
+  $individual = $client->individuals->create(workspaceID: "wk_123");
 } catch (APIConnectionError $e) {
-    echo "The server could not be reached", PHP_EOL;
-    var_dump($e->getPrevious());
+  echo "The server could not be reached", PHP_EOL;
+  var_dump($e->getPrevious());
 } catch (RateLimitError $_) {
-    echo "A 429 status code was received; we should back off a bit.", PHP_EOL;
+  echo "A 429 status code was received; we should back off a bit.", PHP_EOL;
 } catch (APIStatusError $e) {
-    echo "Another non-200-range status code was received", PHP_EOL;
-    echo $e->getMessage();
+  echo "Another non-200-range status code was received", PHP_EOL;
+  echo $e->getMessage();
 }
 ```
 
@@ -104,15 +110,14 @@ You can use the `max_retries` option to configure or disable this:
 
 use Dataleon\Client;
 use Dataleon\RequestOptions;
-use Dataleon\Individuals\IndividualCreateParams;
 
 // Configure the default for all requests:
 $client = new Client(maxRetries: 0);
-$params = IndividualCreateParams::with(workspaceID: "wk_123");
 
-// Or, configure per-request:$result = $client
-  ->individuals
-  ->create($params, new RequestOptions(maxRetries: 5));
+// Or, configure per-request:
+$result = $client->individuals->create(
+  workspaceID: "wk_123", new RequestOptions(maxRetries: 5)
+);
 ```
 
 ## Advanced concepts
@@ -129,13 +134,9 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 <?php
 
 use Dataleon\RequestOptions;
-use Dataleon\Individuals\IndividualCreateParams;
 
-$params = IndividualCreateParams::with(workspaceID: "wk_123");
-$individual = $client
-  ->individuals
-  ->create(
-  $params,
+$individual = $client->individuals->create(
+  workspaceID: "wk_123",
   new RequestOptions(
     extraQueryParams: ["my_query_parameter" => "value"],
     extraBodyParams: ["my_body_parameter" => "value"],

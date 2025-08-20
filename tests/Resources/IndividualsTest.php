@@ -3,12 +3,8 @@
 namespace Tests\Resources;
 
 use Dataleon\Client;
-use Dataleon\Individuals\IndividualCreateParams;
 use Dataleon\Individuals\IndividualCreateParams\Person;
 use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
-use Dataleon\Individuals\IndividualListParams;
-use Dataleon\Individuals\IndividualRetrieveParams;
-use Dataleon\Individuals\IndividualUpdateParams;
 use Dataleon\Individuals\IndividualUpdateParams\Person as Person1;
 use Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use PHPUnit\Framework\Attributes\CoversNothing;
@@ -41,8 +37,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = IndividualCreateParams::with(workspaceID: 'wk_123');
-        $result = $this->client->individuals->create($params);
+        $result = $this->client->individuals->create(workspaceID: 'wk_123');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -54,7 +49,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = IndividualCreateParams::with(
+        $result = $this->client->individuals->create(
             workspaceID: 'wk_123',
             person: (new Person)
                 ->withBirthday('15/05/1985')
@@ -71,7 +66,6 @@ final class IndividualsTest extends TestCase
                 ->withLanguage('fra')
                 ->withRawData(true),
         );
-        $result = $this->client->individuals->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -83,8 +77,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = (new IndividualRetrieveParams);
-        $result = $this->client->individuals->retrieve('individual_id', $params);
+        $result = $this->client->individuals->retrieve('individual_id');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -96,8 +89,10 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = IndividualUpdateParams::with(workspaceID: 'wk_123');
-        $result = $this->client->individuals->update('individual_id', $params);
+        $result = $this->client->individuals->update(
+            'individual_id',
+            workspaceID: 'wk_123'
+        );
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -109,7 +104,8 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = IndividualUpdateParams::with(
+        $result = $this->client->individuals->update(
+            'individual_id',
             workspaceID: 'wk_123',
             person: (new Person1)
                 ->withBirthday('15/05/1985')
@@ -126,7 +122,6 @@ final class IndividualsTest extends TestCase
                 ->withLanguage('fra')
                 ->withRawData(true),
         );
-        $result = $this->client->individuals->update('individual_id', $params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -138,8 +133,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = (new IndividualListParams);
-        $result = $this->client->individuals->list($params);
+        $result = $this->client->individuals->list();
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
