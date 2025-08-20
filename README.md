@@ -46,8 +46,8 @@ use Dataleon\Individuals\IndividualCreateParams;
 $client = new Client(apiKey: getenv("DATALEON_API_KEY") ?: "My API Key");
 
 $params = IndividualCreateParams::with(workspaceID: "wk_123");
-$individual = $client->individuals->create($params);
 
+$individual = $client->individuals->create($params);
 var_dump($individual->id);
 ```
 
@@ -71,7 +71,7 @@ try {
     echo "A 429 status code was received; we should back off a bit.", PHP_EOL;
 } catch (APIStatusError $e) {
     echo "Another non-200-range status code was received", PHP_EOL;
-    var_dump($e->status);
+    echo $e->getMessage();
 }
 ```
 
