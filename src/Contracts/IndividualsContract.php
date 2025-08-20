@@ -5,14 +5,10 @@ declare(strict_types=1);
 namespace Dataleon\Contracts;
 
 use Dataleon\Individuals\Individual;
-use Dataleon\Individuals\IndividualCreateParams;
 use Dataleon\Individuals\IndividualCreateParams\Person;
 use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
-use Dataleon\Individuals\IndividualListParams;
 use Dataleon\Individuals\IndividualListParams\State;
 use Dataleon\Individuals\IndividualListParams\Status;
-use Dataleon\Individuals\IndividualRetrieveParams;
-use Dataleon\Individuals\IndividualUpdateParams;
 use Dataleon\Individuals\IndividualUpdateParams\Person as Person1;
 use Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
@@ -20,57 +16,66 @@ use Dataleon\RequestOptions;
 interface IndividualsContract
 {
     /**
-     * @param array{
-     *   workspaceID: string,
-     *   person?: Person,
-     *   sourceID?: string,
-     *   technicalData?: TechnicalData,
-     * }|IndividualCreateParams $params
+     * @param string $workspaceID unique identifier of the workspace where the individual is being registered
+     * @param Person $person personal information about the individual
+     * @param string $sourceID optional identifier for tracking the source system or integration from your system
+     * @param TechnicalData $technicalData technical metadata related to the request or processing
      */
     public function create(
-        array|IndividualCreateParams $params,
+        $workspaceID,
+        $person = null,
+        $sourceID = null,
+        $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
     /**
-     * @param array{document?: bool, scope?: string}|IndividualRetrieveParams $params
+     * @param bool $document Include document information
+     * @param string $scope Scope filter (id or scope)
      */
     public function retrieve(
         string $individualID,
-        array|IndividualRetrieveParams $params,
+        $document = null,
+        $scope = null,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
     /**
-     * @param array{
-     *   workspaceID: string,
-     *   person?: Person1,
-     *   sourceID?: string,
-     *   technicalData?: TechnicalData1,
-     * }|IndividualUpdateParams $params
+     * @param string $workspaceID unique identifier of the workspace where the individual is being registered
+     * @param Person1 $person personal information about the individual
+     * @param string $sourceID optional identifier for tracking the source system or integration from your system
+     * @param TechnicalData1 $technicalData technical metadata related to the request or processing
      */
     public function update(
         string $individualID,
-        array|IndividualUpdateParams $params,
+        $workspaceID,
+        $person = null,
+        $sourceID = null,
+        $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
     /**
-     * @param array{
-     *   endDate?: \DateTimeInterface,
-     *   limit?: int,
-     *   offset?: int,
-     *   sourceID?: string,
-     *   startDate?: \DateTimeInterface,
-     *   state?: State::*,
-     *   status?: Status::*,
-     *   workspaceID?: string,
-     * }|IndividualListParams $params
+     * @param \DateTimeInterface $endDate Filter individuals created before this date (format YYYY-MM-DD)
+     * @param int $limit Number of results to return (between 1 and 100)
+     * @param int $offset Number of results to offset (must be ≥ 0)
+     * @param string $sourceID Filter by source ID
+     * @param \DateTimeInterface $startDate Filter individuals created after this date (format YYYY-MM-DD)
+     * @param State::* $state Filter by individual status (must be one of the allowed values)
+     * @param Status::* $status Filter by individual status (must be one of the allowed values)
+     * @param string $workspaceID Filter by workspace ID
      *
      * @return list<Individual>
      */
     public function list(
-        array|IndividualListParams $params,
+        $endDate = null,
+        $limit = null,
+        $offset = null,
+        $sourceID = null,
+        $startDate = null,
+        $state = null,
+        $status = null,
+        $workspaceID = null,
         ?RequestOptions $requestOptions = null,
     ): array;
 
