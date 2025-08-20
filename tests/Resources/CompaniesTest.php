@@ -3,12 +3,8 @@
 namespace Tests\Resources;
 
 use Dataleon\Client;
-use Dataleon\Companies\CompanyCreateParams;
 use Dataleon\Companies\CompanyCreateParams\Company;
 use Dataleon\Companies\CompanyCreateParams\TechnicalData;
-use Dataleon\Companies\CompanyListParams;
-use Dataleon\Companies\CompanyRetrieveParams;
-use Dataleon\Companies\CompanyUpdateParams;
 use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use PHPUnit\Framework\Attributes\CoversNothing;
@@ -41,11 +37,10 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = CompanyCreateParams::with(
+        $result = $this->client->companies->create(
             company: Company::with(name: 'ACME Corp'),
             workspaceID: 'wk_123'
         );
-        $result = $this->client->companies->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -57,7 +52,7 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = CompanyCreateParams::with(
+        $result = $this->client->companies->create(
             company: Company::with(name: 'ACME Corp')
                 ->withAddress('123 rue Exemple, Paris')
                 ->withCommercialName('ACME')
@@ -81,7 +76,6 @@ final class CompaniesTest extends TestCase
                 ->withLanguage('fra')
                 ->withRawData(true),
         );
-        $result = $this->client->companies->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -93,8 +87,7 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = (new CompanyRetrieveParams);
-        $result = $this->client->companies->retrieve('company_id', $params);
+        $result = $this->client->companies->retrieve('company_id');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -106,11 +99,11 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = CompanyUpdateParams::with(
+        $result = $this->client->companies->update(
+            'company_id',
             company: Company1::with(name: 'ACME Corp'),
-            workspaceID: 'wk_123'
+            workspaceID: 'wk_123',
         );
-        $result = $this->client->companies->update('company_id', $params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -122,7 +115,8 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = CompanyUpdateParams::with(
+        $result = $this->client->companies->update(
+            'company_id',
             company: Company1::with(name: 'ACME Corp')
                 ->withAddress('123 rue Exemple, Paris')
                 ->withCommercialName('ACME')
@@ -146,7 +140,6 @@ final class CompaniesTest extends TestCase
                 ->withLanguage('fra')
                 ->withRawData(true),
         );
-        $result = $this->client->companies->update('company_id', $params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -158,8 +151,7 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = (new CompanyListParams);
-        $result = $this->client->companies->list($params);
+        $result = $this->client->companies->list();
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

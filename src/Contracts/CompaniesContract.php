@@ -4,15 +4,11 @@ declare(strict_types=1);
 
 namespace Dataleon\Contracts;
 
-use Dataleon\Companies\CompanyCreateParams;
 use Dataleon\Companies\CompanyCreateParams\Company;
 use Dataleon\Companies\CompanyCreateParams\TechnicalData;
-use Dataleon\Companies\CompanyListParams;
 use Dataleon\Companies\CompanyListParams\State;
 use Dataleon\Companies\CompanyListParams\Status;
 use Dataleon\Companies\CompanyRegistration;
-use Dataleon\Companies\CompanyRetrieveParams;
-use Dataleon\Companies\CompanyUpdateParams;
 use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
@@ -20,58 +16,67 @@ use Dataleon\RequestOptions;
 interface CompaniesContract
 {
     /**
-     * @param array{
-     *   company: Company,
-     *   workspaceID: string,
-     *   sourceID?: string,
-     *   technicalData?: TechnicalData,
-     * }|CompanyCreateParams $params
+     * @param Company $company main information about the company being registered
+     * @param string $workspaceID unique identifier of the workspace in which the company is being created
+     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
+     * @param TechnicalData $technicalData technical metadata and callback configuration
      */
     public function create(
-        array|CompanyCreateParams $params,
+        $company,
+        $workspaceID,
+        $sourceID = null,
+        $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration;
 
     /**
-     * @param array{document?: bool, scope?: string}|CompanyRetrieveParams $params
+     * @param bool $document Include document signed url
+     * @param string $scope Scope filter (id or scope)
      */
     public function retrieve(
         string $companyID,
-        array|CompanyRetrieveParams $params,
+        $document = null,
+        $scope = null,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration;
 
     /**
-     * @param array{
-     *   company: Company1,
-     *   workspaceID: string,
-     *   sourceID?: string,
-     *   technicalData?: TechnicalData1,
-     * }|CompanyUpdateParams $params
+     * @param Company1 $company main information about the company being registered
+     * @param string $workspaceID unique identifier of the workspace in which the company is being created
+     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
+     * @param TechnicalData1 $technicalData technical metadata and callback configuration
      */
     public function update(
         string $companyID,
-        array|CompanyUpdateParams $params,
+        $company,
+        $workspaceID,
+        $sourceID = null,
+        $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration;
 
     /**
-     * @param array{
-     *   endDate?: \DateTimeInterface,
-     *   limit?: int,
-     *   offset?: int,
-     *   sourceID?: string,
-     *   startDate?: \DateTimeInterface,
-     *   state?: State::*,
-     *   status?: Status::*,
-     *   workspaceID?: string,
-     * }|CompanyListParams $params
+     * @param \DateTimeInterface $endDate Filter companies created before this date (format YYYY-MM-DD)
+     * @param int $limit Number of results to return (between 1 and 100)
+     * @param int $offset Number of results to skip (must be ≥ 0)
+     * @param string $sourceID Filter by source ID
+     * @param \DateTimeInterface $startDate Filter companies created after this date (format YYYY-MM-DD)
+     * @param State::* $state Filter by company state (must be one of the allowed values)
+     * @param Status::* $status Filter by individual status (must be one of the allowed values)
+     * @param string $workspaceID Filter by workspace ID
      *
      * @return list<CompanyRegistration>
      */
     public function list(
-        array|CompanyListParams $params,
-        ?RequestOptions $requestOptions = null
+        $endDate = null,
+        $limit = null,
+        $offset = null,
+        $sourceID = null,
+        $startDate = null,
+        $state = null,
+        $status = null,
+        $workspaceID = null,
+        ?RequestOptions $requestOptions = null,
     ): array;
 
     public function delete(

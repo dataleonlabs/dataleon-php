@@ -36,18 +36,20 @@ final class DocumentsService implements DocumentsContract
     /**
      * Upload documents to an company.
      *
-     * @param array{
-     *   documentType: DocumentType::*, file?: string, url?: string
-     * }|DocumentUploadParams $params
+     * @param DocumentType::* $documentType Filter by document type for upload (must be one of the allowed values)
+     * @param string $file File to upload (required)
+     * @param string $url URL of the file to upload (either `file` or `url` is required)
      */
     public function upload(
         string $companyID,
-        array|DocumentUploadParams $params,
+        $documentType,
+        $file = null,
+        $url = null,
         ?RequestOptions $requestOptions = null,
     ): GenericDocument {
         [$parsed, $options] = DocumentUploadParams::parseRequest(
-            $params,
-            $requestOptions
+            ['documentType' => $documentType, 'file' => $file, 'url' => $url],
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',
