@@ -11,7 +11,7 @@ use Dataleon\Core\Conversion\UnionOf;
 /**
  * @internal
  */
-trait Union
+trait SdkUnion
 {
     private static Converter $converter;
 

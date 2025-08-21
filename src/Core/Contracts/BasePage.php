@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 namespace Dataleon\Core\Contracts;
 
+use Dataleon\Core\BaseClient;
+use Dataleon\Core\Pagination\PageRequestOptions;
+use Psr\Http\Message\ResponseInterface;
+
 /**
  * @internal
  */
-interface BasePage extends \Stringable
+interface BasePage
 {
-    /**
-     * @return \Traversable<mixed>
-     */
-    public function pagingEachItem(): \Traversable;
+    public function __construct(
+        BaseClient $client,
+        PageRequestOptions $options,
+        ResponseInterface $response,
+        mixed $body,
+    );
 }

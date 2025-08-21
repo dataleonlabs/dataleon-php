@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies\CompanyRegistration\Member;
 
-use Dataleon\Core\Concerns\Enum;
+use Dataleon\Core\Concerns\SdkEnum;
 use Dataleon\Core\Conversion\Contracts\ConverterSource;
 
 /**
@@ -14,7 +14,7 @@ use Dataleon\Core\Conversion\Contracts\ConverterSource;
  */
 final class Source implements ConverterSource
 {
-    use Enum;
+    use SdkEnum;
 
     public const GOUVE = 'gouve';
 

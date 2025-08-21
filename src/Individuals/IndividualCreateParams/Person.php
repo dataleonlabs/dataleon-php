@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Individuals\IndividualCreateParams;
 
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\IndividualCreateParams\Person\Gender;
 
@@ -24,7 +24,7 @@ use Dataleon\Individuals\IndividualCreateParams\Person\Gender;
  */
 final class Person implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Date of birth in DD/MM/YYYY format.

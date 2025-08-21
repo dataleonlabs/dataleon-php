@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Individuals\Documents;
 
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Individuals\Documents\Kbis\Member;
@@ -33,7 +33,7 @@ use Dataleon\Individuals\Documents\Kbis\Member;
  */
 final class Kbis implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Declared business activities.

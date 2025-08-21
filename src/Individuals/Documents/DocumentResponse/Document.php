@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Individuals\Documents\DocumentResponse;
 
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
@@ -24,7 +24,7 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class Document implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Unique identifier of the document.

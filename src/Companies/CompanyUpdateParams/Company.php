@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Companies\CompanyUpdateParams;
 
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
@@ -31,7 +31,7 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class Company implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Legal name of the company.

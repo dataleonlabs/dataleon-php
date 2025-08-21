@@ -7,8 +7,8 @@ namespace Dataleon\Companies;
 use Dataleon\Companies\CompanyUpdateParams\Company;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData;
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
-use Dataleon\Core\Concerns\Params;
+use Dataleon\Core\Concerns\SdkModel;
+use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
@@ -23,8 +23,8 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class CompanyUpdateParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * Main information about the company being registered.

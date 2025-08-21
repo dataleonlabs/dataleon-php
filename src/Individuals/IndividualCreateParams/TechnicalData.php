@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Individuals\IndividualCreateParams;
 
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
@@ -20,7 +20,7 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class TechnicalData implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * URL to call back upon completion of processing.
