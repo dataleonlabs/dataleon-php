@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Individuals\Documents\Kbis;
 
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\Kbis\Member\Type;
 
@@ -39,7 +39,7 @@ use Dataleon\Individuals\Documents\Kbis\Member\Type;
  */
 final class Member implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Unique identifier for the member.

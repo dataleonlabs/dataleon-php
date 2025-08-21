@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Dataleon\Individuals;
 
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
-use Dataleon\Core\Concerns\Params;
+use Dataleon\Core\Concerns\SdkModel;
+use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\IndividualListParams\State;
 use Dataleon\Individuals\IndividualListParams\Status;
@@ -27,8 +27,8 @@ use Dataleon\Individuals\IndividualListParams\Status;
  */
 final class IndividualListParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * Filter individuals created before this date (format YYYY-MM-DD).

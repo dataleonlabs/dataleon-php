@@ -7,7 +7,10 @@ namespace Dataleon\Core\Concerns;
 use Dataleon\Core\Conversion\Contracts\Converter;
 use Dataleon\Core\Conversion\EnumOf;
 
-trait Enum
+/**
+ * @internal
+ */
+trait SdkEnum
 {
     private static Converter $converter;
 

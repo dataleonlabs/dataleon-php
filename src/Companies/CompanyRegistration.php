@@ -12,7 +12,7 @@ use Dataleon\Companies\CompanyRegistration\Property;
 use Dataleon\Companies\CompanyRegistration\Risk;
 use Dataleon\Companies\CompanyRegistration\TechnicalData;
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Individuals\Documents\GenericDocument;
@@ -36,7 +36,7 @@ use Dataleon\Shared\Check;
  */
 final class CompanyRegistration implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the company, including their details.
