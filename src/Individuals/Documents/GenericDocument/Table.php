@@ -19,7 +19,7 @@ final class Table implements BaseModel
     /**
      * List of operations or actions associated with the table.
      *
-     * @var null|list<mixed> $operation
+     * @var list<mixed>|null $operation
      */
     #[Api(type: new ListOf('mixed'), optional: true)]
     public ?array $operation;
@@ -35,7 +35,7 @@ final class Table implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<mixed> $operation
+     * @param list<mixed>|null $operation
      */
     public static function with(?array $operation = null): self
     {
