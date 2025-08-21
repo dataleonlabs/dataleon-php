@@ -48,7 +48,6 @@ use Dataleon\Client;
 $client = new Client(apiKey: getenv("DATALEON_API_KEY") ?: "My API Key");
 
 $individual = $client->individuals->create(workspaceID: "wk_123");
-
 var_dump($individual->id);
 ```
 

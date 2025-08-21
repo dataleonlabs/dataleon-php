@@ -2,12 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Individuals\Documents;
+namespace Dataleon\Services\Companies;
 
 use Dataleon\Client;
-use Dataleon\Contracts\Individuals\DocumentsContract;
+use Dataleon\Companies\Documents\DocumentUploadParams;
+use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
+use Dataleon\Contracts\Companies\DocumentsContract;
 use Dataleon\Core\Conversion;
-use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
+use Dataleon\Core\Util;
+use Dataleon\Individuals\Documents\DocumentResponse;
+use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
 
 final class DocumentsService implements DocumentsContract
@@ -15,15 +19,15 @@ final class DocumentsService implements DocumentsContract
     public function __construct(private Client $client) {}
 
     /**
-     * Get documents to an individuals.
+     * Get documents to an company.
      */
     public function list(
-        string $individualID,
+        string $companyID,
         ?RequestOptions $requestOptions = null
     ): DocumentResponse {
         $resp = $this->client->request(
             method: 'get',
-            path: ['individuals/%1$s/documents', $individualID],
+            path: ['companies/%1$s/documents', $companyID],
             options: $requestOptions,
         );
 
@@ -32,26 +36,28 @@ final class DocumentsService implements DocumentsContract
     }
 
     /**
-     * Upload documents to an individual.
+     * Upload documents to an company.
      *
      * @param DocumentType::* $documentType Filter by document type for upload (must be one of the allowed values)
      * @param string $file File to upload (required)
      * @param string $url URL of the file to upload (either `file` or `url` is required)
      */
     public function upload(
-        string $individualID,
+        string $companyID,
         $documentType,
         $file = null,
         $url = null,
         ?RequestOptions $requestOptions = null,
     ): GenericDocument {
+        $args = ['documentType' => $documentType, 'file' => $file, 'url' => $url];
+        $args = Util::array_filter_null($args, ['file', 'url']);
         [$parsed, $options] = DocumentUploadParams::parseRequest(
-            ['documentType' => $documentType, 'file' => $file, 'url' => $url],
-            $requestOptions,
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'post',
-            path: ['individuals/%1$s/documents', $individualID],
+            path: ['companies/%1$s/documents', $companyID],
             headers: ['Content-Type' => 'multipart/form-data'],
             body: (object) $parsed,
             options: $options,

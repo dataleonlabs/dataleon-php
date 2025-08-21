@@ -62,9 +62,7 @@ final class DocumentsTest extends TestCase
 
         $result = $this->client->companies->documents->upload(
             'company_id',
-            documentType: 'bank_statements',
-            file: 'file',
-            url: 'https://example.com/sample.pdf',
+            documentType: 'bank_statements'
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line
