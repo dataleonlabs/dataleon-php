@@ -14,11 +14,15 @@ use Dataleon\Core\Contracts\BaseModel;
  *
  * @phpstan-type company_alias = array{
  *   address?: string,
+ *   closureDate?: \DateTimeInterface,
  *   commercialName?: string,
  *   contact?: Contact,
  *   country?: string,
  *   email?: string,
+ *   employees?: int,
  *   employerIdentificationNumber?: string,
+ *   insolvencyExists?: bool,
+ *   insolvencyOngoing?: bool,
  *   legalForm?: string,
  *   name?: string,
  *   phoneNumber?: string,
@@ -40,6 +44,12 @@ final class Company implements BaseModel
      */
     #[Api(optional: true)]
     public ?string $address;
+
+    /**
+     * Closure date of the company, if applicable.
+     */
+    #[Api('closure_date', optional: true)]
+    public ?\DateTimeInterface $closureDate;
 
     /**
      * Trade or commercial name of the company.
@@ -66,10 +76,28 @@ final class Company implements BaseModel
     public ?string $email;
 
     /**
+     * Number of employees in the company.
+     */
+    #[Api(optional: true)]
+    public ?int $employees;
+
+    /**
      * Employer Identification Number (EIN) or equivalent.
      */
     #[Api('employer_identification_number', optional: true)]
     public ?string $employerIdentificationNumber;
+
+    /**
+     * Indicates whether an insolvency procedure exists for the company.
+     */
+    #[Api('insolvency_exists', optional: true)]
+    public ?bool $insolvencyExists;
+
+    /**
+     * Indicates whether an insolvency procedure is ongoing for the company.
+     */
+    #[Api('insolvency_ongoing', optional: true)]
+    public ?bool $insolvencyOngoing;
 
     /**
      * Legal form or structure of the company (e.g., LLC, SARL).
@@ -144,11 +172,15 @@ final class Company implements BaseModel
      */
     public static function with(
         ?string $address = null,
+        ?\DateTimeInterface $closureDate = null,
         ?string $commercialName = null,
         ?Contact $contact = null,
         ?string $country = null,
         ?string $email = null,
+        ?int $employees = null,
         ?string $employerIdentificationNumber = null,
+        ?bool $insolvencyExists = null,
+        ?bool $insolvencyOngoing = null,
         ?string $legalForm = null,
         ?string $name = null,
         ?string $phoneNumber = null,
@@ -163,11 +195,15 @@ final class Company implements BaseModel
         $obj = new self;
 
         null !== $address && $obj->address = $address;
+        null !== $closureDate && $obj->closureDate = $closureDate;
         null !== $commercialName && $obj->commercialName = $commercialName;
         null !== $contact && $obj->contact = $contact;
         null !== $country && $obj->country = $country;
         null !== $email && $obj->email = $email;
+        null !== $employees && $obj->employees = $employees;
         null !== $employerIdentificationNumber && $obj->employerIdentificationNumber = $employerIdentificationNumber;
+        null !== $insolvencyExists && $obj->insolvencyExists = $insolvencyExists;
+        null !== $insolvencyOngoing && $obj->insolvencyOngoing = $insolvencyOngoing;
         null !== $legalForm && $obj->legalForm = $legalForm;
         null !== $name && $obj->name = $name;
         null !== $phoneNumber && $obj->phoneNumber = $phoneNumber;
@@ -189,6 +225,17 @@ final class Company implements BaseModel
     {
         $obj = clone $this;
         $obj->address = $address;
+
+        return $obj;
+    }
+
+    /**
+     * Closure date of the company, if applicable.
+     */
+    public function withClosureDate(\DateTimeInterface $closureDate): self
+    {
+        $obj = clone $this;
+        $obj->closureDate = $closureDate;
 
         return $obj;
     }
@@ -238,6 +285,17 @@ final class Company implements BaseModel
     }
 
     /**
+     * Number of employees in the company.
+     */
+    public function withEmployees(int $employees): self
+    {
+        $obj = clone $this;
+        $obj->employees = $employees;
+
+        return $obj;
+    }
+
+    /**
      * Employer Identification Number (EIN) or equivalent.
      */
     public function withEmployerIdentificationNumber(
@@ -245,6 +303,28 @@ final class Company implements BaseModel
     ): self {
         $obj = clone $this;
         $obj->employerIdentificationNumber = $employerIdentificationNumber;
+
+        return $obj;
+    }
+
+    /**
+     * Indicates whether an insolvency procedure exists for the company.
+     */
+    public function withInsolvencyExists(bool $insolvencyExists): self
+    {
+        $obj = clone $this;
+        $obj->insolvencyExists = $insolvencyExists;
+
+        return $obj;
+    }
+
+    /**
+     * Indicates whether an insolvency procedure is ongoing for the company.
+     */
+    public function withInsolvencyOngoing(bool $insolvencyOngoing): self
+    {
+        $obj = clone $this;
+        $obj->insolvencyOngoing = $insolvencyOngoing;
 
         return $obj;
     }
