@@ -3,10 +3,6 @@
 namespace Tests\Resources;
 
 use Dataleon\Client;
-use Dataleon\Individuals\IndividualCreateParams\Person;
-use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
-use Dataleon\Individuals\IndividualUpdateParams\Person as Person1;
-use Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -49,23 +45,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->individuals->create(
-            workspaceID: 'wk_123',
-            person: (new Person)
-                ->withBirthday('15/05/1985')
-                ->withEmail('john.doe@example.com')
-                ->withFirstName('John')
-                ->withGender('M')
-                ->withLastName('Doe')
-                ->withMaidenName('John Doe')
-                ->withPhoneNumber('+33 1 23 45 67 89'),
-            sourceID: 'ID54410069066',
-            technicalData: (new TechnicalData)
-                ->withCallbackURL('https://example.com/callback')
-                ->withCallbackURLNotification('https://example.com/notify')
-                ->withLanguage('fra')
-                ->withRawData(true),
-        );
+        $result = $this->client->individuals->create(workspaceID: 'wk_123');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -106,21 +86,7 @@ final class IndividualsTest extends TestCase
 
         $result = $this->client->individuals->update(
             'individual_id',
-            workspaceID: 'wk_123',
-            person: (new Person1)
-                ->withBirthday('15/05/1985')
-                ->withEmail('john.doe@example.com')
-                ->withFirstName('John')
-                ->withGender('M')
-                ->withLastName('Doe')
-                ->withMaidenName('John Doe')
-                ->withPhoneNumber('+33 1 23 45 67 89'),
-            sourceID: 'ID54410069066',
-            technicalData: (new TechnicalData1)
-                ->withCallbackURL('https://example.com/callback')
-                ->withCallbackURLNotification('https://example.com/notify')
-                ->withLanguage('fra')
-                ->withRawData(true),
+            workspaceID: 'wk_123'
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line

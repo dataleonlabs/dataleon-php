@@ -2,20 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Individuals;
+namespace Dataleon\Services;
 
 use Dataleon\Client;
 use Dataleon\Contracts\IndividualsContract;
 use Dataleon\Core\Conversion;
 use Dataleon\Core\Conversion\ListOf;
-use Dataleon\Individuals\Documents\DocumentsService;
+use Dataleon\Core\Util;
+use Dataleon\Individuals\Individual;
+use Dataleon\Individuals\IndividualCreateParams;
 use Dataleon\Individuals\IndividualCreateParams\Person;
 use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
+use Dataleon\Individuals\IndividualListParams;
 use Dataleon\Individuals\IndividualListParams\State;
 use Dataleon\Individuals\IndividualListParams\Status;
+use Dataleon\Individuals\IndividualRetrieveParams;
+use Dataleon\Individuals\IndividualUpdateParams;
 use Dataleon\Individuals\IndividualUpdateParams\Person as Person1;
 use Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
+use Dataleon\Services\Individuals\DocumentsService;
 
 final class IndividualsService implements IndividualsContract
 {
@@ -41,14 +47,19 @@ final class IndividualsService implements IndividualsContract
         $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): Individual {
+        $args = [
+            'workspaceID' => $workspaceID,
+            'person' => $person,
+            'sourceID' => $sourceID,
+            'technicalData' => $technicalData,
+        ];
+        $args = Util::array_filter_null(
+            $args,
+            ['person', 'sourceID', 'technicalData']
+        );
         [$parsed, $options] = IndividualCreateParams::parseRequest(
-            [
-                'workspaceID' => $workspaceID,
-                'person' => $person,
-                'sourceID' => $sourceID,
-                'technicalData' => $technicalData,
-            ],
-            $requestOptions,
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'post',
@@ -73,8 +84,10 @@ final class IndividualsService implements IndividualsContract
         $scope = null,
         ?RequestOptions $requestOptions = null,
     ): Individual {
+        $args = ['document' => $document, 'scope' => $scope];
+        $args = Util::array_filter_null($args, ['document', 'scope']);
         [$parsed, $options] = IndividualRetrieveParams::parseRequest(
-            ['document' => $document, 'scope' => $scope],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(
@@ -104,14 +117,19 @@ final class IndividualsService implements IndividualsContract
         $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): Individual {
+        $args = [
+            'workspaceID' => $workspaceID,
+            'person' => $person,
+            'sourceID' => $sourceID,
+            'technicalData' => $technicalData,
+        ];
+        $args = Util::array_filter_null(
+            $args,
+            ['person', 'sourceID', 'technicalData']
+        );
         [$parsed, $options] = IndividualUpdateParams::parseRequest(
-            [
-                'workspaceID' => $workspaceID,
-                'person' => $person,
-                'sourceID' => $sourceID,
-                'technicalData' => $technicalData,
-            ],
-            $requestOptions,
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'put',
@@ -149,18 +167,32 @@ final class IndividualsService implements IndividualsContract
         $workspaceID = null,
         ?RequestOptions $requestOptions = null,
     ): array {
-        [$parsed, $options] = IndividualListParams::parseRequest(
+        $args = [
+            'endDate' => $endDate,
+            'limit' => $limit,
+            'offset' => $offset,
+            'sourceID' => $sourceID,
+            'startDate' => $startDate,
+            'state' => $state,
+            'status' => $status,
+            'workspaceID' => $workspaceID,
+        ];
+        $args = Util::array_filter_null(
+            $args,
             [
-                'endDate' => $endDate,
-                'limit' => $limit,
-                'offset' => $offset,
-                'sourceID' => $sourceID,
-                'startDate' => $startDate,
-                'state' => $state,
-                'status' => $status,
-                'workspaceID' => $workspaceID,
+                'endDate',
+                'limit',
+                'offset',
+                'sourceID',
+                'startDate',
+                'state',
+                'status',
+                'workspaceID',
             ],
-            $requestOptions,
+        );
+        [$parsed, $options] = IndividualListParams::parseRequest(
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'get',
