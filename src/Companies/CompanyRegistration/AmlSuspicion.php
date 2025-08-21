@@ -65,7 +65,7 @@ final class AmlSuspicion implements BaseModel
     /**
      * Watchlist category associated with the suspicion. Possible values include Watchlist types like "PEP", "Sanctions", "RiskyEntity", or "Crime".
      *
-     * @var null|Type::* $type
+     * @var Type::*|null $type
      */
     #[Api(enum: Type::class, optional: true)]
     public ?string $type;
@@ -81,7 +81,7 @@ final class AmlSuspicion implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|Type::* $type
+     * @param Type::*|null $type
      */
     public static function with(
         ?string $caption = null,

@@ -164,7 +164,7 @@ final class Member implements BaseModel
     /**
      * Type of entity (company or person).
      *
-     * @var null|Type::* $type
+     * @var Type::*|null $type
      */
     #[Api(enum: Type::class, optional: true)]
     public ?string $type;
@@ -186,7 +186,7 @@ final class Member implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|Type::* $type
+     * @param Type::*|null $type
      */
     public static function with(
         ?string $id = null,

@@ -41,7 +41,7 @@ final class GenericDocument implements BaseModel
     /**
      * List of verification checks performed on the document.
      *
-     * @var null|list<Check> $checks
+     * @var list<Check>|null $checks
      */
     #[Api(type: new ListOf(Check::class), optional: true)]
     public ?array $checks;
@@ -85,7 +85,7 @@ final class GenericDocument implements BaseModel
     /**
      * List of tables extracted from the document, each containing operations.
      *
-     * @var null|list<Table> $tables
+     * @var list<Table>|null $tables
      */
     #[Api(type: new ListOf(Table::class), optional: true)]
     public ?array $tables;
@@ -93,7 +93,7 @@ final class GenericDocument implements BaseModel
     /**
      * Extracted key-value pairs from the document, including confidence scores.
      *
-     * @var null|list<Value> $values
+     * @var list<Value>|null $values
      */
     #[Api(type: new ListOf(Value::class), optional: true)]
     public ?array $values;
@@ -109,9 +109,9 @@ final class GenericDocument implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<Check> $checks
-     * @param null|list<Table> $tables
-     * @param null|list<Value> $values
+     * @param list<Check>|null $checks
+     * @param list<Table>|null $tables
+     * @param list<Value>|null $values
      */
     public static function with(
         ?string $id = null,

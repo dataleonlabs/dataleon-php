@@ -63,7 +63,7 @@ final class IndividualListParams implements BaseModel
     /**
      * Filter by individual status (must be one of the allowed values).
      *
-     * @var null|State::* $state
+     * @var State::*|null $state
      */
     #[Api(enum: State::class, optional: true)]
     public ?string $state;
@@ -71,7 +71,7 @@ final class IndividualListParams implements BaseModel
     /**
      * Filter by individual status (must be one of the allowed values).
      *
-     * @var null|Status::* $status
+     * @var Status::*|null $status
      */
     #[Api(enum: Status::class, optional: true)]
     public ?string $status;
@@ -93,8 +93,8 @@ final class IndividualListParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|State::* $state
-     * @param null|Status::* $status
+     * @param State::*|null $state
+     * @param Status::*|null $status
      */
     public static function with(
         ?\DateTimeInterface $endDate = null,

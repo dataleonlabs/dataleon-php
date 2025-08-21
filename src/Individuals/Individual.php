@@ -58,7 +58,7 @@ final class Individual implements BaseModel
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the individual.
      *
-     * @var null|list<AmlSuspicion> $amlSuspicions
+     * @var list<AmlSuspicion>|null $amlSuspicions
      */
     #[Api(
         'aml_suspicions',
@@ -82,7 +82,7 @@ final class Individual implements BaseModel
     /**
      * List of verification or validation checks applied to the individual.
      *
-     * @var null|list<Check> $checks
+     * @var list<Check>|null $checks
      */
     #[Api(type: new ListOf(Check::class), optional: true)]
     public ?array $checks;
@@ -96,7 +96,7 @@ final class Individual implements BaseModel
     /**
      * All documents submitted or associated with the individual.
      *
-     * @var null|list<GenericDocument> $documents
+     * @var list<GenericDocument>|null $documents
      */
     #[Api(type: new ListOf(GenericDocument::class), optional: true)]
     public ?array $documents;
@@ -128,7 +128,7 @@ final class Individual implements BaseModel
     /**
      * Custom key-value metadata fields associated with the individual.
      *
-     * @var null|list<Property> $properties
+     * @var list<Property>|null $properties
      */
     #[Api(type: new ListOf(Property::class), optional: true)]
     public ?array $properties;
@@ -160,7 +160,7 @@ final class Individual implements BaseModel
     /**
      * List of tags assigned to the individual for categorization or metadata purposes.
      *
-     * @var null|list<Tag> $tags
+     * @var list<Tag>|null $tags
      */
     #[Api(type: new ListOf(Tag::class), optional: true)]
     public ?array $tags;
@@ -194,11 +194,11 @@ final class Individual implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<AmlSuspicion> $amlSuspicions
-     * @param null|list<Check> $checks
-     * @param null|list<GenericDocument> $documents
-     * @param null|list<Property> $properties
-     * @param null|list<Tag> $tags
+     * @param list<AmlSuspicion>|null $amlSuspicions
+     * @param list<Check>|null $checks
+     * @param list<GenericDocument>|null $documents
+     * @param list<Property>|null $properties
+     * @param list<Tag>|null $tags
      */
     public static function with(
         ?string $id = null,

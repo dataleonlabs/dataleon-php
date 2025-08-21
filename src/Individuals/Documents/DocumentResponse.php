@@ -22,7 +22,7 @@ final class DocumentResponse implements BaseModel
     /**
      * List of documents associated with the response.
      *
-     * @var null|list<Document> $documents
+     * @var list<Document>|null $documents
      */
     #[Api(type: new ListOf(Document::class), optional: true)]
     public ?array $documents;
@@ -44,7 +44,7 @@ final class DocumentResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<Document> $documents
+     * @param list<Document>|null $documents
      */
     public static function with(
         ?array $documents = null,
