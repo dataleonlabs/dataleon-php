@@ -4,9 +4,7 @@ namespace Tests\Resources;
 
 use Dataleon\Client;
 use Dataleon\Companies\CompanyCreateParams\Company;
-use Dataleon\Companies\CompanyCreateParams\TechnicalData;
 use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
-use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -69,12 +67,6 @@ final class CompaniesTest extends TestCase
                 ->withType('main')
                 ->withWebsiteURL('https://acme.fr'),
             workspaceID: 'wk_123',
-            sourceID: 'ID54410069066',
-            technicalData: (new TechnicalData)
-                ->withCallbackURL('https://example.com/callback')
-                ->withCallbackURLNotification('https://example.com/notify')
-                ->withLanguage('fra')
-                ->withRawData(true),
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -133,12 +125,6 @@ final class CompaniesTest extends TestCase
                 ->withType('main')
                 ->withWebsiteURL('https://acme.fr'),
             workspaceID: 'wk_123',
-            sourceID: 'ID54410069066',
-            technicalData: (new TechnicalData1)
-                ->withCallbackURL('https://example.com/callback')
-                ->withCallbackURLNotification('https://example.com/notify')
-                ->withLanguage('fra')
-                ->withRawData(true),
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line
