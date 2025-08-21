@@ -41,7 +41,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the company, including their details.
      *
-     * @var null|list<AmlSuspicion> $amlSuspicions
+     * @var list<AmlSuspicion>|null $amlSuspicions
      */
     #[Api(
         'aml_suspicions',
@@ -59,7 +59,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * List of verification or validation checks applied to the company, including their results and messages.
      *
-     * @var null|list<Check> $checks
+     * @var list<Check>|null $checks
      */
     #[Api(type: new ListOf(Check::class), optional: true)]
     public ?array $checks;
@@ -73,7 +73,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * All documents submitted or associated with the company, including their metadata and processing status.
      *
-     * @var null|list<GenericDocument> $documents
+     * @var list<GenericDocument>|null $documents
      */
     #[Api(type: new ListOf(GenericDocument::class), optional: true)]
     public ?array $documents;
@@ -81,7 +81,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * List of members or actors associated with the company, including personal and ownership information.
      *
-     * @var null|list<Member> $members
+     * @var list<Member>|null $members
      */
     #[Api(type: new ListOf(Member::class), optional: true)]
     public ?array $members;
@@ -95,7 +95,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * Custom key-value metadata fields associated with the company, allowing for flexible data storage.
      *
-     * @var null|list<Property> $properties
+     * @var list<Property>|null $properties
      */
     #[Api(type: new ListOf(Property::class), optional: true)]
     public ?array $properties;
@@ -135,11 +135,11 @@ final class CompanyRegistration implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<AmlSuspicion> $amlSuspicions
-     * @param null|list<Check> $checks
-     * @param null|list<GenericDocument> $documents
-     * @param null|list<Member> $members
-     * @param null|list<Property> $properties
+     * @param list<AmlSuspicion>|null $amlSuspicions
+     * @param list<Check>|null $checks
+     * @param list<GenericDocument>|null $documents
+     * @param list<Member>|null $members
+     * @param list<Property>|null $properties
      */
     public static function with(
         ?array $amlSuspicions = null,

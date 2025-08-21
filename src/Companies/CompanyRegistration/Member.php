@@ -76,7 +76,7 @@ final class Member implements BaseModel
     /**
      * List of documents associated with the member, including their metadata and processing status.
      *
-     * @var null|list<GenericDocument> $documents
+     * @var list<GenericDocument>|null $documents
      */
     #[Api(type: new ListOf(GenericDocument::class), optional: true)]
     public ?array $documents;
@@ -162,7 +162,7 @@ final class Member implements BaseModel
     /**
      * Source of the data (e.g., government, user, company).
      *
-     * @var null|Source::* $source
+     * @var Source::*|null $source
      */
     #[Api(enum: Source::class, optional: true)]
     public ?string $source;
@@ -182,7 +182,7 @@ final class Member implements BaseModel
     /**
      * Member type (person or company).
      *
-     * @var null|Type::* $type
+     * @var Type::*|null $type
      */
     #[Api(enum: Type::class, optional: true)]
     public ?string $type;
@@ -204,9 +204,9 @@ final class Member implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<GenericDocument> $documents
-     * @param null|Source::* $source
-     * @param null|Type::* $type
+     * @param list<GenericDocument>|null $documents
+     * @param Source::*|null $source
+     * @param Type::*|null $type
      */
     public static function with(
         ?string $id = null,

@@ -98,7 +98,7 @@ final class Kbis implements BaseModel
     /**
      * List of people or entities associated with the company.
      *
-     * @var null|list<Member> $members
+     * @var list<Member>|null $members
      */
     #[Api(type: new ListOf(Member::class), optional: true)]
     public ?array $members;
@@ -138,7 +138,7 @@ final class Kbis implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<Member> $members
+     * @param list<Member>|null $members
      */
     public static function with(
         ?string $activities = null,

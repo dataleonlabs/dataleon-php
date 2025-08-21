@@ -47,7 +47,7 @@ final class Person implements BaseModel
     /**
      * Gender of the individual (M for male, F for female).
      *
-     * @var null|Gender::* $gender
+     * @var Gender::*|null $gender
      */
     #[Api(enum: Gender::class, optional: true)]
     public ?string $gender;
@@ -81,7 +81,7 @@ final class Person implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|Gender::* $gender
+     * @param Gender::*|null $gender
      */
     public static function with(
         ?string $birthday = null,

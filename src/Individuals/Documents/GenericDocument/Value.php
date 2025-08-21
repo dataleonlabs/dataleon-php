@@ -33,7 +33,7 @@ final class Value implements BaseModel
     /**
      * List of integer values related to the field (e.g., bounding box coordinates).
      *
-     * @var null|list<int> $value
+     * @var list<int>|null $value
      */
     #[Api(type: new ListOf('int'), optional: true)]
     public ?array $value;
@@ -49,7 +49,7 @@ final class Value implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<int> $value
+     * @param list<int>|null $value
      */
     public static function with(
         ?float $confidence = null,
