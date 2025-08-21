@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Individuals\Individual;
 
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
@@ -15,7 +15,7 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class Risk implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Risk category or code identifier.

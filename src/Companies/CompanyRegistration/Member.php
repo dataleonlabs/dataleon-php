@@ -7,7 +7,7 @@ namespace Dataleon\Companies\CompanyRegistration;
 use Dataleon\Companies\CompanyRegistration\Member\Source;
 use Dataleon\Companies\CompanyRegistration\Member\Type;
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Individuals\Documents\GenericDocument;
@@ -44,7 +44,7 @@ use Dataleon\Individuals\Documents\GenericDocument;
  */
 final class Member implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     #[Api(optional: true)]
     public ?string $id;

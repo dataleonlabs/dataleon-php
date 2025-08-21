@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Individuals\Documents\GenericDocument;
 
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Core\Conversion\ListOf;
 
@@ -14,7 +14,7 @@ use Dataleon\Core\Conversion\ListOf;
  */
 final class Table implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * List of operations or actions associated with the table.

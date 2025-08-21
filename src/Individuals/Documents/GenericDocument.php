@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Individuals\Documents;
 
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Individuals\Documents\GenericDocument\Table;
@@ -30,7 +30,7 @@ use Dataleon\Shared\Check;
  */
 final class GenericDocument implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Unique identifier of the document.

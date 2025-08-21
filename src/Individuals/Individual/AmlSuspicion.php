@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Individuals\Individual;
 
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Individual\AmlSuspicion\Type;
 
@@ -24,7 +24,7 @@ use Dataleon\Individuals\Individual\AmlSuspicion\Type;
  */
 final class AmlSuspicion implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Human-readable description or title for the suspicious finding.

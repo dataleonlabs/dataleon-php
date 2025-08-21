@@ -6,7 +6,7 @@ namespace Dataleon\Companies\CompanyRegistration;
 
 use Dataleon\Companies\CompanyRegistration\AmlSuspicion\Type;
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
@@ -24,7 +24,7 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class AmlSuspicion implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Human-readable description or title for the suspicious finding.

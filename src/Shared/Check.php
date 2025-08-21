@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Shared;
 
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
@@ -17,7 +17,7 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class Check implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Indicates whether the result or data is masked/hidden.

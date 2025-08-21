@@ -6,7 +6,7 @@ namespace Dataleon\Companies\CompanyRegistration;
 
 use Dataleon\Companies\CompanyRegistration\Company\Contact;
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
+use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
@@ -33,7 +33,7 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class Company implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Full registered address of the company.

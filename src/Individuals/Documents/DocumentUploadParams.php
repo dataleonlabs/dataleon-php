@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Dataleon\Individuals\Documents;
 
 use Dataleon\Core\Attributes\Api;
-use Dataleon\Core\Concerns\Model;
-use Dataleon\Core\Concerns\Params;
+use Dataleon\Core\Concerns\SdkModel;
+use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
 
@@ -19,8 +19,8 @@ use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
  */
 final class DocumentUploadParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * Filter by document type for upload (must be one of the allowed values).
