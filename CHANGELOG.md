@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.3.0 (2025-08-21)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** api update ([7d2f202](https://github.com/dataleonlabs/dataleon-php/commit/7d2f2028a9b56beeba05cb799463ab7904770807))
+* **client:** add streaming ([c7b07d3](https://github.com/dataleonlabs/dataleon-php/commit/c7b07d3fb28d861766711cd4eeefd7f2bcc9d826))
+* **client:** improve error handling ([20a2957](https://github.com/dataleonlabs/dataleon-php/commit/20a2957e6a76432c4021efe3397299a595231647))
+* **client:** use named parameters in methods ([fac1deb](https://github.com/dataleonlabs/dataleon-php/commit/fac1deb8026e5e376b82087ab38afda39f444a51))
+* **php:** rename internal types ([499dfca](https://github.com/dataleonlabs/dataleon-php/commit/499dfcaaf18409449cf4087ab58382be62387c54))
+
+
+### Bug Fixes
+
+* **client:** elide null named parameters ([c92fc00](https://github.com/dataleonlabs/dataleon-php/commit/c92fc00cd32bb132d4fefb27f32f4946f2c89a23))
+
+
+### Chores
+
+* intuitively order union types ([b916a36](https://github.com/dataleonlabs/dataleon-php/commit/b916a36364302b4fbe75d33e48c34a2ace7d4d13))
+* readme improvements ([db5d871](https://github.com/dataleonlabs/dataleon-php/commit/db5d8719248bc3b067667b3a1a32144823f86409))
+
 ## 0.2.0 (2025-08-15)
 
 Full Changelog: [v0.1.1...v0.2.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.1.1...v0.2.0)
