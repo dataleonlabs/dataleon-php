@@ -7,6 +7,7 @@ namespace Dataleon\Individuals\Individual;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
+use Dataleon\Individuals\Individual\AmlSuspicion\Status;
 use Dataleon\Individuals\Individual\AmlSuspicion\Type;
 
 /**
@@ -14,11 +15,13 @@ use Dataleon\Individuals\Individual\AmlSuspicion\Type;
  *
  * @phpstan-type aml_suspicion_alias = array{
  *   caption?: string,
- *   checked?: bool,
+ *   country?: string,
+ *   gender?: string,
  *   relation?: string,
  *   schema?: string,
  *   score?: float,
  *   source?: string,
+ *   status?: Status::*,
  *   type?: Type::*,
  * }
  */
@@ -33,10 +36,16 @@ final class AmlSuspicion implements BaseModel
     public ?string $caption;
 
     /**
-     * Indicates whether this suspicion has been manually reviewed or confirmed.
+     * Country associated with the suspicion (ISO 3166-1 alpha-2 code).
      */
     #[Api(optional: true)]
-    public ?bool $checked;
+    public ?string $country;
+
+    /**
+     * Gender associated with the suspicion, if applicable.
+     */
+    #[Api(optional: true)]
+    public ?string $gender;
 
     /**
      * Nature of the relationship between the entity and the suspicious activity (e.g., "linked", "associated").
@@ -51,19 +60,27 @@ final class AmlSuspicion implements BaseModel
     public ?string $schema;
 
     /**
-     * Risk score between 0.0 and 1.0 indicating the severity of the suspicion.
+     * Risk score between 0.0 and 0.85 indicating the severity of the suspicion.
      */
     #[Api(optional: true)]
     public ?float $score;
 
     /**
-     * URL identifying the source system or service providing this suspicion.
+     * Source system or service providing this suspicion.
      */
     #[Api(optional: true)]
     public ?string $source;
 
     /**
-     * Watchlist category associated with the suspicion. Possible values include Watchlist types like "PEP", "Sanctions", "RiskyEntity", or "Crime".
+     * Status of the suspicion review process. Possible values: "true_positive", "false_positive", "pending".
+     *
+     * @var Status::*|null $status
+     */
+    #[Api(enum: Status::class, optional: true)]
+    public ?string $status;
+
+    /**
+     * Category of the suspicion. Possible values: "crime", "sanction", "pep", "adverse_news", "other".
      *
      * @var Type::*|null $type
      */
@@ -81,25 +98,30 @@ final class AmlSuspicion implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param Status::*|null $status
      * @param Type::*|null $type
      */
     public static function with(
         ?string $caption = null,
-        ?bool $checked = null,
+        ?string $country = null,
+        ?string $gender = null,
         ?string $relation = null,
         ?string $schema = null,
         ?float $score = null,
         ?string $source = null,
+        ?string $status = null,
         ?string $type = null,
     ): self {
         $obj = new self;
 
         null !== $caption && $obj->caption = $caption;
-        null !== $checked && $obj->checked = $checked;
+        null !== $country && $obj->country = $country;
+        null !== $gender && $obj->gender = $gender;
         null !== $relation && $obj->relation = $relation;
         null !== $schema && $obj->schema = $schema;
         null !== $score && $obj->score = $score;
         null !== $source && $obj->source = $source;
+        null !== $status && $obj->status = $status;
         null !== $type && $obj->type = $type;
 
         return $obj;
@@ -117,12 +139,23 @@ final class AmlSuspicion implements BaseModel
     }
 
     /**
-     * Indicates whether this suspicion has been manually reviewed or confirmed.
+     * Country associated with the suspicion (ISO 3166-1 alpha-2 code).
      */
-    public function withChecked(bool $checked): self
+    public function withCountry(string $country): self
     {
         $obj = clone $this;
-        $obj->checked = $checked;
+        $obj->country = $country;
+
+        return $obj;
+    }
+
+    /**
+     * Gender associated with the suspicion, if applicable.
+     */
+    public function withGender(string $gender): self
+    {
+        $obj = clone $this;
+        $obj->gender = $gender;
 
         return $obj;
     }
@@ -150,7 +183,7 @@ final class AmlSuspicion implements BaseModel
     }
 
     /**
-     * Risk score between 0.0 and 1.0 indicating the severity of the suspicion.
+     * Risk score between 0.0 and 0.85 indicating the severity of the suspicion.
      */
     public function withScore(float $score): self
     {
@@ -161,7 +194,7 @@ final class AmlSuspicion implements BaseModel
     }
 
     /**
-     * URL identifying the source system or service providing this suspicion.
+     * Source system or service providing this suspicion.
      */
     public function withSource(string $source): self
     {
@@ -172,7 +205,20 @@ final class AmlSuspicion implements BaseModel
     }
 
     /**
-     * Watchlist category associated with the suspicion. Possible values include Watchlist types like "PEP", "Sanctions", "RiskyEntity", or "Crime".
+     * Status of the suspicion review process. Possible values: "true_positive", "false_positive", "pending".
+     *
+     * @param Status::* $status
+     */
+    public function withStatus(string $status): self
+    {
+        $obj = clone $this;
+        $obj->status = $status;
+
+        return $obj;
+    }
+
+    /**
+     * Category of the suspicion. Possible values: "crime", "sanction", "pep", "adverse_news", "other".
      *
      * @param Type::* $type
      */
