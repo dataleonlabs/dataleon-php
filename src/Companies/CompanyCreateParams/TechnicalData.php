@@ -12,6 +12,7 @@ use Dataleon\Core\Contracts\BaseModel;
  * Technical metadata and callback configuration.
  *
  * @phpstan-type technical_data_alias = array{
+ *   activeAmlSuspicions?: bool,
  *   callbackURL?: string,
  *   callbackURLNotification?: string,
  *   language?: string,
@@ -21,6 +22,12 @@ use Dataleon\Core\Contracts\BaseModel;
 final class TechnicalData implements BaseModel
 {
     use SdkModel;
+
+    /**
+     * Flag indicating whether there are active research AML (Anti-Money Laundering) suspicions for the company when you apply for a new entry or get an existing one.
+     */
+    #[Api('active_aml_suspicions', optional: true)]
+    public ?bool $activeAmlSuspicions;
 
     /**
      * URL to receive a callback once the company is processed.
@@ -58,6 +65,7 @@ final class TechnicalData implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
+        ?bool $activeAmlSuspicions = null,
         ?string $callbackURL = null,
         ?string $callbackURLNotification = null,
         ?string $language = null,
@@ -65,10 +73,22 @@ final class TechnicalData implements BaseModel
     ): self {
         $obj = new self;
 
+        null !== $activeAmlSuspicions && $obj->activeAmlSuspicions = $activeAmlSuspicions;
         null !== $callbackURL && $obj->callbackURL = $callbackURL;
         null !== $callbackURLNotification && $obj->callbackURLNotification = $callbackURLNotification;
         null !== $language && $obj->language = $language;
         null !== $rawData && $obj->rawData = $rawData;
+
+        return $obj;
+    }
+
+    /**
+     * Flag indicating whether there are active research AML (Anti-Money Laundering) suspicions for the company when you apply for a new entry or get an existing one.
+     */
+    public function withActiveAmlSuspicions(bool $activeAmlSuspicions): self
+    {
+        $obj = clone $this;
+        $obj->activeAmlSuspicions = $activeAmlSuspicions;
 
         return $obj;
     }

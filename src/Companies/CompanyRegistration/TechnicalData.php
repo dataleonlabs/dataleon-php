@@ -12,6 +12,7 @@ use Dataleon\Core\Contracts\BaseModel;
  * Technical metadata related to the request, such as IP address, QR code settings, and callback URLs.
  *
  * @phpstan-type technical_data_alias = array{
+ *   activeAmlSuspicions?: bool,
  *   apiVersion?: int,
  *   approvedAt?: \DateTimeInterface,
  *   callbackURL?: string,
@@ -37,6 +38,12 @@ use Dataleon\Core\Contracts\BaseModel;
 final class TechnicalData implements BaseModel
 {
     use SdkModel;
+
+    /**
+     * Flag indicating whether there are active research AML (Anti-Money Laundering) suspicions for the object when you apply for a new entry or get an existing one.
+     */
+    #[Api('active_aml_suspicions', optional: true)]
+    public ?bool $activeAmlSuspicions;
 
     /**
      * Version number of the API used.
@@ -170,6 +177,7 @@ final class TechnicalData implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
+        ?bool $activeAmlSuspicions = null,
         ?int $apiVersion = null,
         ?\DateTimeInterface $approvedAt = null,
         ?string $callbackURL = null,
@@ -193,6 +201,7 @@ final class TechnicalData implements BaseModel
     ): self {
         $obj = new self;
 
+        null !== $activeAmlSuspicions && $obj->activeAmlSuspicions = $activeAmlSuspicions;
         null !== $apiVersion && $obj->apiVersion = $apiVersion;
         null !== $approvedAt && $obj->approvedAt = $approvedAt;
         null !== $callbackURL && $obj->callbackURL = $callbackURL;
@@ -213,6 +222,17 @@ final class TechnicalData implements BaseModel
         null !== $startedAt && $obj->startedAt = $startedAt;
         null !== $transferAt && $obj->transferAt = $transferAt;
         null !== $transferMode && $obj->transferMode = $transferMode;
+
+        return $obj;
+    }
+
+    /**
+     * Flag indicating whether there are active research AML (Anti-Money Laundering) suspicions for the object when you apply for a new entry or get an existing one.
+     */
+    public function withActiveAmlSuspicions(bool $activeAmlSuspicions): self
+    {
+        $obj = clone $this;
+        $obj->activeAmlSuspicions = $activeAmlSuspicions;
 
         return $obj;
     }
