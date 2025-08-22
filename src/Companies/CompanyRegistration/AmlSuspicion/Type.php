@@ -8,7 +8,7 @@ use Dataleon\Core\Concerns\SdkEnum;
 use Dataleon\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * Watchlist category associated with the suspicion. Possible values include Watchlist types like "PEP", "Sanctions", "RiskyEntity", or "Crime".
+ * Category of the suspicion. Possible values: "crime", "sanction", "pep", "adverse_news", "other".
  *
  * @phpstan-type type_alias = Type::*
  */
@@ -16,13 +16,13 @@ final class Type implements ConverterSource
 {
     use SdkEnum;
 
-    public const WATCHLIST = 'Watchlist';
+    public const CRIME = 'crime';
 
-    public const PEP = 'PEP';
+    public const SANCTION = 'sanction';
 
-    public const SANCTIONS = 'Sanctions';
+    public const PEP = 'pep';
 
-    public const RISKY_ENTITY = 'RiskyEntity';
+    public const ADVERSE_NEWS = 'adverse_news';
 
-    public const CRIME = 'Crime';
+    public const OTHER = 'other';
 }
