@@ -60,7 +60,7 @@ final class AmlSuspicion implements BaseModel
     public ?string $schema;
 
     /**
-     * Risk score between 0.0 and 0.85 indicating the severity of the suspicion.
+     * Risk score between 0.0 and 1 indicating the severity of the suspicion.
      */
     #[Api(optional: true)]
     public ?float $score;
@@ -183,7 +183,7 @@ final class AmlSuspicion implements BaseModel
     }
 
     /**
-     * Risk score between 0.0 and 0.85 indicating the severity of the suspicion.
+     * Risk score between 0.0 and 1 indicating the severity of the suspicion.
      */
     public function withScore(float $score): self
     {
