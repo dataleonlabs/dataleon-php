@@ -11,8 +11,6 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Get an individual by ID.
- *
- * @phpstan-type retrieve_params = array{document?: bool, scope?: string}
  */
 final class IndividualRetrieveParams implements BaseModel
 {

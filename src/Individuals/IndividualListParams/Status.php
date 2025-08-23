@@ -9,8 +9,6 @@ use Dataleon\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Filter by individual status (must be one of the allowed values).
- *
- * @phpstan-type status_alias = Status::*
  */
 final class Status implements ConverterSource
 {

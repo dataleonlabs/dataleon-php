@@ -11,16 +11,6 @@ use Dataleon\Individuals\IndividualUpdateParams\Person\Gender;
 
 /**
  * Personal information about the individual.
- *
- * @phpstan-type person_alias = array{
- *   birthday?: string,
- *   email?: string,
- *   firstName?: string,
- *   gender?: Gender::*,
- *   lastName?: string,
- *   maidenName?: string,
- *   phoneNumber?: string,
- * }
  */
 final class Person implements BaseModel
 {

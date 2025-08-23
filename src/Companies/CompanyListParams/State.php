@@ -9,8 +9,6 @@ use Dataleon\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Filter by company state (must be one of the allowed values).
- *
- * @phpstan-type state_alias = State::*
  */
 final class State implements ConverterSource
 {

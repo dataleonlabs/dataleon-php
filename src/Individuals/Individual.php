@@ -21,29 +21,6 @@ use Dataleon\Shared\Check;
 
 /**
  * Represents a single individual record, including identification, status, and associated metadata.
- *
- * @phpstan-type individual_alias = array{
- *   id?: string,
- *   amlSuspicions?: list<AmlSuspicion>,
- *   authURL?: string,
- *   certificat?: Certificat,
- *   checks?: list<Check>,
- *   createdAt?: \DateTimeInterface,
- *   documents?: list<GenericDocument>,
- *   identityCard?: IdentityCard,
- *   number?: int,
- *   person?: Person,
- *   portalURL?: string,
- *   properties?: list<Property>,
- *   risk?: Risk,
- *   sourceID?: string,
- *   state?: string,
- *   status?: string,
- *   tags?: list<Tag>,
- *   technicalData?: TechnicalData,
- *   webviewURL?: string,
- *   workspaceID?: string,
- * }
  */
 final class Individual implements BaseModel
 {

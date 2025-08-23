@@ -10,30 +10,6 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Technical metadata related to the request (e.g., QR code settings, language).
- *
- * @phpstan-type technical_data_alias = array{
- *   activeAmlSuspicions?: bool,
- *   apiVersion?: int,
- *   approvedAt?: \DateTimeInterface,
- *   callbackURL?: string,
- *   callbackURLNotification?: string,
- *   disableNotification?: bool,
- *   disableNotificationDate?: \DateTimeInterface|null,
- *   exportType?: string,
- *   finishedAt?: \DateTimeInterface,
- *   ip?: string,
- *   language?: string,
- *   locationIP?: string,
- *   needReviewAt?: \DateTimeInterface|null,
- *   notificationConfirmation?: bool,
- *   qrCode?: string,
- *   rawData?: bool,
- *   rejectedAt?: \DateTimeInterface|null,
- *   sessionDuration?: int,
- *   startedAt?: \DateTimeInterface,
- *   transferAt?: \DateTimeInterface,
- *   transferMode?: string,
- * }
  */
 final class TechnicalData implements BaseModel
 {

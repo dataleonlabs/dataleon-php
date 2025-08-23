@@ -13,13 +13,6 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Update a company by ID.
- *
- * @phpstan-type update_params = array{
- *   company: Company,
- *   workspaceID: string,
- *   sourceID?: string,
- *   technicalData?: TechnicalData,
- * }
  */
 final class CompanyUpdateParams implements BaseModel
 {

@@ -14,19 +14,6 @@ use Dataleon\Shared\Check;
 
 /**
  * Represents a general document with metadata, verification checks, and extracted data.
- *
- * @phpstan-type generic_document_alias = array{
- *   id?: string,
- *   checks?: list<Check>,
- *   createdAt?: \DateTimeInterface,
- *   documentType?: string,
- *   name?: string,
- *   signedURL?: string,
- *   state?: string,
- *   status?: string,
- *   tables?: list<Table>,
- *   values?: list<Value>,
- * }
  */
 final class GenericDocument implements BaseModel
 {

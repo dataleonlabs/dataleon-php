@@ -18,22 +18,6 @@ use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\Shared\Check;
 
-/**
- * @phpstan-type company_registration_alias = array{
- *   amlSuspicions?: list<AmlSuspicion>,
- *   certificat?: Certificat,
- *   checks?: list<Check>,
- *   company?: Company,
- *   documents?: list<GenericDocument>,
- *   members?: list<Member>,
- *   portalURL?: string,
- *   properties?: list<Property>,
- *   risk?: Risk,
- *   sourceID?: string,
- *   technicalData?: TechnicalData,
- *   webviewURL?: string,
- * }
- */
 final class CompanyRegistration implements BaseModel
 {
     use SdkModel;

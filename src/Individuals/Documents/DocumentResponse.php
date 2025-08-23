@@ -10,11 +10,6 @@ use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Individuals\Documents\DocumentResponse\Document;
 
-/**
- * @phpstan-type document_response_alias = array{
- *   documents?: list<Document>, totalDocument?: int
- * }
- */
 final class DocumentResponse implements BaseModel
 {
     use SdkModel;
