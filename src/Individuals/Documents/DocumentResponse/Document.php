@@ -10,17 +10,6 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Represents a document stored and processed by the system, such as an identity card or a PDF contract.
- *
- * @phpstan-type document_alias = array{
- *   id?: string,
- *   documentType?: string,
- *   filename?: string,
- *   name?: string,
- *   signedURL?: string,
- *   state?: string,
- *   status?: string,
- *   workspaceID?: string,
- * }
  */
 final class Document implements BaseModel
 {

@@ -12,18 +12,6 @@ use Dataleon\Individuals\Individual\AmlSuspicion\Type;
 
 /**
  * Represents a record of suspicion raised during Anti-Money Laundering (AML) screening. Includes metadata such as risk score, origin, and linked watchlist types.
- *
- * @phpstan-type aml_suspicion_alias = array{
- *   caption?: string,
- *   country?: string,
- *   gender?: string,
- *   relation?: string,
- *   schema?: string,
- *   score?: float,
- *   source?: string,
- *   status?: Status::*,
- *   type?: Type::*,
- * }
  */
 final class AmlSuspicion implements BaseModel
 {

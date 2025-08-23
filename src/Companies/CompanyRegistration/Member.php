@@ -14,33 +14,6 @@ use Dataleon\Individuals\Documents\GenericDocument;
 
 /**
  * Represents a member or actor of a company, including personal and ownership information.
- *
- * @phpstan-type member_alias = array{
- *   id?: string,
- *   address?: string,
- *   birthday?: \DateTimeInterface,
- *   birthplace?: string,
- *   country?: string,
- *   documents?: list<GenericDocument>,
- *   email?: string,
- *   firstName?: string,
- *   isBeneficialOwner?: bool,
- *   isDelegator?: bool,
- *   lastName?: string,
- *   livenessVerification?: bool,
- *   name?: string,
- *   ownershipPercentage?: int,
- *   phoneNumber?: string,
- *   postalCode?: string,
- *   registrationID?: string,
- *   relation?: string,
- *   roles?: string,
- *   source?: Source::*,
- *   state?: string,
- *   status?: string,
- *   type?: Type::*,
- *   workspaceID?: string,
- * }
  */
 final class Member implements BaseModel
 {
