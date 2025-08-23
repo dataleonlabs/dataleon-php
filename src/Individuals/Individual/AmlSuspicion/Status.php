@@ -9,8 +9,6 @@ use Dataleon\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Status of the suspicion review process. Possible values: "true_positive", "false_positive", "pending".
- *
- * @phpstan-type status_alias = Status::*
  */
 final class Status implements ConverterSource
 {

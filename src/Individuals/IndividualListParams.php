@@ -13,17 +13,6 @@ use Dataleon\Individuals\IndividualListParams\Status;
 
 /**
  * Get all individuals.
- *
- * @phpstan-type list_params = array{
- *   endDate?: \DateTimeInterface,
- *   limit?: int,
- *   offset?: int,
- *   sourceID?: string,
- *   startDate?: \DateTimeInterface,
- *   state?: State::*,
- *   status?: Status::*,
- *   workspaceID?: string,
- * }
  */
 final class IndividualListParams implements BaseModel
 {

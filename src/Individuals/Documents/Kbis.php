@@ -12,24 +12,6 @@ use Dataleon\Individuals\Documents\Kbis\Member;
 
 /**
  * A document representing official registration data from the KBIS (France).
- *
- * @phpstan-type kbis_alias = array{
- *   activities?: string,
- *   address?: string,
- *   capitalSocial?: string,
- *   closureDate?: \DateTimeInterface,
- *   companyName?: string,
- *   documentDate?: \DateTimeInterface,
- *   documentType?: string,
- *   firstClosureDate?: \DateTimeInterface,
- *   fromGreffe?: string,
- *   legalForm?: string,
- *   members?: list<Member>,
- *   ngestion?: string,
- *   rcsNumber?: string,
- *   registrationDate?: \DateTimeInterface,
- *   sirenInfo?: string,
- * }
  */
 final class Kbis implements BaseModel
 {

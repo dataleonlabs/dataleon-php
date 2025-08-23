@@ -9,9 +9,6 @@ use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Core\Conversion\ListOf;
 
-/**
- * @phpstan-type table_alias = array{operation?: list<mixed>}
- */
 final class Table implements BaseModel
 {
     use SdkModel;

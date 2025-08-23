@@ -13,13 +13,6 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Create a new company.
- *
- * @phpstan-type create_params = array{
- *   company: Company,
- *   workspaceID: string,
- *   sourceID?: string,
- *   technicalData?: TechnicalData,
- * }
  */
 final class CompanyCreateParams implements BaseModel
 {
