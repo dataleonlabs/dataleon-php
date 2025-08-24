@@ -13,17 +13,6 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Get all companies.
- *
- * @phpstan-type list_params = array{
- *   endDate?: \DateTimeInterface,
- *   limit?: int,
- *   offset?: int,
- *   sourceID?: string,
- *   startDate?: \DateTimeInterface,
- *   state?: State::*,
- *   status?: Status::*,
- *   workspaceID?: string,
- * }
  */
 final class CompanyListParams implements BaseModel
 {
@@ -93,8 +82,8 @@ final class CompanyListParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param State::*|null $state
-     * @param Status::*|null $status
+     * @param State::* $state
+     * @param Status::* $status
      */
     public static function with(
         ?\DateTimeInterface $endDate = null,

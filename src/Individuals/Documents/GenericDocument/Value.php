@@ -7,13 +7,7 @@ namespace Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\ListOf;
 
-/**
- * @phpstan-type value_alias = array{
- *   confidence?: float, name?: string, value?: list<int>
- * }
- */
 final class Value implements BaseModel
 {
     use SdkModel;
@@ -35,7 +29,7 @@ final class Value implements BaseModel
      *
      * @var list<int>|null $value
      */
-    #[Api(type: new ListOf('int'), optional: true)]
+    #[Api(list: 'int', optional: true)]
     public ?array $value;
 
     public function __construct()
@@ -49,7 +43,7 @@ final class Value implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<int>|null $value
+     * @param list<int> $value
      */
     public static function with(
         ?float $confidence = null,

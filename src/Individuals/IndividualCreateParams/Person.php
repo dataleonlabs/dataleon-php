@@ -11,16 +11,6 @@ use Dataleon\Individuals\IndividualCreateParams\Person\Gender;
 
 /**
  * Personal information about the individual.
- *
- * @phpstan-type person_alias = array{
- *   birthday?: string,
- *   email?: string,
- *   firstName?: string,
- *   gender?: Gender::*,
- *   lastName?: string,
- *   maidenName?: string,
- *   phoneNumber?: string,
- * }
  */
 final class Person implements BaseModel
 {
@@ -81,7 +71,7 @@ final class Person implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Gender::*|null $gender
+     * @param Gender::* $gender
      */
     public static function with(
         ?string $birthday = null,

@@ -9,8 +9,6 @@ use Dataleon\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Category of the suspicion. Possible values: "crime", "sanction", "pep", "adverse_news", "other".
- *
- * @phpstan-type type_alias = Type::*
  */
 final class Type implements ConverterSource
 {

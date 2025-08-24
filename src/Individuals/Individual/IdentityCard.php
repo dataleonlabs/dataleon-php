@@ -10,24 +10,6 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Reference to the individual's identity document.
- *
- * @phpstan-type identity_card_alias = array{
- *   id?: string,
- *   backDocumentSignedURL?: string,
- *   birthPlace?: string,
- *   birthday?: string,
- *   country?: string,
- *   expirationDate?: string,
- *   firstName?: string,
- *   frontDocumentSignedURL?: string,
- *   gender?: string,
- *   issueDate?: string,
- *   lastName?: string,
- *   mrzLine1?: string,
- *   mrzLine2?: string,
- *   mrzLine3?: string|null,
- *   type?: string,
- * }
  */
 final class IdentityCard implements BaseModel
 {
@@ -114,7 +96,7 @@ final class IdentityCard implements BaseModel
     /**
      * Third line of the MRZ if applicable; otherwise null.
      */
-    #[Api('mrz_line_3', optional: true)]
+    #[Api('mrz_line_3', nullable: true, optional: true)]
     public ?string $mrzLine3;
 
     /**

@@ -14,26 +14,9 @@ use Dataleon\Companies\CompanyRegistration\TechnicalData;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\Shared\Check;
 
-/**
- * @phpstan-type company_registration_alias = array{
- *   amlSuspicions?: list<AmlSuspicion>,
- *   certificat?: Certificat,
- *   checks?: list<Check>,
- *   company?: Company,
- *   documents?: list<GenericDocument>,
- *   members?: list<Member>,
- *   portalURL?: string,
- *   properties?: list<Property>,
- *   risk?: Risk,
- *   sourceID?: string,
- *   technicalData?: TechnicalData,
- *   webviewURL?: string,
- * }
- */
 final class CompanyRegistration implements BaseModel
 {
     use SdkModel;
@@ -43,11 +26,7 @@ final class CompanyRegistration implements BaseModel
      *
      * @var list<AmlSuspicion>|null $amlSuspicions
      */
-    #[Api(
-        'aml_suspicions',
-        type: new ListOf(AmlSuspicion::class),
-        optional: true
-    )]
+    #[Api('aml_suspicions', list: AmlSuspicion::class, optional: true)]
     public ?array $amlSuspicions;
 
     /**
@@ -61,7 +40,7 @@ final class CompanyRegistration implements BaseModel
      *
      * @var list<Check>|null $checks
      */
-    #[Api(type: new ListOf(Check::class), optional: true)]
+    #[Api(list: Check::class, optional: true)]
     public ?array $checks;
 
     /**
@@ -75,7 +54,7 @@ final class CompanyRegistration implements BaseModel
      *
      * @var list<GenericDocument>|null $documents
      */
-    #[Api(type: new ListOf(GenericDocument::class), optional: true)]
+    #[Api(list: GenericDocument::class, optional: true)]
     public ?array $documents;
 
     /**
@@ -83,7 +62,7 @@ final class CompanyRegistration implements BaseModel
      *
      * @var list<Member>|null $members
      */
-    #[Api(type: new ListOf(Member::class), optional: true)]
+    #[Api(list: Member::class, optional: true)]
     public ?array $members;
 
     /**
@@ -97,7 +76,7 @@ final class CompanyRegistration implements BaseModel
      *
      * @var list<Property>|null $properties
      */
-    #[Api(type: new ListOf(Property::class), optional: true)]
+    #[Api(list: Property::class, optional: true)]
     public ?array $properties;
 
     /**
@@ -135,11 +114,11 @@ final class CompanyRegistration implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AmlSuspicion>|null $amlSuspicions
-     * @param list<Check>|null $checks
-     * @param list<GenericDocument>|null $documents
-     * @param list<Member>|null $members
-     * @param list<Property>|null $properties
+     * @param list<AmlSuspicion> $amlSuspicions
+     * @param list<Check> $checks
+     * @param list<GenericDocument> $documents
+     * @param list<Member> $members
+     * @param list<Property> $properties
      */
     public static function with(
         ?array $amlSuspicions = null,

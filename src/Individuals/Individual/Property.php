@@ -10,10 +10,6 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Represents a generic property key-value pair with a specified type.
- *
- * @phpstan-type property_alias = array{
- *   name?: string, type?: string, value?: string
- * }
  */
 final class Property implements BaseModel
 {

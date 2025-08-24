@@ -7,7 +7,6 @@ namespace Dataleon\Individuals;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\Individuals\Individual\AmlSuspicion;
 use Dataleon\Individuals\Individual\Certificat;
@@ -21,29 +20,6 @@ use Dataleon\Shared\Check;
 
 /**
  * Represents a single individual record, including identification, status, and associated metadata.
- *
- * @phpstan-type individual_alias = array{
- *   id?: string,
- *   amlSuspicions?: list<AmlSuspicion>,
- *   authURL?: string,
- *   certificat?: Certificat,
- *   checks?: list<Check>,
- *   createdAt?: \DateTimeInterface,
- *   documents?: list<GenericDocument>,
- *   identityCard?: IdentityCard,
- *   number?: int,
- *   person?: Person,
- *   portalURL?: string,
- *   properties?: list<Property>,
- *   risk?: Risk,
- *   sourceID?: string,
- *   state?: string,
- *   status?: string,
- *   tags?: list<Tag>,
- *   technicalData?: TechnicalData,
- *   webviewURL?: string,
- *   workspaceID?: string,
- * }
  */
 final class Individual implements BaseModel
 {
@@ -60,11 +36,7 @@ final class Individual implements BaseModel
      *
      * @var list<AmlSuspicion>|null $amlSuspicions
      */
-    #[Api(
-        'aml_suspicions',
-        type: new ListOf(AmlSuspicion::class),
-        optional: true
-    )]
+    #[Api('aml_suspicions', list: AmlSuspicion::class, optional: true)]
     public ?array $amlSuspicions;
 
     /**
@@ -84,7 +56,7 @@ final class Individual implements BaseModel
      *
      * @var list<Check>|null $checks
      */
-    #[Api(type: new ListOf(Check::class), optional: true)]
+    #[Api(list: Check::class, optional: true)]
     public ?array $checks;
 
     /**
@@ -98,7 +70,7 @@ final class Individual implements BaseModel
      *
      * @var list<GenericDocument>|null $documents
      */
-    #[Api(type: new ListOf(GenericDocument::class), optional: true)]
+    #[Api(list: GenericDocument::class, optional: true)]
     public ?array $documents;
 
     /**
@@ -130,7 +102,7 @@ final class Individual implements BaseModel
      *
      * @var list<Property>|null $properties
      */
-    #[Api(type: new ListOf(Property::class), optional: true)]
+    #[Api(list: Property::class, optional: true)]
     public ?array $properties;
 
     /**
@@ -162,7 +134,7 @@ final class Individual implements BaseModel
      *
      * @var list<Tag>|null $tags
      */
-    #[Api(type: new ListOf(Tag::class), optional: true)]
+    #[Api(list: Tag::class, optional: true)]
     public ?array $tags;
 
     /**
@@ -194,11 +166,11 @@ final class Individual implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AmlSuspicion>|null $amlSuspicions
-     * @param list<Check>|null $checks
-     * @param list<GenericDocument>|null $documents
-     * @param list<Property>|null $properties
-     * @param list<Tag>|null $tags
+     * @param list<AmlSuspicion> $amlSuspicions
+     * @param list<Check> $checks
+     * @param list<GenericDocument> $documents
+     * @param list<Property> $properties
+     * @param list<Tag> $tags
      */
     public static function with(
         ?string $id = null,

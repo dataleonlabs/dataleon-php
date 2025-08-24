@@ -9,8 +9,6 @@ use Dataleon\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Source of the data (e.g., government, user, company).
- *
- * @phpstan-type source_alias = Source::*
  */
 final class Source implements ConverterSource
 {

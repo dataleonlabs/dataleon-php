@@ -11,31 +11,6 @@ use Dataleon\Individuals\Documents\Kbis\Member\Type;
 
 /**
  * A member (person or entity) associated with the company from a KBIS document.
- *
- * @phpstan-type member_alias = array{
- *   id?: string,
- *   address?: string,
- *   birthday?: \DateTimeInterface,
- *   birthplace?: string,
- *   country?: string,
- *   email?: string,
- *   firstName?: string,
- *   isBeneficialOwner?: bool,
- *   isDelegator?: bool,
- *   lastName?: string,
- *   livenessVerification?: bool,
- *   name?: string,
- *   ownershipPercentage?: int,
- *   phoneNumber?: string,
- *   postalCode?: string,
- *   registrationID?: string,
- *   relation?: string,
- *   roles?: string,
- *   source?: string,
- *   status?: string,
- *   type?: Type::*,
- *   workspaceID?: string,
- * }
  */
 final class Member implements BaseModel
 {
@@ -186,7 +161,7 @@ final class Member implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type::*|null $type
+     * @param Type::* $type
      */
     public static function with(
         ?string $id = null,

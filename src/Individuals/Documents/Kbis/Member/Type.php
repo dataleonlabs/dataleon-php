@@ -9,8 +9,6 @@ use Dataleon\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Type of entity (company or person).
- *
- * @phpstan-type type_alias = Type::*
  */
 final class Type implements ConverterSource
 {

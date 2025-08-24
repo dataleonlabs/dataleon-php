@@ -13,13 +13,6 @@ use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
 
 /**
  * Create a new individual.
- *
- * @phpstan-type create_params = array{
- *   workspaceID: string,
- *   person?: Person,
- *   sourceID?: string,
- *   technicalData?: TechnicalData,
- * }
  */
 final class IndividualCreateParams implements BaseModel
 {

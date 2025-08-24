@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.1 (2025-08-24)
+
+Full Changelog: [v0.6.0...v0.6.1](https://github.com/dataleonlabs/dataleon-php/compare/v0.6.0...v0.6.1)
+
+### Chores
+
+* improve model annotations ([bd7518e](https://github.com/dataleonlabs/dataleon-php/commit/bd7518ed8c8eb44f0c4e384267596b1da6bd4f28))
+* remove type aliases ([dc70521](https://github.com/dataleonlabs/dataleon-php/commit/dc70521bd1cc1ece8d25e4e4c388339efefad00f))
+
 ## 0.6.0 (2025-08-22)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.5.0...v0.6.0)

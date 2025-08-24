@@ -10,14 +10,6 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Technical metadata and callback configuration.
- *
- * @phpstan-type technical_data_alias = array{
- *   activeAmlSuspicions?: bool,
- *   callbackURL?: string,
- *   callbackURLNotification?: string,
- *   language?: string,
- *   rawData?: bool,
- * }
  */
 final class TechnicalData implements BaseModel
 {

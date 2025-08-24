@@ -10,30 +10,6 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Technical metadata related to the request (e.g., QR code settings, language).
- *
- * @phpstan-type technical_data_alias = array{
- *   activeAmlSuspicions?: bool,
- *   apiVersion?: int,
- *   approvedAt?: \DateTimeInterface,
- *   callbackURL?: string,
- *   callbackURLNotification?: string,
- *   disableNotification?: bool,
- *   disableNotificationDate?: \DateTimeInterface|null,
- *   exportType?: string,
- *   finishedAt?: \DateTimeInterface,
- *   ip?: string,
- *   language?: string,
- *   locationIP?: string,
- *   needReviewAt?: \DateTimeInterface|null,
- *   notificationConfirmation?: bool,
- *   qrCode?: string,
- *   rawData?: bool,
- *   rejectedAt?: \DateTimeInterface|null,
- *   sessionDuration?: int,
- *   startedAt?: \DateTimeInterface,
- *   transferAt?: \DateTimeInterface,
- *   transferMode?: string,
- * }
  */
 final class TechnicalData implements BaseModel
 {
@@ -78,7 +54,7 @@ final class TechnicalData implements BaseModel
     /**
      * Timestamp when notifications were disabled; null if never disabled.
      */
-    #[Api('disable_notification_date', optional: true)]
+    #[Api('disable_notification_date', nullable: true, optional: true)]
     public ?\DateTimeInterface $disableNotificationDate;
 
     /**
@@ -114,7 +90,7 @@ final class TechnicalData implements BaseModel
     /**
      * Timestamp indicating when the request or process needs review; null if none.
      */
-    #[Api('need_review_at', optional: true)]
+    #[Api('need_review_at', nullable: true, optional: true)]
     public ?\DateTimeInterface $needReviewAt;
 
     /**
@@ -138,7 +114,7 @@ final class TechnicalData implements BaseModel
     /**
      * Timestamp when the request or process was rejected; null if not rejected.
      */
-    #[Api('rejected_at', optional: true)]
+    #[Api('rejected_at', nullable: true, optional: true)]
     public ?\DateTimeInterface $rejectedAt;
 
     /**

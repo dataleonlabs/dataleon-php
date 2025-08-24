@@ -9,8 +9,6 @@ use Dataleon\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Filter by document type for upload (must be one of the allowed values).
- *
- * @phpstan-type document_type_alias = DocumentType::*
  */
 final class DocumentType implements ConverterSource
 {
