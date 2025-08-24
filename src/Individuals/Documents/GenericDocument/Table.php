@@ -7,7 +7,6 @@ namespace Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\ListOf;
 
 final class Table implements BaseModel
 {
@@ -18,7 +17,7 @@ final class Table implements BaseModel
      *
      * @var list<mixed>|null $operation
      */
-    #[Api(type: new ListOf('mixed'), optional: true)]
+    #[Api(list: 'mixed', optional: true)]
     public ?array $operation;
 
     public function __construct()
@@ -32,7 +31,7 @@ final class Table implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<mixed>|null $operation
+     * @param list<mixed> $operation
      */
     public static function with(?array $operation = null): self
     {

@@ -54,7 +54,7 @@ final class TechnicalData implements BaseModel
     /**
      * Timestamp when notifications were disabled; null if never disabled.
      */
-    #[Api('disable_notification_date', optional: true)]
+    #[Api('disable_notification_date', nullable: true, optional: true)]
     public ?\DateTimeInterface $disableNotificationDate;
 
     /**
@@ -90,7 +90,7 @@ final class TechnicalData implements BaseModel
     /**
      * Timestamp indicating when the request or process needs review; null if none.
      */
-    #[Api('need_review_at', optional: true)]
+    #[Api('need_review_at', nullable: true, optional: true)]
     public ?\DateTimeInterface $needReviewAt;
 
     /**
@@ -114,7 +114,7 @@ final class TechnicalData implements BaseModel
     /**
      * Timestamp when the request or process was rejected; null if not rejected.
      */
-    #[Api('rejected_at', optional: true)]
+    #[Api('rejected_at', nullable: true, optional: true)]
     public ?\DateTimeInterface $rejectedAt;
 
     /**
