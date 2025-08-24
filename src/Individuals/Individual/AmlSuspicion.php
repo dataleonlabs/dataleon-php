@@ -86,8 +86,8 @@ final class AmlSuspicion implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Status::*|null $status
-     * @param Type::*|null $type
+     * @param Status::* $status
+     * @param Type::* $type
      */
     public static function with(
         ?string $caption = null,

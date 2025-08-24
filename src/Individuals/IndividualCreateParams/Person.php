@@ -71,7 +71,7 @@ final class Person implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Gender::*|null $gender
+     * @param Gender::* $gender
      */
     public static function with(
         ?string $birthday = null,

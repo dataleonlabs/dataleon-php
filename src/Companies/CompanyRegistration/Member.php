@@ -9,7 +9,6 @@ use Dataleon\Companies\CompanyRegistration\Member\Type;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Individuals\Documents\GenericDocument;
 
 /**
@@ -51,7 +50,7 @@ final class Member implements BaseModel
      *
      * @var list<GenericDocument>|null $documents
      */
-    #[Api(type: new ListOf(GenericDocument::class), optional: true)]
+    #[Api(list: GenericDocument::class, optional: true)]
     public ?array $documents;
 
     /**
@@ -177,9 +176,9 @@ final class Member implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<GenericDocument>|null $documents
-     * @param Source::*|null $source
-     * @param Type::*|null $type
+     * @param list<GenericDocument> $documents
+     * @param Source::* $source
+     * @param Type::* $type
      */
     public static function with(
         ?string $id = null,

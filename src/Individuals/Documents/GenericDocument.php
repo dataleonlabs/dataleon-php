@@ -7,7 +7,6 @@ namespace Dataleon\Individuals\Documents;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Individuals\Documents\GenericDocument\Table;
 use Dataleon\Individuals\Documents\GenericDocument\Value;
 use Dataleon\Shared\Check;
@@ -30,7 +29,7 @@ final class GenericDocument implements BaseModel
      *
      * @var list<Check>|null $checks
      */
-    #[Api(type: new ListOf(Check::class), optional: true)]
+    #[Api(list: Check::class, optional: true)]
     public ?array $checks;
 
     /**
@@ -74,7 +73,7 @@ final class GenericDocument implements BaseModel
      *
      * @var list<Table>|null $tables
      */
-    #[Api(type: new ListOf(Table::class), optional: true)]
+    #[Api(list: Table::class, optional: true)]
     public ?array $tables;
 
     /**
@@ -82,7 +81,7 @@ final class GenericDocument implements BaseModel
      *
      * @var list<Value>|null $values
      */
-    #[Api(type: new ListOf(Value::class), optional: true)]
+    #[Api(list: Value::class, optional: true)]
     public ?array $values;
 
     public function __construct()
@@ -96,9 +95,9 @@ final class GenericDocument implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Check>|null $checks
-     * @param list<Table>|null $tables
-     * @param list<Value>|null $values
+     * @param list<Check> $checks
+     * @param list<Table> $tables
+     * @param list<Value> $values
      */
     public static function with(
         ?string $id = null,

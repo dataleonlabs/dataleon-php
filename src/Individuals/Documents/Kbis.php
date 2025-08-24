@@ -7,7 +7,6 @@ namespace Dataleon\Individuals\Documents;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Individuals\Documents\Kbis\Member;
 
 /**
@@ -82,7 +81,7 @@ final class Kbis implements BaseModel
      *
      * @var list<Member>|null $members
      */
-    #[Api(type: new ListOf(Member::class), optional: true)]
+    #[Api(list: Member::class, optional: true)]
     public ?array $members;
 
     /**
@@ -120,7 +119,7 @@ final class Kbis implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Member>|null $members
+     * @param list<Member> $members
      */
     public static function with(
         ?string $activities = null,
