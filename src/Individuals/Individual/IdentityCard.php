@@ -96,7 +96,7 @@ final class IdentityCard implements BaseModel
     /**
      * Third line of the MRZ if applicable; otherwise null.
      */
-    #[Api('mrz_line_3', optional: true)]
+    #[Api('mrz_line_3', nullable: true, optional: true)]
     public ?string $mrzLine3;
 
     /**

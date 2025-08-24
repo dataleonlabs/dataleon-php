@@ -7,7 +7,6 @@ namespace Dataleon\Individuals\Documents;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Individuals\Documents\DocumentResponse\Document;
 
 final class DocumentResponse implements BaseModel
@@ -19,7 +18,7 @@ final class DocumentResponse implements BaseModel
      *
      * @var list<Document>|null $documents
      */
-    #[Api(type: new ListOf(Document::class), optional: true)]
+    #[Api(list: Document::class, optional: true)]
     public ?array $documents;
 
     /**
@@ -39,7 +38,7 @@ final class DocumentResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Document>|null $documents
+     * @param list<Document> $documents
      */
     public static function with(
         ?array $documents = null,

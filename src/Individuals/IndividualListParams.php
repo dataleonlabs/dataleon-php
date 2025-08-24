@@ -82,8 +82,8 @@ final class IndividualListParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param State::*|null $state
-     * @param Status::*|null $status
+     * @param State::* $state
+     * @param Status::* $status
      */
     public static function with(
         ?\DateTimeInterface $endDate = null,
