@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies;
 
+use Dataleon\Check;
 use Dataleon\Companies\CompanyRegistration\AmlSuspicion;
 use Dataleon\Companies\CompanyRegistration\Certificat;
 use Dataleon\Companies\CompanyRegistration\Company;
@@ -15,7 +16,6 @@ use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\GenericDocument;
-use Dataleon\Shared\Check;
 
 final class CompanyRegistration implements BaseModel
 {

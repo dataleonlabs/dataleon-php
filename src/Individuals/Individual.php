@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals;
 
+use Dataleon\Check;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
@@ -16,7 +17,6 @@ use Dataleon\Individuals\Individual\Property;
 use Dataleon\Individuals\Individual\Risk;
 use Dataleon\Individuals\Individual\Tag;
 use Dataleon\Individuals\Individual\TechnicalData;
-use Dataleon\Shared\Check;
 
 /**
  * Represents a single individual record, including identification, status, and associated metadata.

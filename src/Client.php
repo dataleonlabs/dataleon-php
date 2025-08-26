@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Dataleon;
 
 use Dataleon\Core\BaseClient;
-use Dataleon\Services\CompaniesService;
-use Dataleon\Services\IndividualsService;
+use Dataleon\Core\Services\CompaniesService;
+use Dataleon\Core\Services\IndividualsService;
 
 class Client extends BaseClient
 {
