@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Resources;
+namespace Tests\Services;
 
 use Dataleon\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;

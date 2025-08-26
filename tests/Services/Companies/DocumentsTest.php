@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Resources\Individuals;
+namespace Tests\Services\Companies;
 
 use Dataleon\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
@@ -33,7 +33,7 @@ final class DocumentsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->individuals->documents->list('individual_id');
+        $result = $this->client->companies->documents->list('company_id');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -45,8 +45,8 @@ final class DocumentsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->individuals->documents->upload(
-            'individual_id',
+        $result = $this->client->companies->documents->upload(
+            'company_id',
             documentType: 'bank_statements'
         );
 
@@ -60,8 +60,8 @@ final class DocumentsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->individuals->documents->upload(
-            'individual_id',
+        $result = $this->client->companies->documents->upload(
+            'company_id',
             documentType: 'bank_statements'
         );
 

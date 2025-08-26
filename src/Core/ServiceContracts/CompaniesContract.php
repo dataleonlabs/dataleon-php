@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Contracts;
+namespace Dataleon\Core\ServiceContracts;
 
 use Dataleon\Companies\CompanyCreateParams\Company;
 use Dataleon\Companies\CompanyCreateParams\TechnicalData;

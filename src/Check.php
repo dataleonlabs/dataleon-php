@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Shared;
+namespace Dataleon;
 
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;

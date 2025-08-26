@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Contracts;
+namespace Dataleon\Core\ServiceContracts;
 
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams\Person;
