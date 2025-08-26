@@ -9,6 +9,8 @@ use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
 
+use const Dataleon\Core\OMIT as omit;
+
 interface DocumentsContract
 {
     public function list(
@@ -24,8 +26,8 @@ interface DocumentsContract
     public function upload(
         string $individualID,
         $documentType,
-        $file = null,
-        $url = null,
+        $file = omit,
+        $url = omit,
         ?RequestOptions $requestOptions = null,
     ): GenericDocument;
 }

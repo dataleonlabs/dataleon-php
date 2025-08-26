@@ -14,6 +14,8 @@ use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
 
+use const Dataleon\Core\OMIT as omit;
+
 final class DocumentsService implements DocumentsContract
 {
     public function __construct(private Client $client) {}
@@ -45,12 +47,13 @@ final class DocumentsService implements DocumentsContract
     public function upload(
         string $companyID,
         $documentType,
-        $file = null,
-        $url = null,
+        $file = omit,
+        $url = omit,
         ?RequestOptions $requestOptions = null,
     ): GenericDocument {
-        $args = ['documentType' => $documentType, 'file' => $file, 'url' => $url];
-        $args = Util::array_filter_null($args, ['file', 'url']);
+        $args = Util::array_filter_omit(
+            ['documentType' => $documentType, 'file' => $file, 'url' => $url]
+        );
         [$parsed, $options] = DocumentUploadParams::parseRequest(
             $args,
             $requestOptions
