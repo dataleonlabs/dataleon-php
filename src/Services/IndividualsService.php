@@ -23,6 +23,8 @@ use Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
 use Dataleon\Services\Individuals\DocumentsService;
 
+use const Dataleon\Core\OMIT as omit;
+
 final class IndividualsService implements IndividualsContract
 {
     public DocumentsService $documents;
@@ -42,20 +44,18 @@ final class IndividualsService implements IndividualsContract
      */
     public function create(
         $workspaceID,
-        $person = null,
-        $sourceID = null,
-        $technicalData = null,
+        $person = omit,
+        $sourceID = omit,
+        $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): Individual {
-        $args = [
-            'workspaceID' => $workspaceID,
-            'person' => $person,
-            'sourceID' => $sourceID,
-            'technicalData' => $technicalData,
-        ];
-        $args = Util::array_filter_null(
-            $args,
-            ['person', 'sourceID', 'technicalData']
+        $args = Util::array_filter_omit(
+            [
+                'workspaceID' => $workspaceID,
+                'person' => $person,
+                'sourceID' => $sourceID,
+                'technicalData' => $technicalData,
+            ],
         );
         [$parsed, $options] = IndividualCreateParams::parseRequest(
             $args,
@@ -80,12 +80,13 @@ final class IndividualsService implements IndividualsContract
      */
     public function retrieve(
         string $individualID,
-        $document = null,
-        $scope = null,
+        $document = omit,
+        $scope = omit,
         ?RequestOptions $requestOptions = null,
     ): Individual {
-        $args = ['document' => $document, 'scope' => $scope];
-        $args = Util::array_filter_null($args, ['document', 'scope']);
+        $args = Util::array_filter_omit(
+            ['document' => $document, 'scope' => $scope]
+        );
         [$parsed, $options] = IndividualRetrieveParams::parseRequest(
             $args,
             $requestOptions
@@ -112,20 +113,18 @@ final class IndividualsService implements IndividualsContract
     public function update(
         string $individualID,
         $workspaceID,
-        $person = null,
-        $sourceID = null,
-        $technicalData = null,
+        $person = omit,
+        $sourceID = omit,
+        $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): Individual {
-        $args = [
-            'workspaceID' => $workspaceID,
-            'person' => $person,
-            'sourceID' => $sourceID,
-            'technicalData' => $technicalData,
-        ];
-        $args = Util::array_filter_null(
-            $args,
-            ['person', 'sourceID', 'technicalData']
+        $args = Util::array_filter_omit(
+            [
+                'workspaceID' => $workspaceID,
+                'person' => $person,
+                'sourceID' => $sourceID,
+                'technicalData' => $technicalData,
+            ],
         );
         [$parsed, $options] = IndividualUpdateParams::parseRequest(
             $args,
@@ -157,37 +156,26 @@ final class IndividualsService implements IndividualsContract
      * @return list<Individual>
      */
     public function list(
-        $endDate = null,
-        $limit = null,
-        $offset = null,
-        $sourceID = null,
-        $startDate = null,
-        $state = null,
-        $status = null,
-        $workspaceID = null,
+        $endDate = omit,
+        $limit = omit,
+        $offset = omit,
+        $sourceID = omit,
+        $startDate = omit,
+        $state = omit,
+        $status = omit,
+        $workspaceID = omit,
         ?RequestOptions $requestOptions = null,
     ): array {
-        $args = [
-            'endDate' => $endDate,
-            'limit' => $limit,
-            'offset' => $offset,
-            'sourceID' => $sourceID,
-            'startDate' => $startDate,
-            'state' => $state,
-            'status' => $status,
-            'workspaceID' => $workspaceID,
-        ];
-        $args = Util::array_filter_null(
-            $args,
+        $args = Util::array_filter_omit(
             [
-                'endDate',
-                'limit',
-                'offset',
-                'sourceID',
-                'startDate',
-                'state',
-                'status',
-                'workspaceID',
+                'endDate' => $endDate,
+                'limit' => $limit,
+                'offset' => $offset,
+                'sourceID' => $sourceID,
+                'startDate' => $startDate,
+                'state' => $state,
+                'status' => $status,
+                'workspaceID' => $workspaceID,
             ],
         );
         [$parsed, $options] = IndividualListParams::parseRequest(

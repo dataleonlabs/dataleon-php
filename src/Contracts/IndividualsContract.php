@@ -13,6 +13,8 @@ use Dataleon\Individuals\IndividualUpdateParams\Person as Person1;
 use Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
 
+use const Dataleon\Core\OMIT as omit;
+
 interface IndividualsContract
 {
     /**
@@ -23,9 +25,9 @@ interface IndividualsContract
      */
     public function create(
         $workspaceID,
-        $person = null,
-        $sourceID = null,
-        $technicalData = null,
+        $person = omit,
+        $sourceID = omit,
+        $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
@@ -35,8 +37,8 @@ interface IndividualsContract
      */
     public function retrieve(
         string $individualID,
-        $document = null,
-        $scope = null,
+        $document = omit,
+        $scope = omit,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
@@ -49,9 +51,9 @@ interface IndividualsContract
     public function update(
         string $individualID,
         $workspaceID,
-        $person = null,
-        $sourceID = null,
-        $technicalData = null,
+        $person = omit,
+        $sourceID = omit,
+        $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
@@ -68,14 +70,14 @@ interface IndividualsContract
      * @return list<Individual>
      */
     public function list(
-        $endDate = null,
-        $limit = null,
-        $offset = null,
-        $sourceID = null,
-        $startDate = null,
-        $state = null,
-        $status = null,
-        $workspaceID = null,
+        $endDate = omit,
+        $limit = omit,
+        $offset = omit,
+        $sourceID = omit,
+        $startDate = omit,
+        $state = omit,
+        $status = omit,
+        $workspaceID = omit,
         ?RequestOptions $requestOptions = null,
     ): array;
 

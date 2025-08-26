@@ -23,6 +23,8 @@ use Dataleon\Core\Util;
 use Dataleon\RequestOptions;
 use Dataleon\Services\Companies\DocumentsService;
 
+use const Dataleon\Core\OMIT as omit;
+
 final class CompaniesService implements CompaniesContract
 {
     public DocumentsService $documents;
@@ -43,17 +45,18 @@ final class CompaniesService implements CompaniesContract
     public function create(
         $company,
         $workspaceID,
-        $sourceID = null,
-        $technicalData = null,
+        $sourceID = omit,
+        $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        $args = [
-            'company' => $company,
-            'workspaceID' => $workspaceID,
-            'sourceID' => $sourceID,
-            'technicalData' => $technicalData,
-        ];
-        $args = Util::array_filter_null($args, ['sourceID', 'technicalData']);
+        $args = Util::array_filter_omit(
+            [
+                'company' => $company,
+                'workspaceID' => $workspaceID,
+                'sourceID' => $sourceID,
+                'technicalData' => $technicalData,
+            ],
+        );
         [$parsed, $options] = CompanyCreateParams::parseRequest(
             $args,
             $requestOptions
@@ -77,12 +80,13 @@ final class CompaniesService implements CompaniesContract
      */
     public function retrieve(
         string $companyID,
-        $document = null,
-        $scope = null,
+        $document = omit,
+        $scope = omit,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        $args = ['document' => $document, 'scope' => $scope];
-        $args = Util::array_filter_null($args, ['document', 'scope']);
+        $args = Util::array_filter_omit(
+            ['document' => $document, 'scope' => $scope]
+        );
         [$parsed, $options] = CompanyRetrieveParams::parseRequest(
             $args,
             $requestOptions
@@ -110,17 +114,18 @@ final class CompaniesService implements CompaniesContract
         string $companyID,
         $company,
         $workspaceID,
-        $sourceID = null,
-        $technicalData = null,
+        $sourceID = omit,
+        $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        $args = [
-            'company' => $company,
-            'workspaceID' => $workspaceID,
-            'sourceID' => $sourceID,
-            'technicalData' => $technicalData,
-        ];
-        $args = Util::array_filter_null($args, ['sourceID', 'technicalData']);
+        $args = Util::array_filter_omit(
+            [
+                'company' => $company,
+                'workspaceID' => $workspaceID,
+                'sourceID' => $sourceID,
+                'technicalData' => $technicalData,
+            ],
+        );
         [$parsed, $options] = CompanyUpdateParams::parseRequest(
             $args,
             $requestOptions
@@ -151,37 +156,26 @@ final class CompaniesService implements CompaniesContract
      * @return list<CompanyRegistration>
      */
     public function list(
-        $endDate = null,
-        $limit = null,
-        $offset = null,
-        $sourceID = null,
-        $startDate = null,
-        $state = null,
-        $status = null,
-        $workspaceID = null,
+        $endDate = omit,
+        $limit = omit,
+        $offset = omit,
+        $sourceID = omit,
+        $startDate = omit,
+        $state = omit,
+        $status = omit,
+        $workspaceID = omit,
         ?RequestOptions $requestOptions = null,
     ): array {
-        $args = [
-            'endDate' => $endDate,
-            'limit' => $limit,
-            'offset' => $offset,
-            'sourceID' => $sourceID,
-            'startDate' => $startDate,
-            'state' => $state,
-            'status' => $status,
-            'workspaceID' => $workspaceID,
-        ];
-        $args = Util::array_filter_null(
-            $args,
+        $args = Util::array_filter_omit(
             [
-                'endDate',
-                'limit',
-                'offset',
-                'sourceID',
-                'startDate',
-                'state',
-                'status',
-                'workspaceID',
+                'endDate' => $endDate,
+                'limit' => $limit,
+                'offset' => $offset,
+                'sourceID' => $sourceID,
+                'startDate' => $startDate,
+                'state' => $state,
+                'status' => $status,
+                'workspaceID' => $workspaceID,
             ],
         );
         [$parsed, $options] = CompanyListParams::parseRequest(
