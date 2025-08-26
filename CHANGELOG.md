@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.7.0 (2025-08-26)
+
+Full Changelog: [v0.6.0...v0.7.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.6.0...v0.7.0)
+
+### Features
+
+* **php:** differentiate null and omit ([3449384](https://github.com/dataleonlabs/dataleon-php/commit/34493841331e6ab32bbc7c6871a16233315bcdef))
+
+
+### Bug Fixes
+
+* streaming internals ([bef9033](https://github.com/dataleonlabs/dataleon-php/commit/bef9033357d5a5e997a7391d631a8b9f9e4bb625))
+
+
+### Chores
+
+* improve model annotations ([bd7518e](https://github.com/dataleonlabs/dataleon-php/commit/bd7518ed8c8eb44f0c4e384267596b1da6bd4f28))
+* remove type aliases ([dc70521](https://github.com/dataleonlabs/dataleon-php/commit/dc70521bd1cc1ece8d25e4e4c388339efefad00f))
+
 ## 0.6.0 (2025-08-22)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.5.0...v0.6.0)
