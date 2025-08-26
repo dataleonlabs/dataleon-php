@@ -19,7 +19,6 @@ use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\Contracts\CompaniesContract;
 use Dataleon\Core\Conversion;
 use Dataleon\Core\Conversion\ListOf;
-use Dataleon\Core\Util;
 use Dataleon\RequestOptions;
 use Dataleon\Services\Companies\DocumentsService;
 
@@ -49,17 +48,14 @@ final class CompaniesService implements CompaniesContract
         $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = CompanyCreateParams::parseRequest(
             [
                 'company' => $company,
                 'workspaceID' => $workspaceID,
                 'sourceID' => $sourceID,
                 'technicalData' => $technicalData,
             ],
-        );
-        [$parsed, $options] = CompanyCreateParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',
@@ -84,11 +80,8 @@ final class CompaniesService implements CompaniesContract
         $scope = omit,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        $args = Util::array_filter_omit(
-            ['document' => $document, 'scope' => $scope]
-        );
         [$parsed, $options] = CompanyRetrieveParams::parseRequest(
-            $args,
+            ['document' => $document, 'scope' => $scope],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -118,17 +111,14 @@ final class CompaniesService implements CompaniesContract
         $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = CompanyUpdateParams::parseRequest(
             [
                 'company' => $company,
                 'workspaceID' => $workspaceID,
                 'sourceID' => $sourceID,
                 'technicalData' => $technicalData,
             ],
-        );
-        [$parsed, $options] = CompanyUpdateParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'put',
@@ -166,7 +156,7 @@ final class CompaniesService implements CompaniesContract
         $workspaceID = omit,
         ?RequestOptions $requestOptions = null,
     ): array {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = CompanyListParams::parseRequest(
             [
                 'endDate' => $endDate,
                 'limit' => $limit,
@@ -177,10 +167,7 @@ final class CompaniesService implements CompaniesContract
                 'status' => $status,
                 'workspaceID' => $workspaceID,
             ],
-        );
-        [$parsed, $options] = CompanyListParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'get',

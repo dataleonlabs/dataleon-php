@@ -9,7 +9,6 @@ use Dataleon\Companies\Documents\DocumentUploadParams;
 use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
 use Dataleon\Contracts\Companies\DocumentsContract;
 use Dataleon\Core\Conversion;
-use Dataleon\Core\Util;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
@@ -51,12 +50,9 @@ final class DocumentsService implements DocumentsContract
         $url = omit,
         ?RequestOptions $requestOptions = null,
     ): GenericDocument {
-        $args = Util::array_filter_omit(
-            ['documentType' => $documentType, 'file' => $file, 'url' => $url]
-        );
         [$parsed, $options] = DocumentUploadParams::parseRequest(
-            $args,
-            $requestOptions
+            ['documentType' => $documentType, 'file' => $file, 'url' => $url],
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',

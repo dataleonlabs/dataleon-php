@@ -1,6 +1,6 @@
 <?php
 
-namespace Dataleon\Errors;
+namespace Dataleon\Core\Errors;
 
 class BadRequestError extends APIStatusError
 {

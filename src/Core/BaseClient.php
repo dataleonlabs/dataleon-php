@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Core;
 
-use Dataleon\Errors\APIStatusError;
+use Dataleon\Core\Errors\APIStatusError;
 use Dataleon\RequestOptions;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;

@@ -8,7 +8,6 @@ use Dataleon\Client;
 use Dataleon\Contracts\IndividualsContract;
 use Dataleon\Core\Conversion;
 use Dataleon\Core\Conversion\ListOf;
-use Dataleon\Core\Util;
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams;
 use Dataleon\Individuals\IndividualCreateParams\Person;
@@ -49,17 +48,14 @@ final class IndividualsService implements IndividualsContract
         $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): Individual {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = IndividualCreateParams::parseRequest(
             [
                 'workspaceID' => $workspaceID,
                 'person' => $person,
                 'sourceID' => $sourceID,
                 'technicalData' => $technicalData,
             ],
-        );
-        [$parsed, $options] = IndividualCreateParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',
@@ -84,11 +80,8 @@ final class IndividualsService implements IndividualsContract
         $scope = omit,
         ?RequestOptions $requestOptions = null,
     ): Individual {
-        $args = Util::array_filter_omit(
-            ['document' => $document, 'scope' => $scope]
-        );
         [$parsed, $options] = IndividualRetrieveParams::parseRequest(
-            $args,
+            ['document' => $document, 'scope' => $scope],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -118,17 +111,14 @@ final class IndividualsService implements IndividualsContract
         $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): Individual {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = IndividualUpdateParams::parseRequest(
             [
                 'workspaceID' => $workspaceID,
                 'person' => $person,
                 'sourceID' => $sourceID,
                 'technicalData' => $technicalData,
             ],
-        );
-        [$parsed, $options] = IndividualUpdateParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'put',
@@ -166,7 +156,7 @@ final class IndividualsService implements IndividualsContract
         $workspaceID = omit,
         ?RequestOptions $requestOptions = null,
     ): array {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = IndividualListParams::parseRequest(
             [
                 'endDate' => $endDate,
                 'limit' => $limit,
@@ -177,10 +167,7 @@ final class IndividualsService implements IndividualsContract
                 'status' => $status,
                 'workspaceID' => $workspaceID,
             ],
-        );
-        [$parsed, $options] = IndividualListParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'get',
