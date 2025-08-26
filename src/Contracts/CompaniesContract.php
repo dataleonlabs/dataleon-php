@@ -13,6 +13,8 @@ use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
 
+use const Dataleon\Core\OMIT as omit;
+
 interface CompaniesContract
 {
     /**
@@ -24,8 +26,8 @@ interface CompaniesContract
     public function create(
         $company,
         $workspaceID,
-        $sourceID = null,
-        $technicalData = null,
+        $sourceID = omit,
+        $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration;
 
@@ -35,8 +37,8 @@ interface CompaniesContract
      */
     public function retrieve(
         string $companyID,
-        $document = null,
-        $scope = null,
+        $document = omit,
+        $scope = omit,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration;
 
@@ -50,8 +52,8 @@ interface CompaniesContract
         string $companyID,
         $company,
         $workspaceID,
-        $sourceID = null,
-        $technicalData = null,
+        $sourceID = omit,
+        $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration;
 
@@ -68,14 +70,14 @@ interface CompaniesContract
      * @return list<CompanyRegistration>
      */
     public function list(
-        $endDate = null,
-        $limit = null,
-        $offset = null,
-        $sourceID = null,
-        $startDate = null,
-        $state = null,
-        $status = null,
-        $workspaceID = null,
+        $endDate = omit,
+        $limit = omit,
+        $offset = omit,
+        $sourceID = omit,
+        $startDate = omit,
+        $state = omit,
+        $status = omit,
+        $workspaceID = omit,
         ?RequestOptions $requestOptions = null,
     ): array;
 
