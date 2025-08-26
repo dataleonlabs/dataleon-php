@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Contracts\Individuals;
+namespace Dataleon\Core\ServiceContracts\Companies;
 
+use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
 use Dataleon\Individuals\Documents\DocumentResponse;
-use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
 
@@ -14,7 +14,7 @@ use const Dataleon\Core\OMIT as omit;
 interface DocumentsContract
 {
     public function list(
-        string $individualID,
+        string $companyID,
         ?RequestOptions $requestOptions = null
     ): DocumentResponse;
 
@@ -24,7 +24,7 @@ interface DocumentsContract
      * @param string $url URL of the file to upload (either `file` or `url` is required)
      */
     public function upload(
-        string $individualID,
+        string $companyID,
         $documentType,
         $file = omit,
         $url = omit,

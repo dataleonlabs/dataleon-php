@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Services;
+namespace Dataleon\Core\Services;
 
 use Dataleon\Client;
-use Dataleon\Contracts\IndividualsContract;
 use Dataleon\Core\Conversion;
 use Dataleon\Core\Conversion\ListOf;
+use Dataleon\Core\ServiceContracts\IndividualsContract;
+use Dataleon\Core\Services\Individuals\DocumentsService;
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams;
 use Dataleon\Individuals\IndividualCreateParams\Person;
@@ -20,7 +21,6 @@ use Dataleon\Individuals\IndividualUpdateParams;
 use Dataleon\Individuals\IndividualUpdateParams\Person as Person1;
 use Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
-use Dataleon\Services\Individuals\DocumentsService;
 
 use const Dataleon\Core\OMIT as omit;
 

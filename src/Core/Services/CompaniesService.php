@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Services;
+namespace Dataleon\Core\Services;
 
 use Dataleon\Client;
 use Dataleon\Companies\CompanyCreateParams;
@@ -16,11 +16,11 @@ use Dataleon\Companies\CompanyRetrieveParams;
 use Dataleon\Companies\CompanyUpdateParams;
 use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
-use Dataleon\Contracts\CompaniesContract;
 use Dataleon\Core\Conversion;
 use Dataleon\Core\Conversion\ListOf;
+use Dataleon\Core\ServiceContracts\CompaniesContract;
+use Dataleon\Core\Services\Companies\DocumentsService;
 use Dataleon\RequestOptions;
-use Dataleon\Services\Companies\DocumentsService;
 
 use const Dataleon\Core\OMIT as omit;
 

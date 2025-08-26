@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Documents;
 
+use Dataleon\Check;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\GenericDocument\Table;
 use Dataleon\Individuals\Documents\GenericDocument\Value;
-use Dataleon\Shared\Check;
 
 /**
  * Represents a general document with metadata, verification checks, and extracted data.

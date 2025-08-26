@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Services\Individuals;
+namespace Dataleon\Core\Services\Individuals;
 
 use Dataleon\Client;
-use Dataleon\Contracts\Individuals\DocumentsContract;
 use Dataleon\Core\Conversion;
+use Dataleon\Core\ServiceContracts\Individuals\DocumentsContract;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\DocumentUploadParams;
 use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
