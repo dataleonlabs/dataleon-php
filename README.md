@@ -65,7 +65,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 ```php
 <?php
 
-use Dataleon\Errors\APIConnectionError;
+use Dataleon\Core\Errors\APIConnectionError;
 
 try {
   $individual = $client->individuals->create(workspaceID: "wk_123");
