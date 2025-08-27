@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Core\Pagination;
+namespace Dataleon\Core\Concerns;
 
 use Dataleon\Client;
-use Dataleon\Core\Contracts\BasePage;
 use Dataleon\Core\Conversion\Contracts\Converter;
 use Dataleon\Core\Conversion\Contracts\ConverterSource;
 use Dataleon\Core\Errors\APIStatusError;
@@ -16,19 +15,20 @@ use Dataleon\RequestOptions;
  *
  * @template Item
  *
- * @implements BasePage<Item>
- *
  * @phpstan-import-type normalized_request from \Dataleon\Core\BaseClient
  */
-abstract class AbstractPage implements BasePage
+trait SdkPage
 {
-    public function __construct(
-        protected Converter|ConverterSource|string $convert,
-        protected Client $client,
-        protected array $request,
-        protected RequestOptions $options,
-        protected mixed $data,
-    ) {}
+    private Converter|ConverterSource|string $convert;
+
+    private Client $client;
+
+    /**
+     * normalized_request $request.
+     */
+    private array $request;
+
+    private RequestOptions $options;
 
     /**
      * @return list<Item>
