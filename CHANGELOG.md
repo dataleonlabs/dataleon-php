@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.8.0 (2025-08-27)
+
+Full Changelog: [v0.7.0...v0.8.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.7.0...v0.8.0)
+
+### ⚠ BREAKING CHANGES
+
+* **refactor:** namespacing cleanup
+* **refactor:** clean up pagination, errors, as well as request methods
+
+### Features
+
+* **refactor:** clean up pagination, errors, as well as request methods ([567c127](https://github.com/dataleonlabs/dataleon-php/commit/567c127dfc00941625815801b006f9ee68e2f1cc))
+* **refactor:** namespacing cleanup ([c72a41a](https://github.com/dataleonlabs/dataleon-php/commit/c72a41a2c9450af3791082a33b260612fd80e35f))
+
+
+### Bug Fixes
+
+* basic pagination should work ([29cc3ab](https://github.com/dataleonlabs/dataleon-php/commit/29cc3aba87902c48b53022c6b1cda5bc3aaa08e7))
+
+
+### Chores
+
+* **internal:** refactored internal codepaths ([ae3e069](https://github.com/dataleonlabs/dataleon-php/commit/ae3e0698ca084f665796f8b928b34e9903e3fa72))
+
 ## 0.7.0 (2025-08-26)
 
 Full Changelog: [v0.6.0...v0.7.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.6.0...v0.7.0)
