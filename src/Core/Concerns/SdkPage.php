@@ -7,7 +7,7 @@ namespace Dataleon\Core\Concerns;
 use Dataleon\Client;
 use Dataleon\Core\Conversion\Contracts\Converter;
 use Dataleon\Core\Conversion\Contracts\ConverterSource;
-use Dataleon\Core\Errors\APIStatusError;
+use Dataleon\Core\Exceptions\APIStatusException;
 use Dataleon\RequestOptions;
 
 /**
@@ -52,7 +52,7 @@ trait SdkPage
      *
      * @return static of static<Item>
      *
-     * @throws APIStatusError
+     * @throws APIStatusException
      */
     public function getNextPage(): static
     {
