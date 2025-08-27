@@ -20,7 +20,7 @@ The REST API documentation can be found on [docs.dataleon.ai](https://docs.datal
 <!-- x-release-please-start-version -->
 
 ```
-composer require "dataleon-org/dataleon-php 0.0.1"
+composer require "dataleon/dataleon 0.0.1"
 ```
 
 <!-- x-release-please-end -->

@@ -28,7 +28,7 @@
   },
   "license": "APACHE-2.0",
   "description": "Dataleon PHP SDK",
-  "name": "dataleon-org/dataleon-php",
+  "name": "dataleon/dataleon",
   "require": {
     "php": "^8.1",
     "php-http/discovery": "^1",
