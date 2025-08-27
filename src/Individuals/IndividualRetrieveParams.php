@@ -11,9 +11,14 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Get an individual by ID.
+ *
+ * @phpstan-type individual_retrieve_params = array{
+ *   document?: bool, scope?: string
+ * }
  */
 final class IndividualRetrieveParams implements BaseModel
 {
+    /** @use SdkModel<individual_retrieve_params> */
     use SdkModel;
     use SdkParams;
 

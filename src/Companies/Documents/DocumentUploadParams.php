@@ -12,9 +12,14 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Upload documents to an company.
+ *
+ * @phpstan-type document_upload_params = array{
+ *   documentType: DocumentType::*, file?: string, url?: string
+ * }
  */
 final class DocumentUploadParams implements BaseModel
 {
+    /** @use SdkModel<document_upload_params> */
     use SdkModel;
     use SdkParams;
 

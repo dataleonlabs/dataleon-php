@@ -8,8 +8,12 @@ use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type table_alias = array{operation?: list<mixed>|null}
+ */
 final class Table implements BaseModel
 {
+    /** @use SdkModel<table_alias> */
     use SdkModel;
 
     /**

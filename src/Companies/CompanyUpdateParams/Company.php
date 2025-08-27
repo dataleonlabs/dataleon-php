@@ -10,9 +10,28 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Main information about the company being registered.
+ *
+ * @phpstan-type company_alias = array{
+ *   name: string,
+ *   address?: string|null,
+ *   commercialName?: string|null,
+ *   country?: string|null,
+ *   email?: string|null,
+ *   employerIdentificationNumber?: string|null,
+ *   legalForm?: string|null,
+ *   phoneNumber?: string|null,
+ *   registrationDate?: string|null,
+ *   registrationID?: string|null,
+ *   shareCapital?: string|null,
+ *   status?: string|null,
+ *   taxIdentificationNumber?: string|null,
+ *   type?: string|null,
+ *   websiteURL?: string|null,
+ * }
  */
 final class Company implements BaseModel
 {
+    /** @use SdkModel<company_alias> */
     use SdkModel;
 
     /**

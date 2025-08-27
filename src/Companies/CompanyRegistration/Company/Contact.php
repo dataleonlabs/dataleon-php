@@ -10,9 +10,18 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Contact information for the company, including email, phone number, and address.
+ *
+ * @phpstan-type contact_alias = array{
+ *   department?: string|null,
+ *   email?: string|null,
+ *   firstName?: string|null,
+ *   lastName?: string|null,
+ *   phoneNumber?: string|null,
+ * }
  */
 final class Contact implements BaseModel
 {
+    /** @use SdkModel<contact_alias> */
     use SdkModel;
 
     /**

@@ -11,9 +11,12 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Get a company by ID.
+ *
+ * @phpstan-type company_retrieve_params = array{document?: bool, scope?: string}
  */
 final class CompanyRetrieveParams implements BaseModel
 {
+    /** @use SdkModel<company_retrieve_params> */
     use SdkModel;
     use SdkParams;
 

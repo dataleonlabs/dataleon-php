@@ -8,7 +8,7 @@ use Dataleon\Core\Contracts\BasePage;
 use Dataleon\Core\Contracts\BaseStream;
 use Dataleon\Core\Conversion\Contracts\Converter;
 use Dataleon\Core\Conversion\Contracts\ConverterSource;
-use Dataleon\Core\Errors\APIStatusError;
+use Dataleon\Core\Exceptions\APIStatusException;
 use Dataleon\RequestOptions;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
@@ -203,7 +203,7 @@ class BaseClient
         }
 
         if ($code >= 400 && $code < 500) {
-            throw APIStatusError::from(request: $req, response: $rsp);
+            throw APIStatusException::from(request: $req, response: $rsp);
         }
 
         if ($code >= 500 && $retryCount < $opts->maxRetries) {

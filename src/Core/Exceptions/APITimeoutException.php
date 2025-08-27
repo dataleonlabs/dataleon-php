@@ -1,13 +1,13 @@
 <?php
 
-namespace Dataleon\Core\Errors;
+namespace Dataleon\Core\Exceptions;
 
 use Psr\Http\Message\RequestInterface;
 
-class APITimeoutError extends APIConnectionError
+class APITimeoutException extends APIConnectionException
 {
     /** @var string */
-    protected const DESC = 'Dataleon API Timeout Error';
+    protected const DESC = 'Dataleon API Timeout Exception';
 
     public function __construct(
         public RequestInterface $request,

@@ -13,9 +13,17 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Update a company by ID.
+ *
+ * @phpstan-type company_update_params = array{
+ *   company: Company,
+ *   workspaceID: string,
+ *   sourceID?: string,
+ *   technicalData?: TechnicalData,
+ * }
  */
 final class CompanyUpdateParams implements BaseModel
 {
+    /** @use SdkModel<company_update_params> */
     use SdkModel;
     use SdkParams;
 

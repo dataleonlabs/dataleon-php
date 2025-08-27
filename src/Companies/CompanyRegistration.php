@@ -17,8 +17,25 @@ use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\GenericDocument;
 
+/**
+ * @phpstan-type company_registration = array{
+ *   amlSuspicions?: list<AmlSuspicion>|null,
+ *   certificat?: Certificat|null,
+ *   checks?: list<Check>|null,
+ *   company?: Company|null,
+ *   documents?: list<GenericDocument>|null,
+ *   members?: list<Member>|null,
+ *   portalURL?: string|null,
+ *   properties?: list<Property>|null,
+ *   risk?: Risk|null,
+ *   sourceID?: string|null,
+ *   technicalData?: TechnicalData|null,
+ *   webviewURL?: string|null,
+ * }
+ */
 final class CompanyRegistration implements BaseModel
 {
+    /** @use SdkModel<company_registration> */
     use SdkModel;
 
     /**

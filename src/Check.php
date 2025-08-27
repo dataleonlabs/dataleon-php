@@ -10,9 +10,18 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Represents a verification check result.
+ *
+ * @phpstan-type check_alias = array{
+ *   masked?: bool|null,
+ *   message?: string|null,
+ *   name?: string|null,
+ *   validate?: bool|null,
+ *   weight?: int|null,
+ * }
  */
 final class Check implements BaseModel
 {
+    /** @use SdkModel<check_alias> */
     use SdkModel;
 
     /**

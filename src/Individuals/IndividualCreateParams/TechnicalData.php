@@ -10,9 +10,18 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Technical metadata related to the request or processing.
+ *
+ * @phpstan-type technical_data = array{
+ *   activeAmlSuspicions?: bool|null,
+ *   callbackURL?: string|null,
+ *   callbackURLNotification?: string|null,
+ *   language?: string|null,
+ *   rawData?: bool|null,
+ * }
  */
 final class TechnicalData implements BaseModel
 {
+    /** @use SdkModel<technical_data> */
     use SdkModel;
 
     /**

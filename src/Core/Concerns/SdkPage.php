@@ -7,7 +7,7 @@ namespace Dataleon\Core\Concerns;
 use Dataleon\Client;
 use Dataleon\Core\Conversion\Contracts\Converter;
 use Dataleon\Core\Conversion\Contracts\ConverterSource;
-use Dataleon\Core\Errors\APIStatusError;
+use Dataleon\Core\Exceptions\APIStatusException;
 use Dataleon\RequestOptions;
 
 /**
@@ -33,11 +33,11 @@ trait SdkPage
     /**
      * @return list<Item>
      */
-    abstract public function getPaginatedItems(): array;
+    abstract public function getItems(): array;
 
     public function hasNextPage(): bool
     {
-        $items = $this->getPaginatedItems();
+        $items = $this->getItems();
         if (empty($items)) {
             return false;
         }
@@ -50,9 +50,9 @@ trait SdkPage
      * Before calling this method, you must check if there is a next page
      * using {@link hasNextPage()}.
      *
-     * @return static of AbstractPage<Item>
+     * @return static of static<Item>
      *
-     * @throws APIStatusError
+     * @throws APIStatusException
      */
     public function getNextPage(): static
     {
@@ -66,7 +66,7 @@ trait SdkPage
         [$req, $opts] = $next;
 
         // @phpstan-ignore-next-line
-        return $this->client->request(...$req, convert: $this->convert, page: $this, options: $opts);
+        return $this->client->request(...$req, convert: $this->convert, page: $this::class, options: $opts);
     }
 
     /**
@@ -94,7 +94,7 @@ trait SdkPage
     public function pagingEachItem(): \Generator
     {
         foreach ($this as $page) {
-            foreach ($page->getPaginatedItems() as $item) {
+            foreach ($page->getItems() as $item) {
                 yield $item;
             }
         }

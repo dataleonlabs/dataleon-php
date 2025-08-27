@@ -13,6 +13,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
+The REST API documentation can be found on [docs.dataleon.ai](https://docs.dataleon.ai).
+
 ## Installation
 
 To use this package, install via Composer by adding the following to your application's `composer.json`:
@@ -48,6 +50,7 @@ use Dataleon\Client;
 $client = new Client(apiKey: getenv("DATALEON_API_KEY") ?: "My API Key");
 
 $individual = $client->individuals->create(workspaceID: "wk_123");
+
 var_dump($individual->id);
 ```
 
@@ -60,16 +63,16 @@ However, builders are also provided `(new Dog)->withName("Joey")`.
 
 ### Handling errors
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Dataleon\Errors\APIError` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Dataleon\Core\Exceptions\APIException` will be thrown:
 
 ```php
 <?php
 
-use Dataleon\Core\Errors\APIConnectionError;
+use Dataleon\Core\Exceptions\APIConnectionException;
 
 try {
   $individual = $client->individuals->create(workspaceID: "wk_123");
-} catch (APIConnectionError $e) {
+} catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
   var_dump($e->getPrevious());
 } catch (RateLimitError $_) {
@@ -82,19 +85,19 @@ try {
 
 Error codes are as follows:
 
-| Cause            | Error Type                 |
-| ---------------- | -------------------------- |
-| HTTP 400         | `BadRequestError`          |
-| HTTP 401         | `AuthenticationError`      |
-| HTTP 403         | `PermissionDeniedError`    |
-| HTTP 404         | `NotFoundError`            |
-| HTTP 409         | `ConflictError`            |
-| HTTP 422         | `UnprocessableEntityError` |
-| HTTP 429         | `RateLimitError`           |
-| HTTP >= 500      | `InternalServerError`      |
-| Other HTTP error | `APIStatusError`           |
-| Timeout          | `APITimeoutError`          |
-| Network error    | `APIConnectionError`       |
+| Cause            | Error Type                     |
+| ---------------- | ------------------------------ |
+| HTTP 400         | `BadRequestException`          |
+| HTTP 401         | `AuthenticationException`      |
+| HTTP 403         | `PermissionDeniedException`    |
+| HTTP 404         | `NotFoundException`            |
+| HTTP 409         | `ConflictException`            |
+| HTTP 422         | `UnprocessableEntityException` |
+| HTTP 429         | `RateLimitException`           |
+| HTTP >= 500      | `InternalServerException`      |
+| Other HTTP error | `APIStatusException`           |
+| Timeout          | `APITimeoutException`          |
+| Network error    | `APIConnectionException`       |
 
 ### Retries
 
@@ -114,6 +117,7 @@ use Dataleon\RequestOptions;
 $client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
+
 $result = $client->individuals->create(
   workspaceID: "wk_123", new RequestOptions(maxRetries: 5)
 );

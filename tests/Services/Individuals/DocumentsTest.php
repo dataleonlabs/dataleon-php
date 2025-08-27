@@ -47,7 +47,7 @@ final class DocumentsTest extends TestCase
 
         $result = $this->client->individuals->documents->upload(
             'individual_id',
-            documentType: 'bank_statements'
+            documentType: 'liasse_fiscale'
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -62,7 +62,7 @@ final class DocumentsTest extends TestCase
 
         $result = $this->client->individuals->documents->upload(
             'individual_id',
-            documentType: 'bank_statements'
+            documentType: 'liasse_fiscale'
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line

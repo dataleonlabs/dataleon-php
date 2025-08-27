@@ -20,9 +20,33 @@ use Dataleon\Individuals\Individual\TechnicalData;
 
 /**
  * Represents a single individual record, including identification, status, and associated metadata.
+ *
+ * @phpstan-type individual_alias = array{
+ *   id?: string|null,
+ *   amlSuspicions?: list<AmlSuspicion>|null,
+ *   authURL?: string|null,
+ *   certificat?: Certificat|null,
+ *   checks?: list<Check>|null,
+ *   createdAt?: \DateTimeInterface|null,
+ *   documents?: list<GenericDocument>|null,
+ *   identityCard?: IdentityCard|null,
+ *   number?: int|null,
+ *   person?: Person|null,
+ *   portalURL?: string|null,
+ *   properties?: list<Property>|null,
+ *   risk?: Risk|null,
+ *   sourceID?: string|null,
+ *   state?: string|null,
+ *   status?: string|null,
+ *   tags?: list<Tag>|null,
+ *   technicalData?: TechnicalData|null,
+ *   webviewURL?: string|null,
+ *   workspaceID?: string|null,
+ * }
  */
 final class Individual implements BaseModel
 {
+    /** @use SdkModel<individual_alias> */
     use SdkModel;
 
     /**

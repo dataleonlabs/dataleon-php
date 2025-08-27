@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.9.0 (2025-08-27)
+
+Full Changelog: [v0.8.0...v0.9.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.8.0...v0.9.0)
+
+### ⚠ BREAKING CHANGES
+
+* rename errors to exceptions
+* pagination field rename, and basic streaming docs
+
+### Features
+
+* **api:** api update ([84fd2c9](https://github.com/dataleonlabs/dataleon-php/commit/84fd2c925e93ee9846b6bebc1c7130fe5a698475))
+* **api:** manual updates ([7376dbf](https://github.com/dataleonlabs/dataleon-php/commit/7376dbfa828d1cdc8fd78bb474aeb27cd865da24))
+* ensure `-&gt;toArray()` benefits from structural typing ([a20fb15](https://github.com/dataleonlabs/dataleon-php/commit/a20fb1501e34213b2bf2848ff42404ffac1683a2))
+* pagination field rename, and basic streaming docs ([bb46f87](https://github.com/dataleonlabs/dataleon-php/commit/bb46f8774cf8234c3d63b738c5e62e2155e67984))
+* rename errors to exceptions ([9360446](https://github.com/dataleonlabs/dataleon-php/commit/9360446991f52bb1f4a341d5ebe6a2293c9de3df))
+
+
+### Bug Fixes
+
+* add create release workflow ([16fd31c](https://github.com/dataleonlabs/dataleon-php/commit/16fd31c0a3bc6bb2757c66bd8bbe40f3baf390a7))
+
 ## 0.8.0 (2025-08-27)
 
 Full Changelog: [v0.8.0...v0.8.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.8.0...v0.8.0)

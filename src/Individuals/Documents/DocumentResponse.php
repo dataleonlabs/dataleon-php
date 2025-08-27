@@ -9,8 +9,14 @@ use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\DocumentResponse\Document;
 
+/**
+ * @phpstan-type document_response = array{
+ *   documents?: list<Document>|null, totalDocument?: int|null
+ * }
+ */
 final class DocumentResponse implements BaseModel
 {
+    /** @use SdkModel<document_response> */
     use SdkModel;
 
     /**
