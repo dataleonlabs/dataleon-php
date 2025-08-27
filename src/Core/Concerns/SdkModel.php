@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Core\Concerns;
 
 use Dataleon\Core\Contracts\BaseModel;
+use Dataleon\Core\Contracts\BasePage;
 use Dataleon\Core\Conversion;
 use Dataleon\Core\Conversion\CoerceState;
 use Dataleon\Core\Conversion\Contracts\Converter;
@@ -244,7 +245,7 @@ trait SdkModel
      */
     private static function serialize(mixed $value): mixed
     {
-        if ($value instanceof BaseModel) {
+        if ($value instanceof BaseModel || $value instanceof BasePage) {
             return $value->toArray();
         }
 
