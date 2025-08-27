@@ -10,9 +10,22 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Personal details of the individual, such as name, date of birth, and contact info.
+ *
+ * @phpstan-type person_alias = array{
+ *   birthday?: string|null,
+ *   email?: string|null,
+ *   faceImageSignedURL?: string|null,
+ *   firstName?: string|null,
+ *   fullName?: string|null,
+ *   gender?: string|null,
+ *   lastName?: string|null,
+ *   maidenName?: string|null,
+ *   phoneNumber?: string|null,
+ * }
  */
 final class Person implements BaseModel
 {
+    /** @use SdkModel<person_alias> */
     use SdkModel;
 
     /**

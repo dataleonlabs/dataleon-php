@@ -13,9 +13,17 @@ use Dataleon\Individuals\IndividualUpdateParams\TechnicalData;
 
 /**
  * Update an individual by ID.
+ *
+ * @phpstan-type individual_update_params = array{
+ *   workspaceID: string,
+ *   person?: Person,
+ *   sourceID?: string,
+ *   technicalData?: TechnicalData,
+ * }
  */
 final class IndividualUpdateParams implements BaseModel
 {
+    /** @use SdkModel<individual_update_params> */
     use SdkModel;
     use SdkParams;
 

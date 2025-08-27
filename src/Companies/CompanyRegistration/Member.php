@@ -13,9 +13,37 @@ use Dataleon\Individuals\Documents\GenericDocument;
 
 /**
  * Represents a member or actor of a company, including personal and ownership information.
+ *
+ * @phpstan-type member_alias = array{
+ *   id?: string|null,
+ *   address?: string|null,
+ *   birthday?: \DateTimeInterface|null,
+ *   birthplace?: string|null,
+ *   country?: string|null,
+ *   documents?: list<GenericDocument>|null,
+ *   email?: string|null,
+ *   firstName?: string|null,
+ *   isBeneficialOwner?: bool|null,
+ *   isDelegator?: bool|null,
+ *   lastName?: string|null,
+ *   livenessVerification?: bool|null,
+ *   name?: string|null,
+ *   ownershipPercentage?: int|null,
+ *   phoneNumber?: string|null,
+ *   postalCode?: string|null,
+ *   registrationID?: string|null,
+ *   relation?: string|null,
+ *   roles?: string|null,
+ *   source?: Source::*|null,
+ *   state?: string|null,
+ *   status?: string|null,
+ *   type?: Type::*|null,
+ *   workspaceID?: string|null,
+ * }
  */
 final class Member implements BaseModel
 {
+    /** @use SdkModel<member_alias> */
     use SdkModel;
 
     #[Api(optional: true)]

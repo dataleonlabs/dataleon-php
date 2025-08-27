@@ -10,9 +10,17 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Represents a key-value metadata tag that can be associated with entities such as individuals or companies.
+ *
+ * @phpstan-type tag_alias = array{
+ *   key?: string|null,
+ *   private?: bool|null,
+ *   type?: string|null,
+ *   value?: string|null,
+ * }
  */
 final class Tag implements BaseModel
 {
+    /** @use SdkModel<tag_alias> */
     use SdkModel;
 
     /**
