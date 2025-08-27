@@ -4,12 +4,6 @@ declare(strict_types=1);
 
 namespace Dataleon\Core;
 
-/**
- * @internal
- */
-enum Omittable
-{
-    case OMIT;
-}
+use Dataleon\Core\Implementation\Omittable;
 
 const OMIT = Omittable::OMIT;
