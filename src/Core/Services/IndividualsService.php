@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Dataleon\Core\Services;
 
 use Dataleon\Client;
-use Dataleon\Core\Conversion;
 use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Core\ServiceContracts\IndividualsContract;
 use Dataleon\Core\Services\Individuals\DocumentsService;
@@ -57,15 +56,15 @@ final class IndividualsService implements IndividualsContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'individuals',
             body: (object) $parsed,
             options: $options,
+            convert: Individual::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(Individual::class, value: $resp);
     }
 
     /**
@@ -84,15 +83,15 @@ final class IndividualsService implements IndividualsContract
             ['document' => $document, 'scope' => $scope],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: ['individuals/%1$s', $individualID],
             query: $parsed,
             options: $options,
+            convert: Individual::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(Individual::class, value: $resp);
     }
 
     /**
@@ -120,15 +119,15 @@ final class IndividualsService implements IndividualsContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'put',
             path: ['individuals/%1$s', $individualID],
             body: (object) $parsed,
             options: $options,
+            convert: Individual::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(Individual::class, value: $resp);
     }
 
     /**
@@ -169,15 +168,15 @@ final class IndividualsService implements IndividualsContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: 'individuals',
             query: $parsed,
-            options: $options
+            options: $options,
+            convert: new ListOf(Individual::class),
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(new ListOf(Individual::class), value: $resp);
     }
 
     /**
@@ -187,10 +186,12 @@ final class IndividualsService implements IndividualsContract
         string $individualID,
         ?RequestOptions $requestOptions = null
     ): mixed {
+        // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'delete',
             path: ['individuals/%1$s', $individualID],
             options: $requestOptions,
+            convert: null,
         );
     }
 }
