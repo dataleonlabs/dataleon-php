@@ -2,6 +2,14 @@
 
 ## 0.8.0 (2025-08-27)
 
+Full Changelog: [v0.8.0...v0.8.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.8.0...v0.8.0)
+
+### Bug Fixes
+
+* minor bugs ([606e775](https://github.com/dataleonlabs/dataleon-php/commit/606e77581cff68142265ced8603860e86e8b13a8))
+
+## 0.8.0 (2025-08-27)
+
 Full Changelog: [v0.7.0...v0.8.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.7.0...v0.8.0)
 
 ### ⚠ BREAKING CHANGES
