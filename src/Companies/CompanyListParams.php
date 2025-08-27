@@ -13,9 +13,21 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * Get all companies.
+ *
+ * @phpstan-type company_list_params = array{
+ *   endDate?: \DateTimeInterface,
+ *   limit?: int,
+ *   offset?: int,
+ *   sourceID?: string,
+ *   startDate?: \DateTimeInterface,
+ *   state?: State::*,
+ *   status?: Status::*,
+ *   workspaceID?: string,
+ * }
  */
 final class CompanyListParams implements BaseModel
 {
+    /** @use SdkModel<company_list_params> */
     use SdkModel;
     use SdkParams;
 

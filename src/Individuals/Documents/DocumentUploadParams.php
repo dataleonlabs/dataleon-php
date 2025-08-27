@@ -12,9 +12,14 @@ use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
 
 /**
  * Upload documents to an individual.
+ *
+ * @phpstan-type document_upload_params = array{
+ *   documentType: DocumentType::*, file?: string, url?: string
+ * }
  */
 final class DocumentUploadParams implements BaseModel
 {
+    /** @use SdkModel<document_upload_params> */
     use SdkModel;
     use SdkParams;
 

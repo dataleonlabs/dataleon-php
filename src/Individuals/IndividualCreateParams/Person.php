@@ -11,9 +11,20 @@ use Dataleon\Individuals\IndividualCreateParams\Person\Gender;
 
 /**
  * Personal information about the individual.
+ *
+ * @phpstan-type person_alias = array{
+ *   birthday?: string|null,
+ *   email?: string|null,
+ *   firstName?: string|null,
+ *   gender?: Gender::*|null,
+ *   lastName?: string|null,
+ *   maidenName?: string|null,
+ *   phoneNumber?: string|null,
+ * }
  */
 final class Person implements BaseModel
 {
+    /** @use SdkModel<person_alias> */
     use SdkModel;
 
     /**

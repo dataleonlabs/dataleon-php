@@ -13,9 +13,23 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
 
 /**
  * Represents a general document with metadata, verification checks, and extracted data.
+ *
+ * @phpstan-type generic_document = array{
+ *   id?: string|null,
+ *   checks?: list<Check>|null,
+ *   createdAt?: \DateTimeInterface|null,
+ *   documentType?: string|null,
+ *   name?: string|null,
+ *   signedURL?: string|null,
+ *   state?: string|null,
+ *   status?: string|null,
+ *   tables?: list<Table>|null,
+ *   values?: list<Value>|null,
+ * }
  */
 final class GenericDocument implements BaseModel
 {
+    /** @use SdkModel<generic_document> */
     use SdkModel;
 
     /**

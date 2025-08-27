@@ -8,8 +8,14 @@ use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type value_alias = array{
+ *   confidence?: float|null, name?: string|null, value?: list<int>|null
+ * }
+ */
 final class Value implements BaseModel
 {
+    /** @use SdkModel<value_alias> */
     use SdkModel;
 
     /**
