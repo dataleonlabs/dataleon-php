@@ -48,6 +48,7 @@ use Dataleon\Client;
 $client = new Client(apiKey: getenv("DATALEON_API_KEY") ?: "My API Key");
 
 $individual = $client->individuals->create(workspaceID: "wk_123");
+
 var_dump($individual->id);
 ```
 
@@ -114,6 +115,7 @@ use Dataleon\RequestOptions;
 $client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
+
 $result = $client->individuals->create(
   workspaceID: "wk_123", new RequestOptions(maxRetries: 5)
 );
