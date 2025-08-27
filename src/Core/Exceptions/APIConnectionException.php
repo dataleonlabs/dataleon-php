@@ -1,8 +1,8 @@
 <?php
 
-namespace Dataleon\Core\Errors;
+namespace Dataleon\Core\Exceptions;
 
-class APIConnectionError extends APIError
+class APIConnectionException extends APIException
 {
     /** @var string */
     protected const DESC = 'Dataleon API Connection Error';

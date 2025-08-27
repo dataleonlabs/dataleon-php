@@ -1,8 +1,8 @@
 <?php
 
-namespace Dataleon\Core\Errors;
+namespace Dataleon\Core\Exceptions;
 
-class DataleonError extends \Exception
+class DataleonException extends \Exception
 {
     /** @var string */
     protected const DESC = 'Dataleon Error';

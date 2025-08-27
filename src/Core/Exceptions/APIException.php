@@ -1,11 +1,11 @@
 <?php
 
-namespace Dataleon\Core\Errors;
+namespace Dataleon\Core\Exceptions;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class APIError extends DataleonError
+class APIException extends DataleonException
 {
     public ?int $status = null;
 
