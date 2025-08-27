@@ -17,22 +17,10 @@ The REST API documentation can be found on [docs.dataleon.ai](https://docs.datal
 
 ## Installation
 
-To use this package, install via Composer by adding the following to your application's `composer.json`:
-
 <!-- x-release-please-start-version -->
 
-```json
-{
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "git@github.com:dataleonlabs/dataleon-php.git"
-    }
-  ],
-  "require": {
-    "placeholder/placeholder": "dev-main"
-  }
-}
+```
+composer require "dataleon-org/dataleon-php 0.0.1"
 ```
 
 <!-- x-release-please-end -->
