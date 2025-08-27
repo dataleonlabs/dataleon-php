@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Dataleon\Core\Services\Individuals;
 
 use Dataleon\Client;
-use Dataleon\Core\Conversion;
 use Dataleon\Core\ServiceContracts\Individuals\DocumentsContract;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\DocumentUploadParams;
@@ -26,14 +25,13 @@ final class DocumentsService implements DocumentsContract
         string $individualID,
         ?RequestOptions $requestOptions = null
     ): DocumentResponse {
-        $resp = $this->client->request(
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: ['individuals/%1$s/documents', $individualID],
             options: $requestOptions,
+            convert: DocumentResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(DocumentResponse::class, value: $resp);
     }
 
     /**
@@ -54,15 +52,15 @@ final class DocumentsService implements DocumentsContract
             ['documentType' => $documentType, 'file' => $file, 'url' => $url],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: ['individuals/%1$s/documents', $individualID],
             headers: ['Content-Type' => 'multipart/form-data'],
             body: (object) $parsed,
             options: $options,
+            convert: GenericDocument::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(GenericDocument::class, value: $resp);
     }
 }

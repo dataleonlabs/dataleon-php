@@ -16,7 +16,6 @@ use Dataleon\Companies\CompanyRetrieveParams;
 use Dataleon\Companies\CompanyUpdateParams;
 use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
-use Dataleon\Core\Conversion;
 use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Core\ServiceContracts\CompaniesContract;
 use Dataleon\Core\Services\Companies\DocumentsService;
@@ -57,15 +56,15 @@ final class CompaniesService implements CompaniesContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'companies',
             body: (object) $parsed,
             options: $options,
+            convert: CompanyRegistration::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(CompanyRegistration::class, value: $resp);
     }
 
     /**
@@ -84,15 +83,15 @@ final class CompaniesService implements CompaniesContract
             ['document' => $document, 'scope' => $scope],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: ['companies/%1$s', $companyID],
             query: $parsed,
             options: $options,
+            convert: CompanyRegistration::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(CompanyRegistration::class, value: $resp);
     }
 
     /**
@@ -120,15 +119,15 @@ final class CompaniesService implements CompaniesContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'put',
             path: ['companies/%1$s', $companyID],
             body: (object) $parsed,
             options: $options,
+            convert: CompanyRegistration::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(CompanyRegistration::class, value: $resp);
     }
 
     /**
@@ -169,17 +168,14 @@ final class CompaniesService implements CompaniesContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: 'companies',
             query: $parsed,
-            options: $options
-        );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(
-            new ListOf(CompanyRegistration::class),
-            value: $resp
+            options: $options,
+            convert: new ListOf(CompanyRegistration::class),
         );
     }
 
@@ -190,10 +186,12 @@ final class CompaniesService implements CompaniesContract
         string $companyID,
         ?RequestOptions $requestOptions = null
     ): mixed {
+        // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'delete',
             path: ['companies/%1$s', $companyID],
             options: $requestOptions,
+            convert: null,
         );
     }
 }
