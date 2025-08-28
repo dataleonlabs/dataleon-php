@@ -24,7 +24,6 @@
     "sort-packages": true
   },
   "description": "Dataleon PHP SDK",
-  "license": "APACHE-2.0",
   "name": "dataleon/dataleon",
   "require": {
     "php": "^8.1",
