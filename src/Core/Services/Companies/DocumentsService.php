@@ -19,7 +19,9 @@ final class DocumentsService implements DocumentsContract
     public function __construct(private Client $client) {}
 
     /**
-     * Get documents to an company.
+     * @api
+     *
+     * Get documents to an company
      */
     public function list(
         string $companyID,
@@ -35,7 +37,9 @@ final class DocumentsService implements DocumentsContract
     }
 
     /**
-     * Upload documents to an company.
+     * @api
+     *
+     * Upload documents to an company
      *
      * @param DocumentType::* $documentType Filter by document type for upload (must be one of the allowed values)
      * @param string $file File to upload (required)

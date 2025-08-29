@@ -14,6 +14,8 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Create a new company.
  *
+ * @see Dataleon\Companies->create
+ *
  * @phpstan-type company_create_params = array{
  *   company: Company,
  *   workspaceID: string,

@@ -13,12 +13,17 @@ use const Dataleon\Core\OMIT as omit;
 
 interface DocumentsContract
 {
+    /**
+     * @api
+     */
     public function list(
         string $individualID,
         ?RequestOptions $requestOptions = null
     ): DocumentResponse;
 
     /**
+     * @api
+     *
      * @param DocumentType::* $documentType Filter by document type for upload (must be one of the allowed values)
      * @param string $file File to upload (required)
      * @param string $url URL of the file to upload (either `file` or `url` is required)
