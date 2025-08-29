@@ -13,6 +13,8 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Upload documents to an company.
  *
+ * @see Dataleon\Companies\Documents->upload
+ *
  * @phpstan-type document_upload_params = array{
  *   documentType: DocumentType::*, file?: string, url?: string
  * }

@@ -25,6 +25,9 @@ use const Dataleon\Core\OMIT as omit;
 
 final class IndividualsService implements IndividualsContract
 {
+    /**
+     * @@api
+     */
     public DocumentsService $documents;
 
     public function __construct(private Client $client)
@@ -33,7 +36,9 @@ final class IndividualsService implements IndividualsContract
     }
 
     /**
-     * Create a new individual.
+     * @api
+     *
+     * Create a new individual
      *
      * @param string $workspaceID unique identifier of the workspace where the individual is being registered
      * @param Person $person personal information about the individual
@@ -68,7 +73,9 @@ final class IndividualsService implements IndividualsContract
     }
 
     /**
-     * Get an individual by ID.
+     * @api
+     *
+     * Get an individual by ID
      *
      * @param bool $document Include document information
      * @param string $scope Scope filter (id or scope)
@@ -95,7 +102,9 @@ final class IndividualsService implements IndividualsContract
     }
 
     /**
-     * Update an individual by ID.
+     * @api
+     *
+     * Update an individual by ID
      *
      * @param string $workspaceID unique identifier of the workspace where the individual is being registered
      * @param Person1 $person personal information about the individual
@@ -131,7 +140,9 @@ final class IndividualsService implements IndividualsContract
     }
 
     /**
-     * Get all individuals.
+     * @api
+     *
+     * Get all individuals
      *
      * @param \DateTimeInterface $endDate Filter individuals created before this date (format YYYY-MM-DD)
      * @param int $limit Number of results to return (between 1 and 100)
@@ -180,7 +191,9 @@ final class IndividualsService implements IndividualsContract
     }
 
     /**
-     * Delete an individual by ID.
+     * @api
+     *
+     * Delete an individual by ID
      */
     public function delete(
         string $individualID,

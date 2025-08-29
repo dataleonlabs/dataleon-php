@@ -12,8 +12,14 @@ class Client extends BaseClient
 {
     public string $apiKey;
 
+    /**
+     * @api
+     */
     public IndividualsService $individuals;
 
+    /**
+     * @api
+     */
     public CompaniesService $companies;
 
     public function __construct(?string $apiKey = null, ?string $baseUrl = null)
