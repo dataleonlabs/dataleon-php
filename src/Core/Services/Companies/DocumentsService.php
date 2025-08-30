@@ -16,6 +16,9 @@ use const Dataleon\Core\OMIT as omit;
 
 final class DocumentsService implements DocumentsContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**
