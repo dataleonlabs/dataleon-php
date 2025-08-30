@@ -30,6 +30,9 @@ final class CompaniesService implements CompaniesContract
      */
     public DocumentsService $documents;
 
+    /**
+     * @internal
+     */
     public function __construct(private Client $client)
     {
         $this->documents = new DocumentsService($this->client);
