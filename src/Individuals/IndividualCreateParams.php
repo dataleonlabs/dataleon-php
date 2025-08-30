@@ -14,6 +14,8 @@ use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
 /**
  * Create a new individual.
  *
+ * @see Dataleon\Individuals->create
+ *
  * @phpstan-type individual_create_params = array{
  *   workspaceID: string,
  *   person?: Person,
@@ -67,8 +69,7 @@ final class IndividualCreateParams implements BaseModel
      */
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**

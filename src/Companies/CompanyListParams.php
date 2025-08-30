@@ -14,6 +14,8 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Get all companies.
  *
+ * @see Dataleon\Companies->list
+ *
  * @phpstan-type company_list_params = array{
  *   endDate?: \DateTimeInterface,
  *   limit?: int,
@@ -85,8 +87,7 @@ final class CompanyListParams implements BaseModel
 
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**

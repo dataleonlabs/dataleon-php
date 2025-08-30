@@ -14,6 +14,8 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Update a company by ID.
  *
+ * @see Dataleon\Companies->update
+ *
  * @phpstan-type company_update_params = array{
  *   company: Company,
  *   workspaceID: string,
@@ -67,8 +69,7 @@ final class CompanyUpdateParams implements BaseModel
      */
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**

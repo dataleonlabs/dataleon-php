@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.11.0 (2025-08-30)
+
+Full Changelog: [v0.10.0...v0.11.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.10.0...v0.11.0)
+
+### ⚠ BREAKING CHANGES
+
+* use builders for RequestOptions
+
+### Features
+
+* use builders for RequestOptions ([758f5f0](https://github.com/dataleonlabs/dataleon-php/commit/758f5f0ff9c2e9e4fc35e1bc53a6b4af741b5e67))
+
+
+### Bug Fixes
+
+* remove inaccurate `license` field in composer.json ([09967c0](https://github.com/dataleonlabs/dataleon-php/commit/09967c0656f17e135d2d6db2312deb78c327ef00))
+
+
+### Chores
+
+* add additional php doc tags ([25ca5f1](https://github.com/dataleonlabs/dataleon-php/commit/25ca5f18866b1d99e329516ea7fc3e7e7f71df29))
+* refactor request options ([c9179e6](https://github.com/dataleonlabs/dataleon-php/commit/c9179e6a04ba0901f3e11686dada6d0fcec1b14a))
+* **refactor:** simplify base page interface ([3220150](https://github.com/dataleonlabs/dataleon-php/commit/3220150e56e532edee1a97ce657233bb4b7a6f8f))
+* remove `php-http/multipart-stream-builder` as a required dependency ([65e2cfb](https://github.com/dataleonlabs/dataleon-php/commit/65e2cfbc6e13e99518c2d3875c7571ef2c1b4484))
+* simplify model initialization ([f02ab44](https://github.com/dataleonlabs/dataleon-php/commit/f02ab444471f8e3b84f23dde310df95dd15aeb6f))
+
 ## 0.10.0 (2025-08-27)
 
 Full Changelog: [v0.9.1...v0.10.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.9.1...v0.10.0)

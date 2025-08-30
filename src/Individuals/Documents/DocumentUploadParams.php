@@ -13,6 +13,8 @@ use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
 /**
  * Upload documents to an individual.
  *
+ * @see Dataleon\Individuals\Documents->upload
+ *
  * @phpstan-type document_upload_params = array{
  *   documentType: DocumentType::*, file?: string, url?: string
  * }
@@ -59,8 +61,7 @@ final class DocumentUploadParams implements BaseModel
      */
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**
