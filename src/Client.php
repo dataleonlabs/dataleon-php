@@ -7,6 +7,8 @@ namespace Dataleon;
 use Dataleon\Core\BaseClient;
 use Dataleon\Core\Services\CompaniesService;
 use Dataleon\Core\Services\IndividualsService;
+use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
 
 class Client extends BaseClient
 {
@@ -30,12 +32,19 @@ class Client extends BaseClient
             'DATALEON_BASE_URL'
         ) ?: 'https://inference.eu-west-1.dataleon.ai';
 
+        $options = new RequestOptions(
+            uriFactory: Psr17FactoryDiscovery::findUriFactory(),
+            streamFactory: Psr17FactoryDiscovery::findStreamFactory(),
+            requestFactory: Psr17FactoryDiscovery::findRequestFactory(),
+            transporter: Psr18ClientDiscovery::find(),
+        );
+
         parent::__construct(
             headers: [
                 'Content-Type' => 'application/json', 'Accept' => 'application/json',
             ],
             baseUrl: $base,
-            options: new RequestOptions,
+            options: $options,
         );
 
         $this->individuals = new IndividualsService($this);
