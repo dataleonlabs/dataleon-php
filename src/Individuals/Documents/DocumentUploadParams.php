@@ -11,7 +11,18 @@ use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new DocumentUploadParams); // set properties as needed
+ * $client->individuals.documents->upload(...$params->toArray());
+ * ```
  * Upload documents to an individual.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->individuals.documents->upload(...$params->toArray());`
  *
  * @see Dataleon\Individuals\Documents->upload
  *

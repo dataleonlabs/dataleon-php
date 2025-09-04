@@ -11,7 +11,18 @@ use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new DocumentUploadParams); // set properties as needed
+ * $client->companies.documents->upload(...$params->toArray());
+ * ```
  * Upload documents to an company.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->companies.documents->upload(...$params->toArray());`
  *
  * @see Dataleon\Companies\Documents->upload
  *
