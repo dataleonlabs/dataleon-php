@@ -35,7 +35,7 @@ final class IndividualsTest extends TestCase
 
         $result = $this->client->individuals->create(workspaceID: 'wk_123');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -47,7 +47,7 @@ final class IndividualsTest extends TestCase
 
         $result = $this->client->individuals->create(workspaceID: 'wk_123');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -59,7 +59,7 @@ final class IndividualsTest extends TestCase
 
         $result = $this->client->individuals->retrieve('individual_id');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -74,7 +74,7 @@ final class IndividualsTest extends TestCase
             workspaceID: 'wk_123'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -89,7 +89,7 @@ final class IndividualsTest extends TestCase
             workspaceID: 'wk_123'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -101,7 +101,7 @@ final class IndividualsTest extends TestCase
 
         $result = $this->client->individuals->list();
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -113,6 +113,6 @@ final class IndividualsTest extends TestCase
 
         $result = $this->client->individuals->delete('individual_id');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }
