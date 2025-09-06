@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Core\ServiceContracts\Companies;
+namespace Dataleon\ServiceContracts\Individuals;
 
-use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
 use Dataleon\Individuals\Documents\DocumentResponse;
+use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
 
@@ -17,7 +17,7 @@ interface DocumentsContract
      * @api
      */
     public function list(
-        string $companyID,
+        string $individualID,
         ?RequestOptions $requestOptions = null
     ): DocumentResponse;
 
@@ -29,7 +29,7 @@ interface DocumentsContract
      * @param string $url URL of the file to upload (either `file` or `url` is required)
      */
     public function upload(
-        string $companyID,
+        string $individualID,
         $documentType,
         $file = omit,
         $url = omit,
