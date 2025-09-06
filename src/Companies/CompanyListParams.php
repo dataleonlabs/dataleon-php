@@ -12,7 +12,20 @@ use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new CompanyListParams); // set properties as needed
+ * $client->companies->list(...$params->toArray());
+ * ```
  * Get all companies.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->companies->list(...$params->toArray());`
+ *
+ * @see Dataleon\Companies->list
  *
  * @phpstan-type company_list_params = array{
  *   endDate?: \DateTimeInterface,
@@ -85,8 +98,7 @@ final class CompanyListParams implements BaseModel
 
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**

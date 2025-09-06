@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Core\ServiceContracts;
+namespace Dataleon\ServiceContracts;
 
 use Dataleon\Companies\CompanyCreateParams\Company;
 use Dataleon\Companies\CompanyCreateParams\TechnicalData;
@@ -18,6 +18,8 @@ use const Dataleon\Core\OMIT as omit;
 interface CompaniesContract
 {
     /**
+     * @api
+     *
      * @param Company $company main information about the company being registered
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
@@ -32,6 +34,8 @@ interface CompaniesContract
     ): CompanyRegistration;
 
     /**
+     * @api
+     *
      * @param bool $document Include document signed url
      * @param string $scope Scope filter (id or scope)
      */
@@ -43,6 +47,8 @@ interface CompaniesContract
     ): CompanyRegistration;
 
     /**
+     * @api
+     *
      * @param Company1 $company main information about the company being registered
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
@@ -58,6 +64,8 @@ interface CompaniesContract
     ): CompanyRegistration;
 
     /**
+     * @api
+     *
      * @param \DateTimeInterface $endDate Filter companies created before this date (format YYYY-MM-DD)
      * @param int $limit Number of results to return (between 1 and 100)
      * @param int $offset Number of results to skip (must be ≥ 0)
@@ -81,6 +89,9 @@ interface CompaniesContract
         ?RequestOptions $requestOptions = null,
     ): array;
 
+    /**
+     * @api
+     */
     public function delete(
         string $companyID,
         ?RequestOptions $requestOptions = null

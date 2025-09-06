@@ -12,7 +12,20 @@ use Dataleon\Individuals\IndividualCreateParams\Person;
 use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new IndividualCreateParams); // set properties as needed
+ * $client->individuals->create(...$params->toArray());
+ * ```
  * Create a new individual.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->individuals->create(...$params->toArray());`
+ *
+ * @see Dataleon\Individuals->create
  *
  * @phpstan-type individual_create_params = array{
  *   workspaceID: string,
@@ -67,8 +80,7 @@ final class IndividualCreateParams implements BaseModel
      */
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**

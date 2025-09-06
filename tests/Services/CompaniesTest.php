@@ -40,7 +40,7 @@ final class CompaniesTest extends TestCase
             workspaceID: 'wk_123'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -69,7 +69,7 @@ final class CompaniesTest extends TestCase
             workspaceID: 'wk_123',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -81,7 +81,7 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->retrieve('company_id');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -97,7 +97,7 @@ final class CompaniesTest extends TestCase
             workspaceID: 'wk_123',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -127,7 +127,7 @@ final class CompaniesTest extends TestCase
             workspaceID: 'wk_123',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -139,7 +139,7 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->list();
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -151,6 +151,6 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->delete('company_id');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

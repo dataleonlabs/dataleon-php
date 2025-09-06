@@ -9,6 +9,9 @@ use Dataleon\Core\Conversion;
 use Dataleon\Core\Conversion\Contracts\Converter;
 use Dataleon\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * @internal
+ */
 final class UnionOf implements Converter
 {
     /**

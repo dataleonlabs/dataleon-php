@@ -12,7 +12,20 @@ use Dataleon\Individuals\IndividualListParams\State;
 use Dataleon\Individuals\IndividualListParams\Status;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new IndividualListParams); // set properties as needed
+ * $client->individuals->list(...$params->toArray());
+ * ```
  * Get all individuals.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->individuals->list(...$params->toArray());`
+ *
+ * @see Dataleon\Individuals->list
  *
  * @phpstan-type individual_list_params = array{
  *   endDate?: \DateTimeInterface,
@@ -85,8 +98,7 @@ final class IndividualListParams implements BaseModel
 
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**

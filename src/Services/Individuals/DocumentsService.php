@@ -2,24 +2,29 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Core\Services\Individuals;
+namespace Dataleon\Services\Individuals;
 
 use Dataleon\Client;
-use Dataleon\Core\ServiceContracts\Individuals\DocumentsContract;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\DocumentUploadParams;
 use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
+use Dataleon\ServiceContracts\Individuals\DocumentsContract;
 
 use const Dataleon\Core\OMIT as omit;
 
 final class DocumentsService implements DocumentsContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**
-     * Get documents to an individuals.
+     * @api
+     *
+     * Get documents to an individuals
      */
     public function list(
         string $individualID,
@@ -35,7 +40,9 @@ final class DocumentsService implements DocumentsContract
     }
 
     /**
-     * Upload documents to an individual.
+     * @api
+     *
+     * Upload documents to an individual
      *
      * @param DocumentType::* $documentType Filter by document type for upload (must be one of the allowed values)
      * @param string $file File to upload (required)
