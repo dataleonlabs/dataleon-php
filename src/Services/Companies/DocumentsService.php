@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Core\Services\Companies;
+namespace Dataleon\Services\Companies;
 
 use Dataleon\Client;
 use Dataleon\Companies\Documents\DocumentUploadParams;
 use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
-use Dataleon\Core\ServiceContracts\Companies\DocumentsContract;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
+use Dataleon\ServiceContracts\Companies\DocumentsContract;
 
 use const Dataleon\Core\OMIT as omit;
 

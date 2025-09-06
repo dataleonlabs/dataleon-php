@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Core\Services;
+namespace Dataleon\Services;
 
 use Dataleon\Client;
-use Dataleon\Companies\CompanyCreateParams;
-use Dataleon\Companies\CompanyCreateParams\Company;
-use Dataleon\Companies\CompanyCreateParams\TechnicalData;
-use Dataleon\Companies\CompanyListParams;
-use Dataleon\Companies\CompanyListParams\State;
-use Dataleon\Companies\CompanyListParams\Status;
-use Dataleon\Companies\CompanyRegistration;
-use Dataleon\Companies\CompanyRetrieveParams;
-use Dataleon\Companies\CompanyUpdateParams;
-use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
-use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\Core\Conversion\ListOf;
-use Dataleon\Core\ServiceContracts\CompaniesContract;
-use Dataleon\Core\Services\Companies\DocumentsService;
+use Dataleon\Individuals\Individual;
+use Dataleon\Individuals\IndividualCreateParams;
+use Dataleon\Individuals\IndividualCreateParams\Person;
+use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
+use Dataleon\Individuals\IndividualListParams;
+use Dataleon\Individuals\IndividualListParams\State;
+use Dataleon\Individuals\IndividualListParams\Status;
+use Dataleon\Individuals\IndividualRetrieveParams;
+use Dataleon\Individuals\IndividualUpdateParams;
+use Dataleon\Individuals\IndividualUpdateParams\Person as Person1;
+use Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
+use Dataleon\ServiceContracts\IndividualsContract;
+use Dataleon\Services\Individuals\DocumentsService;
 
 use const Dataleon\Core\OMIT as omit;
 
-final class CompaniesService implements CompaniesContract
+final class IndividualsService implements IndividualsContract
 {
     /**
      * @@api
@@ -41,24 +41,24 @@ final class CompaniesService implements CompaniesContract
     /**
      * @api
      *
-     * Create a new company
+     * Create a new individual
      *
-     * @param Company $company main information about the company being registered
-     * @param string $workspaceID unique identifier of the workspace in which the company is being created
-     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
-     * @param TechnicalData $technicalData technical metadata and callback configuration
+     * @param string $workspaceID unique identifier of the workspace where the individual is being registered
+     * @param Person $person personal information about the individual
+     * @param string $sourceID optional identifier for tracking the source system or integration from your system
+     * @param TechnicalData $technicalData technical metadata related to the request or processing
      */
     public function create(
-        $company,
         $workspaceID,
+        $person = omit,
         $sourceID = omit,
         $technicalData = omit,
         ?RequestOptions $requestOptions = null,
-    ): CompanyRegistration {
-        [$parsed, $options] = CompanyCreateParams::parseRequest(
+    ): Individual {
+        [$parsed, $options] = IndividualCreateParams::parseRequest(
             [
-                'company' => $company,
                 'workspaceID' => $workspaceID,
+                'person' => $person,
                 'sourceID' => $sourceID,
                 'technicalData' => $technicalData,
             ],
@@ -68,28 +68,28 @@ final class CompaniesService implements CompaniesContract
         // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'post',
-            path: 'companies',
+            path: 'individuals',
             body: (object) $parsed,
             options: $options,
-            convert: CompanyRegistration::class,
+            convert: Individual::class,
         );
     }
 
     /**
      * @api
      *
-     * Get a company by ID
+     * Get an individual by ID
      *
-     * @param bool $document Include document signed url
+     * @param bool $document Include document information
      * @param string $scope Scope filter (id or scope)
      */
     public function retrieve(
-        string $companyID,
+        string $individualID,
         $document = omit,
         $scope = omit,
         ?RequestOptions $requestOptions = null,
-    ): CompanyRegistration {
-        [$parsed, $options] = CompanyRetrieveParams::parseRequest(
+    ): Individual {
+        [$parsed, $options] = IndividualRetrieveParams::parseRequest(
             ['document' => $document, 'scope' => $scope],
             $requestOptions
         );
@@ -97,35 +97,35 @@ final class CompaniesService implements CompaniesContract
         // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'get',
-            path: ['companies/%1$s', $companyID],
+            path: ['individuals/%1$s', $individualID],
             query: $parsed,
             options: $options,
-            convert: CompanyRegistration::class,
+            convert: Individual::class,
         );
     }
 
     /**
      * @api
      *
-     * Update a company by ID
+     * Update an individual by ID
      *
-     * @param Company1 $company main information about the company being registered
-     * @param string $workspaceID unique identifier of the workspace in which the company is being created
-     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
-     * @param TechnicalData1 $technicalData technical metadata and callback configuration
+     * @param string $workspaceID unique identifier of the workspace where the individual is being registered
+     * @param Person1 $person personal information about the individual
+     * @param string $sourceID optional identifier for tracking the source system or integration from your system
+     * @param TechnicalData1 $technicalData technical metadata related to the request or processing
      */
     public function update(
-        string $companyID,
-        $company,
+        string $individualID,
         $workspaceID,
+        $person = omit,
         $sourceID = omit,
         $technicalData = omit,
         ?RequestOptions $requestOptions = null,
-    ): CompanyRegistration {
-        [$parsed, $options] = CompanyUpdateParams::parseRequest(
+    ): Individual {
+        [$parsed, $options] = IndividualUpdateParams::parseRequest(
             [
-                'company' => $company,
                 'workspaceID' => $workspaceID,
+                'person' => $person,
                 'sourceID' => $sourceID,
                 'technicalData' => $technicalData,
             ],
@@ -135,28 +135,28 @@ final class CompaniesService implements CompaniesContract
         // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'put',
-            path: ['companies/%1$s', $companyID],
+            path: ['individuals/%1$s', $individualID],
             body: (object) $parsed,
             options: $options,
-            convert: CompanyRegistration::class,
+            convert: Individual::class,
         );
     }
 
     /**
      * @api
      *
-     * Get all companies
+     * Get all individuals
      *
-     * @param \DateTimeInterface $endDate Filter companies created before this date (format YYYY-MM-DD)
+     * @param \DateTimeInterface $endDate Filter individuals created before this date (format YYYY-MM-DD)
      * @param int $limit Number of results to return (between 1 and 100)
-     * @param int $offset Number of results to skip (must be ≥ 0)
+     * @param int $offset Number of results to offset (must be ≥ 0)
      * @param string $sourceID Filter by source ID
-     * @param \DateTimeInterface $startDate Filter companies created after this date (format YYYY-MM-DD)
-     * @param State::* $state Filter by company state (must be one of the allowed values)
+     * @param \DateTimeInterface $startDate Filter individuals created after this date (format YYYY-MM-DD)
+     * @param State::* $state Filter by individual status (must be one of the allowed values)
      * @param Status::* $status Filter by individual status (must be one of the allowed values)
      * @param string $workspaceID Filter by workspace ID
      *
-     * @return list<CompanyRegistration>
+     * @return list<Individual>
      */
     public function list(
         $endDate = omit,
@@ -169,7 +169,7 @@ final class CompaniesService implements CompaniesContract
         $workspaceID = omit,
         ?RequestOptions $requestOptions = null,
     ): array {
-        [$parsed, $options] = CompanyListParams::parseRequest(
+        [$parsed, $options] = IndividualListParams::parseRequest(
             [
                 'endDate' => $endDate,
                 'limit' => $limit,
@@ -186,26 +186,26 @@ final class CompaniesService implements CompaniesContract
         // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'get',
-            path: 'companies',
+            path: 'individuals',
             query: $parsed,
             options: $options,
-            convert: new ListOf(CompanyRegistration::class),
+            convert: new ListOf(Individual::class),
         );
     }
 
     /**
      * @api
      *
-     * Delete a company by ID
+     * Delete an individual by ID
      */
     public function delete(
-        string $companyID,
+        string $individualID,
         ?RequestOptions $requestOptions = null
     ): mixed {
         // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'delete',
-            path: ['companies/%1$s', $companyID],
+            path: ['individuals/%1$s', $individualID],
             options: $requestOptions,
             convert: null,
         );
