@@ -2,12 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Core\Services;
+namespace Dataleon\Services;
 
 use Dataleon\Client;
 use Dataleon\Core\Conversion\ListOf;
-use Dataleon\Core\ServiceContracts\IndividualsContract;
-use Dataleon\Core\Services\Individuals\DocumentsService;
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams;
 use Dataleon\Individuals\IndividualCreateParams\Person;
@@ -20,20 +18,30 @@ use Dataleon\Individuals\IndividualUpdateParams;
 use Dataleon\Individuals\IndividualUpdateParams\Person as Person1;
 use Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
+use Dataleon\ServiceContracts\IndividualsContract;
+use Dataleon\Services\Individuals\DocumentsService;
 
 use const Dataleon\Core\OMIT as omit;
 
 final class IndividualsService implements IndividualsContract
 {
+    /**
+     * @@api
+     */
     public DocumentsService $documents;
 
+    /**
+     * @internal
+     */
     public function __construct(private Client $client)
     {
         $this->documents = new DocumentsService($this->client);
     }
 
     /**
-     * Create a new individual.
+     * @api
+     *
+     * Create a new individual
      *
      * @param string $workspaceID unique identifier of the workspace where the individual is being registered
      * @param Person $person personal information about the individual
@@ -68,7 +76,9 @@ final class IndividualsService implements IndividualsContract
     }
 
     /**
-     * Get an individual by ID.
+     * @api
+     *
+     * Get an individual by ID
      *
      * @param bool $document Include document information
      * @param string $scope Scope filter (id or scope)
@@ -95,7 +105,9 @@ final class IndividualsService implements IndividualsContract
     }
 
     /**
-     * Update an individual by ID.
+     * @api
+     *
+     * Update an individual by ID
      *
      * @param string $workspaceID unique identifier of the workspace where the individual is being registered
      * @param Person1 $person personal information about the individual
@@ -131,15 +143,17 @@ final class IndividualsService implements IndividualsContract
     }
 
     /**
-     * Get all individuals.
+     * @api
+     *
+     * Get all individuals
      *
      * @param \DateTimeInterface $endDate Filter individuals created before this date (format YYYY-MM-DD)
      * @param int $limit Number of results to return (between 1 and 100)
      * @param int $offset Number of results to offset (must be ≥ 0)
      * @param string $sourceID Filter by source ID
      * @param \DateTimeInterface $startDate Filter individuals created after this date (format YYYY-MM-DD)
-     * @param State::* $state Filter by individual status (must be one of the allowed values)
-     * @param Status::* $status Filter by individual status (must be one of the allowed values)
+     * @param State|value-of<State> $state Filter by individual status (must be one of the allowed values)
+     * @param Status|value-of<Status> $status Filter by individual status (must be one of the allowed values)
      * @param string $workspaceID Filter by workspace ID
      *
      * @return list<Individual>
@@ -180,7 +194,9 @@ final class IndividualsService implements IndividualsContract
     }
 
     /**
-     * Delete an individual by ID.
+     * @api
+     *
+     * Delete an individual by ID
      */
     public function delete(
         string $individualID,

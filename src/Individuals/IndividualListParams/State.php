@@ -4,31 +4,26 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\IndividualListParams;
 
-use Dataleon\Core\Concerns\SdkEnum;
-use Dataleon\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Filter by individual status (must be one of the allowed values).
  */
-final class State implements ConverterSource
+enum State: string
 {
-    use SdkEnum;
+    case VOID = 'VOID';
 
-    public const VOID = 'VOID';
+    case WAITING = 'WAITING';
 
-    public const WAITING = 'WAITING';
+    case STARTED = 'STARTED';
 
-    public const STARTED = 'STARTED';
+    case RUNNING = 'RUNNING';
 
-    public const RUNNING = 'RUNNING';
+    case PROCESSED = 'PROCESSED';
 
-    public const PROCESSED = 'PROCESSED';
+    case FAILED = 'FAILED';
 
-    public const FAILED = 'FAILED';
+    case ABORTED = 'ABORTED';
 
-    public const ABORTED = 'ABORTED';
+    case EXPIRED = 'EXPIRED';
 
-    public const EXPIRED = 'EXPIRED';
-
-    public const DELETED = 'DELETED';
+    case DELETED = 'DELETED';
 }

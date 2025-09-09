@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Core\Services;
+namespace Dataleon\Services;
 
 use Dataleon\Client;
 use Dataleon\Companies\CompanyCreateParams;
@@ -17,23 +17,31 @@ use Dataleon\Companies\CompanyUpdateParams;
 use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\Core\Conversion\ListOf;
-use Dataleon\Core\ServiceContracts\CompaniesContract;
-use Dataleon\Core\Services\Companies\DocumentsService;
 use Dataleon\RequestOptions;
+use Dataleon\ServiceContracts\CompaniesContract;
+use Dataleon\Services\Companies\DocumentsService;
 
 use const Dataleon\Core\OMIT as omit;
 
 final class CompaniesService implements CompaniesContract
 {
+    /**
+     * @@api
+     */
     public DocumentsService $documents;
 
+    /**
+     * @internal
+     */
     public function __construct(private Client $client)
     {
         $this->documents = new DocumentsService($this->client);
     }
 
     /**
-     * Create a new company.
+     * @api
+     *
+     * Create a new company
      *
      * @param Company $company main information about the company being registered
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
@@ -68,7 +76,9 @@ final class CompaniesService implements CompaniesContract
     }
 
     /**
-     * Get a company by ID.
+     * @api
+     *
+     * Get a company by ID
      *
      * @param bool $document Include document signed url
      * @param string $scope Scope filter (id or scope)
@@ -95,7 +105,9 @@ final class CompaniesService implements CompaniesContract
     }
 
     /**
-     * Update a company by ID.
+     * @api
+     *
+     * Update a company by ID
      *
      * @param Company1 $company main information about the company being registered
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
@@ -131,15 +143,17 @@ final class CompaniesService implements CompaniesContract
     }
 
     /**
-     * Get all companies.
+     * @api
+     *
+     * Get all companies
      *
      * @param \DateTimeInterface $endDate Filter companies created before this date (format YYYY-MM-DD)
      * @param int $limit Number of results to return (between 1 and 100)
      * @param int $offset Number of results to skip (must be ≥ 0)
      * @param string $sourceID Filter by source ID
      * @param \DateTimeInterface $startDate Filter companies created after this date (format YYYY-MM-DD)
-     * @param State::* $state Filter by company state (must be one of the allowed values)
-     * @param Status::* $status Filter by individual status (must be one of the allowed values)
+     * @param State|value-of<State> $state Filter by company state (must be one of the allowed values)
+     * @param Status|value-of<Status> $status Filter by individual status (must be one of the allowed values)
      * @param string $workspaceID Filter by workspace ID
      *
      * @return list<CompanyRegistration>
@@ -180,7 +194,9 @@ final class CompaniesService implements CompaniesContract
     }
 
     /**
-     * Delete a company by ID.
+     * @api
+     *
+     * Delete a company by ID
      */
     public function delete(
         string $companyID,

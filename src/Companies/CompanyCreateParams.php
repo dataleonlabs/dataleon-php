@@ -12,7 +12,20 @@ use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new CompanyCreateParams); // set properties as needed
+ * $client->companies->create(...$params->toArray());
+ * ```
  * Create a new company.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->companies->create(...$params->toArray());`
+ *
+ * @see Dataleon\Companies->create
  *
  * @phpstan-type company_create_params = array{
  *   company: Company,
@@ -67,8 +80,7 @@ final class CompanyCreateParams implements BaseModel
      */
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**

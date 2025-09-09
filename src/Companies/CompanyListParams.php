@@ -12,7 +12,20 @@ use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new CompanyListParams); // set properties as needed
+ * $client->companies->list(...$params->toArray());
+ * ```
  * Get all companies.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->companies->list(...$params->toArray());`
+ *
+ * @see Dataleon\Companies->list
  *
  * @phpstan-type company_list_params = array{
  *   endDate?: \DateTimeInterface,
@@ -20,8 +33,8 @@ use Dataleon\Core\Contracts\BaseModel;
  *   offset?: int,
  *   sourceID?: string,
  *   startDate?: \DateTimeInterface,
- *   state?: State::*,
- *   status?: Status::*,
+ *   state?: State|value-of<State>,
+ *   status?: Status|value-of<Status>,
  *   workspaceID?: string,
  * }
  */
@@ -64,7 +77,7 @@ final class CompanyListParams implements BaseModel
     /**
      * Filter by company state (must be one of the allowed values).
      *
-     * @var State::*|null $state
+     * @var value-of<State>|null $state
      */
     #[Api(enum: State::class, optional: true)]
     public ?string $state;
@@ -72,7 +85,7 @@ final class CompanyListParams implements BaseModel
     /**
      * Filter by individual status (must be one of the allowed values).
      *
-     * @var Status::*|null $status
+     * @var value-of<Status>|null $status
      */
     #[Api(enum: Status::class, optional: true)]
     public ?string $status;
@@ -85,8 +98,7 @@ final class CompanyListParams implements BaseModel
 
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**
@@ -94,8 +106,8 @@ final class CompanyListParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param State::* $state
-     * @param Status::* $status
+     * @param State|value-of<State> $state
+     * @param Status|value-of<Status> $status
      */
     public static function with(
         ?\DateTimeInterface $endDate = null,
@@ -103,8 +115,8 @@ final class CompanyListParams implements BaseModel
         ?int $offset = null,
         ?string $sourceID = null,
         ?\DateTimeInterface $startDate = null,
-        ?string $state = null,
-        ?string $status = null,
+        State|string|null $state = null,
+        Status|string|null $status = null,
         ?string $workspaceID = null,
     ): self {
         $obj = new self;
@@ -114,8 +126,8 @@ final class CompanyListParams implements BaseModel
         null !== $offset && $obj->offset = $offset;
         null !== $sourceID && $obj->sourceID = $sourceID;
         null !== $startDate && $obj->startDate = $startDate;
-        null !== $state && $obj->state = $state;
-        null !== $status && $obj->status = $status;
+        null !== $state && $obj->state = $state instanceof State ? $state->value : $state;
+        null !== $status && $obj->status = $status instanceof Status ? $status->value : $status;
         null !== $workspaceID && $obj->workspaceID = $workspaceID;
 
         return $obj;
@@ -179,12 +191,12 @@ final class CompanyListParams implements BaseModel
     /**
      * Filter by company state (must be one of the allowed values).
      *
-     * @param State::* $state
+     * @param State|value-of<State> $state
      */
-    public function withState(string $state): self
+    public function withState(State|string $state): self
     {
         $obj = clone $this;
-        $obj->state = $state;
+        $obj->state = $state instanceof State ? $state->value : $state;
 
         return $obj;
     }
@@ -192,12 +204,12 @@ final class CompanyListParams implements BaseModel
     /**
      * Filter by individual status (must be one of the allowed values).
      *
-     * @param Status::* $status
+     * @param Status|value-of<Status> $status
      */
-    public function withStatus(string $status): self
+    public function withStatus(Status|string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status;
+        $obj->status = $status instanceof Status ? $status->value : $status;
 
         return $obj;
     }

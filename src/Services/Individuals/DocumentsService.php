@@ -2,47 +2,54 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Core\Services\Companies;
+namespace Dataleon\Services\Individuals;
 
 use Dataleon\Client;
-use Dataleon\Companies\Documents\DocumentUploadParams;
-use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
-use Dataleon\Core\ServiceContracts\Companies\DocumentsContract;
 use Dataleon\Individuals\Documents\DocumentResponse;
+use Dataleon\Individuals\Documents\DocumentUploadParams;
+use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
+use Dataleon\ServiceContracts\Individuals\DocumentsContract;
 
 use const Dataleon\Core\OMIT as omit;
 
 final class DocumentsService implements DocumentsContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**
-     * Get documents to an company.
+     * @api
+     *
+     * Get documents to an individuals
      */
     public function list(
-        string $companyID,
+        string $individualID,
         ?RequestOptions $requestOptions = null
     ): DocumentResponse {
         // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'get',
-            path: ['companies/%1$s/documents', $companyID],
+            path: ['individuals/%1$s/documents', $individualID],
             options: $requestOptions,
             convert: DocumentResponse::class,
         );
     }
 
     /**
-     * Upload documents to an company.
+     * @api
      *
-     * @param DocumentType::* $documentType Filter by document type for upload (must be one of the allowed values)
+     * Upload documents to an individual
+     *
+     * @param DocumentType|value-of<DocumentType> $documentType Filter by document type for upload (must be one of the allowed values)
      * @param string $file File to upload (required)
      * @param string $url URL of the file to upload (either `file` or `url` is required)
      */
     public function upload(
-        string $companyID,
+        string $individualID,
         $documentType,
         $file = omit,
         $url = omit,
@@ -56,7 +63,7 @@ final class DocumentsService implements DocumentsContract
         // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'post',
-            path: ['companies/%1$s/documents', $companyID],
+            path: ['individuals/%1$s/documents', $individualID],
             headers: ['Content-Type' => 'multipart/form-data'],
             body: (object) $parsed,
             options: $options,

@@ -21,8 +21,8 @@ use Dataleon\Individuals\Individual\AmlSuspicion\Type;
  *   schema?: string|null,
  *   score?: float|null,
  *   source?: string|null,
- *   status?: Status::*|null,
- *   type?: Type::*|null,
+ *   status?: value-of<Status>|null,
+ *   type?: value-of<Type>|null,
  * }
  */
 final class AmlSuspicion implements BaseModel
@@ -75,7 +75,7 @@ final class AmlSuspicion implements BaseModel
     /**
      * Status of the suspicion review process. Possible values: "true_positive", "false_positive", "pending".
      *
-     * @var Status::*|null $status
+     * @var value-of<Status>|null $status
      */
     #[Api(enum: Status::class, optional: true)]
     public ?string $status;
@@ -83,15 +83,14 @@ final class AmlSuspicion implements BaseModel
     /**
      * Category of the suspicion. Possible values: "crime", "sanction", "pep", "adverse_news", "other".
      *
-     * @var Type::*|null $type
+     * @var value-of<Type>|null $type
      */
     #[Api(enum: Type::class, optional: true)]
     public ?string $type;
 
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**
@@ -99,8 +98,8 @@ final class AmlSuspicion implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Status::* $status
-     * @param Type::* $type
+     * @param Status|value-of<Status> $status
+     * @param Type|value-of<Type> $type
      */
     public static function with(
         ?string $caption = null,
@@ -110,8 +109,8 @@ final class AmlSuspicion implements BaseModel
         ?string $schema = null,
         ?float $score = null,
         ?string $source = null,
-        ?string $status = null,
-        ?string $type = null,
+        Status|string|null $status = null,
+        Type|string|null $type = null,
     ): self {
         $obj = new self;
 
@@ -122,8 +121,8 @@ final class AmlSuspicion implements BaseModel
         null !== $schema && $obj->schema = $schema;
         null !== $score && $obj->score = $score;
         null !== $source && $obj->source = $source;
-        null !== $status && $obj->status = $status;
-        null !== $type && $obj->type = $type;
+        null !== $status && $obj->status = $status instanceof Status ? $status->value : $status;
+        null !== $type && $obj->type = $type instanceof Type ? $type->value : $type;
 
         return $obj;
     }
@@ -208,12 +207,12 @@ final class AmlSuspicion implements BaseModel
     /**
      * Status of the suspicion review process. Possible values: "true_positive", "false_positive", "pending".
      *
-     * @param Status::* $status
+     * @param Status|value-of<Status> $status
      */
-    public function withStatus(string $status): self
+    public function withStatus(Status|string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status;
+        $obj->status = $status instanceof Status ? $status->value : $status;
 
         return $obj;
     }
@@ -221,12 +220,12 @@ final class AmlSuspicion implements BaseModel
     /**
      * Category of the suspicion. Possible values: "crime", "sanction", "pep", "adverse_news", "other".
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
-    public function withType(string $type): self
+    public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
         return $obj;
     }

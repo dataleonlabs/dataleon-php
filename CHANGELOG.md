@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.11.0 (2025-09-09)
+
+Full Changelog: [v0.10.0...v0.11.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.10.0...v0.11.0)
+
+### ⚠ BREAKING CHANGES
+
+* expose services and service contracts
+* use builders for RequestOptions
+
+### Features
+
+* **client:** use real enums ([0a41f7a](https://github.com/dataleonlabs/dataleon-php/commit/0a41f7a9714ff5eea65580e98ae9e70558b300d7))
+* expose services and service contracts ([2a0b38d](https://github.com/dataleonlabs/dataleon-php/commit/2a0b38d4795cc6c39a6eea1d607c4cf7fb445c95))
+* use builders for RequestOptions ([758f5f0](https://github.com/dataleonlabs/dataleon-php/commit/758f5f0ff9c2e9e4fc35e1bc53a6b4af741b5e67))
+
+
+### Bug Fixes
+
+* remove inaccurate `license` field in composer.json ([09967c0](https://github.com/dataleonlabs/dataleon-php/commit/09967c0656f17e135d2d6db2312deb78c327ef00))
+
+
+### Chores
+
+* add additional php doc tags ([25ca5f1](https://github.com/dataleonlabs/dataleon-php/commit/25ca5f18866b1d99e329516ea7fc3e7e7f71df29))
+* cleanup streaming ([5cb8476](https://github.com/dataleonlabs/dataleon-php/commit/5cb847696d639bf211de0f4507a4487256d6942a))
+* document parameter object usage ([97be7cf](https://github.com/dataleonlabs/dataleon-php/commit/97be7cf1f4fcf36f20f3229ee0af34a1174a9f6e))
+* **internal:** refactor base client internals ([a941051](https://github.com/dataleonlabs/dataleon-php/commit/a9410513ab2b72bc9442d75964ebc5247eaa3491))
+* make more targeted phpstan ignores ([8eaa3e0](https://github.com/dataleonlabs/dataleon-php/commit/8eaa3e0f2e01bc3966a627f51046ebed6d0e9f7d))
+* refactor request options ([c9179e6](https://github.com/dataleonlabs/dataleon-php/commit/c9179e6a04ba0901f3e11686dada6d0fcec1b14a))
+* **refactor:** simplify base page interface ([3220150](https://github.com/dataleonlabs/dataleon-php/commit/3220150e56e532edee1a97ce657233bb4b7a6f8f))
+* remove `php-http/multipart-stream-builder` as a required dependency ([65e2cfb](https://github.com/dataleonlabs/dataleon-php/commit/65e2cfbc6e13e99518c2d3875c7571ef2c1b4484))
+* simplify model initialization ([f02ab44](https://github.com/dataleonlabs/dataleon-php/commit/f02ab444471f8e3b84f23dde310df95dd15aeb6f))
+
 ## 0.10.0 (2025-08-27)
 
 Full Changelog: [v0.9.1...v0.10.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.9.1...v0.10.0)

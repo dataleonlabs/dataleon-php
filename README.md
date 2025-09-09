@@ -20,7 +20,7 @@ The REST API documentation can be found on [docs.dataleon.ai](https://docs.datal
 <!-- x-release-please-start-version -->
 
 ```
-composer require "dataleon/dataleon 0.10.0"
+composer require "dataleon/dataleon 0.11.0"
 ```
 
 <!-- x-release-please-end -->
@@ -93,7 +93,7 @@ Certain errors will be automatically retried 2 times by default, with a short ex
 
 Connection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, and timeouts will all be retried by default.
 
-You can use the `max_retries` option to configure or disable this:
+You can use the `maxRetries` option to configure or disable this:
 
 ```php
 <?php
@@ -107,7 +107,7 @@ $client = new Client(maxRetries: 0);
 // Or, configure per-request:
 
 $result = $client->individuals->create(
-  workspaceID: "wk_123", new RequestOptions(maxRetries: 5)
+  workspaceID: "wk_123", requestOptions: RequestOptions::with(maxRetries: 5)
 );
 ```
 
@@ -119,7 +119,7 @@ $result = $client->individuals->create(
 
 You can send undocumented parameters to any endpoint, and read undocumented response properties, like so:
 
-Note: the `extra_` parameters of the same name overrides the documented parameters.
+Note: the `extra*` parameters of the same name overrides the documented parameters.
 
 ```php
 <?php
@@ -128,7 +128,7 @@ use Dataleon\RequestOptions;
 
 $individual = $client->individuals->create(
   workspaceID: "wk_123",
-  new RequestOptions(
+  requestOptions: RequestOptions::with(
     extraQueryParams: ["my_query_parameter" => "value"],
     extraBodyParams: ["my_body_parameter" => "value"],
     extraHeaders: ["my-header" => "value"],

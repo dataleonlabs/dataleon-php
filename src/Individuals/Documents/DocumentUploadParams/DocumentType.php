@@ -4,79 +4,74 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Documents\DocumentUploadParams;
 
-use Dataleon\Core\Concerns\SdkEnum;
-use Dataleon\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Filter by document type for upload (must be one of the allowed values).
  */
-final class DocumentType implements ConverterSource
+enum DocumentType: string
 {
-    use SdkEnum;
+    case LIASSE_FISCALE = 'liasse_fiscale';
 
-    public const LIASSE_FISCALE = 'liasse_fiscale';
+    case AMORTISED_LOAN_SCHEDULE = 'amortised_loan_schedule';
 
-    public const AMORTISED_LOAN_SCHEDULE = 'amortised_loan_schedule';
+    case INVOICE = 'invoice';
 
-    public const INVOICE = 'invoice';
+    case RECEIPT = 'receipt';
 
-    public const RECEIPT = 'receipt';
+    case COMPANY_STATUTS = 'company_statuts';
 
-    public const COMPANY_STATUTS = 'company_statuts';
+    case REGISTRATION_COMPANY_CERTIFICATE = 'registration_company_certificate';
 
-    public const REGISTRATION_COMPANY_CERTIFICATE = 'registration_company_certificate';
+    case KBIS = 'kbis';
 
-    public const KBIS = 'kbis';
+    case RIB = 'rib';
 
-    public const RIB = 'rib';
+    case LIVRET_FAMILLE = 'livret_famille';
 
-    public const LIVRET_FAMILLE = 'livret_famille';
+    case BIRTH_CERTIFICATE = 'birth_certificate';
 
-    public const BIRTH_CERTIFICATE = 'birth_certificate';
+    case PAYSLIP = 'payslip';
 
-    public const PAYSLIP = 'payslip';
+    case SOCIAL_SECURITY_CARD = 'social_security_card';
 
-    public const SOCIAL_SECURITY_CARD = 'social_security_card';
+    case VEHICLE_REGISTRATION_CERTIFICATE = 'vehicle_registration_certificate';
 
-    public const VEHICLE_REGISTRATION_CERTIFICATE = 'vehicle_registration_certificate';
+    case CARTE_GRISE = 'carte_grise';
 
-    public const CARTE_GRISE = 'carte_grise';
+    case CRIMINAL_RECORD_EXTRACT = 'criminal_record_extract';
 
-    public const CRIMINAL_RECORD_EXTRACT = 'criminal_record_extract';
+    case PROOF_OF_ADDRESS = 'proof_of_address';
 
-    public const PROOF_OF_ADDRESS = 'proof_of_address';
+    case IDENTITY_CARD_FRONT = 'identity_card_front';
 
-    public const IDENTITY_CARD_FRONT = 'identity_card_front';
+    case IDENTITY_CARD_BACK = 'identity_card_back';
 
-    public const IDENTITY_CARD_BACK = 'identity_card_back';
+    case DRIVER_LICENSE_FRONT = 'driver_license_front';
 
-    public const DRIVER_LICENSE_FRONT = 'driver_license_front';
+    case DRIVER_LICENSE_BACK = 'driver_license_back';
 
-    public const DRIVER_LICENSE_BACK = 'driver_license_back';
+    case IDENTITY_DOCUMENT = 'identity_document';
 
-    public const IDENTITY_DOCUMENT = 'identity_document';
+    case DRIVER_LICENSE = 'driver_license';
 
-    public const DRIVER_LICENSE = 'driver_license';
+    case PASSPORT = 'passport';
 
-    public const PASSPORT = 'passport';
+    case TAX = 'tax';
 
-    public const TAX = 'tax';
+    case CERTIFICATE_OF_INCORPORATION = 'certificate_of_incorporation';
 
-    public const CERTIFICATE_OF_INCORPORATION = 'certificate_of_incorporation';
+    case CERTIFICATE_OF_GOOD_STANDING = 'certificate_of_good_standing';
 
-    public const CERTIFICATE_OF_GOOD_STANDING = 'certificate_of_good_standing';
+    case LCB_FT_LAB_AML_POLICIES = 'lcb_ft_lab_aml_policies';
 
-    public const LCB_FT_LAB_AML_POLICIES = 'lcb_ft_lab_aml_policies';
+    case NIU_ENTREPRISE = 'niu_entreprise';
 
-    public const NIU_ENTREPRISE = 'niu_entreprise';
+    case FINANCIAL_STATEMENTS = 'financial_statements';
 
-    public const FINANCIAL_STATEMENTS = 'financial_statements';
+    case RCCM = 'rccm';
 
-    public const RCCM = 'rccm';
+    case PROOF_OF_SOURCE_FUNDS = 'proof_of_source_funds';
 
-    public const PROOF_OF_SOURCE_FUNDS = 'proof_of_source_funds';
+    case ORGANIZATIONAL_CHART = 'organizational_chart';
 
-    public const ORGANIZATIONAL_CHART = 'organizational_chart';
-
-    public const RISK_POLICIES = 'risk_policies';
+    case RISK_POLICIES = 'risk_policies';
 }

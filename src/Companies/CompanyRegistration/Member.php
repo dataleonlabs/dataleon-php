@@ -34,10 +34,10 @@ use Dataleon\Individuals\Documents\GenericDocument;
  *   registrationID?: string|null,
  *   relation?: string|null,
  *   roles?: string|null,
- *   source?: Source::*|null,
+ *   source?: value-of<Source>|null,
  *   state?: string|null,
  *   status?: string|null,
- *   type?: Type::*|null,
+ *   type?: value-of<Type>|null,
  *   workspaceID?: string|null,
  * }
  */
@@ -162,7 +162,7 @@ final class Member implements BaseModel
     /**
      * Source of the data (e.g., government, user, company).
      *
-     * @var Source::*|null $source
+     * @var value-of<Source>|null $source
      */
     #[Api(enum: Source::class, optional: true)]
     public ?string $source;
@@ -182,7 +182,7 @@ final class Member implements BaseModel
     /**
      * Member type (person or company).
      *
-     * @var Type::*|null $type
+     * @var value-of<Type>|null $type
      */
     #[Api(enum: Type::class, optional: true)]
     public ?string $type;
@@ -195,8 +195,7 @@ final class Member implements BaseModel
 
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**
@@ -205,8 +204,8 @@ final class Member implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<GenericDocument> $documents
-     * @param Source::* $source
-     * @param Type::* $type
+     * @param Source|value-of<Source> $source
+     * @param Type|value-of<Type> $type
      */
     public static function with(
         ?string $id = null,
@@ -228,10 +227,10 @@ final class Member implements BaseModel
         ?string $registrationID = null,
         ?string $relation = null,
         ?string $roles = null,
-        ?string $source = null,
+        Source|string|null $source = null,
         ?string $state = null,
         ?string $status = null,
-        ?string $type = null,
+        Type|string|null $type = null,
         ?string $workspaceID = null,
     ): self {
         $obj = new self;
@@ -255,10 +254,10 @@ final class Member implements BaseModel
         null !== $registrationID && $obj->registrationID = $registrationID;
         null !== $relation && $obj->relation = $relation;
         null !== $roles && $obj->roles = $roles;
-        null !== $source && $obj->source = $source;
+        null !== $source && $obj->source = $source instanceof Source ? $source->value : $source;
         null !== $state && $obj->state = $state;
         null !== $status && $obj->status = $status;
-        null !== $type && $obj->type = $type;
+        null !== $type && $obj->type = $type instanceof Type ? $type->value : $type;
         null !== $workspaceID && $obj->workspaceID = $workspaceID;
 
         return $obj;
@@ -475,12 +474,12 @@ final class Member implements BaseModel
     /**
      * Source of the data (e.g., government, user, company).
      *
-     * @param Source::* $source
+     * @param Source|value-of<Source> $source
      */
-    public function withSource(string $source): self
+    public function withSource(Source|string $source): self
     {
         $obj = clone $this;
-        $obj->source = $source;
+        $obj->source = $source instanceof Source ? $source->value : $source;
 
         return $obj;
     }
@@ -510,12 +509,12 @@ final class Member implements BaseModel
     /**
      * Member type (person or company).
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
-    public function withType(string $type): self
+    public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
         return $obj;
     }

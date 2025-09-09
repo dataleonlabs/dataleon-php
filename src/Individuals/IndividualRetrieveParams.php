@@ -10,7 +10,20 @@ use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new IndividualRetrieveParams); // set properties as needed
+ * $client->individuals->retrieve(...$params->toArray());
+ * ```
  * Get an individual by ID.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->individuals->retrieve(...$params->toArray());`
+ *
+ * @see Dataleon\Individuals->retrieve
  *
  * @phpstan-type individual_retrieve_params = array{
  *   document?: bool, scope?: string
@@ -36,8 +49,7 @@ final class IndividualRetrieveParams implements BaseModel
 
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**

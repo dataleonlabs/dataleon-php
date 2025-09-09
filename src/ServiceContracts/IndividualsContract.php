@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dataleon\Core\ServiceContracts;
+namespace Dataleon\ServiceContracts;
 
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams\Person;
@@ -18,6 +18,8 @@ use const Dataleon\Core\OMIT as omit;
 interface IndividualsContract
 {
     /**
+     * @api
+     *
      * @param string $workspaceID unique identifier of the workspace where the individual is being registered
      * @param Person $person personal information about the individual
      * @param string $sourceID optional identifier for tracking the source system or integration from your system
@@ -32,6 +34,8 @@ interface IndividualsContract
     ): Individual;
 
     /**
+     * @api
+     *
      * @param bool $document Include document information
      * @param string $scope Scope filter (id or scope)
      */
@@ -43,6 +47,8 @@ interface IndividualsContract
     ): Individual;
 
     /**
+     * @api
+     *
      * @param string $workspaceID unique identifier of the workspace where the individual is being registered
      * @param Person1 $person personal information about the individual
      * @param string $sourceID optional identifier for tracking the source system or integration from your system
@@ -58,13 +64,15 @@ interface IndividualsContract
     ): Individual;
 
     /**
+     * @api
+     *
      * @param \DateTimeInterface $endDate Filter individuals created before this date (format YYYY-MM-DD)
      * @param int $limit Number of results to return (between 1 and 100)
      * @param int $offset Number of results to offset (must be ≥ 0)
      * @param string $sourceID Filter by source ID
      * @param \DateTimeInterface $startDate Filter individuals created after this date (format YYYY-MM-DD)
-     * @param State::* $state Filter by individual status (must be one of the allowed values)
-     * @param Status::* $status Filter by individual status (must be one of the allowed values)
+     * @param State|value-of<State> $state Filter by individual status (must be one of the allowed values)
+     * @param Status|value-of<Status> $status Filter by individual status (must be one of the allowed values)
      * @param string $workspaceID Filter by workspace ID
      *
      * @return list<Individual>
@@ -81,6 +89,9 @@ interface IndividualsContract
         ?RequestOptions $requestOptions = null,
     ): array;
 
+    /**
+     * @api
+     */
     public function delete(
         string $individualID,
         ?RequestOptions $requestOptions = null

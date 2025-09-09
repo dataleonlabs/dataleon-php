@@ -35,7 +35,7 @@ final class DocumentsTest extends TestCase
 
         $result = $this->client->companies->documents->list('company_id');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -50,7 +50,7 @@ final class DocumentsTest extends TestCase
             documentType: 'liasse_fiscale'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -65,6 +65,6 @@ final class DocumentsTest extends TestCase
             documentType: 'liasse_fiscale'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

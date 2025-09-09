@@ -11,10 +11,23 @@ use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new DocumentUploadParams); // set properties as needed
+ * $client->individuals.documents->upload(...$params->toArray());
+ * ```
  * Upload documents to an individual.
  *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->individuals.documents->upload(...$params->toArray());`
+ *
+ * @see Dataleon\Individuals\Documents->upload
+ *
  * @phpstan-type document_upload_params = array{
- *   documentType: DocumentType::*, file?: string, url?: string
+ *   documentType: DocumentType|value-of<DocumentType>, file?: string, url?: string
  * }
  */
 final class DocumentUploadParams implements BaseModel
@@ -26,7 +39,7 @@ final class DocumentUploadParams implements BaseModel
     /**
      * Filter by document type for upload (must be one of the allowed values).
      *
-     * @var DocumentType::* $documentType
+     * @var value-of<DocumentType> $documentType
      */
     #[Api('document_type', enum: DocumentType::class)]
     public string $documentType;
@@ -59,8 +72,7 @@ final class DocumentUploadParams implements BaseModel
      */
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**
@@ -68,16 +80,16 @@ final class DocumentUploadParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param DocumentType::* $documentType
+     * @param DocumentType|value-of<DocumentType> $documentType
      */
     public static function with(
-        string $documentType,
+        DocumentType|string $documentType,
         ?string $file = null,
         ?string $url = null
     ): self {
         $obj = new self;
 
-        $obj->documentType = $documentType;
+        $obj->documentType = $documentType instanceof DocumentType ? $documentType->value : $documentType;
 
         null !== $file && $obj->file = $file;
         null !== $url && $obj->url = $url;
@@ -88,12 +100,12 @@ final class DocumentUploadParams implements BaseModel
     /**
      * Filter by document type for upload (must be one of the allowed values).
      *
-     * @param DocumentType::* $documentType
+     * @param DocumentType|value-of<DocumentType> $documentType
      */
-    public function withDocumentType(string $documentType): self
+    public function withDocumentType(DocumentType|string $documentType): self
     {
         $obj = clone $this;
-        $obj->documentType = $documentType;
+        $obj->documentType = $documentType instanceof DocumentType ? $documentType->value : $documentType;
 
         return $obj;
     }

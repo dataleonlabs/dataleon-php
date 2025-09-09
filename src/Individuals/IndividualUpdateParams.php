@@ -12,7 +12,20 @@ use Dataleon\Individuals\IndividualUpdateParams\Person;
 use Dataleon\Individuals\IndividualUpdateParams\TechnicalData;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new IndividualUpdateParams); // set properties as needed
+ * $client->individuals->update(...$params->toArray());
+ * ```
  * Update an individual by ID.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->individuals->update(...$params->toArray());`
+ *
+ * @see Dataleon\Individuals->update
  *
  * @phpstan-type individual_update_params = array{
  *   workspaceID: string,
@@ -67,8 +80,7 @@ final class IndividualUpdateParams implements BaseModel
      */
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**
