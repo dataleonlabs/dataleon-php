@@ -4,23 +4,18 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies\CompanyRegistration\AmlSuspicion;
 
-use Dataleon\Core\Concerns\SdkEnum;
-use Dataleon\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Category of the suspicion. Possible values: "crime", "sanction", "pep", "adverse_news", "other".
  */
-final class Type implements ConverterSource
+enum Type: string
 {
-    use SdkEnum;
+    case CRIME = 'crime';
 
-    public const CRIME = 'crime';
+    case SANCTION = 'sanction';
 
-    public const SANCTION = 'sanction';
+    case PEP = 'pep';
 
-    public const PEP = 'pep';
+    case ADVERSE_NEWS = 'adverse_news';
 
-    public const ADVERSE_NEWS = 'adverse_news';
-
-    public const OTHER = 'other';
+    case OTHER = 'other';
 }

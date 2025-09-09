@@ -4,19 +4,14 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies\CompanyListParams;
 
-use Dataleon\Core\Concerns\SdkEnum;
-use Dataleon\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Filter by individual status (must be one of the allowed values).
  */
-final class Status implements ConverterSource
+enum Status: string
 {
-    use SdkEnum;
+    case REJECTED = 'rejected';
 
-    public const REJECTED = 'rejected';
+    case NEED_REVIEW = 'need_review';
 
-    public const NEED_REVIEW = 'need_review';
-
-    public const APPROVED = 'approved';
+    case APPROVED = 'approved';
 }

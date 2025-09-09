@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\IndividualUpdateParams\Person;
 
-use Dataleon\Core\Concerns\SdkEnum;
-use Dataleon\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Gender of the individual (M for male, F for female).
  */
-final class Gender implements ConverterSource
+enum Gender: string
 {
-    use SdkEnum;
+    case M = 'M';
 
-    public const M = 'M';
-
-    public const F = 'F';
+    case F = 'F';
 }
