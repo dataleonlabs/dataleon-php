@@ -71,8 +71,8 @@ interface CompaniesContract
      * @param int $offset Number of results to skip (must be ≥ 0)
      * @param string $sourceID Filter by source ID
      * @param \DateTimeInterface $startDate Filter companies created after this date (format YYYY-MM-DD)
-     * @param State::* $state Filter by company state (must be one of the allowed values)
-     * @param Status::* $status Filter by individual status (must be one of the allowed values)
+     * @param State|value-of<State> $state Filter by company state (must be one of the allowed values)
+     * @param Status|value-of<Status> $status Filter by individual status (must be one of the allowed values)
      * @param string $workspaceID Filter by workspace ID
      *
      * @return list<CompanyRegistration>

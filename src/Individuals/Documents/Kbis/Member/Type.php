@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Documents\Kbis\Member;
 
-use Dataleon\Core\Concerns\SdkEnum;
-use Dataleon\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Type of entity (company or person).
  */
-final class Type implements ConverterSource
+enum Type: string
 {
-    use SdkEnum;
+    case COMPANY = 'company';
 
-    public const COMPANY = 'company';
-
-    public const PERSON = 'person';
+    case PERSON = 'person';
 }

@@ -24,7 +24,7 @@ interface DocumentsContract
     /**
      * @api
      *
-     * @param DocumentType::* $documentType Filter by document type for upload (must be one of the allowed values)
+     * @param DocumentType|value-of<DocumentType> $documentType Filter by document type for upload (must be one of the allowed values)
      * @param string $file File to upload (required)
      * @param string $url URL of the file to upload (either `file` or `url` is required)
      */

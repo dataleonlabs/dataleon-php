@@ -4,19 +4,14 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies\CompanyRegistration\Member;
 
-use Dataleon\Core\Concerns\SdkEnum;
-use Dataleon\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Source of the data (e.g., government, user, company).
  */
-final class Source implements ConverterSource
+enum Source: string
 {
-    use SdkEnum;
+    case GOUVE = 'gouve';
 
-    public const GOUVE = 'gouve';
+    case USER = 'user';
 
-    public const USER = 'user';
-
-    public const COMPANY = 'company';
+    case COMPANY = 'company';
 }

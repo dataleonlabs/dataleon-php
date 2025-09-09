@@ -16,7 +16,7 @@ use Dataleon\Individuals\IndividualCreateParams\Person\Gender;
  *   birthday?: string|null,
  *   email?: string|null,
  *   firstName?: string|null,
- *   gender?: Gender::*|null,
+ *   gender?: value-of<Gender>|null,
  *   lastName?: string|null,
  *   maidenName?: string|null,
  *   phoneNumber?: string|null,
@@ -48,7 +48,7 @@ final class Person implements BaseModel
     /**
      * Gender of the individual (M for male, F for female).
      *
-     * @var Gender::*|null $gender
+     * @var value-of<Gender>|null $gender
      */
     #[Api(enum: Gender::class, optional: true)]
     public ?string $gender;
@@ -81,13 +81,13 @@ final class Person implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Gender::* $gender
+     * @param Gender|value-of<Gender> $gender
      */
     public static function with(
         ?string $birthday = null,
         ?string $email = null,
         ?string $firstName = null,
-        ?string $gender = null,
+        Gender|string|null $gender = null,
         ?string $lastName = null,
         ?string $maidenName = null,
         ?string $phoneNumber = null,
@@ -97,7 +97,7 @@ final class Person implements BaseModel
         null !== $birthday && $obj->birthday = $birthday;
         null !== $email && $obj->email = $email;
         null !== $firstName && $obj->firstName = $firstName;
-        null !== $gender && $obj->gender = $gender;
+        null !== $gender && $obj->gender = $gender instanceof Gender ? $gender->value : $gender;
         null !== $lastName && $obj->lastName = $lastName;
         null !== $maidenName && $obj->maidenName = $maidenName;
         null !== $phoneNumber && $obj->phoneNumber = $phoneNumber;
@@ -141,12 +141,12 @@ final class Person implements BaseModel
     /**
      * Gender of the individual (M for male, F for female).
      *
-     * @param Gender::* $gender
+     * @param Gender|value-of<Gender> $gender
      */
-    public function withGender(string $gender): self
+    public function withGender(Gender|string $gender): self
     {
         $obj = clone $this;
-        $obj->gender = $gender;
+        $obj->gender = $gender instanceof Gender ? $gender->value : $gender;
 
         return $obj;
     }
