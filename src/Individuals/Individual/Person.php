@@ -20,6 +20,7 @@ use Dataleon\Core\Contracts\BaseModel;
  *   gender?: string|null,
  *   lastName?: string|null,
  *   maidenName?: string|null,
+ *   nationality?: string|null,
  *   phoneNumber?: string|null,
  * }
  */
@@ -77,6 +78,12 @@ final class Person implements BaseModel
     public ?string $maidenName;
 
     /**
+     * Nationality of the individual (ISO 3166-1 alpha-3 country code).
+     */
+    #[Api(optional: true)]
+    public ?string $nationality;
+
+    /**
      * Contact phone number including country code.
      */
     #[Api('phone_number', optional: true)]
@@ -101,6 +108,7 @@ final class Person implements BaseModel
         ?string $gender = null,
         ?string $lastName = null,
         ?string $maidenName = null,
+        ?string $nationality = null,
         ?string $phoneNumber = null,
     ): self {
         $obj = new self;
@@ -113,6 +121,7 @@ final class Person implements BaseModel
         null !== $gender && $obj->gender = $gender;
         null !== $lastName && $obj->lastName = $lastName;
         null !== $maidenName && $obj->maidenName = $maidenName;
+        null !== $nationality && $obj->nationality = $nationality;
         null !== $phoneNumber && $obj->phoneNumber = $phoneNumber;
 
         return $obj;
@@ -202,6 +211,17 @@ final class Person implements BaseModel
     {
         $obj = clone $this;
         $obj->maidenName = $maidenName;
+
+        return $obj;
+    }
+
+    /**
+     * Nationality of the individual (ISO 3166-1 alpha-3 country code).
+     */
+    public function withNationality(string $nationality): self
+    {
+        $obj = clone $this;
+        $obj->nationality = $nationality;
 
         return $obj;
     }
