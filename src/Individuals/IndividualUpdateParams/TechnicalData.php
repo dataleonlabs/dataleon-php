@@ -15,6 +15,7 @@ use Dataleon\Core\Contracts\BaseModel;
  *   activeAmlSuspicions?: bool|null,
  *   callbackURL?: string|null,
  *   callbackURLNotification?: string|null,
+ *   filteringScoreAmlSuspicions?: float|null,
  *   language?: string|null,
  *   rawData?: bool|null,
  * }
@@ -43,6 +44,12 @@ final class TechnicalData implements BaseModel
     public ?string $callbackURLNotification;
 
     /**
+     * Minimum filtering score (between 0 and 1) for AML suspicions to be considered.
+     */
+    #[Api('filtering_score_aml_suspicions', optional: true)]
+    public ?float $filteringScoreAmlSuspicions;
+
+    /**
      * Preferred language for communication (e.g., "eng", "fra").
      */
     #[Api(optional: true)]
@@ -68,6 +75,7 @@ final class TechnicalData implements BaseModel
         ?bool $activeAmlSuspicions = null,
         ?string $callbackURL = null,
         ?string $callbackURLNotification = null,
+        ?float $filteringScoreAmlSuspicions = null,
         ?string $language = null,
         ?bool $rawData = null,
     ): self {
@@ -76,6 +84,7 @@ final class TechnicalData implements BaseModel
         null !== $activeAmlSuspicions && $obj->activeAmlSuspicions = $activeAmlSuspicions;
         null !== $callbackURL && $obj->callbackURL = $callbackURL;
         null !== $callbackURLNotification && $obj->callbackURLNotification = $callbackURLNotification;
+        null !== $filteringScoreAmlSuspicions && $obj->filteringScoreAmlSuspicions = $filteringScoreAmlSuspicions;
         null !== $language && $obj->language = $language;
         null !== $rawData && $obj->rawData = $rawData;
 
@@ -112,6 +121,18 @@ final class TechnicalData implements BaseModel
     ): self {
         $obj = clone $this;
         $obj->callbackURLNotification = $callbackURLNotification;
+
+        return $obj;
+    }
+
+    /**
+     * Minimum filtering score (between 0 and 1) for AML suspicions to be considered.
+     */
+    public function withFilteringScoreAmlSuspicions(
+        float $filteringScoreAmlSuspicions
+    ): self {
+        $obj = clone $this;
+        $obj->filteringScoreAmlSuspicions = $filteringScoreAmlSuspicions;
 
         return $obj;
     }

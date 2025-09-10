@@ -20,6 +20,7 @@ use Dataleon\Core\Contracts\BaseModel;
  *   disableNotification?: bool|null,
  *   disableNotificationDate?: \DateTimeInterface|null,
  *   exportType?: string|null,
+ *   filteringScoreAmlSuspicions?: float|null,
  *   finishedAt?: \DateTimeInterface|null,
  *   ip?: string|null,
  *   language?: string|null,
@@ -87,6 +88,12 @@ final class TechnicalData implements BaseModel
      */
     #[Api('export_type', optional: true)]
     public ?string $exportType;
+
+    /**
+     * Minimum filtering score (between 0 and 1) for AML suspicions to be considered.
+     */
+    #[Api('filtering_score_aml_suspicions', optional: true)]
+    public ?float $filteringScoreAmlSuspicions;
 
     /**
      * Timestamp when the process finished.
@@ -185,6 +192,7 @@ final class TechnicalData implements BaseModel
         ?bool $disableNotification = null,
         ?\DateTimeInterface $disableNotificationDate = null,
         ?string $exportType = null,
+        ?float $filteringScoreAmlSuspicions = null,
         ?\DateTimeInterface $finishedAt = null,
         ?string $ip = null,
         ?string $language = null,
@@ -209,6 +217,7 @@ final class TechnicalData implements BaseModel
         null !== $disableNotification && $obj->disableNotification = $disableNotification;
         null !== $disableNotificationDate && $obj->disableNotificationDate = $disableNotificationDate;
         null !== $exportType && $obj->exportType = $exportType;
+        null !== $filteringScoreAmlSuspicions && $obj->filteringScoreAmlSuspicions = $filteringScoreAmlSuspicions;
         null !== $finishedAt && $obj->finishedAt = $finishedAt;
         null !== $ip && $obj->ip = $ip;
         null !== $language && $obj->language = $language;
@@ -312,6 +321,18 @@ final class TechnicalData implements BaseModel
     {
         $obj = clone $this;
         $obj->exportType = $exportType;
+
+        return $obj;
+    }
+
+    /**
+     * Minimum filtering score (between 0 and 1) for AML suspicions to be considered.
+     */
+    public function withFilteringScoreAmlSuspicions(
+        float $filteringScoreAmlSuspicions
+    ): self {
+        $obj = clone $this;
+        $obj->filteringScoreAmlSuspicions = $filteringScoreAmlSuspicions;
 
         return $obj;
     }
