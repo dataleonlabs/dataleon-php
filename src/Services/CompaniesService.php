@@ -17,6 +17,7 @@ use Dataleon\Companies\CompanyUpdateParams;
 use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\Core\Conversion\ListOf;
+use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\CompaniesContract;
@@ -50,6 +51,8 @@ final class CompaniesService implements CompaniesContract
      * @param TechnicalData $technicalData technical metadata and callback configuration
      *
      * @return CompanyRegistration<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function create(
         $company,
@@ -58,14 +61,32 @@ final class CompaniesService implements CompaniesContract
         $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
+        $params = [
+            'company' => $company,
+            'workspaceID' => $workspaceID,
+            'sourceID' => $sourceID,
+            'technicalData' => $technicalData,
+        ];
+
+        return $this->createRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return CompanyRegistration<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function createRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): CompanyRegistration {
         [$parsed, $options] = CompanyCreateParams::parseRequest(
-            [
-                'company' => $company,
-                'workspaceID' => $workspaceID,
-                'sourceID' => $sourceID,
-                'technicalData' => $technicalData,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -87,6 +108,8 @@ final class CompaniesService implements CompaniesContract
      * @param string $scope Scope filter (id or scope)
      *
      * @return CompanyRegistration<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function retrieve(
         string $companyID,
@@ -94,8 +117,27 @@ final class CompaniesService implements CompaniesContract
         $scope = omit,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
+        $params = ['document' => $document, 'scope' => $scope];
+
+        return $this->retrieveRaw($companyID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return CompanyRegistration<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function retrieveRaw(
+        string $companyID,
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): CompanyRegistration {
         [$parsed, $options] = CompanyRetrieveParams::parseRequest(
-            ['document' => $document, 'scope' => $scope],
+            $params,
             $requestOptions
         );
 
@@ -120,6 +162,8 @@ final class CompaniesService implements CompaniesContract
      * @param TechnicalData1 $technicalData technical metadata and callback configuration
      *
      * @return CompanyRegistration<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function update(
         string $companyID,
@@ -129,14 +173,33 @@ final class CompaniesService implements CompaniesContract
         $technicalData = omit,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
+        $params = [
+            'company' => $company,
+            'workspaceID' => $workspaceID,
+            'sourceID' => $sourceID,
+            'technicalData' => $technicalData,
+        ];
+
+        return $this->updateRaw($companyID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return CompanyRegistration<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function updateRaw(
+        string $companyID,
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): CompanyRegistration {
         [$parsed, $options] = CompanyUpdateParams::parseRequest(
-            [
-                'company' => $company,
-                'workspaceID' => $workspaceID,
-                'sourceID' => $sourceID,
-                'technicalData' => $technicalData,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -164,6 +227,8 @@ final class CompaniesService implements CompaniesContract
      * @param string $workspaceID Filter by workspace ID
      *
      * @return list<CompanyRegistration>
+     *
+     * @throws APIException
      */
     public function list(
         $endDate = omit,
@@ -176,18 +241,36 @@ final class CompaniesService implements CompaniesContract
         $workspaceID = omit,
         ?RequestOptions $requestOptions = null,
     ): array {
+        $params = [
+            'endDate' => $endDate,
+            'limit' => $limit,
+            'offset' => $offset,
+            'sourceID' => $sourceID,
+            'startDate' => $startDate,
+            'state' => $state,
+            'status' => $status,
+            'workspaceID' => $workspaceID,
+        ];
+
+        return $this->listRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return list<CompanyRegistration>
+     *
+     * @throws APIException
+     */
+    public function listRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): array {
         [$parsed, $options] = CompanyListParams::parseRequest(
-            [
-                'endDate' => $endDate,
-                'limit' => $limit,
-                'offset' => $offset,
-                'sourceID' => $sourceID,
-                'startDate' => $startDate,
-                'state' => $state,
-                'status' => $status,
-                'workspaceID' => $workspaceID,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -204,9 +287,26 @@ final class CompaniesService implements CompaniesContract
      * @api
      *
      * Delete a company by ID
+     *
+     * @throws APIException
      */
     public function delete(
         string $companyID,
+        ?RequestOptions $requestOptions = null
+    ): mixed {
+        $params = [];
+
+        return $this->deleteRaw($companyID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @throws APIException
+     */
+    public function deleteRaw(
+        string $companyID,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): mixed {
         // @phpstan-ignore-next-line;

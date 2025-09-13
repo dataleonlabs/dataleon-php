@@ -11,6 +11,7 @@ use Dataleon\Companies\CompanyListParams\Status;
 use Dataleon\Companies\CompanyRegistration;
 use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
+use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\RequestOptions;
 
@@ -27,6 +28,8 @@ interface CompaniesContract
      * @param TechnicalData $technicalData technical metadata and callback configuration
      *
      * @return CompanyRegistration<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function create(
         $company,
@@ -39,10 +42,26 @@ interface CompaniesContract
     /**
      * @api
      *
+     * @param array<string, mixed> $params
+     *
+     * @return CompanyRegistration<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function createRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): CompanyRegistration;
+
+    /**
+     * @api
+     *
      * @param bool $document Include document signed url
      * @param string $scope Scope filter (id or scope)
      *
      * @return CompanyRegistration<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function retrieve(
         string $companyID,
@@ -54,12 +73,29 @@ interface CompaniesContract
     /**
      * @api
      *
+     * @param array<string, mixed> $params
+     *
+     * @return CompanyRegistration<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function retrieveRaw(
+        string $companyID,
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): CompanyRegistration;
+
+    /**
+     * @api
+     *
      * @param Company1 $company main information about the company being registered
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
      * @param TechnicalData1 $technicalData technical metadata and callback configuration
      *
      * @return CompanyRegistration<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function update(
         string $companyID,
@@ -68,6 +104,21 @@ interface CompaniesContract
         $sourceID = omit,
         $technicalData = omit,
         ?RequestOptions $requestOptions = null,
+    ): CompanyRegistration;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return CompanyRegistration<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function updateRaw(
+        string $companyID,
+        array $params,
+        ?RequestOptions $requestOptions = null
     ): CompanyRegistration;
 
     /**
@@ -83,6 +134,8 @@ interface CompaniesContract
      * @param string $workspaceID Filter by workspace ID
      *
      * @return list<CompanyRegistration>
+     *
+     * @throws APIException
      */
     public function list(
         $endDate = omit,
@@ -98,9 +151,36 @@ interface CompaniesContract
 
     /**
      * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return list<CompanyRegistration>
+     *
+     * @throws APIException
+     */
+    public function listRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): array;
+
+    /**
+     * @api
+     *
+     * @throws APIException
      */
     public function delete(
         string $companyID,
+        ?RequestOptions $requestOptions = null
+    ): mixed;
+
+    /**
+     * @api
+     *
+     * @throws APIException
+     */
+    public function deleteRaw(
+        string $companyID,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): mixed;
 }

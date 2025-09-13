@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\ServiceContracts\Companies;
 
 use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
+use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\GenericDocument;
@@ -18,9 +19,24 @@ interface DocumentsContract
      * @api
      *
      * @return DocumentResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function list(
         string $companyID,
+        ?RequestOptions $requestOptions = null
+    ): DocumentResponse;
+
+    /**
+     * @api
+     *
+     * @return DocumentResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function listRaw(
+        string $companyID,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): DocumentResponse;
 
@@ -32,6 +48,8 @@ interface DocumentsContract
      * @param string $url URL of the file to upload (either `file` or `url` is required)
      *
      * @return GenericDocument<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function upload(
         string $companyID,
@@ -39,5 +57,20 @@ interface DocumentsContract
         $file = omit,
         $url = omit,
         ?RequestOptions $requestOptions = null,
+    ): GenericDocument;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return GenericDocument<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function uploadRaw(
+        string $companyID,
+        array $params,
+        ?RequestOptions $requestOptions = null
     ): GenericDocument;
 }

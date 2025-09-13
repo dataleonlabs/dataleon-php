@@ -13,7 +13,7 @@ use Dataleon\Individuals\Documents\DocumentResponse\Document;
  * @phpstan-type document_response = array{
  *   documents?: list<Document>, totalDocument?: int
  * }
- * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * When used in a response, this type parameter can define a $rawResponse property.
  * @template TRawResponse of object = object{}
  *
  * @mixin TRawResponse
