@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Services\Individuals;
 
 use Dataleon\Client;
+use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\DocumentUploadParams;
 use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
@@ -25,6 +26,8 @@ final class DocumentsService implements DocumentsContract
      * @api
      *
      * Get documents to an individuals
+     *
+     * @return DocumentResponse<HasRawResponse>
      */
     public function list(
         string $individualID,
@@ -47,6 +50,8 @@ final class DocumentsService implements DocumentsContract
      * @param DocumentType|value-of<DocumentType> $documentType Filter by document type for upload (must be one of the allowed values)
      * @param string $file File to upload (required)
      * @param string $url URL of the file to upload (either `file` or `url` is required)
+     *
+     * @return GenericDocument<HasRawResponse>
      */
     public function upload(
         string $individualID,

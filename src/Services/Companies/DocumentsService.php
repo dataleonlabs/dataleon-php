@@ -7,6 +7,7 @@ namespace Dataleon\Services\Companies;
 use Dataleon\Client;
 use Dataleon\Companies\Documents\DocumentUploadParams;
 use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
+use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
@@ -25,6 +26,8 @@ final class DocumentsService implements DocumentsContract
      * @api
      *
      * Get documents to an company
+     *
+     * @return DocumentResponse<HasRawResponse>
      */
     public function list(
         string $companyID,
@@ -47,6 +50,8 @@ final class DocumentsService implements DocumentsContract
      * @param DocumentType|value-of<DocumentType> $documentType Filter by document type for upload (must be one of the allowed values)
      * @param string $file File to upload (required)
      * @param string $url URL of the file to upload (either `file` or `url` is required)
+     *
+     * @return GenericDocument<HasRawResponse>
      */
     public function upload(
         string $companyID,

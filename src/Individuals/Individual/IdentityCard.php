@@ -12,21 +12,21 @@ use Dataleon\Core\Contracts\BaseModel;
  * Reference to the individual's identity document.
  *
  * @phpstan-type identity_card = array{
- *   id?: string|null,
- *   backDocumentSignedURL?: string|null,
- *   birthPlace?: string|null,
- *   birthday?: string|null,
- *   country?: string|null,
- *   expirationDate?: string|null,
- *   firstName?: string|null,
- *   frontDocumentSignedURL?: string|null,
- *   gender?: string|null,
- *   issueDate?: string|null,
- *   lastName?: string|null,
- *   mrzLine1?: string|null,
- *   mrzLine2?: string|null,
+ *   id?: string,
+ *   backDocumentSignedURL?: string,
+ *   birthPlace?: string,
+ *   birthday?: string,
+ *   country?: string,
+ *   expirationDate?: string,
+ *   firstName?: string,
+ *   frontDocumentSignedURL?: string,
+ *   gender?: string,
+ *   issueDate?: string,
+ *   lastName?: string,
+ *   mrzLine1?: string,
+ *   mrzLine2?: string,
  *   mrzLine3?: string|null,
- *   type?: string|null,
+ *   type?: string,
  * }
  */
 final class IdentityCard implements BaseModel

@@ -15,17 +15,21 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
  * Represents a general document with metadata, verification checks, and extracted data.
  *
  * @phpstan-type generic_document = array{
- *   id?: string|null,
- *   checks?: list<Check>|null,
- *   createdAt?: \DateTimeInterface|null,
- *   documentType?: string|null,
- *   name?: string|null,
- *   signedURL?: string|null,
- *   state?: string|null,
- *   status?: string|null,
- *   tables?: list<Table>|null,
- *   values?: list<Value>|null,
+ *   id?: string,
+ *   checks?: list<Check>,
+ *   createdAt?: \DateTimeInterface,
+ *   documentType?: string,
+ *   name?: string,
+ *   signedURL?: string,
+ *   state?: string,
+ *   status?: string,
+ *   tables?: list<Table>,
+ *   values?: list<Value>,
  * }
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class GenericDocument implements BaseModel
 {
