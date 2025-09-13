@@ -6,6 +6,7 @@ namespace Dataleon\Services;
 
 use Dataleon\Client;
 use Dataleon\Core\Conversion\ListOf;
+use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams;
 use Dataleon\Individuals\IndividualCreateParams\Person;
@@ -35,7 +36,7 @@ final class IndividualsService implements IndividualsContract
      */
     public function __construct(private Client $client)
     {
-        $this->documents = new DocumentsService($this->client);
+        $this->documents = new DocumentsService($client);
     }
 
     /**
@@ -47,6 +48,8 @@ final class IndividualsService implements IndividualsContract
      * @param Person $person personal information about the individual
      * @param string $sourceID optional identifier for tracking the source system or integration from your system
      * @param TechnicalData $technicalData technical metadata related to the request or processing
+     *
+     * @return Individual<HasRawResponse>
      */
     public function create(
         $workspaceID,
@@ -82,6 +85,8 @@ final class IndividualsService implements IndividualsContract
      *
      * @param bool $document Include document information
      * @param string $scope Scope filter (id or scope)
+     *
+     * @return Individual<HasRawResponse>
      */
     public function retrieve(
         string $individualID,
@@ -113,6 +118,8 @@ final class IndividualsService implements IndividualsContract
      * @param Person1 $person personal information about the individual
      * @param string $sourceID optional identifier for tracking the source system or integration from your system
      * @param TechnicalData1 $technicalData technical metadata related to the request or processing
+     *
+     * @return Individual<HasRawResponse>
      */
     public function update(
         string $individualID,

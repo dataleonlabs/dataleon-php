@@ -11,6 +11,7 @@ use Dataleon\Companies\CompanyListParams\Status;
 use Dataleon\Companies\CompanyRegistration;
 use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
+use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\RequestOptions;
 
 use const Dataleon\Core\OMIT as omit;
@@ -24,6 +25,8 @@ interface CompaniesContract
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
      * @param TechnicalData $technicalData technical metadata and callback configuration
+     *
+     * @return CompanyRegistration<HasRawResponse>
      */
     public function create(
         $company,
@@ -38,6 +41,8 @@ interface CompaniesContract
      *
      * @param bool $document Include document signed url
      * @param string $scope Scope filter (id or scope)
+     *
+     * @return CompanyRegistration<HasRawResponse>
      */
     public function retrieve(
         string $companyID,
@@ -53,6 +58,8 @@ interface CompaniesContract
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
      * @param TechnicalData1 $technicalData technical metadata and callback configuration
+     *
+     * @return CompanyRegistration<HasRawResponse>
      */
     public function update(
         string $companyID,

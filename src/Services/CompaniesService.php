@@ -17,6 +17,7 @@ use Dataleon\Companies\CompanyUpdateParams;
 use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\Core\Conversion\ListOf;
+use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\CompaniesContract;
 use Dataleon\Services\Companies\DocumentsService;
@@ -35,7 +36,7 @@ final class CompaniesService implements CompaniesContract
      */
     public function __construct(private Client $client)
     {
-        $this->documents = new DocumentsService($this->client);
+        $this->documents = new DocumentsService($client);
     }
 
     /**
@@ -47,6 +48,8 @@ final class CompaniesService implements CompaniesContract
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
      * @param TechnicalData $technicalData technical metadata and callback configuration
+     *
+     * @return CompanyRegistration<HasRawResponse>
      */
     public function create(
         $company,
@@ -82,6 +85,8 @@ final class CompaniesService implements CompaniesContract
      *
      * @param bool $document Include document signed url
      * @param string $scope Scope filter (id or scope)
+     *
+     * @return CompanyRegistration<HasRawResponse>
      */
     public function retrieve(
         string $companyID,
@@ -113,6 +118,8 @@ final class CompaniesService implements CompaniesContract
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
      * @param TechnicalData1 $technicalData technical metadata and callback configuration
+     *
+     * @return CompanyRegistration<HasRawResponse>
      */
     public function update(
         string $companyID,
