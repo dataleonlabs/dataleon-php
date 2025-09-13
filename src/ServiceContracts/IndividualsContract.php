@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\ServiceContracts;
 
+use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams\Person;
@@ -27,6 +28,8 @@ interface IndividualsContract
      * @param TechnicalData $technicalData technical metadata related to the request or processing
      *
      * @return Individual<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function create(
         $workspaceID,
@@ -39,15 +42,46 @@ interface IndividualsContract
     /**
      * @api
      *
+     * @param array<string, mixed> $params
+     *
+     * @return Individual<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function createRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): Individual;
+
+    /**
+     * @api
+     *
      * @param bool $document Include document information
      * @param string $scope Scope filter (id or scope)
      *
      * @return Individual<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function retrieve(
         string $individualID,
         $document = omit,
         $scope = omit,
+        ?RequestOptions $requestOptions = null,
+    ): Individual;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return Individual<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function retrieveRaw(
+        string $individualID,
+        array $params,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
@@ -60,6 +94,8 @@ interface IndividualsContract
      * @param TechnicalData1 $technicalData technical metadata related to the request or processing
      *
      * @return Individual<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function update(
         string $individualID,
@@ -67,6 +103,21 @@ interface IndividualsContract
         $person = omit,
         $sourceID = omit,
         $technicalData = omit,
+        ?RequestOptions $requestOptions = null,
+    ): Individual;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return Individual<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function updateRaw(
+        string $individualID,
+        array $params,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
@@ -83,6 +134,8 @@ interface IndividualsContract
      * @param string $workspaceID Filter by workspace ID
      *
      * @return list<Individual>
+     *
+     * @throws APIException
      */
     public function list(
         $endDate = omit,
@@ -98,9 +151,36 @@ interface IndividualsContract
 
     /**
      * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return list<Individual>
+     *
+     * @throws APIException
+     */
+    public function listRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): array;
+
+    /**
+     * @api
+     *
+     * @throws APIException
      */
     public function delete(
         string $individualID,
         ?RequestOptions $requestOptions = null
+    ): mixed;
+
+    /**
+     * @api
+     *
+     * @throws APIException
+     */
+    public function deleteRaw(
+        string $individualID,
+        mixed $params,
+        ?RequestOptions $requestOptions = null,
     ): mixed;
 }

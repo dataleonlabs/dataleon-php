@@ -7,6 +7,7 @@ namespace Dataleon\Services\Companies;
 use Dataleon\Client;
 use Dataleon\Companies\Documents\DocumentUploadParams;
 use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
+use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\GenericDocument;
@@ -28,9 +29,28 @@ final class DocumentsService implements DocumentsContract
      * Get documents to an company
      *
      * @return DocumentResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function list(
         string $companyID,
+        ?RequestOptions $requestOptions = null
+    ): DocumentResponse {
+        $params = [];
+
+        return $this->listRaw($companyID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @return DocumentResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function listRaw(
+        string $companyID,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): DocumentResponse {
         // @phpstan-ignore-next-line;
@@ -52,6 +72,8 @@ final class DocumentsService implements DocumentsContract
      * @param string $url URL of the file to upload (either `file` or `url` is required)
      *
      * @return GenericDocument<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function upload(
         string $companyID,
@@ -60,9 +82,28 @@ final class DocumentsService implements DocumentsContract
         $url = omit,
         ?RequestOptions $requestOptions = null,
     ): GenericDocument {
+        $params = ['documentType' => $documentType, 'file' => $file, 'url' => $url];
+
+        return $this->uploadRaw($companyID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return GenericDocument<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function uploadRaw(
+        string $companyID,
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): GenericDocument {
         [$parsed, $options] = DocumentUploadParams::parseRequest(
-            ['documentType' => $documentType, 'file' => $file, 'url' => $url],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
