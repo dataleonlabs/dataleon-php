@@ -13,21 +13,21 @@ use Dataleon\Individuals\Documents\Kbis\Member;
  * A document representing official registration data from the KBIS (France).
  *
  * @phpstan-type kbis_alias = array{
- *   activities?: string|null,
- *   address?: string|null,
- *   capitalSocial?: string|null,
- *   closureDate?: \DateTimeInterface|null,
- *   companyName?: string|null,
- *   documentDate?: \DateTimeInterface|null,
- *   documentType?: string|null,
- *   firstClosureDate?: \DateTimeInterface|null,
- *   fromGreffe?: string|null,
- *   legalForm?: string|null,
- *   members?: list<Member>|null,
- *   ngestion?: string|null,
- *   rcsNumber?: string|null,
- *   registrationDate?: \DateTimeInterface|null,
- *   sirenInfo?: string|null,
+ *   activities?: string,
+ *   address?: string,
+ *   capitalSocial?: string,
+ *   closureDate?: \DateTimeInterface,
+ *   companyName?: string,
+ *   documentDate?: \DateTimeInterface,
+ *   documentType?: string,
+ *   firstClosureDate?: \DateTimeInterface,
+ *   fromGreffe?: string,
+ *   legalForm?: string,
+ *   members?: list<Member>,
+ *   ngestion?: string,
+ *   rcsNumber?: string,
+ *   registrationDate?: \DateTimeInterface,
+ *   sirenInfo?: string,
  * }
  */
 final class Kbis implements BaseModel

@@ -11,8 +11,12 @@ use Dataleon\Individuals\Documents\DocumentResponse\Document;
 
 /**
  * @phpstan-type document_response = array{
- *   documents?: list<Document>|null, totalDocument?: int|null
+ *   documents?: list<Document>, totalDocument?: int
  * }
+ * When used in a response, this type parameter can define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class DocumentResponse implements BaseModel
 {
