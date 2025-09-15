@@ -12,11 +12,7 @@ use Dataleon\Core\Contracts\BaseModel;
  * Represents a verification check result.
  *
  * @phpstan-type check_alias = array{
- *   masked?: bool|null,
- *   message?: string|null,
- *   name?: string|null,
- *   validate?: bool|null,
- *   weight?: int|null,
+ *   masked?: bool, message?: string, name?: string, validate?: bool, weight?: int
  * }
  */
 final class Check implements BaseModel

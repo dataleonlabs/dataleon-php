@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.13.0 (2025-09-13)
+
+Full Changelog: [v0.12.0...v0.13.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.12.0...v0.13.0)
+
+### Features
+
+* **client:** support raw responses ([4fcfeec](https://github.com/dataleonlabs/dataleon-php/commit/4fcfeec2518887bd26f1ecb7789673a206508d71))
+
+
+### Chores
+
+* fix lints in UnionOf ([fa00218](https://github.com/dataleonlabs/dataleon-php/commit/fa00218c144996dd3a9794c73a19adc401b1893c))
+* **internal:** codegen related update ([f49b246](https://github.com/dataleonlabs/dataleon-php/commit/f49b246fea65dafbe6d567c276553676230edf32))
+
 ## 0.12.0 (2025-09-10)
 
 Full Changelog: [v0.11.0...v0.12.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.11.0...v0.12.0)

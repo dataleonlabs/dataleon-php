@@ -12,12 +12,12 @@ use Dataleon\Core\Contracts\BaseModel;
  * Technical metadata related to the request or processing.
  *
  * @phpstan-type technical_data = array{
- *   activeAmlSuspicions?: bool|null,
- *   callbackURL?: string|null,
- *   callbackURLNotification?: string|null,
- *   filteringScoreAmlSuspicions?: float|null,
- *   language?: string|null,
- *   rawData?: bool|null,
+ *   activeAmlSuspicions?: bool,
+ *   callbackURL?: string,
+ *   callbackURLNotification?: string,
+ *   filteringScoreAmlSuspicions?: float,
+ *   language?: string,
+ *   rawData?: bool,
  * }
  */
 final class TechnicalData implements BaseModel

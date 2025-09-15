@@ -19,19 +19,23 @@ use Dataleon\Individuals\Documents\GenericDocument;
 
 /**
  * @phpstan-type company_registration = array{
- *   amlSuspicions?: list<AmlSuspicion>|null,
- *   certificat?: Certificat|null,
- *   checks?: list<Check>|null,
- *   company?: Company|null,
- *   documents?: list<GenericDocument>|null,
- *   members?: list<Member>|null,
- *   portalURL?: string|null,
- *   properties?: list<Property>|null,
- *   risk?: Risk|null,
- *   sourceID?: string|null,
- *   technicalData?: TechnicalData|null,
- *   webviewURL?: string|null,
+ *   amlSuspicions?: list<AmlSuspicion>,
+ *   certificat?: Certificat,
+ *   checks?: list<Check>,
+ *   company?: Company,
+ *   documents?: list<GenericDocument>,
+ *   members?: list<Member>,
+ *   portalURL?: string,
+ *   properties?: list<Property>,
+ *   risk?: Risk,
+ *   sourceID?: string,
+ *   technicalData?: TechnicalData,
+ *   webviewURL?: string,
  * }
+ * When used in a response, this type parameter can define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class CompanyRegistration implements BaseModel
 {

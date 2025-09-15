@@ -10,7 +10,7 @@ use Dataleon\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type value_alias = array{
- *   confidence?: float|null, name?: string|null, value?: list<int>|null
+ *   confidence?: float, name?: string, value?: list<int>
  * }
  */
 final class Value implements BaseModel

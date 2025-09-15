@@ -12,7 +12,7 @@ use Dataleon\Core\Contracts\BaseModel;
  * Digital certificate associated with the individual, if any.
  *
  * @phpstan-type certificat_alias = array{
- *   id?: string|null, createdAt?: \DateTimeInterface|null, filename?: string|null
+ *   id?: string, createdAt?: \DateTimeInterface, filename?: string
  * }
  */
 final class Certificat implements BaseModel
