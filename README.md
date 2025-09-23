@@ -105,7 +105,6 @@ use Dataleon\RequestOptions;
 $client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
-
 $result = $client->individuals->create(
   workspaceID: "wk_123", requestOptions: RequestOptions::with(maxRetries: 5)
 );
