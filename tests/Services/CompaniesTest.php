@@ -4,7 +4,6 @@ namespace Tests\Services;
 
 use Dataleon\Client;
 use Dataleon\Companies\CompanyCreateParams\Company;
-use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -93,7 +92,9 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->update(
             'company_id',
-            company: Company1::with(name: 'ACME Corp'),
+            company: Dataleon\Companies\CompanyUpdateParams\Company::with(
+                name: 'ACME Corp'
+            ),
             workspaceID: 'wk_123',
         );
 
@@ -109,7 +110,9 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->update(
             'company_id',
-            company: Company1::with(name: 'ACME Corp')
+            company: Dataleon\Companies\CompanyUpdateParams\Company::with(
+                name: 'ACME Corp'
+            )
                 ->withAddress('123 rue Exemple, Paris')
                 ->withCommercialName('ACME')
                 ->withCountry('FR')

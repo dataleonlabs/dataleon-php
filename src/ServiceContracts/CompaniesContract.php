@@ -9,8 +9,6 @@ use Dataleon\Companies\CompanyCreateParams\TechnicalData;
 use Dataleon\Companies\CompanyListParams\State;
 use Dataleon\Companies\CompanyListParams\Status;
 use Dataleon\Companies\CompanyRegistration;
-use Dataleon\Companies\CompanyUpdateParams\Company as Company1;
-use Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\RequestOptions;
@@ -88,10 +86,10 @@ interface CompaniesContract
     /**
      * @api
      *
-     * @param Company1 $company main information about the company being registered
+     * @param Dataleon\Companies\CompanyUpdateParams\Company $company main information about the company being registered
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
-     * @param TechnicalData1 $technicalData technical metadata and callback configuration
+     * @param Dataleon\Companies\CompanyUpdateParams\TechnicalData $technicalData technical metadata and callback configuration
      *
      * @return CompanyRegistration<HasRawResponse>
      *
