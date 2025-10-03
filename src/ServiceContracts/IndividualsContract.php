@@ -11,8 +11,6 @@ use Dataleon\Individuals\IndividualCreateParams\Person;
 use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
 use Dataleon\Individuals\IndividualListParams\State;
 use Dataleon\Individuals\IndividualListParams\Status;
-use Dataleon\Individuals\IndividualUpdateParams\Person as Person1;
-use Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
 
 use const Dataleon\Core\OMIT as omit;
@@ -89,9 +87,9 @@ interface IndividualsContract
      * @api
      *
      * @param string $workspaceID unique identifier of the workspace where the individual is being registered
-     * @param Person1 $person personal information about the individual
+     * @param Dataleon\Individuals\IndividualUpdateParams\Person $person personal information about the individual
      * @param string $sourceID optional identifier for tracking the source system or integration from your system
-     * @param TechnicalData1 $technicalData technical metadata related to the request or processing
+     * @param Dataleon\Individuals\IndividualUpdateParams\TechnicalData $technicalData technical metadata related to the request or processing
      *
      * @return Individual<HasRawResponse>
      *
