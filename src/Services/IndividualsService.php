@@ -17,8 +17,6 @@ use Dataleon\Individuals\IndividualListParams\State;
 use Dataleon\Individuals\IndividualListParams\Status;
 use Dataleon\Individuals\IndividualRetrieveParams;
 use Dataleon\Individuals\IndividualUpdateParams;
-use Dataleon\Individuals\IndividualUpdateParams\Person as Person1;
-use Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalData1;
 use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\IndividualsContract;
 use Dataleon\Services\Individuals\DocumentsService;
@@ -157,9 +155,9 @@ final class IndividualsService implements IndividualsContract
      * Update an individual by ID
      *
      * @param string $workspaceID unique identifier of the workspace where the individual is being registered
-     * @param Person1 $person personal information about the individual
+     * @param Dataleon\Individuals\IndividualUpdateParams\Person $person personal information about the individual
      * @param string $sourceID optional identifier for tracking the source system or integration from your system
-     * @param TechnicalData1 $technicalData technical metadata related to the request or processing
+     * @param Dataleon\Individuals\IndividualUpdateParams\TechnicalData $technicalData technical metadata related to the request or processing
      *
      * @return Individual<HasRawResponse>
      *
