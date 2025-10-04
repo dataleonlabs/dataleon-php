@@ -6,7 +6,6 @@ namespace Dataleon\Services\Individuals;
 
 use Dataleon\Client;
 use Dataleon\Core\Exceptions\APIException;
-use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\DocumentUploadParams;
 use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
@@ -28,29 +27,10 @@ final class DocumentsService implements DocumentsContract
      *
      * Get documents to an individuals
      *
-     * @return DocumentResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function list(
         string $individualID,
-        ?RequestOptions $requestOptions = null
-    ): DocumentResponse {
-        $params = [];
-
-        return $this->listRaw($individualID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @return DocumentResponse<HasRawResponse>
-     *
-     * @throws APIException
-     */
-    public function listRaw(
-        string $individualID,
-        mixed $params,
         ?RequestOptions $requestOptions = null
     ): DocumentResponse {
         // @phpstan-ignore-next-line;
@@ -71,8 +51,6 @@ final class DocumentsService implements DocumentsContract
      * @param string $file File to upload (required)
      * @param string $url URL of the file to upload (either `file` or `url` is required)
      *
-     * @return GenericDocument<HasRawResponse>
-     *
      * @throws APIException
      */
     public function upload(
@@ -91,8 +69,6 @@ final class DocumentsService implements DocumentsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return GenericDocument<HasRawResponse>
      *
      * @throws APIException
      */

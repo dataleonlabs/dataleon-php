@@ -14,7 +14,9 @@ use Dataleon\Companies\CompanyRegistration\Risk;
 use Dataleon\Companies\CompanyRegistration\TechnicalData;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
+use Dataleon\Core\Concerns\SdkResponse;
 use Dataleon\Core\Contracts\BaseModel;
+use Dataleon\Core\Conversion\Contracts\ResponseConverter;
 use Dataleon\Individuals\Documents\GenericDocument;
 
 /**
@@ -32,15 +34,13 @@ use Dataleon\Individuals\Documents\GenericDocument;
  *   technicalData?: TechnicalData,
  *   webviewURL?: string,
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class CompanyRegistration implements BaseModel
+final class CompanyRegistration implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<company_registration> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the company, including their details.

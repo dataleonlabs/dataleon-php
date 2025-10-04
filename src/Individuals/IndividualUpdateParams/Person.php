@@ -105,7 +105,7 @@ final class Person implements BaseModel
         null !== $birthday && $obj->birthday = $birthday;
         null !== $email && $obj->email = $email;
         null !== $firstName && $obj->firstName = $firstName;
-        null !== $gender && $obj->gender = $gender instanceof Gender ? $gender->value : $gender;
+        null !== $gender && $obj['gender'] = $gender;
         null !== $lastName && $obj->lastName = $lastName;
         null !== $maidenName && $obj->maidenName = $maidenName;
         null !== $nationality && $obj->nationality = $nationality;
@@ -155,7 +155,7 @@ final class Person implements BaseModel
     public function withGender(Gender|string $gender): self
     {
         $obj = clone $this;
-        $obj->gender = $gender instanceof Gender ? $gender->value : $gender;
+        $obj['gender'] = $gender;
 
         return $obj;
     }

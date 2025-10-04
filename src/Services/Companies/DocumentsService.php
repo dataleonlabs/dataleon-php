@@ -8,7 +8,6 @@ use Dataleon\Client;
 use Dataleon\Companies\Documents\DocumentUploadParams;
 use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
 use Dataleon\Core\Exceptions\APIException;
-use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
@@ -28,29 +27,10 @@ final class DocumentsService implements DocumentsContract
      *
      * Get documents to an company
      *
-     * @return DocumentResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function list(
         string $companyID,
-        ?RequestOptions $requestOptions = null
-    ): DocumentResponse {
-        $params = [];
-
-        return $this->listRaw($companyID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @return DocumentResponse<HasRawResponse>
-     *
-     * @throws APIException
-     */
-    public function listRaw(
-        string $companyID,
-        mixed $params,
         ?RequestOptions $requestOptions = null
     ): DocumentResponse {
         // @phpstan-ignore-next-line;
@@ -71,8 +51,6 @@ final class DocumentsService implements DocumentsContract
      * @param string $file File to upload (required)
      * @param string $url URL of the file to upload (either `file` or `url` is required)
      *
-     * @return GenericDocument<HasRawResponse>
-     *
      * @throws APIException
      */
     public function upload(
@@ -91,8 +69,6 @@ final class DocumentsService implements DocumentsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return GenericDocument<HasRawResponse>
      *
      * @throws APIException
      */

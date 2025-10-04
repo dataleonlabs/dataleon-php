@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Dataleon\ServiceContracts;
 
 use Dataleon\Core\Exceptions\APIException;
-use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams\Person;
 use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
@@ -25,8 +24,6 @@ interface IndividualsContract
      * @param string $sourceID optional identifier for tracking the source system or integration from your system
      * @param TechnicalData $technicalData technical metadata related to the request or processing
      *
-     * @return Individual<HasRawResponse>
-     *
      * @throws APIException
      */
     public function create(
@@ -42,8 +39,6 @@ interface IndividualsContract
      *
      * @param array<string, mixed> $params
      *
-     * @return Individual<HasRawResponse>
-     *
      * @throws APIException
      */
     public function createRaw(
@@ -56,8 +51,6 @@ interface IndividualsContract
      *
      * @param bool $document Include document information
      * @param string $scope Scope filter (id or scope)
-     *
-     * @return Individual<HasRawResponse>
      *
      * @throws APIException
      */
@@ -72,8 +65,6 @@ interface IndividualsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return Individual<HasRawResponse>
      *
      * @throws APIException
      */
@@ -91,8 +82,6 @@ interface IndividualsContract
      * @param string $sourceID optional identifier for tracking the source system or integration from your system
      * @param Dataleon\Individuals\IndividualUpdateParams\TechnicalData $technicalData technical metadata related to the request or processing
      *
-     * @return Individual<HasRawResponse>
-     *
      * @throws APIException
      */
     public function update(
@@ -108,8 +97,6 @@ interface IndividualsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return Individual<HasRawResponse>
      *
      * @throws APIException
      */
@@ -169,16 +156,5 @@ interface IndividualsContract
     public function delete(
         string $individualID,
         ?RequestOptions $requestOptions = null
-    ): mixed;
-
-    /**
-     * @api
-     *
-     * @throws APIException
-     */
-    public function deleteRaw(
-        string $individualID,
-        mixed $params,
-        ?RequestOptions $requestOptions = null,
     ): mixed;
 }

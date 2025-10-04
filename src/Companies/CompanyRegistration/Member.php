@@ -254,10 +254,10 @@ final class Member implements BaseModel
         null !== $registrationID && $obj->registrationID = $registrationID;
         null !== $relation && $obj->relation = $relation;
         null !== $roles && $obj->roles = $roles;
-        null !== $source && $obj->source = $source instanceof Source ? $source->value : $source;
+        null !== $source && $obj['source'] = $source;
         null !== $state && $obj->state = $state;
         null !== $status && $obj->status = $status;
-        null !== $type && $obj->type = $type instanceof Type ? $type->value : $type;
+        null !== $type && $obj['type'] = $type;
         null !== $workspaceID && $obj->workspaceID = $workspaceID;
 
         return $obj;
@@ -479,7 +479,7 @@ final class Member implements BaseModel
     public function withSource(Source|string $source): self
     {
         $obj = clone $this;
-        $obj->source = $source instanceof Source ? $source->value : $source;
+        $obj['source'] = $source;
 
         return $obj;
     }
@@ -514,7 +514,7 @@ final class Member implements BaseModel
     public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type instanceof Type ? $type->value : $type;
+        $obj['type'] = $type;
 
         return $obj;
     }
