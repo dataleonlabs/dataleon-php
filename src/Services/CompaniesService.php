@@ -16,7 +16,6 @@ use Dataleon\Companies\CompanyRetrieveParams;
 use Dataleon\Companies\CompanyUpdateParams;
 use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Core\Exceptions\APIException;
-use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\CompaniesContract;
 use Dataleon\Services\Companies\DocumentsService;
@@ -48,8 +47,6 @@ final class CompaniesService implements CompaniesContract
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
      * @param TechnicalData $technicalData technical metadata and callback configuration
      *
-     * @return CompanyRegistration<HasRawResponse>
-     *
      * @throws APIException
      */
     public function create(
@@ -73,8 +70,6 @@ final class CompaniesService implements CompaniesContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return CompanyRegistration<HasRawResponse>
      *
      * @throws APIException
      */
@@ -105,8 +100,6 @@ final class CompaniesService implements CompaniesContract
      * @param bool $document Include document signed url
      * @param string $scope Scope filter (id or scope)
      *
-     * @return CompanyRegistration<HasRawResponse>
-     *
      * @throws APIException
      */
     public function retrieve(
@@ -124,8 +117,6 @@ final class CompaniesService implements CompaniesContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return CompanyRegistration<HasRawResponse>
      *
      * @throws APIException
      */
@@ -159,8 +150,6 @@ final class CompaniesService implements CompaniesContract
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
      * @param Dataleon\Companies\CompanyUpdateParams\TechnicalData $technicalData technical metadata and callback configuration
      *
-     * @return CompanyRegistration<HasRawResponse>
-     *
      * @throws APIException
      */
     public function update(
@@ -185,8 +174,6 @@ final class CompaniesService implements CompaniesContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return CompanyRegistration<HasRawResponse>
      *
      * @throws APIException
      */
@@ -290,21 +277,6 @@ final class CompaniesService implements CompaniesContract
      */
     public function delete(
         string $companyID,
-        ?RequestOptions $requestOptions = null
-    ): mixed {
-        $params = [];
-
-        return $this->deleteRaw($companyID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @throws APIException
-     */
-    public function deleteRaw(
-        string $companyID,
-        mixed $params,
         ?RequestOptions $requestOptions = null
     ): mixed {
         // @phpstan-ignore-next-line;

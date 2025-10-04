@@ -10,7 +10,6 @@ use Dataleon\Companies\CompanyListParams\State;
 use Dataleon\Companies\CompanyListParams\Status;
 use Dataleon\Companies\CompanyRegistration;
 use Dataleon\Core\Exceptions\APIException;
-use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\RequestOptions;
 
 use const Dataleon\Core\OMIT as omit;
@@ -24,8 +23,6 @@ interface CompaniesContract
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
      * @param TechnicalData $technicalData technical metadata and callback configuration
-     *
-     * @return CompanyRegistration<HasRawResponse>
      *
      * @throws APIException
      */
@@ -42,8 +39,6 @@ interface CompaniesContract
      *
      * @param array<string, mixed> $params
      *
-     * @return CompanyRegistration<HasRawResponse>
-     *
      * @throws APIException
      */
     public function createRaw(
@@ -56,8 +51,6 @@ interface CompaniesContract
      *
      * @param bool $document Include document signed url
      * @param string $scope Scope filter (id or scope)
-     *
-     * @return CompanyRegistration<HasRawResponse>
      *
      * @throws APIException
      */
@@ -72,8 +65,6 @@ interface CompaniesContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return CompanyRegistration<HasRawResponse>
      *
      * @throws APIException
      */
@@ -91,8 +82,6 @@ interface CompaniesContract
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
      * @param Dataleon\Companies\CompanyUpdateParams\TechnicalData $technicalData technical metadata and callback configuration
      *
-     * @return CompanyRegistration<HasRawResponse>
-     *
      * @throws APIException
      */
     public function update(
@@ -108,8 +97,6 @@ interface CompaniesContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return CompanyRegistration<HasRawResponse>
      *
      * @throws APIException
      */
@@ -168,17 +155,6 @@ interface CompaniesContract
      */
     public function delete(
         string $companyID,
-        ?RequestOptions $requestOptions = null
-    ): mixed;
-
-    /**
-     * @api
-     *
-     * @throws APIException
-     */
-    public function deleteRaw(
-        string $companyID,
-        mixed $params,
         ?RequestOptions $requestOptions = null
     ): mixed;
 }

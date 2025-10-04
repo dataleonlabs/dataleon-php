@@ -7,7 +7,6 @@ namespace Dataleon\Services;
 use Dataleon\Client;
 use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Core\Exceptions\APIException;
-use Dataleon\Core\Implementation\HasRawResponse;
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams;
 use Dataleon\Individuals\IndividualCreateParams\Person;
@@ -48,8 +47,6 @@ final class IndividualsService implements IndividualsContract
      * @param string $sourceID optional identifier for tracking the source system or integration from your system
      * @param TechnicalData $technicalData technical metadata related to the request or processing
      *
-     * @return Individual<HasRawResponse>
-     *
      * @throws APIException
      */
     public function create(
@@ -73,8 +70,6 @@ final class IndividualsService implements IndividualsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return Individual<HasRawResponse>
      *
      * @throws APIException
      */
@@ -105,8 +100,6 @@ final class IndividualsService implements IndividualsContract
      * @param bool $document Include document information
      * @param string $scope Scope filter (id or scope)
      *
-     * @return Individual<HasRawResponse>
-     *
      * @throws APIException
      */
     public function retrieve(
@@ -124,8 +117,6 @@ final class IndividualsService implements IndividualsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return Individual<HasRawResponse>
      *
      * @throws APIException
      */
@@ -159,8 +150,6 @@ final class IndividualsService implements IndividualsContract
      * @param string $sourceID optional identifier for tracking the source system or integration from your system
      * @param Dataleon\Individuals\IndividualUpdateParams\TechnicalData $technicalData technical metadata related to the request or processing
      *
-     * @return Individual<HasRawResponse>
-     *
      * @throws APIException
      */
     public function update(
@@ -185,8 +174,6 @@ final class IndividualsService implements IndividualsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return Individual<HasRawResponse>
      *
      * @throws APIException
      */
@@ -290,21 +277,6 @@ final class IndividualsService implements IndividualsContract
      */
     public function delete(
         string $individualID,
-        ?RequestOptions $requestOptions = null
-    ): mixed {
-        $params = [];
-
-        return $this->deleteRaw($individualID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @throws APIException
-     */
-    public function deleteRaw(
-        string $individualID,
-        mixed $params,
         ?RequestOptions $requestOptions = null
     ): mixed {
         // @phpstan-ignore-next-line;

@@ -6,22 +6,22 @@ namespace Dataleon\Individuals\Documents;
 
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
+use Dataleon\Core\Concerns\SdkResponse;
 use Dataleon\Core\Contracts\BaseModel;
+use Dataleon\Core\Conversion\Contracts\ResponseConverter;
 use Dataleon\Individuals\Documents\DocumentResponse\Document;
 
 /**
  * @phpstan-type document_response = array{
  *   documents?: list<Document>, totalDocument?: int
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class DocumentResponse implements BaseModel
+final class DocumentResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<document_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * List of documents associated with the response.
