@@ -89,7 +89,7 @@ final class DocumentUploadParams implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->documentType = $documentType instanceof DocumentType ? $documentType->value : $documentType;
+        $obj['documentType'] = $documentType;
 
         null !== $file && $obj->file = $file;
         null !== $url && $obj->url = $url;
@@ -105,7 +105,7 @@ final class DocumentUploadParams implements BaseModel
     public function withDocumentType(DocumentType|string $documentType): self
     {
         $obj = clone $this;
-        $obj->documentType = $documentType instanceof DocumentType ? $documentType->value : $documentType;
+        $obj['documentType'] = $documentType;
 
         return $obj;
     }

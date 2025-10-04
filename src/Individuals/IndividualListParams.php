@@ -126,8 +126,8 @@ final class IndividualListParams implements BaseModel
         null !== $offset && $obj->offset = $offset;
         null !== $sourceID && $obj->sourceID = $sourceID;
         null !== $startDate && $obj->startDate = $startDate;
-        null !== $state && $obj->state = $state instanceof State ? $state->value : $state;
-        null !== $status && $obj->status = $status instanceof Status ? $status->value : $status;
+        null !== $state && $obj['state'] = $state;
+        null !== $status && $obj['status'] = $status;
         null !== $workspaceID && $obj->workspaceID = $workspaceID;
 
         return $obj;
@@ -196,7 +196,7 @@ final class IndividualListParams implements BaseModel
     public function withState(State|string $state): self
     {
         $obj = clone $this;
-        $obj->state = $state instanceof State ? $state->value : $state;
+        $obj['state'] = $state;
 
         return $obj;
     }
@@ -209,7 +209,7 @@ final class IndividualListParams implements BaseModel
     public function withStatus(Status|string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status instanceof Status ? $status->value : $status;
+        $obj['status'] = $status;
 
         return $obj;
     }

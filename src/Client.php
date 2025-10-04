@@ -28,7 +28,7 @@ class Client extends BaseClient
     {
         $this->apiKey = (string) ($apiKey ?? getenv('DATALEON_API_KEY'));
 
-        $base = $baseUrl ?? getenv(
+        $baseUrl ??= getenv(
             'DATALEON_BASE_URL'
         ) ?: 'https://inference.eu-west-1.dataleon.ai';
 
@@ -43,7 +43,7 @@ class Client extends BaseClient
             headers: [
                 'Content-Type' => 'application/json', 'Accept' => 'application/json',
             ],
-            baseUrl: $base,
+            baseUrl: $baseUrl,
             options: $options,
         );
 

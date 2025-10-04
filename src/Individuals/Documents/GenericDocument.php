@@ -7,7 +7,9 @@ namespace Dataleon\Individuals\Documents;
 use Dataleon\Check;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
+use Dataleon\Core\Concerns\SdkResponse;
 use Dataleon\Core\Contracts\BaseModel;
+use Dataleon\Core\Conversion\Contracts\ResponseConverter;
 use Dataleon\Individuals\Documents\GenericDocument\Table;
 use Dataleon\Individuals\Documents\GenericDocument\Value;
 
@@ -26,15 +28,13 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
  *   tables?: list<Table>,
  *   values?: list<Value>,
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class GenericDocument implements BaseModel
+final class GenericDocument implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<generic_document> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * Unique identifier of the document.
