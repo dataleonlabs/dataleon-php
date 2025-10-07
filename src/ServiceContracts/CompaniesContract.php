@@ -77,10 +77,10 @@ interface CompaniesContract
     /**
      * @api
      *
-     * @param Dataleon\Companies\CompanyUpdateParams\Company $company main information about the company being registered
+     * @param \Dataleon\Companies\CompanyUpdateParams\Company $company main information about the company being registered
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
-     * @param Dataleon\Companies\CompanyUpdateParams\TechnicalData $technicalData technical metadata and callback configuration
+     * @param \Dataleon\Companies\CompanyUpdateParams\TechnicalData $technicalData technical metadata and callback configuration
      *
      * @throws APIException
      */

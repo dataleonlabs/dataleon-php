@@ -146,9 +146,9 @@ final class IndividualsService implements IndividualsContract
      * Update an individual by ID
      *
      * @param string $workspaceID unique identifier of the workspace where the individual is being registered
-     * @param Dataleon\Individuals\IndividualUpdateParams\Person $person personal information about the individual
+     * @param IndividualUpdateParams\Person $person personal information about the individual
      * @param string $sourceID optional identifier for tracking the source system or integration from your system
-     * @param Dataleon\Individuals\IndividualUpdateParams\TechnicalData $technicalData technical metadata related to the request or processing
+     * @param IndividualUpdateParams\TechnicalData $technicalData technical metadata related to the request or processing
      *
      * @throws APIException
      */
