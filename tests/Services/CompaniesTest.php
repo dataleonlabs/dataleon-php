@@ -92,7 +92,7 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->update(
             'company_id',
-            company: Dataleon\Companies\CompanyUpdateParams\Company::with(
+            company: \Dataleon\Companies\CompanyUpdateParams\Company::with(
                 name: 'ACME Corp'
             ),
             workspaceID: 'wk_123',
@@ -110,7 +110,7 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->update(
             'company_id',
-            company: Dataleon\Companies\CompanyUpdateParams\Company::with(
+            company: \Dataleon\Companies\CompanyUpdateParams\Company::with(
                 name: 'ACME Corp'
             )
                 ->withAddress('123 rue Exemple, Paris')
