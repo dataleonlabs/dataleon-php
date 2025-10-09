@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.13.1 (2025-10-09)
+
+Full Changelog: [v0.13.0...v0.13.1](https://github.com/dataleonlabs/dataleon-php/compare/v0.13.0...v0.13.1)
+
+### Bug Fixes
+
+* **ci:** release doctor workflow ([679913f](https://github.com/dataleonlabs/dataleon-php/commit/679913f432e8fdd25f81884df71140f090ad1fcc))
+* **client:** properly import fully qualified names ([9401cb5](https://github.com/dataleonlabs/dataleon-php/commit/9401cb532913a4211815f6326c14286ae9fa3b65))
+
+
+### Chores
+
+* **docs:** update readme formatting ([6d29e4a](https://github.com/dataleonlabs/dataleon-php/commit/6d29e4a97aa83c5b657de054ddfe22ae80469a39))
+* **internal:** restructure some imports ([3cf7aa5](https://github.com/dataleonlabs/dataleon-php/commit/3cf7aa5c5ed441c5592fdff49a47b1f8c32d3654))
+* refactor methods ([60ec5ac](https://github.com/dataleonlabs/dataleon-php/commit/60ec5ac1798f1302e674f3cda1d44c7fc9af110c))
+
 ## 0.13.0 (2025-09-13)
 
 Full Changelog: [v0.12.0...v0.13.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.12.0...v0.13.0)
