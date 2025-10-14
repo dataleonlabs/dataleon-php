@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies\CompanyRegistration;
 
+use Dataleon\Companies\CompanyRegistration\TechnicalData\PortalStep;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
@@ -27,6 +28,7 @@ use Dataleon\Core\Contracts\BaseModel;
  *   locationIP?: string,
  *   needReviewAt?: \DateTimeInterface|null,
  *   notificationConfirmation?: bool,
+ *   portalSteps?: list<value-of<PortalStep>>,
  *   qrCode?: string,
  *   rawData?: bool,
  *   rejectedAt?: \DateTimeInterface|null,
@@ -132,6 +134,14 @@ final class TechnicalData implements BaseModel
     public ?bool $notificationConfirmation;
 
     /**
+     * List of steps to include in the portal workflow.
+     *
+     * @var list<value-of<PortalStep>>|null $portalSteps
+     */
+    #[Api('portal_steps', list: PortalStep::class, optional: true)]
+    public ?array $portalSteps;
+
+    /**
      * Indicates whether QR code is enabled ("true" or "false").
      */
     #[Api('qr_code', optional: true)]
@@ -182,6 +192,8 @@ final class TechnicalData implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param list<PortalStep|value-of<PortalStep>> $portalSteps
      */
     public static function with(
         ?bool $activeAmlSuspicions = null,
@@ -199,6 +211,7 @@ final class TechnicalData implements BaseModel
         ?string $locationIP = null,
         ?\DateTimeInterface $needReviewAt = null,
         ?bool $notificationConfirmation = null,
+        ?array $portalSteps = null,
         ?string $qrCode = null,
         ?bool $rawData = null,
         ?\DateTimeInterface $rejectedAt = null,
@@ -224,6 +237,7 @@ final class TechnicalData implements BaseModel
         null !== $locationIP && $obj->locationIP = $locationIP;
         null !== $needReviewAt && $obj->needReviewAt = $needReviewAt;
         null !== $notificationConfirmation && $obj->notificationConfirmation = $notificationConfirmation;
+        null !== $portalSteps && $obj['portalSteps'] = $portalSteps;
         null !== $qrCode && $obj->qrCode = $qrCode;
         null !== $rawData && $obj->rawData = $rawData;
         null !== $rejectedAt && $obj->rejectedAt = $rejectedAt;
@@ -400,6 +414,19 @@ final class TechnicalData implements BaseModel
     ): self {
         $obj = clone $this;
         $obj->notificationConfirmation = $notificationConfirmation;
+
+        return $obj;
+    }
+
+    /**
+     * List of steps to include in the portal workflow.
+     *
+     * @param list<PortalStep|value-of<PortalStep>> $portalSteps
+     */
+    public function withPortalSteps(array $portalSteps): self
+    {
+        $obj = clone $this;
+        $obj['portalSteps'] = $portalSteps;
 
         return $obj;
     }

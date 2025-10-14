@@ -7,6 +7,7 @@ namespace Dataleon\Individuals\IndividualUpdateParams;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
+use Dataleon\Individuals\IndividualUpdateParams\TechnicalData\PortalStep;
 
 /**
  * Technical metadata related to the request or processing.
@@ -17,6 +18,7 @@ use Dataleon\Core\Contracts\BaseModel;
  *   callbackURLNotification?: string,
  *   filteringScoreAmlSuspicions?: float,
  *   language?: string,
+ *   portalSteps?: list<value-of<PortalStep>>,
  *   rawData?: bool,
  * }
  */
@@ -56,6 +58,14 @@ final class TechnicalData implements BaseModel
     public ?string $language;
 
     /**
+     * List of steps to include in the portal workflow.
+     *
+     * @var list<value-of<PortalStep>>|null $portalSteps
+     */
+    #[Api('portal_steps', list: PortalStep::class, optional: true)]
+    public ?array $portalSteps;
+
+    /**
      * Flag indicating whether to include raw data in the response.
      */
     #[Api('raw_data', optional: true)]
@@ -70,6 +80,8 @@ final class TechnicalData implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param list<PortalStep|value-of<PortalStep>> $portalSteps
      */
     public static function with(
         ?bool $activeAmlSuspicions = null,
@@ -77,6 +89,7 @@ final class TechnicalData implements BaseModel
         ?string $callbackURLNotification = null,
         ?float $filteringScoreAmlSuspicions = null,
         ?string $language = null,
+        ?array $portalSteps = null,
         ?bool $rawData = null,
     ): self {
         $obj = new self;
@@ -86,6 +99,7 @@ final class TechnicalData implements BaseModel
         null !== $callbackURLNotification && $obj->callbackURLNotification = $callbackURLNotification;
         null !== $filteringScoreAmlSuspicions && $obj->filteringScoreAmlSuspicions = $filteringScoreAmlSuspicions;
         null !== $language && $obj->language = $language;
+        null !== $portalSteps && $obj['portalSteps'] = $portalSteps;
         null !== $rawData && $obj->rawData = $rawData;
 
         return $obj;
@@ -144,6 +158,19 @@ final class TechnicalData implements BaseModel
     {
         $obj = clone $this;
         $obj->language = $language;
+
+        return $obj;
+    }
+
+    /**
+     * List of steps to include in the portal workflow.
+     *
+     * @param list<PortalStep|value-of<PortalStep>> $portalSteps
+     */
+    public function withPortalSteps(array $portalSteps): self
+    {
+        $obj = clone $this;
+        $obj['portalSteps'] = $portalSteps;
 
         return $obj;
     }
