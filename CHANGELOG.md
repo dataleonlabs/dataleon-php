@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.14.0 (2025-10-14)
+
+Full Changelog: [v0.13.1...v0.14.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.13.1...v0.14.0)
+
+### Features
+
+* **api:** api update ([674b030](https://github.com/dataleonlabs/dataleon-php/commit/674b0300af71fda2f1d67440847699389f8b3e6c))
+
+
+### Chores
+
+* add license ([11c79f9](https://github.com/dataleonlabs/dataleon-php/commit/11c79f9ffa5914c00cb44e13a3c6b7702862aa17))
+
 ## 0.13.1 (2025-10-09)
 
 Full Changelog: [v0.13.0...v0.13.1](https://github.com/dataleonlabs/dataleon-php/compare/v0.13.0...v0.13.1)
