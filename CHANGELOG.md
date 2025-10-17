@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.14.1 (2025-10-17)
+
+Full Changelog: [v0.14.0...v0.14.1](https://github.com/dataleonlabs/dataleon-php/compare/v0.14.0...v0.14.1)
+
+### Bug Fixes
+
+* inverted retry condition ([61f17db](https://github.com/dataleonlabs/dataleon-php/commit/61f17dbf028429558aa618a05ea3f1ca6b7314d4))
+
 ## 0.14.0 (2025-10-14)
 
 Full Changelog: [v0.13.1...v0.14.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.13.1...v0.14.0)
