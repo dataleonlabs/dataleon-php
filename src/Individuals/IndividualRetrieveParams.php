@@ -14,13 +14,13 @@ use Dataleon\Core\Contracts\BaseModel;
  *
  * @see Dataleon\Individuals->retrieve
  *
- * @phpstan-type individual_retrieve_params = array{
+ * @phpstan-type IndividualRetrieveParamsShape = array{
  *   document?: bool, scope?: string
  * }
  */
 final class IndividualRetrieveParams implements BaseModel
 {
-    /** @use SdkModel<individual_retrieve_params> */
+    /** @use SdkModel<IndividualRetrieveParamsShape> */
     use SdkModel;
     use SdkParams;
 

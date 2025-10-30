@@ -12,13 +12,13 @@ use Dataleon\Core\Conversion\Contracts\ResponseConverter;
 use Dataleon\Individuals\Documents\DocumentResponse\Document;
 
 /**
- * @phpstan-type document_response = array{
+ * @phpstan-type DocumentResponseShape = array{
  *   documents?: list<Document>, totalDocument?: int
  * }
  */
 final class DocumentResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<document_response> */
+    /** @use SdkModel<DocumentResponseShape> */
     use SdkModel;
 
     use SdkResponse;

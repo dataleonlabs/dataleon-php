@@ -16,7 +16,7 @@ use Dataleon\Core\Contracts\BaseModel;
  *
  * @see Dataleon\Companies->create
  *
- * @phpstan-type company_create_params = array{
+ * @phpstan-type CompanyCreateParamsShape = array{
  *   company: Company,
  *   workspaceID: string,
  *   sourceID?: string,
@@ -25,7 +25,7 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class CompanyCreateParams implements BaseModel
 {
-    /** @use SdkModel<company_create_params> */
+    /** @use SdkModel<CompanyCreateParamsShape> */
     use SdkModel;
     use SdkParams;
 

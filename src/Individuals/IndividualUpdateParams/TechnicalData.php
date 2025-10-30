@@ -12,7 +12,7 @@ use Dataleon\Individuals\IndividualUpdateParams\TechnicalData\PortalStep;
 /**
  * Technical metadata related to the request or processing.
  *
- * @phpstan-type technical_data = array{
+ * @phpstan-type TechnicalDataShape = array{
  *   activeAmlSuspicions?: bool,
  *   callbackURL?: string,
  *   callbackURLNotification?: string,
@@ -24,7 +24,7 @@ use Dataleon\Individuals\IndividualUpdateParams\TechnicalData\PortalStep;
  */
 final class TechnicalData implements BaseModel
 {
-    /** @use SdkModel<technical_data> */
+    /** @use SdkModel<TechnicalDataShape> */
     use SdkModel;
 
     /**

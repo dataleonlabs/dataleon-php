@@ -12,7 +12,7 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Technical metadata and callback configuration.
  *
- * @phpstan-type technical_data = array{
+ * @phpstan-type TechnicalDataShape = array{
  *   activeAmlSuspicions?: bool,
  *   callbackURL?: string,
  *   callbackURLNotification?: string,
@@ -24,7 +24,7 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class TechnicalData implements BaseModel
 {
-    /** @use SdkModel<technical_data> */
+    /** @use SdkModel<TechnicalDataShape> */
     use SdkModel;
 
     /**

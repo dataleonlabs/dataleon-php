@@ -12,7 +12,7 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Technical metadata related to the request, such as IP address, QR code settings, and callback URLs.
  *
- * @phpstan-type technical_data = array{
+ * @phpstan-type TechnicalDataShape = array{
  *   activeAmlSuspicions?: bool,
  *   apiVersion?: int,
  *   approvedAt?: \DateTimeInterface,
@@ -40,7 +40,7 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class TechnicalData implements BaseModel
 {
-    /** @use SdkModel<technical_data> */
+    /** @use SdkModel<TechnicalDataShape> */
     use SdkModel;
 
     /**

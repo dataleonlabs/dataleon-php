@@ -16,7 +16,7 @@ use Dataleon\Core\Contracts\BaseModel;
  *
  * @see Dataleon\Companies->list
  *
- * @phpstan-type company_list_params = array{
+ * @phpstan-type CompanyListParamsShape = array{
  *   endDate?: \DateTimeInterface,
  *   limit?: int,
  *   offset?: int,
@@ -29,7 +29,7 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class CompanyListParams implements BaseModel
 {
-    /** @use SdkModel<company_list_params> */
+    /** @use SdkModel<CompanyListParamsShape> */
     use SdkModel;
     use SdkParams;
 

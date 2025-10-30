@@ -16,7 +16,7 @@ use Dataleon\Individuals\IndividualListParams\Status;
  *
  * @see Dataleon\Individuals->list
  *
- * @phpstan-type individual_list_params = array{
+ * @phpstan-type IndividualListParamsShape = array{
  *   endDate?: \DateTimeInterface,
  *   limit?: int,
  *   offset?: int,
@@ -29,7 +29,7 @@ use Dataleon\Individuals\IndividualListParams\Status;
  */
 final class IndividualListParams implements BaseModel
 {
-    /** @use SdkModel<individual_list_params> */
+    /** @use SdkModel<IndividualListParamsShape> */
     use SdkModel;
     use SdkParams;
 

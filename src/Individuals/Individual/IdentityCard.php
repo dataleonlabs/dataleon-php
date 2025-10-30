@@ -11,7 +11,7 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Reference to the individual's identity document.
  *
- * @phpstan-type identity_card = array{
+ * @phpstan-type IdentityCardShape = array{
  *   id?: string,
  *   backDocumentSignedURL?: string,
  *   birthPlace?: string,
@@ -31,7 +31,7 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class IdentityCard implements BaseModel
 {
-    /** @use SdkModel<identity_card> */
+    /** @use SdkModel<IdentityCardShape> */
     use SdkModel;
 
     /**

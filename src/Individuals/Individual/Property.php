@@ -11,13 +11,13 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Represents a generic property key-value pair with a specified type.
  *
- * @phpstan-type property_alias = array{
+ * @phpstan-type PropertyShape = array{
  *   name?: string, type?: string, value?: string
  * }
  */
 final class Property implements BaseModel
 {
-    /** @use SdkModel<property_alias> */
+    /** @use SdkModel<PropertyShape> */
     use SdkModel;
 
     /**

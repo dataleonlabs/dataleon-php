@@ -11,13 +11,13 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Digital certificate associated with the individual, if any.
  *
- * @phpstan-type certificat_alias = array{
+ * @phpstan-type CertificatShape = array{
  *   id?: string, createdAt?: \DateTimeInterface, filename?: string
  * }
  */
 final class Certificat implements BaseModel
 {
-    /** @use SdkModel<certificat_alias> */
+    /** @use SdkModel<CertificatShape> */
     use SdkModel;
 
     /**

@@ -11,13 +11,13 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Represents a verification check result.
  *
- * @phpstan-type check_alias = array{
+ * @phpstan-type CheckShape = array{
  *   masked?: bool, message?: string, name?: string, validate?: bool, weight?: int
  * }
  */
 final class Check implements BaseModel
 {
-    /** @use SdkModel<check_alias> */
+    /** @use SdkModel<CheckShape> */
     use SdkModel;
 
     /**

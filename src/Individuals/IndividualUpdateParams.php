@@ -16,7 +16,7 @@ use Dataleon\Individuals\IndividualUpdateParams\TechnicalData;
  *
  * @see Dataleon\Individuals->update
  *
- * @phpstan-type individual_update_params = array{
+ * @phpstan-type IndividualUpdateParamsShape = array{
  *   workspaceID: string,
  *   person?: Person,
  *   sourceID?: string,
@@ -25,7 +25,7 @@ use Dataleon\Individuals\IndividualUpdateParams\TechnicalData;
  */
 final class IndividualUpdateParams implements BaseModel
 {
-    /** @use SdkModel<individual_update_params> */
+    /** @use SdkModel<IndividualUpdateParamsShape> */
     use SdkModel;
     use SdkParams;
 

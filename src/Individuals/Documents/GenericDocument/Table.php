@@ -9,11 +9,11 @@ use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type table_alias = array{operation?: list<mixed>}
+ * @phpstan-type TableShape = array{operation?: list<mixed>}
  */
 final class Table implements BaseModel
 {
-    /** @use SdkModel<table_alias> */
+    /** @use SdkModel<TableShape> */
     use SdkModel;
 
     /**

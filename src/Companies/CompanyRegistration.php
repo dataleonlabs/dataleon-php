@@ -20,7 +20,7 @@ use Dataleon\Core\Conversion\Contracts\ResponseConverter;
 use Dataleon\Individuals\Documents\GenericDocument;
 
 /**
- * @phpstan-type company_registration = array{
+ * @phpstan-type CompanyRegistrationShape = array{
  *   amlSuspicions?: list<AmlSuspicion>,
  *   certificat?: Certificat,
  *   checks?: list<Check>,
@@ -37,7 +37,7 @@ use Dataleon\Individuals\Documents\GenericDocument;
  */
 final class CompanyRegistration implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<company_registration> */
+    /** @use SdkModel<CompanyRegistrationShape> */
     use SdkModel;
 
     use SdkResponse;

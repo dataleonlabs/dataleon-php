@@ -23,7 +23,7 @@ use Dataleon\Individuals\Individual\TechnicalData;
 /**
  * Represents a single individual record, including identification, status, and associated metadata.
  *
- * @phpstan-type individual_alias = array{
+ * @phpstan-type IndividualShape = array{
  *   id?: string,
  *   amlSuspicions?: list<AmlSuspicion>,
  *   authURL?: string,
@@ -48,7 +48,7 @@ use Dataleon\Individuals\Individual\TechnicalData;
  */
 final class Individual implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<individual_alias> */
+    /** @use SdkModel<IndividualShape> */
     use SdkModel;
 
     use SdkResponse;

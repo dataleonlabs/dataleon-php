@@ -16,7 +16,7 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
 /**
  * Represents a general document with metadata, verification checks, and extracted data.
  *
- * @phpstan-type generic_document = array{
+ * @phpstan-type GenericDocumentShape = array{
  *   id?: string,
  *   checks?: list<Check>,
  *   createdAt?: \DateTimeInterface,
@@ -31,7 +31,7 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
  */
 final class GenericDocument implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<generic_document> */
+    /** @use SdkModel<GenericDocumentShape> */
     use SdkModel;
 
     use SdkResponse;
