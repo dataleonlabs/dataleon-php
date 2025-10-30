@@ -16,7 +16,7 @@ use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
  *
  * @see Dataleon\Individuals->create
  *
- * @phpstan-type individual_create_params = array{
+ * @phpstan-type IndividualCreateParamsShape = array{
  *   workspaceID: string,
  *   person?: Person,
  *   sourceID?: string,
@@ -25,7 +25,7 @@ use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
  */
 final class IndividualCreateParams implements BaseModel
 {
-    /** @use SdkModel<individual_create_params> */
+    /** @use SdkModel<IndividualCreateParamsShape> */
     use SdkModel;
     use SdkParams;
 

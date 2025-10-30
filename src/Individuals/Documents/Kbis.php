@@ -12,7 +12,7 @@ use Dataleon\Individuals\Documents\Kbis\Member;
 /**
  * A document representing official registration data from the KBIS (France).
  *
- * @phpstan-type kbis_alias = array{
+ * @phpstan-type KbisShape = array{
  *   activities?: string,
  *   address?: string,
  *   capitalSocial?: string,
@@ -32,7 +32,7 @@ use Dataleon\Individuals\Documents\Kbis\Member;
  */
 final class Kbis implements BaseModel
 {
-    /** @use SdkModel<kbis_alias> */
+    /** @use SdkModel<KbisShape> */
     use SdkModel;
 
     /**

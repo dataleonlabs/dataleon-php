@@ -9,13 +9,13 @@ use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type value_alias = array{
+ * @phpstan-type ValueShape = array{
  *   confidence?: float, name?: string, value?: list<int>
  * }
  */
 final class Value implements BaseModel
 {
-    /** @use SdkModel<value_alias> */
+    /** @use SdkModel<ValueShape> */
     use SdkModel;
 
     /**

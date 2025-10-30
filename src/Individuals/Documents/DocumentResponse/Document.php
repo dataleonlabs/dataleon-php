@@ -11,7 +11,7 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Represents a document stored and processed by the system, such as an identity card or a PDF contract.
  *
- * @phpstan-type document_alias = array{
+ * @phpstan-type DocumentShape = array{
  *   id?: string,
  *   documentType?: string,
  *   filename?: string,
@@ -24,7 +24,7 @@ use Dataleon\Core\Contracts\BaseModel;
  */
 final class Document implements BaseModel
 {
-    /** @use SdkModel<document_alias> */
+    /** @use SdkModel<DocumentShape> */
     use SdkModel;
 
     /**

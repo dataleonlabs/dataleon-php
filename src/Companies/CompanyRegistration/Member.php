@@ -14,7 +14,7 @@ use Dataleon\Individuals\Documents\GenericDocument;
 /**
  * Represents a member or actor of a company, including personal and ownership information.
  *
- * @phpstan-type member_alias = array{
+ * @phpstan-type MemberShape = array{
  *   id?: string,
  *   address?: string,
  *   birthday?: \DateTimeInterface,
@@ -43,7 +43,7 @@ use Dataleon\Individuals\Documents\GenericDocument;
  */
 final class Member implements BaseModel
 {
-    /** @use SdkModel<member_alias> */
+    /** @use SdkModel<MemberShape> */
     use SdkModel;
 
     #[Api(optional: true)]
