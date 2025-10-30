@@ -11,11 +11,11 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Risk assessment associated with the individual.
  *
- * @phpstan-type risk_alias = array{code?: string, reason?: string, score?: float}
+ * @phpstan-type RiskShape = array{code?: string, reason?: string, score?: float}
  */
 final class Risk implements BaseModel
 {
-    /** @use SdkModel<risk_alias> */
+    /** @use SdkModel<RiskShape> */
     use SdkModel;
 
     /**

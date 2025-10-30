@@ -12,7 +12,7 @@ use Dataleon\Individuals\Individual\TechnicalData\PortalStep;
 /**
  * Technical metadata related to the request (e.g., QR code settings, language).
  *
- * @phpstan-type technical_data = array{
+ * @phpstan-type TechnicalDataShape = array{
  *   activeAmlSuspicions?: bool,
  *   apiVersion?: int,
  *   approvedAt?: \DateTimeInterface,
@@ -40,7 +40,7 @@ use Dataleon\Individuals\Individual\TechnicalData\PortalStep;
  */
 final class TechnicalData implements BaseModel
 {
-    /** @use SdkModel<technical_data> */
+    /** @use SdkModel<TechnicalDataShape> */
     use SdkModel;
 
     /**

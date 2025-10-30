@@ -12,7 +12,7 @@ use Dataleon\Individuals\Documents\Kbis\Member\Type;
 /**
  * A member (person or entity) associated with the company from a KBIS document.
  *
- * @phpstan-type member_alias = array{
+ * @phpstan-type MemberShape = array{
  *   id?: string,
  *   address?: string,
  *   birthday?: \DateTimeInterface,
@@ -39,7 +39,7 @@ use Dataleon\Individuals\Documents\Kbis\Member\Type;
  */
 final class Member implements BaseModel
 {
-    /** @use SdkModel<member_alias> */
+    /** @use SdkModel<MemberShape> */
     use SdkModel;
 
     /**
