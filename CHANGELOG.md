@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.15.0 (2025-11-05)
+
+Full Changelog: [v0.14.1...v0.15.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.14.1...v0.15.0)
+
+### ⚠ BREAKING CHANGES
+
+* remove confusing `toArray()` alias to `__serialize()` in favour of `toProperties()`
+
+### Features
+
+* remove confusing `toArray()` alias to `__serialize()` in favour of `toProperties()` ([bb42cc8](https://github.com/dataleonlabs/dataleon-php/commit/bb42cc8ed3848cd2c7080ca5bdecc779b6701f9e))
+
+
+### Bug Fixes
+
+* ensure auth methods return non-nullable arrays ([9ac8550](https://github.com/dataleonlabs/dataleon-php/commit/9ac85500b884f0a076a7cd8c1d67a40d0bd30718))
+
+
+### Chores
+
+* **client:** send metadata headers ([5a9511a](https://github.com/dataleonlabs/dataleon-php/commit/5a9511a19ae2da727e5bf8d0b16835490450a959))
+* use pascal case for phpstan typedefs ([bae68c0](https://github.com/dataleonlabs/dataleon-php/commit/bae68c0372645ae8f34328a3a31eb4b9431ca887))
+
 ## 0.14.1 (2025-10-17)
 
 Full Changelog: [v0.14.0...v0.14.1](https://github.com/dataleonlabs/dataleon-php/compare/v0.14.0...v0.14.1)
