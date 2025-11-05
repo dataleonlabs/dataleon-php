@@ -64,6 +64,6 @@ class Client extends BaseClient
     /** @return array<string, string> */
     protected function authHeaders(): array
     {
-        return ['Api-Key' => $this->apiKey];
+        return $this->apiKey ? ['Api-Key' => $this->apiKey] : [];
     }
 }
