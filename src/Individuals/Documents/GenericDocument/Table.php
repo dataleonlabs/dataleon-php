@@ -9,7 +9,7 @@ use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type TableShape = array{operation?: list<mixed>}
+ * @phpstan-type TableShape = array{operation?: list<mixed>|null}
  */
 final class Table implements BaseModel
 {

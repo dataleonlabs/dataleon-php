@@ -12,7 +12,10 @@ use Dataleon\Core\Contracts\BaseModel;
  * Represents a key-value metadata tag that can be associated with entities such as individuals or companies.
  *
  * @phpstan-type TagShape = array{
- *   key?: string, private?: bool, type?: string, value?: string
+ *   key?: string|null,
+ *   private?: bool|null,
+ *   type?: string|null,
+ *   value?: string|null,
  * }
  */
 final class Tag implements BaseModel

@@ -13,14 +13,14 @@ use Dataleon\Individuals\IndividualCreateParams\Person\Gender;
  * Personal information about the individual.
  *
  * @phpstan-type PersonShape = array{
- *   birthday?: string,
- *   email?: string,
- *   firstName?: string,
- *   gender?: value-of<Gender>,
- *   lastName?: string,
- *   maidenName?: string,
- *   nationality?: string,
- *   phoneNumber?: string,
+ *   birthday?: string|null,
+ *   email?: string|null,
+ *   first_name?: string|null,
+ *   gender?: value-of<Gender>|null,
+ *   last_name?: string|null,
+ *   maiden_name?: string|null,
+ *   nationality?: string|null,
+ *   phone_number?: string|null,
  * }
  */
 final class Person implements BaseModel
@@ -43,8 +43,8 @@ final class Person implements BaseModel
     /**
      * First name of the individual.
      */
-    #[Api('first_name', optional: true)]
-    public ?string $firstName;
+    #[Api(optional: true)]
+    public ?string $first_name;
 
     /**
      * Gender of the individual (M for male, F for female).
@@ -57,14 +57,14 @@ final class Person implements BaseModel
     /**
      * Last name (family name) of the individual.
      */
-    #[Api('last_name', optional: true)]
-    public ?string $lastName;
+    #[Api(optional: true)]
+    public ?string $last_name;
 
     /**
      * Maiden name, if applicable.
      */
-    #[Api('maiden_name', optional: true)]
-    public ?string $maidenName;
+    #[Api(optional: true)]
+    public ?string $maiden_name;
 
     /**
      * Nationality of the individual (ISO 3166-1 alpha-3 country code).
@@ -75,8 +75,8 @@ final class Person implements BaseModel
     /**
      * Phone number of the individual.
      */
-    #[Api('phone_number', optional: true)]
-    public ?string $phoneNumber;
+    #[Api(optional: true)]
+    public ?string $phone_number;
 
     public function __construct()
     {
@@ -93,23 +93,23 @@ final class Person implements BaseModel
     public static function with(
         ?string $birthday = null,
         ?string $email = null,
-        ?string $firstName = null,
+        ?string $first_name = null,
         Gender|string|null $gender = null,
-        ?string $lastName = null,
-        ?string $maidenName = null,
+        ?string $last_name = null,
+        ?string $maiden_name = null,
         ?string $nationality = null,
-        ?string $phoneNumber = null,
+        ?string $phone_number = null,
     ): self {
         $obj = new self;
 
         null !== $birthday && $obj->birthday = $birthday;
         null !== $email && $obj->email = $email;
-        null !== $firstName && $obj->firstName = $firstName;
+        null !== $first_name && $obj->first_name = $first_name;
         null !== $gender && $obj['gender'] = $gender;
-        null !== $lastName && $obj->lastName = $lastName;
-        null !== $maidenName && $obj->maidenName = $maidenName;
+        null !== $last_name && $obj->last_name = $last_name;
+        null !== $maiden_name && $obj->maiden_name = $maiden_name;
         null !== $nationality && $obj->nationality = $nationality;
-        null !== $phoneNumber && $obj->phoneNumber = $phoneNumber;
+        null !== $phone_number && $obj->phone_number = $phone_number;
 
         return $obj;
     }
@@ -142,7 +142,7 @@ final class Person implements BaseModel
     public function withFirstName(string $firstName): self
     {
         $obj = clone $this;
-        $obj->firstName = $firstName;
+        $obj->first_name = $firstName;
 
         return $obj;
     }
@@ -166,7 +166,7 @@ final class Person implements BaseModel
     public function withLastName(string $lastName): self
     {
         $obj = clone $this;
-        $obj->lastName = $lastName;
+        $obj->last_name = $lastName;
 
         return $obj;
     }
@@ -177,7 +177,7 @@ final class Person implements BaseModel
     public function withMaidenName(string $maidenName): self
     {
         $obj = clone $this;
-        $obj->maidenName = $maidenName;
+        $obj->maiden_name = $maidenName;
 
         return $obj;
     }
@@ -199,7 +199,7 @@ final class Person implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phoneNumber = $phoneNumber;
+        $obj->phone_number = $phoneNumber;
 
         return $obj;
     }

@@ -18,9 +18,9 @@ use Dataleon\Core\Contracts\BaseModel;
  *
  * @phpstan-type CompanyCreateParamsShape = array{
  *   company: Company,
- *   workspaceID: string,
- *   sourceID?: string,
- *   technicalData?: TechnicalData,
+ *   workspace_id: string,
+ *   source_id?: string,
+ *   technical_data?: TechnicalData,
  * }
  */
 final class CompanyCreateParams implements BaseModel
@@ -38,27 +38,27 @@ final class CompanyCreateParams implements BaseModel
     /**
      * Unique identifier of the workspace in which the company is being created.
      */
-    #[Api('workspace_id')]
-    public string $workspaceID;
+    #[Api]
+    public string $workspace_id;
 
     /**
      * Optional identifier to track the origin of the request or integration from your system.
      */
-    #[Api('source_id', optional: true)]
-    public ?string $sourceID;
+    #[Api(optional: true)]
+    public ?string $source_id;
 
     /**
      * Technical metadata and callback configuration.
      */
-    #[Api('technical_data', optional: true)]
-    public ?TechnicalData $technicalData;
+    #[Api(optional: true)]
+    public ?TechnicalData $technical_data;
 
     /**
      * `new CompanyCreateParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * CompanyCreateParams::with(company: ..., workspaceID: ...)
+     * CompanyCreateParams::with(company: ..., workspace_id: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -79,17 +79,17 @@ final class CompanyCreateParams implements BaseModel
      */
     public static function with(
         Company $company,
-        string $workspaceID,
-        ?string $sourceID = null,
-        ?TechnicalData $technicalData = null,
+        string $workspace_id,
+        ?string $source_id = null,
+        ?TechnicalData $technical_data = null,
     ): self {
         $obj = new self;
 
         $obj->company = $company;
-        $obj->workspaceID = $workspaceID;
+        $obj->workspace_id = $workspace_id;
 
-        null !== $sourceID && $obj->sourceID = $sourceID;
-        null !== $technicalData && $obj->technicalData = $technicalData;
+        null !== $source_id && $obj->source_id = $source_id;
+        null !== $technical_data && $obj->technical_data = $technical_data;
 
         return $obj;
     }
@@ -111,7 +111,7 @@ final class CompanyCreateParams implements BaseModel
     public function withWorkspaceID(string $workspaceID): self
     {
         $obj = clone $this;
-        $obj->workspaceID = $workspaceID;
+        $obj->workspace_id = $workspaceID;
 
         return $obj;
     }
@@ -122,7 +122,7 @@ final class CompanyCreateParams implements BaseModel
     public function withSourceID(string $sourceID): self
     {
         $obj = clone $this;
-        $obj->sourceID = $sourceID;
+        $obj->source_id = $sourceID;
 
         return $obj;
     }
@@ -133,7 +133,7 @@ final class CompanyCreateParams implements BaseModel
     public function withTechnicalData(TechnicalData $technicalData): self
     {
         $obj = clone $this;
-        $obj->technicalData = $technicalData;
+        $obj->technical_data = $technicalData;
 
         return $obj;
     }

@@ -12,16 +12,16 @@ use Dataleon\Core\Contracts\BaseModel;
  * Personal details of the individual, such as name, date of birth, and contact info.
  *
  * @phpstan-type PersonShape = array{
- *   birthday?: string,
- *   email?: string,
- *   faceImageSignedURL?: string,
- *   firstName?: string,
- *   fullName?: string,
- *   gender?: string,
- *   lastName?: string,
- *   maidenName?: string,
- *   nationality?: string,
- *   phoneNumber?: string,
+ *   birthday?: string|null,
+ *   email?: string|null,
+ *   face_image_signed_url?: string|null,
+ *   first_name?: string|null,
+ *   full_name?: string|null,
+ *   gender?: string|null,
+ *   last_name?: string|null,
+ *   maiden_name?: string|null,
+ *   nationality?: string|null,
+ *   phone_number?: string|null,
  * }
  */
 final class Person implements BaseModel
@@ -44,20 +44,20 @@ final class Person implements BaseModel
     /**
      * Signed URL linking to the person’s face image.
      */
-    #[Api('face_image_signed_url', optional: true)]
-    public ?string $faceImageSignedURL;
+    #[Api(optional: true)]
+    public ?string $face_image_signed_url;
 
     /**
      * First (given) name of the person.
      */
-    #[Api('first_name', optional: true)]
-    public ?string $firstName;
+    #[Api(optional: true)]
+    public ?string $first_name;
 
     /**
      * Full name of the person, typically concatenation of first and last names.
      */
-    #[Api('full_name', optional: true)]
-    public ?string $fullName;
+    #[Api(optional: true)]
+    public ?string $full_name;
 
     /**
      * Gender of the individual (e.g., "M" for male, "F" for female).
@@ -68,14 +68,14 @@ final class Person implements BaseModel
     /**
      * Last (family) name of the person.
      */
-    #[Api('last_name', optional: true)]
-    public ?string $lastName;
+    #[Api(optional: true)]
+    public ?string $last_name;
 
     /**
      * Maiden name of the person, if applicable.
      */
-    #[Api('maiden_name', optional: true)]
-    public ?string $maidenName;
+    #[Api(optional: true)]
+    public ?string $maiden_name;
 
     /**
      * Nationality of the individual (ISO 3166-1 alpha-3 country code).
@@ -86,8 +86,8 @@ final class Person implements BaseModel
     /**
      * Contact phone number including country code.
      */
-    #[Api('phone_number', optional: true)]
-    public ?string $phoneNumber;
+    #[Api(optional: true)]
+    public ?string $phone_number;
 
     public function __construct()
     {
@@ -102,27 +102,27 @@ final class Person implements BaseModel
     public static function with(
         ?string $birthday = null,
         ?string $email = null,
-        ?string $faceImageSignedURL = null,
-        ?string $firstName = null,
-        ?string $fullName = null,
+        ?string $face_image_signed_url = null,
+        ?string $first_name = null,
+        ?string $full_name = null,
         ?string $gender = null,
-        ?string $lastName = null,
-        ?string $maidenName = null,
+        ?string $last_name = null,
+        ?string $maiden_name = null,
         ?string $nationality = null,
-        ?string $phoneNumber = null,
+        ?string $phone_number = null,
     ): self {
         $obj = new self;
 
         null !== $birthday && $obj->birthday = $birthday;
         null !== $email && $obj->email = $email;
-        null !== $faceImageSignedURL && $obj->faceImageSignedURL = $faceImageSignedURL;
-        null !== $firstName && $obj->firstName = $firstName;
-        null !== $fullName && $obj->fullName = $fullName;
+        null !== $face_image_signed_url && $obj->face_image_signed_url = $face_image_signed_url;
+        null !== $first_name && $obj->first_name = $first_name;
+        null !== $full_name && $obj->full_name = $full_name;
         null !== $gender && $obj->gender = $gender;
-        null !== $lastName && $obj->lastName = $lastName;
-        null !== $maidenName && $obj->maidenName = $maidenName;
+        null !== $last_name && $obj->last_name = $last_name;
+        null !== $maiden_name && $obj->maiden_name = $maiden_name;
         null !== $nationality && $obj->nationality = $nationality;
-        null !== $phoneNumber && $obj->phoneNumber = $phoneNumber;
+        null !== $phone_number && $obj->phone_number = $phone_number;
 
         return $obj;
     }
@@ -155,7 +155,7 @@ final class Person implements BaseModel
     public function withFaceImageSignedURL(string $faceImageSignedURL): self
     {
         $obj = clone $this;
-        $obj->faceImageSignedURL = $faceImageSignedURL;
+        $obj->face_image_signed_url = $faceImageSignedURL;
 
         return $obj;
     }
@@ -166,7 +166,7 @@ final class Person implements BaseModel
     public function withFirstName(string $firstName): self
     {
         $obj = clone $this;
-        $obj->firstName = $firstName;
+        $obj->first_name = $firstName;
 
         return $obj;
     }
@@ -177,7 +177,7 @@ final class Person implements BaseModel
     public function withFullName(string $fullName): self
     {
         $obj = clone $this;
-        $obj->fullName = $fullName;
+        $obj->full_name = $fullName;
 
         return $obj;
     }
@@ -199,7 +199,7 @@ final class Person implements BaseModel
     public function withLastName(string $lastName): self
     {
         $obj = clone $this;
-        $obj->lastName = $lastName;
+        $obj->last_name = $lastName;
 
         return $obj;
     }
@@ -210,7 +210,7 @@ final class Person implements BaseModel
     public function withMaidenName(string $maidenName): self
     {
         $obj = clone $this;
-        $obj->maidenName = $maidenName;
+        $obj->maiden_name = $maidenName;
 
         return $obj;
     }
@@ -232,7 +232,7 @@ final class Person implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phoneNumber = $phoneNumber;
+        $obj->phone_number = $phoneNumber;
 
         return $obj;
     }

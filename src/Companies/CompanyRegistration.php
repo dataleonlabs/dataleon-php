@@ -21,18 +21,18 @@ use Dataleon\Individuals\Documents\GenericDocument;
 
 /**
  * @phpstan-type CompanyRegistrationShape = array{
- *   amlSuspicions?: list<AmlSuspicion>,
- *   certificat?: Certificat,
- *   checks?: list<Check>,
- *   company?: Company,
- *   documents?: list<GenericDocument>,
- *   members?: list<Member>,
- *   portalURL?: string,
- *   properties?: list<Property>,
- *   risk?: Risk,
- *   sourceID?: string,
- *   technicalData?: TechnicalData,
- *   webviewURL?: string,
+ *   aml_suspicions?: list<AmlSuspicion>|null,
+ *   certificat?: Certificat|null,
+ *   checks?: list<Check>|null,
+ *   company?: Company|null,
+ *   documents?: list<GenericDocument>|null,
+ *   members?: list<Member>|null,
+ *   portal_url?: string|null,
+ *   properties?: list<Property>|null,
+ *   risk?: Risk|null,
+ *   source_id?: string|null,
+ *   technical_data?: TechnicalData|null,
+ *   webview_url?: string|null,
  * }
  */
 final class CompanyRegistration implements BaseModel, ResponseConverter
@@ -45,10 +45,10 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the company, including their details.
      *
-     * @var list<AmlSuspicion>|null $amlSuspicions
+     * @var list<AmlSuspicion>|null $aml_suspicions
      */
-    #[Api('aml_suspicions', list: AmlSuspicion::class, optional: true)]
-    public ?array $amlSuspicions;
+    #[Api(list: AmlSuspicion::class, optional: true)]
+    public ?array $aml_suspicions;
 
     /**
      * Digital certificate associated with the company, if any, including its creation timestamp and filename.
@@ -89,8 +89,8 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
     /**
      * Admin or internal portal URL for viewing the company's details, typically used by internal users.
      */
-    #[Api('portal_url', optional: true)]
-    public ?string $portalURL;
+    #[Api(optional: true)]
+    public ?string $portal_url;
 
     /**
      * Custom key-value metadata fields associated with the company, allowing for flexible data storage.
@@ -109,20 +109,20 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
     /**
      * Optional identifier indicating the source of the company record, useful for tracking or integration purposes.
      */
-    #[Api('source_id', optional: true)]
-    public ?string $sourceID;
+    #[Api(optional: true)]
+    public ?string $source_id;
 
     /**
      * Technical metadata related to the request, such as IP address, QR code settings, and callback URLs.
      */
-    #[Api('technical_data', optional: true)]
-    public ?TechnicalData $technicalData;
+    #[Api(optional: true)]
+    public ?TechnicalData $technical_data;
 
     /**
      * Public-facing webview URL for the company’s identification process, allowing external access to the company data.
      */
-    #[Api('webview_url', optional: true)]
-    public ?string $webviewURL;
+    #[Api(optional: true)]
+    public ?string $webview_url;
 
     public function __construct()
     {
@@ -134,40 +134,40 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AmlSuspicion> $amlSuspicions
+     * @param list<AmlSuspicion> $aml_suspicions
      * @param list<Check> $checks
      * @param list<GenericDocument> $documents
      * @param list<Member> $members
      * @param list<Property> $properties
      */
     public static function with(
-        ?array $amlSuspicions = null,
+        ?array $aml_suspicions = null,
         ?Certificat $certificat = null,
         ?array $checks = null,
         ?Company $company = null,
         ?array $documents = null,
         ?array $members = null,
-        ?string $portalURL = null,
+        ?string $portal_url = null,
         ?array $properties = null,
         ?Risk $risk = null,
-        ?string $sourceID = null,
-        ?TechnicalData $technicalData = null,
-        ?string $webviewURL = null,
+        ?string $source_id = null,
+        ?TechnicalData $technical_data = null,
+        ?string $webview_url = null,
     ): self {
         $obj = new self;
 
-        null !== $amlSuspicions && $obj->amlSuspicions = $amlSuspicions;
+        null !== $aml_suspicions && $obj->aml_suspicions = $aml_suspicions;
         null !== $certificat && $obj->certificat = $certificat;
         null !== $checks && $obj->checks = $checks;
         null !== $company && $obj->company = $company;
         null !== $documents && $obj->documents = $documents;
         null !== $members && $obj->members = $members;
-        null !== $portalURL && $obj->portalURL = $portalURL;
+        null !== $portal_url && $obj->portal_url = $portal_url;
         null !== $properties && $obj->properties = $properties;
         null !== $risk && $obj->risk = $risk;
-        null !== $sourceID && $obj->sourceID = $sourceID;
-        null !== $technicalData && $obj->technicalData = $technicalData;
-        null !== $webviewURL && $obj->webviewURL = $webviewURL;
+        null !== $source_id && $obj->source_id = $source_id;
+        null !== $technical_data && $obj->technical_data = $technical_data;
+        null !== $webview_url && $obj->webview_url = $webview_url;
 
         return $obj;
     }
@@ -180,7 +180,7 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
     public function withAmlSuspicions(array $amlSuspicions): self
     {
         $obj = clone $this;
-        $obj->amlSuspicions = $amlSuspicions;
+        $obj->aml_suspicions = $amlSuspicions;
 
         return $obj;
     }
@@ -252,7 +252,7 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
     public function withPortalURL(string $portalURL): self
     {
         $obj = clone $this;
-        $obj->portalURL = $portalURL;
+        $obj->portal_url = $portalURL;
 
         return $obj;
     }
@@ -287,7 +287,7 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
     public function withSourceID(string $sourceID): self
     {
         $obj = clone $this;
-        $obj->sourceID = $sourceID;
+        $obj->source_id = $sourceID;
 
         return $obj;
     }
@@ -298,7 +298,7 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
     public function withTechnicalData(TechnicalData $technicalData): self
     {
         $obj = clone $this;
-        $obj->technicalData = $technicalData;
+        $obj->technical_data = $technicalData;
 
         return $obj;
     }
@@ -309,7 +309,7 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
     public function withWebviewURL(string $webviewURL): self
     {
         $obj = clone $this;
-        $obj->webviewURL = $webviewURL;
+        $obj->webview_url = $webviewURL;
 
         return $obj;
     }

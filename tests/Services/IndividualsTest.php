@@ -33,7 +33,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->individuals->create(workspaceID: 'wk_123');
+        $result = $this->client->individuals->create(['workspace_id' => 'wk_123']);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -45,7 +45,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->individuals->create(workspaceID: 'wk_123');
+        $result = $this->client->individuals->create(['workspace_id' => 'wk_123']);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -57,7 +57,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->individuals->retrieve('individual_id');
+        $result = $this->client->individuals->retrieve('individual_id', []);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -71,7 +71,7 @@ final class IndividualsTest extends TestCase
 
         $result = $this->client->individuals->update(
             'individual_id',
-            workspaceID: 'wk_123'
+            ['workspace_id' => 'wk_123']
         );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
@@ -86,7 +86,7 @@ final class IndividualsTest extends TestCase
 
         $result = $this->client->individuals->update(
             'individual_id',
-            workspaceID: 'wk_123'
+            ['workspace_id' => 'wk_123']
         );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
@@ -99,7 +99,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->individuals->list();
+        $result = $this->client->individuals->list([]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }

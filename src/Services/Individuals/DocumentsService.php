@@ -13,8 +13,6 @@ use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\Individuals\DocumentsContract;
 
-use const Dataleon\Core\OMIT as omit;
-
 final class DocumentsService implements DocumentsContract
 {
     /**
@@ -47,39 +45,20 @@ final class DocumentsService implements DocumentsContract
      *
      * Upload documents to an individual
      *
-     * @param DocumentType|value-of<DocumentType> $documentType Filter by document type for upload (must be one of the allowed values)
-     * @param string $file File to upload (required)
-     * @param string $url URL of the file to upload (either `file` or `url` is required)
+     * @param array{
+     *   document_type: value-of<DocumentType>, file?: string, url?: string
+     * }|DocumentUploadParams $params
      *
      * @throws APIException
      */
     public function upload(
         string $individualID,
-        $documentType,
-        $file = omit,
-        $url = omit,
+        array|DocumentUploadParams $params,
         ?RequestOptions $requestOptions = null,
-    ): GenericDocument {
-        $params = ['documentType' => $documentType, 'file' => $file, 'url' => $url];
-
-        return $this->uploadRaw($individualID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function uploadRaw(
-        string $individualID,
-        array $params,
-        ?RequestOptions $requestOptions = null
     ): GenericDocument {
         [$parsed, $options] = DocumentUploadParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;

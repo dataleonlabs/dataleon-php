@@ -17,10 +17,10 @@ use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
  * @see Dataleon\Individuals->create
  *
  * @phpstan-type IndividualCreateParamsShape = array{
- *   workspaceID: string,
+ *   workspace_id: string,
  *   person?: Person,
- *   sourceID?: string,
- *   technicalData?: TechnicalData,
+ *   source_id?: string,
+ *   technical_data?: TechnicalData,
  * }
  */
 final class IndividualCreateParams implements BaseModel
@@ -32,8 +32,8 @@ final class IndividualCreateParams implements BaseModel
     /**
      * Unique identifier of the workspace where the individual is being registered.
      */
-    #[Api('workspace_id')]
-    public string $workspaceID;
+    #[Api]
+    public string $workspace_id;
 
     /**
      * Personal information about the individual.
@@ -44,21 +44,21 @@ final class IndividualCreateParams implements BaseModel
     /**
      * Optional identifier for tracking the source system or integration from your system.
      */
-    #[Api('source_id', optional: true)]
-    public ?string $sourceID;
+    #[Api(optional: true)]
+    public ?string $source_id;
 
     /**
      * Technical metadata related to the request or processing.
      */
-    #[Api('technical_data', optional: true)]
-    public ?TechnicalData $technicalData;
+    #[Api(optional: true)]
+    public ?TechnicalData $technical_data;
 
     /**
      * `new IndividualCreateParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * IndividualCreateParams::with(workspaceID: ...)
+     * IndividualCreateParams::with(workspace_id: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -78,18 +78,18 @@ final class IndividualCreateParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $workspaceID,
+        string $workspace_id,
         ?Person $person = null,
-        ?string $sourceID = null,
-        ?TechnicalData $technicalData = null,
+        ?string $source_id = null,
+        ?TechnicalData $technical_data = null,
     ): self {
         $obj = new self;
 
-        $obj->workspaceID = $workspaceID;
+        $obj->workspace_id = $workspace_id;
 
         null !== $person && $obj->person = $person;
-        null !== $sourceID && $obj->sourceID = $sourceID;
-        null !== $technicalData && $obj->technicalData = $technicalData;
+        null !== $source_id && $obj->source_id = $source_id;
+        null !== $technical_data && $obj->technical_data = $technical_data;
 
         return $obj;
     }
@@ -100,7 +100,7 @@ final class IndividualCreateParams implements BaseModel
     public function withWorkspaceID(string $workspaceID): self
     {
         $obj = clone $this;
-        $obj->workspaceID = $workspaceID;
+        $obj->workspace_id = $workspaceID;
 
         return $obj;
     }
@@ -122,7 +122,7 @@ final class IndividualCreateParams implements BaseModel
     public function withSourceID(string $sourceID): self
     {
         $obj = clone $this;
-        $obj->sourceID = $sourceID;
+        $obj->source_id = $sourceID;
 
         return $obj;
     }
@@ -133,7 +133,7 @@ final class IndividualCreateParams implements BaseModel
     public function withTechnicalData(TechnicalData $technicalData): self
     {
         $obj = clone $this;
-        $obj->technicalData = $technicalData;
+        $obj->technical_data = $technicalData;
 
         return $obj;
     }
