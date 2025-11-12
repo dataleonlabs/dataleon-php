@@ -16,7 +16,9 @@ use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
  * @see Dataleon\Individuals\Documents->upload
  *
  * @phpstan-type DocumentUploadParamsShape = array{
- *   documentType: DocumentType|value-of<DocumentType>, file?: string, url?: string
+ *   document_type: DocumentType|value-of<DocumentType>,
+ *   file?: string,
+ *   url?: string,
  * }
  */
 final class DocumentUploadParams implements BaseModel
@@ -28,10 +30,10 @@ final class DocumentUploadParams implements BaseModel
     /**
      * Filter by document type for upload (must be one of the allowed values).
      *
-     * @var value-of<DocumentType> $documentType
+     * @var value-of<DocumentType> $document_type
      */
-    #[Api('document_type', enum: DocumentType::class)]
-    public string $documentType;
+    #[Api(enum: DocumentType::class)]
+    public string $document_type;
 
     /**
      * File to upload (required).
@@ -50,7 +52,7 @@ final class DocumentUploadParams implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * DocumentUploadParams::with(documentType: ...)
+     * DocumentUploadParams::with(document_type: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -69,16 +71,16 @@ final class DocumentUploadParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param DocumentType|value-of<DocumentType> $documentType
+     * @param DocumentType|value-of<DocumentType> $document_type
      */
     public static function with(
-        DocumentType|string $documentType,
+        DocumentType|string $document_type,
         ?string $file = null,
         ?string $url = null
     ): self {
         $obj = new self;
 
-        $obj['documentType'] = $documentType;
+        $obj['document_type'] = $document_type;
 
         null !== $file && $obj->file = $file;
         null !== $url && $obj->url = $url;
@@ -94,7 +96,7 @@ final class DocumentUploadParams implements BaseModel
     public function withDocumentType(DocumentType|string $documentType): self
     {
         $obj = clone $this;
-        $obj['documentType'] = $documentType;
+        $obj['document_type'] = $documentType;
 
         return $obj;
     }

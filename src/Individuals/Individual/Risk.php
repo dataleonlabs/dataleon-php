@@ -11,7 +11,9 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Risk assessment associated with the individual.
  *
- * @phpstan-type RiskShape = array{code?: string, reason?: string, score?: float}
+ * @phpstan-type RiskShape = array{
+ *   code?: string|null, reason?: string|null, score?: float|null
+ * }
  */
 final class Risk implements BaseModel
 {

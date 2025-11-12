@@ -12,14 +12,14 @@ use Dataleon\Core\Contracts\BaseModel;
  * Represents a document stored and processed by the system, such as an identity card or a PDF contract.
  *
  * @phpstan-type DocumentShape = array{
- *   id?: string,
- *   documentType?: string,
- *   filename?: string,
- *   name?: string,
- *   signedURL?: string,
- *   state?: string,
- *   status?: string,
- *   workspaceID?: string,
+ *   id?: string|null,
+ *   document_type?: string|null,
+ *   filename?: string|null,
+ *   name?: string|null,
+ *   signed_url?: string|null,
+ *   state?: string|null,
+ *   status?: string|null,
+ *   workspace_id?: string|null,
  * }
  */
 final class Document implements BaseModel
@@ -36,8 +36,8 @@ final class Document implements BaseModel
     /**
      * Functional type of the document (e.g., identity document, invoice).
      */
-    #[Api('document_type', optional: true)]
-    public ?string $documentType;
+    #[Api(optional: true)]
+    public ?string $document_type;
 
     /**
      * Original filename of the uploaded document.
@@ -54,8 +54,8 @@ final class Document implements BaseModel
     /**
      * Secure URL to access the document.
      */
-    #[Api('signed_url', optional: true)]
-    public ?string $signedURL;
+    #[Api(optional: true)]
+    public ?string $signed_url;
 
     /**
      * Processing state of the document (e.g., WAITING, STARTED, RUNNING, PROCESSED).
@@ -72,8 +72,8 @@ final class Document implements BaseModel
     /**
      * Identifier of the workspace to which the document belongs.
      */
-    #[Api('workspace_id', optional: true)]
-    public ?string $workspaceID;
+    #[Api(optional: true)]
+    public ?string $workspace_id;
 
     public function __construct()
     {
@@ -87,24 +87,24 @@ final class Document implements BaseModel
      */
     public static function with(
         ?string $id = null,
-        ?string $documentType = null,
+        ?string $document_type = null,
         ?string $filename = null,
         ?string $name = null,
-        ?string $signedURL = null,
+        ?string $signed_url = null,
         ?string $state = null,
         ?string $status = null,
-        ?string $workspaceID = null,
+        ?string $workspace_id = null,
     ): self {
         $obj = new self;
 
         null !== $id && $obj->id = $id;
-        null !== $documentType && $obj->documentType = $documentType;
+        null !== $document_type && $obj->document_type = $document_type;
         null !== $filename && $obj->filename = $filename;
         null !== $name && $obj->name = $name;
-        null !== $signedURL && $obj->signedURL = $signedURL;
+        null !== $signed_url && $obj->signed_url = $signed_url;
         null !== $state && $obj->state = $state;
         null !== $status && $obj->status = $status;
-        null !== $workspaceID && $obj->workspaceID = $workspaceID;
+        null !== $workspace_id && $obj->workspace_id = $workspace_id;
 
         return $obj;
     }
@@ -126,7 +126,7 @@ final class Document implements BaseModel
     public function withDocumentType(string $documentType): self
     {
         $obj = clone $this;
-        $obj->documentType = $documentType;
+        $obj->document_type = $documentType;
 
         return $obj;
     }
@@ -159,7 +159,7 @@ final class Document implements BaseModel
     public function withSignedURL(string $signedURL): self
     {
         $obj = clone $this;
-        $obj->signedURL = $signedURL;
+        $obj->signed_url = $signedURL;
 
         return $obj;
     }
@@ -192,7 +192,7 @@ final class Document implements BaseModel
     public function withWorkspaceID(string $workspaceID): self
     {
         $obj = clone $this;
-        $obj->workspaceID = $workspaceID;
+        $obj->workspace_id = $workspaceID;
 
         return $obj;
     }

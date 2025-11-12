@@ -13,26 +13,26 @@ use Dataleon\Core\Contracts\BaseModel;
  * Main information about the company being registered, including legal name, registration ID, and address.
  *
  * @phpstan-type CompanyShape = array{
- *   address?: string,
- *   closureDate?: \DateTimeInterface,
- *   commercialName?: string,
- *   contact?: Contact,
- *   country?: string,
- *   email?: string,
- *   employees?: int,
- *   employerIdentificationNumber?: string,
- *   insolvencyExists?: bool,
- *   insolvencyOngoing?: bool,
- *   legalForm?: string,
- *   name?: string,
- *   phoneNumber?: string,
- *   registrationDate?: \DateTimeInterface,
- *   registrationID?: string,
- *   shareCapital?: string,
- *   status?: string,
- *   taxIdentificationNumber?: string,
- *   type?: string,
- *   websiteURL?: string,
+ *   address?: string|null,
+ *   closure_date?: \DateTimeInterface|null,
+ *   commercial_name?: string|null,
+ *   contact?: Contact|null,
+ *   country?: string|null,
+ *   email?: string|null,
+ *   employees?: int|null,
+ *   employer_identification_number?: string|null,
+ *   insolvency_exists?: bool|null,
+ *   insolvency_ongoing?: bool|null,
+ *   legal_form?: string|null,
+ *   name?: string|null,
+ *   phone_number?: string|null,
+ *   registration_date?: \DateTimeInterface|null,
+ *   registration_id?: string|null,
+ *   share_capital?: string|null,
+ *   status?: string|null,
+ *   tax_identification_number?: string|null,
+ *   type?: string|null,
+ *   website_url?: string|null,
  * }
  */
 final class Company implements BaseModel
@@ -49,14 +49,14 @@ final class Company implements BaseModel
     /**
      * Closure date of the company, if applicable.
      */
-    #[Api('closure_date', optional: true)]
-    public ?\DateTimeInterface $closureDate;
+    #[Api(optional: true)]
+    public ?\DateTimeInterface $closure_date;
 
     /**
      * Trade or commercial name of the company.
      */
-    #[Api('commercial_name', optional: true)]
-    public ?string $commercialName;
+    #[Api(optional: true)]
+    public ?string $commercial_name;
 
     /**
      * Contact information for the company, including email, phone number, and address.
@@ -85,26 +85,26 @@ final class Company implements BaseModel
     /**
      * Employer Identification Number (EIN) or equivalent.
      */
-    #[Api('employer_identification_number', optional: true)]
-    public ?string $employerIdentificationNumber;
+    #[Api(optional: true)]
+    public ?string $employer_identification_number;
 
     /**
      * Indicates whether an insolvency procedure exists for the company.
      */
-    #[Api('insolvency_exists', optional: true)]
-    public ?bool $insolvencyExists;
+    #[Api(optional: true)]
+    public ?bool $insolvency_exists;
 
     /**
      * Indicates whether an insolvency procedure is ongoing for the company.
      */
-    #[Api('insolvency_ongoing', optional: true)]
-    public ?bool $insolvencyOngoing;
+    #[Api(optional: true)]
+    public ?bool $insolvency_ongoing;
 
     /**
      * Legal form or structure of the company (e.g., LLC, SARL).
      */
-    #[Api('legal_form', optional: true)]
-    public ?string $legalForm;
+    #[Api(optional: true)]
+    public ?string $legal_form;
 
     /**
      * Legal registered name of the company.
@@ -115,26 +115,26 @@ final class Company implements BaseModel
     /**
      * Contact phone number for the company, including country code.
      */
-    #[Api('phone_number', optional: true)]
-    public ?string $phoneNumber;
+    #[Api(optional: true)]
+    public ?string $phone_number;
 
     /**
      * Date when the company was officially registered.
      */
-    #[Api('registration_date', optional: true)]
-    public ?\DateTimeInterface $registrationDate;
+    #[Api(optional: true)]
+    public ?\DateTimeInterface $registration_date;
 
     /**
      * Official company registration number or ID.
      */
-    #[Api('registration_id', optional: true)]
-    public ?string $registrationID;
+    #[Api(optional: true)]
+    public ?string $registration_id;
 
     /**
      * Total share capital of the company, including currency.
      */
-    #[Api('share_capital', optional: true)]
-    public ?string $shareCapital;
+    #[Api(optional: true)]
+    public ?string $share_capital;
 
     /**
      * Current status of the company (e.g., active, inactive).
@@ -145,8 +145,8 @@ final class Company implements BaseModel
     /**
      * Tax identification number for the company.
      */
-    #[Api('tax_identification_number', optional: true)]
-    public ?string $taxIdentificationNumber;
+    #[Api(optional: true)]
+    public ?string $tax_identification_number;
 
     /**
      * Type of company within the workspace, e.g., main or affiliated.
@@ -157,8 +157,8 @@ final class Company implements BaseModel
     /**
      * Official website URL of the company.
      */
-    #[Api('website_url', optional: true)]
-    public ?string $websiteURL;
+    #[Api(optional: true)]
+    public ?string $website_url;
 
     public function __construct()
     {
@@ -172,48 +172,48 @@ final class Company implements BaseModel
      */
     public static function with(
         ?string $address = null,
-        ?\DateTimeInterface $closureDate = null,
-        ?string $commercialName = null,
+        ?\DateTimeInterface $closure_date = null,
+        ?string $commercial_name = null,
         ?Contact $contact = null,
         ?string $country = null,
         ?string $email = null,
         ?int $employees = null,
-        ?string $employerIdentificationNumber = null,
-        ?bool $insolvencyExists = null,
-        ?bool $insolvencyOngoing = null,
-        ?string $legalForm = null,
+        ?string $employer_identification_number = null,
+        ?bool $insolvency_exists = null,
+        ?bool $insolvency_ongoing = null,
+        ?string $legal_form = null,
         ?string $name = null,
-        ?string $phoneNumber = null,
-        ?\DateTimeInterface $registrationDate = null,
-        ?string $registrationID = null,
-        ?string $shareCapital = null,
+        ?string $phone_number = null,
+        ?\DateTimeInterface $registration_date = null,
+        ?string $registration_id = null,
+        ?string $share_capital = null,
         ?string $status = null,
-        ?string $taxIdentificationNumber = null,
+        ?string $tax_identification_number = null,
         ?string $type = null,
-        ?string $websiteURL = null,
+        ?string $website_url = null,
     ): self {
         $obj = new self;
 
         null !== $address && $obj->address = $address;
-        null !== $closureDate && $obj->closureDate = $closureDate;
-        null !== $commercialName && $obj->commercialName = $commercialName;
+        null !== $closure_date && $obj->closure_date = $closure_date;
+        null !== $commercial_name && $obj->commercial_name = $commercial_name;
         null !== $contact && $obj->contact = $contact;
         null !== $country && $obj->country = $country;
         null !== $email && $obj->email = $email;
         null !== $employees && $obj->employees = $employees;
-        null !== $employerIdentificationNumber && $obj->employerIdentificationNumber = $employerIdentificationNumber;
-        null !== $insolvencyExists && $obj->insolvencyExists = $insolvencyExists;
-        null !== $insolvencyOngoing && $obj->insolvencyOngoing = $insolvencyOngoing;
-        null !== $legalForm && $obj->legalForm = $legalForm;
+        null !== $employer_identification_number && $obj->employer_identification_number = $employer_identification_number;
+        null !== $insolvency_exists && $obj->insolvency_exists = $insolvency_exists;
+        null !== $insolvency_ongoing && $obj->insolvency_ongoing = $insolvency_ongoing;
+        null !== $legal_form && $obj->legal_form = $legal_form;
         null !== $name && $obj->name = $name;
-        null !== $phoneNumber && $obj->phoneNumber = $phoneNumber;
-        null !== $registrationDate && $obj->registrationDate = $registrationDate;
-        null !== $registrationID && $obj->registrationID = $registrationID;
-        null !== $shareCapital && $obj->shareCapital = $shareCapital;
+        null !== $phone_number && $obj->phone_number = $phone_number;
+        null !== $registration_date && $obj->registration_date = $registration_date;
+        null !== $registration_id && $obj->registration_id = $registration_id;
+        null !== $share_capital && $obj->share_capital = $share_capital;
         null !== $status && $obj->status = $status;
-        null !== $taxIdentificationNumber && $obj->taxIdentificationNumber = $taxIdentificationNumber;
+        null !== $tax_identification_number && $obj->tax_identification_number = $tax_identification_number;
         null !== $type && $obj->type = $type;
-        null !== $websiteURL && $obj->websiteURL = $websiteURL;
+        null !== $website_url && $obj->website_url = $website_url;
 
         return $obj;
     }
@@ -235,7 +235,7 @@ final class Company implements BaseModel
     public function withClosureDate(\DateTimeInterface $closureDate): self
     {
         $obj = clone $this;
-        $obj->closureDate = $closureDate;
+        $obj->closure_date = $closureDate;
 
         return $obj;
     }
@@ -246,7 +246,7 @@ final class Company implements BaseModel
     public function withCommercialName(string $commercialName): self
     {
         $obj = clone $this;
-        $obj->commercialName = $commercialName;
+        $obj->commercial_name = $commercialName;
 
         return $obj;
     }
@@ -302,7 +302,7 @@ final class Company implements BaseModel
         string $employerIdentificationNumber
     ): self {
         $obj = clone $this;
-        $obj->employerIdentificationNumber = $employerIdentificationNumber;
+        $obj->employer_identification_number = $employerIdentificationNumber;
 
         return $obj;
     }
@@ -313,7 +313,7 @@ final class Company implements BaseModel
     public function withInsolvencyExists(bool $insolvencyExists): self
     {
         $obj = clone $this;
-        $obj->insolvencyExists = $insolvencyExists;
+        $obj->insolvency_exists = $insolvencyExists;
 
         return $obj;
     }
@@ -324,7 +324,7 @@ final class Company implements BaseModel
     public function withInsolvencyOngoing(bool $insolvencyOngoing): self
     {
         $obj = clone $this;
-        $obj->insolvencyOngoing = $insolvencyOngoing;
+        $obj->insolvency_ongoing = $insolvencyOngoing;
 
         return $obj;
     }
@@ -335,7 +335,7 @@ final class Company implements BaseModel
     public function withLegalForm(string $legalForm): self
     {
         $obj = clone $this;
-        $obj->legalForm = $legalForm;
+        $obj->legal_form = $legalForm;
 
         return $obj;
     }
@@ -357,7 +357,7 @@ final class Company implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phoneNumber = $phoneNumber;
+        $obj->phone_number = $phoneNumber;
 
         return $obj;
     }
@@ -369,7 +369,7 @@ final class Company implements BaseModel
         \DateTimeInterface $registrationDate
     ): self {
         $obj = clone $this;
-        $obj->registrationDate = $registrationDate;
+        $obj->registration_date = $registrationDate;
 
         return $obj;
     }
@@ -380,7 +380,7 @@ final class Company implements BaseModel
     public function withRegistrationID(string $registrationID): self
     {
         $obj = clone $this;
-        $obj->registrationID = $registrationID;
+        $obj->registration_id = $registrationID;
 
         return $obj;
     }
@@ -391,7 +391,7 @@ final class Company implements BaseModel
     public function withShareCapital(string $shareCapital): self
     {
         $obj = clone $this;
-        $obj->shareCapital = $shareCapital;
+        $obj->share_capital = $shareCapital;
 
         return $obj;
     }
@@ -414,7 +414,7 @@ final class Company implements BaseModel
         string $taxIdentificationNumber
     ): self {
         $obj = clone $this;
-        $obj->taxIdentificationNumber = $taxIdentificationNumber;
+        $obj->tax_identification_number = $taxIdentificationNumber;
 
         return $obj;
     }
@@ -436,7 +436,7 @@ final class Company implements BaseModel
     public function withWebsiteURL(string $websiteURL): self
     {
         $obj = clone $this;
-        $obj->websiteURL = $websiteURL;
+        $obj->website_url = $websiteURL;
 
         return $obj;
     }

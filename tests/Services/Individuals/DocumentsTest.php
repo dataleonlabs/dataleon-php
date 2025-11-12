@@ -47,7 +47,7 @@ final class DocumentsTest extends TestCase
 
         $result = $this->client->individuals->documents->upload(
             'individual_id',
-            documentType: 'liasse_fiscale'
+            ['document_type' => 'liasse_fiscale']
         );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
@@ -62,7 +62,7 @@ final class DocumentsTest extends TestCase
 
         $result = $this->client->individuals->documents->upload(
             'individual_id',
-            documentType: 'liasse_fiscale'
+            ['document_type' => 'liasse_fiscale']
         );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType

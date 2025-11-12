@@ -61,7 +61,7 @@ class Client extends BaseClient
         $this->companies = new CompaniesService($this);
     }
 
-    /** @return array<string, string> */
+    /** @return array<string,string> */
     protected function authHeaders(): array
     {
         return $this->apiKey ? ['Api-Key' => $this->apiKey] : [];

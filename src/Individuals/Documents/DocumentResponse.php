@@ -13,7 +13,7 @@ use Dataleon\Individuals\Documents\DocumentResponse\Document;
 
 /**
  * @phpstan-type DocumentResponseShape = array{
- *   documents?: list<Document>, totalDocument?: int
+ *   documents?: list<Document>|null, total_document?: int|null
  * }
  */
 final class DocumentResponse implements BaseModel, ResponseConverter
@@ -34,8 +34,8 @@ final class DocumentResponse implements BaseModel, ResponseConverter
     /**
      * Total number of documents available in the response.
      */
-    #[Api('total_document', optional: true)]
-    public ?int $totalDocument;
+    #[Api(optional: true)]
+    public ?int $total_document;
 
     public function __construct()
     {
@@ -51,12 +51,12 @@ final class DocumentResponse implements BaseModel, ResponseConverter
      */
     public static function with(
         ?array $documents = null,
-        ?int $totalDocument = null
+        ?int $total_document = null
     ): self {
         $obj = new self;
 
         null !== $documents && $obj->documents = $documents;
-        null !== $totalDocument && $obj->totalDocument = $totalDocument;
+        null !== $total_document && $obj->total_document = $total_document;
 
         return $obj;
     }
@@ -80,7 +80,7 @@ final class DocumentResponse implements BaseModel, ResponseConverter
     public function withTotalDocument(int $totalDocument): self
     {
         $obj = clone $this;
-        $obj->totalDocument = $totalDocument;
+        $obj->total_document = $totalDocument;
 
         return $obj;
     }

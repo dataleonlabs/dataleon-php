@@ -4,147 +4,65 @@ declare(strict_types=1);
 
 namespace Dataleon\ServiceContracts;
 
-use Dataleon\Companies\CompanyCreateParams\Company;
-use Dataleon\Companies\CompanyCreateParams\TechnicalData;
-use Dataleon\Companies\CompanyListParams\State;
-use Dataleon\Companies\CompanyListParams\Status;
+use Dataleon\Companies\CompanyCreateParams;
+use Dataleon\Companies\CompanyListParams;
 use Dataleon\Companies\CompanyRegistration;
+use Dataleon\Companies\CompanyRetrieveParams;
+use Dataleon\Companies\CompanyUpdateParams;
 use Dataleon\Core\Exceptions\APIException;
 use Dataleon\RequestOptions;
-
-use const Dataleon\Core\OMIT as omit;
 
 interface CompaniesContract
 {
     /**
      * @api
      *
-     * @param Company $company main information about the company being registered
-     * @param string $workspaceID unique identifier of the workspace in which the company is being created
-     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
-     * @param TechnicalData $technicalData technical metadata and callback configuration
+     * @param array<mixed>|CompanyCreateParams $params
      *
      * @throws APIException
      */
     public function create(
-        $company,
-        $workspaceID,
-        $sourceID = omit,
-        $technicalData = omit,
+        array|CompanyCreateParams $params,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration;
 
     /**
      * @api
      *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function createRaw(
-        array $params,
-        ?RequestOptions $requestOptions = null
-    ): CompanyRegistration;
-
-    /**
-     * @api
-     *
-     * @param bool $document Include document signed url
-     * @param string $scope Scope filter (id or scope)
+     * @param array<mixed>|CompanyRetrieveParams $params
      *
      * @throws APIException
      */
     public function retrieve(
         string $companyID,
-        $document = omit,
-        $scope = omit,
+        array|CompanyRetrieveParams $params,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration;
 
     /**
      * @api
      *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function retrieveRaw(
-        string $companyID,
-        array $params,
-        ?RequestOptions $requestOptions = null
-    ): CompanyRegistration;
-
-    /**
-     * @api
-     *
-     * @param \Dataleon\Companies\CompanyUpdateParams\Company $company main information about the company being registered
-     * @param string $workspaceID unique identifier of the workspace in which the company is being created
-     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
-     * @param \Dataleon\Companies\CompanyUpdateParams\TechnicalData $technicalData technical metadata and callback configuration
+     * @param array<mixed>|CompanyUpdateParams $params
      *
      * @throws APIException
      */
     public function update(
         string $companyID,
-        $company,
-        $workspaceID,
-        $sourceID = omit,
-        $technicalData = omit,
+        array|CompanyUpdateParams $params,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration;
 
     /**
      * @api
      *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function updateRaw(
-        string $companyID,
-        array $params,
-        ?RequestOptions $requestOptions = null
-    ): CompanyRegistration;
-
-    /**
-     * @api
-     *
-     * @param \DateTimeInterface $endDate Filter companies created before this date (format YYYY-MM-DD)
-     * @param int $limit Number of results to return (between 1 and 100)
-     * @param int $offset Number of results to skip (must be ≥ 0)
-     * @param string $sourceID Filter by source ID
-     * @param \DateTimeInterface $startDate Filter companies created after this date (format YYYY-MM-DD)
-     * @param State|value-of<State> $state Filter by company state (must be one of the allowed values)
-     * @param Status|value-of<Status> $status Filter by individual status (must be one of the allowed values)
-     * @param string $workspaceID Filter by workspace ID
+     * @param array<mixed>|CompanyListParams $params
      *
      * @return list<CompanyRegistration>
      *
      * @throws APIException
      */
     public function list(
-        $endDate = omit,
-        $limit = omit,
-        $offset = omit,
-        $sourceID = omit,
-        $startDate = omit,
-        $state = omit,
-        $status = omit,
-        $workspaceID = omit,
-        ?RequestOptions $requestOptions = null,
-    ): array;
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @return list<CompanyRegistration>
-     *
-     * @throws APIException
-     */
-    public function listRaw(
-        array $params,
+        array|CompanyListParams $params,
         ?RequestOptions $requestOptions = null
     ): array;
 
