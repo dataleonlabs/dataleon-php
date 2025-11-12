@@ -6,146 +6,64 @@ namespace Dataleon\ServiceContracts;
 
 use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Individuals\Individual;
-use Dataleon\Individuals\IndividualCreateParams\Person;
-use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
-use Dataleon\Individuals\IndividualListParams\State;
-use Dataleon\Individuals\IndividualListParams\Status;
+use Dataleon\Individuals\IndividualCreateParams;
+use Dataleon\Individuals\IndividualListParams;
+use Dataleon\Individuals\IndividualRetrieveParams;
+use Dataleon\Individuals\IndividualUpdateParams;
 use Dataleon\RequestOptions;
-
-use const Dataleon\Core\OMIT as omit;
 
 interface IndividualsContract
 {
     /**
      * @api
      *
-     * @param string $workspaceID unique identifier of the workspace where the individual is being registered
-     * @param Person $person personal information about the individual
-     * @param string $sourceID optional identifier for tracking the source system or integration from your system
-     * @param TechnicalData $technicalData technical metadata related to the request or processing
+     * @param array<mixed>|IndividualCreateParams $params
      *
      * @throws APIException
      */
     public function create(
-        $workspaceID,
-        $person = omit,
-        $sourceID = omit,
-        $technicalData = omit,
+        array|IndividualCreateParams $params,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
     /**
      * @api
      *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function createRaw(
-        array $params,
-        ?RequestOptions $requestOptions = null
-    ): Individual;
-
-    /**
-     * @api
-     *
-     * @param bool $document Include document information
-     * @param string $scope Scope filter (id or scope)
+     * @param array<mixed>|IndividualRetrieveParams $params
      *
      * @throws APIException
      */
     public function retrieve(
         string $individualID,
-        $document = omit,
-        $scope = omit,
+        array|IndividualRetrieveParams $params,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
     /**
      * @api
      *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function retrieveRaw(
-        string $individualID,
-        array $params,
-        ?RequestOptions $requestOptions = null,
-    ): Individual;
-
-    /**
-     * @api
-     *
-     * @param string $workspaceID unique identifier of the workspace where the individual is being registered
-     * @param \Dataleon\Individuals\IndividualUpdateParams\Person $person personal information about the individual
-     * @param string $sourceID optional identifier for tracking the source system or integration from your system
-     * @param \Dataleon\Individuals\IndividualUpdateParams\TechnicalData $technicalData technical metadata related to the request or processing
+     * @param array<mixed>|IndividualUpdateParams $params
      *
      * @throws APIException
      */
     public function update(
         string $individualID,
-        $workspaceID,
-        $person = omit,
-        $sourceID = omit,
-        $technicalData = omit,
+        array|IndividualUpdateParams $params,
         ?RequestOptions $requestOptions = null,
     ): Individual;
 
     /**
      * @api
      *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function updateRaw(
-        string $individualID,
-        array $params,
-        ?RequestOptions $requestOptions = null,
-    ): Individual;
-
-    /**
-     * @api
-     *
-     * @param \DateTimeInterface $endDate Filter individuals created before this date (format YYYY-MM-DD)
-     * @param int $limit Number of results to return (between 1 and 100)
-     * @param int $offset Number of results to offset (must be ≥ 0)
-     * @param string $sourceID Filter by source ID
-     * @param \DateTimeInterface $startDate Filter individuals created after this date (format YYYY-MM-DD)
-     * @param State|value-of<State> $state Filter by individual status (must be one of the allowed values)
-     * @param Status|value-of<Status> $status Filter by individual status (must be one of the allowed values)
-     * @param string $workspaceID Filter by workspace ID
+     * @param array<mixed>|IndividualListParams $params
      *
      * @return list<Individual>
      *
      * @throws APIException
      */
     public function list(
-        $endDate = omit,
-        $limit = omit,
-        $offset = omit,
-        $sourceID = omit,
-        $startDate = omit,
-        $state = omit,
-        $status = omit,
-        $workspaceID = omit,
+        array|IndividualListParams $params,
         ?RequestOptions $requestOptions = null,
-    ): array;
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @return list<Individual>
-     *
-     * @throws APIException
-     */
-    public function listRaw(
-        array $params,
-        ?RequestOptions $requestOptions = null
     ): array;
 
     /**

@@ -17,16 +17,16 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
  * Represents a general document with metadata, verification checks, and extracted data.
  *
  * @phpstan-type GenericDocumentShape = array{
- *   id?: string,
- *   checks?: list<Check>,
- *   createdAt?: \DateTimeInterface,
- *   documentType?: string,
- *   name?: string,
- *   signedURL?: string,
- *   state?: string,
- *   status?: string,
- *   tables?: list<Table>,
- *   values?: list<Value>,
+ *   id?: string|null,
+ *   checks?: list<Check>|null,
+ *   created_at?: \DateTimeInterface|null,
+ *   document_type?: string|null,
+ *   name?: string|null,
+ *   signed_url?: string|null,
+ *   state?: string|null,
+ *   status?: string|null,
+ *   tables?: list<Table>|null,
+ *   values?: list<Value>|null,
  * }
  */
 final class GenericDocument implements BaseModel, ResponseConverter
@@ -53,14 +53,14 @@ final class GenericDocument implements BaseModel, ResponseConverter
     /**
      * Timestamp when the document was created or uploaded.
      */
-    #[Api('created_at', optional: true)]
-    public ?\DateTimeInterface $createdAt;
+    #[Api(optional: true)]
+    public ?\DateTimeInterface $created_at;
 
     /**
      * Type/category of the document.
      */
-    #[Api('document_type', optional: true)]
-    public ?string $documentType;
+    #[Api(optional: true)]
+    public ?string $document_type;
 
     /**
      * Name or label for the document.
@@ -71,8 +71,8 @@ final class GenericDocument implements BaseModel, ResponseConverter
     /**
      * Signed URL for accessing the document file.
      */
-    #[Api('signed_url', optional: true)]
-    public ?string $signedURL;
+    #[Api(optional: true)]
+    public ?string $signed_url;
 
     /**
      * Current processing state of the document (e.g., WAITING, PROCESSED).
@@ -119,10 +119,10 @@ final class GenericDocument implements BaseModel, ResponseConverter
     public static function with(
         ?string $id = null,
         ?array $checks = null,
-        ?\DateTimeInterface $createdAt = null,
-        ?string $documentType = null,
+        ?\DateTimeInterface $created_at = null,
+        ?string $document_type = null,
         ?string $name = null,
-        ?string $signedURL = null,
+        ?string $signed_url = null,
         ?string $state = null,
         ?string $status = null,
         ?array $tables = null,
@@ -132,10 +132,10 @@ final class GenericDocument implements BaseModel, ResponseConverter
 
         null !== $id && $obj->id = $id;
         null !== $checks && $obj->checks = $checks;
-        null !== $createdAt && $obj->createdAt = $createdAt;
-        null !== $documentType && $obj->documentType = $documentType;
+        null !== $created_at && $obj->created_at = $created_at;
+        null !== $document_type && $obj->document_type = $document_type;
         null !== $name && $obj->name = $name;
-        null !== $signedURL && $obj->signedURL = $signedURL;
+        null !== $signed_url && $obj->signed_url = $signed_url;
         null !== $state && $obj->state = $state;
         null !== $status && $obj->status = $status;
         null !== $tables && $obj->tables = $tables;
@@ -174,7 +174,7 @@ final class GenericDocument implements BaseModel, ResponseConverter
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj->createdAt = $createdAt;
+        $obj->created_at = $createdAt;
 
         return $obj;
     }
@@ -185,7 +185,7 @@ final class GenericDocument implements BaseModel, ResponseConverter
     public function withDocumentType(string $documentType): self
     {
         $obj = clone $this;
-        $obj->documentType = $documentType;
+        $obj->document_type = $documentType;
 
         return $obj;
     }
@@ -207,7 +207,7 @@ final class GenericDocument implements BaseModel, ResponseConverter
     public function withSignedURL(string $signedURL): self
     {
         $obj = clone $this;
-        $obj->signedURL = $signedURL;
+        $obj->signed_url = $signedURL;
 
         return $obj;
     }

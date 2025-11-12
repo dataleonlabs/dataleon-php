@@ -9,23 +9,17 @@ use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams;
-use Dataleon\Individuals\IndividualCreateParams\Person;
-use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
 use Dataleon\Individuals\IndividualListParams;
-use Dataleon\Individuals\IndividualListParams\State;
-use Dataleon\Individuals\IndividualListParams\Status;
 use Dataleon\Individuals\IndividualRetrieveParams;
 use Dataleon\Individuals\IndividualUpdateParams;
 use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\IndividualsContract;
 use Dataleon\Services\Individuals\DocumentsService;
 
-use const Dataleon\Core\OMIT as omit;
-
 final class IndividualsService implements IndividualsContract
 {
     /**
-     * @@api
+     * @api
      */
     public DocumentsService $documents;
 
@@ -42,44 +36,39 @@ final class IndividualsService implements IndividualsContract
      *
      * Create a new individual
      *
-     * @param string $workspaceID unique identifier of the workspace where the individual is being registered
-     * @param Person $person personal information about the individual
-     * @param string $sourceID optional identifier for tracking the source system or integration from your system
-     * @param TechnicalData $technicalData technical metadata related to the request or processing
+     * @param array{
+     *   workspace_id: string,
+     *   person?: array{
+     *     birthday?: string,
+     *     email?: string,
+     *     first_name?: string,
+     *     gender?: "M"|"F",
+     *     last_name?: string,
+     *     maiden_name?: string,
+     *     nationality?: string,
+     *     phone_number?: string,
+     *   },
+     *   source_id?: string,
+     *   technical_data?: array{
+     *     active_aml_suspicions?: bool,
+     *     callback_url?: string,
+     *     callback_url_notification?: string,
+     *     filtering_score_aml_suspicions?: float,
+     *     language?: string,
+     *     portal_steps?: list<"identity_verification"|"document_signing"|"proof_of_address"|"selfie"|"face_match">,
+     *     raw_data?: bool,
+     *   },
+     * }|IndividualCreateParams $params
      *
      * @throws APIException
      */
     public function create(
-        $workspaceID,
-        $person = omit,
-        $sourceID = omit,
-        $technicalData = omit,
-        ?RequestOptions $requestOptions = null,
-    ): Individual {
-        $params = [
-            'workspaceID' => $workspaceID,
-            'person' => $person,
-            'sourceID' => $sourceID,
-            'technicalData' => $technicalData,
-        ];
-
-        return $this->createRaw($params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function createRaw(
-        array $params,
+        array|IndividualCreateParams $params,
         ?RequestOptions $requestOptions = null
     ): Individual {
         [$parsed, $options] = IndividualCreateParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;
@@ -97,37 +86,18 @@ final class IndividualsService implements IndividualsContract
      *
      * Get an individual by ID
      *
-     * @param bool $document Include document information
-     * @param string $scope Scope filter (id or scope)
+     * @param array{document?: bool, scope?: string}|IndividualRetrieveParams $params
      *
      * @throws APIException
      */
     public function retrieve(
         string $individualID,
-        $document = omit,
-        $scope = omit,
+        array|IndividualRetrieveParams $params,
         ?RequestOptions $requestOptions = null,
-    ): Individual {
-        $params = ['document' => $document, 'scope' => $scope];
-
-        return $this->retrieveRaw($individualID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function retrieveRaw(
-        string $individualID,
-        array $params,
-        ?RequestOptions $requestOptions = null
     ): Individual {
         [$parsed, $options] = IndividualRetrieveParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;
@@ -145,46 +115,40 @@ final class IndividualsService implements IndividualsContract
      *
      * Update an individual by ID
      *
-     * @param string $workspaceID unique identifier of the workspace where the individual is being registered
-     * @param IndividualUpdateParams\Person $person personal information about the individual
-     * @param string $sourceID optional identifier for tracking the source system or integration from your system
-     * @param IndividualUpdateParams\TechnicalData $technicalData technical metadata related to the request or processing
+     * @param array{
+     *   workspace_id: string,
+     *   person?: array{
+     *     birthday?: string,
+     *     email?: string,
+     *     first_name?: string,
+     *     gender?: "M"|"F",
+     *     last_name?: string,
+     *     maiden_name?: string,
+     *     nationality?: string,
+     *     phone_number?: string,
+     *   },
+     *   source_id?: string,
+     *   technical_data?: array{
+     *     active_aml_suspicions?: bool,
+     *     callback_url?: string,
+     *     callback_url_notification?: string,
+     *     filtering_score_aml_suspicions?: float,
+     *     language?: string,
+     *     portal_steps?: list<"identity_verification"|"document_signing"|"proof_of_address"|"selfie"|"face_match">,
+     *     raw_data?: bool,
+     *   },
+     * }|IndividualUpdateParams $params
      *
      * @throws APIException
      */
     public function update(
         string $individualID,
-        $workspaceID,
-        $person = omit,
-        $sourceID = omit,
-        $technicalData = omit,
+        array|IndividualUpdateParams $params,
         ?RequestOptions $requestOptions = null,
-    ): Individual {
-        $params = [
-            'workspaceID' => $workspaceID,
-            'person' => $person,
-            'sourceID' => $sourceID,
-            'technicalData' => $technicalData,
-        ];
-
-        return $this->updateRaw($individualID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function updateRaw(
-        string $individualID,
-        array $params,
-        ?RequestOptions $requestOptions = null
     ): Individual {
         [$parsed, $options] = IndividualUpdateParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;
@@ -200,62 +164,32 @@ final class IndividualsService implements IndividualsContract
     /**
      * @api
      *
+     * @phpstan-type State = "VOID"|"WAITING"|"STARTED"|"RUNNING"|"PROCESSED"|"FAILED"|"ABORTED"|"EXPIRED"|"DELETED"
+     *
      * Get all individuals
      *
-     * @param \DateTimeInterface $endDate Filter individuals created before this date (format YYYY-MM-DD)
-     * @param int $limit Number of results to return (between 1 and 100)
-     * @param int $offset Number of results to offset (must be ≥ 0)
-     * @param string $sourceID Filter by source ID
-     * @param \DateTimeInterface $startDate Filter individuals created after this date (format YYYY-MM-DD)
-     * @param State|value-of<State> $state Filter by individual status (must be one of the allowed values)
-     * @param Status|value-of<Status> $status Filter by individual status (must be one of the allowed values)
-     * @param string $workspaceID Filter by workspace ID
+     * @param array{
+     *   end_date?: string|\DateTimeInterface,
+     *   limit?: int,
+     *   offset?: int,
+     *   source_id?: string,
+     *   start_date?: string|\DateTimeInterface,
+     *   state?: State,
+     *   status?: "rejected"|"need_review"|"approved",
+     *   workspace_id?: string,
+     * }|IndividualListParams $params
      *
      * @return list<Individual>
      *
      * @throws APIException
      */
     public function list(
-        $endDate = omit,
-        $limit = omit,
-        $offset = omit,
-        $sourceID = omit,
-        $startDate = omit,
-        $state = omit,
-        $status = omit,
-        $workspaceID = omit,
-        ?RequestOptions $requestOptions = null,
-    ): array {
-        $params = [
-            'endDate' => $endDate,
-            'limit' => $limit,
-            'offset' => $offset,
-            'sourceID' => $sourceID,
-            'startDate' => $startDate,
-            'state' => $state,
-            'status' => $status,
-            'workspaceID' => $workspaceID,
-        ];
-
-        return $this->listRaw($params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @return list<Individual>
-     *
-     * @throws APIException
-     */
-    public function listRaw(
-        array $params,
+        array|IndividualListParams $params,
         ?RequestOptions $requestOptions = null
     ): array {
         [$parsed, $options] = IndividualListParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;

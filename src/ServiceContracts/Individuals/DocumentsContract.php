@@ -6,11 +6,9 @@ namespace Dataleon\ServiceContracts\Individuals;
 
 use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Individuals\Documents\DocumentResponse;
-use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
+use Dataleon\Individuals\Documents\DocumentUploadParams;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
-
-use const Dataleon\Core\OMIT as omit;
 
 interface DocumentsContract
 {
@@ -27,30 +25,13 @@ interface DocumentsContract
     /**
      * @api
      *
-     * @param DocumentType|value-of<DocumentType> $documentType Filter by document type for upload (must be one of the allowed values)
-     * @param string $file File to upload (required)
-     * @param string $url URL of the file to upload (either `file` or `url` is required)
+     * @param array<mixed>|DocumentUploadParams $params
      *
      * @throws APIException
      */
     public function upload(
         string $individualID,
-        $documentType,
-        $file = omit,
-        $url = omit,
-        ?RequestOptions $requestOptions = null,
-    ): GenericDocument;
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function uploadRaw(
-        string $individualID,
-        array $params,
+        array|DocumentUploadParams $params,
         ?RequestOptions $requestOptions = null,
     ): GenericDocument;
 }

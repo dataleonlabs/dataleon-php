@@ -6,11 +6,7 @@ namespace Dataleon\Services;
 
 use Dataleon\Client;
 use Dataleon\Companies\CompanyCreateParams;
-use Dataleon\Companies\CompanyCreateParams\Company;
-use Dataleon\Companies\CompanyCreateParams\TechnicalData;
 use Dataleon\Companies\CompanyListParams;
-use Dataleon\Companies\CompanyListParams\State;
-use Dataleon\Companies\CompanyListParams\Status;
 use Dataleon\Companies\CompanyRegistration;
 use Dataleon\Companies\CompanyRetrieveParams;
 use Dataleon\Companies\CompanyUpdateParams;
@@ -20,12 +16,10 @@ use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\CompaniesContract;
 use Dataleon\Services\Companies\DocumentsService;
 
-use const Dataleon\Core\OMIT as omit;
-
 final class CompaniesService implements CompaniesContract
 {
     /**
-     * @@api
+     * @api
      */
     public DocumentsService $documents;
 
@@ -42,44 +36,46 @@ final class CompaniesService implements CompaniesContract
      *
      * Create a new company
      *
-     * @param Company $company main information about the company being registered
-     * @param string $workspaceID unique identifier of the workspace in which the company is being created
-     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
-     * @param TechnicalData $technicalData technical metadata and callback configuration
+     * @param array{
+     *   company: array{
+     *     name: string,
+     *     address?: string,
+     *     commercial_name?: string,
+     *     country?: string,
+     *     email?: string,
+     *     employer_identification_number?: string,
+     *     legal_form?: string,
+     *     phone_number?: string,
+     *     registration_date?: string,
+     *     registration_id?: string,
+     *     share_capital?: string,
+     *     status?: string,
+     *     tax_identification_number?: string,
+     *     type?: string,
+     *     website_url?: string,
+     *   },
+     *   workspace_id: string,
+     *   source_id?: string,
+     *   technical_data?: array{
+     *     active_aml_suspicions?: bool,
+     *     callback_url?: string,
+     *     callback_url_notification?: string,
+     *     filtering_score_aml_suspicions?: float,
+     *     language?: string,
+     *     portal_steps?: list<"identity_verification"|"document_signing"|"proof_of_address"|"selfie"|"face_match">,
+     *     raw_data?: bool,
+     *   },
+     * }|CompanyCreateParams $params
      *
      * @throws APIException
      */
     public function create(
-        $company,
-        $workspaceID,
-        $sourceID = omit,
-        $technicalData = omit,
-        ?RequestOptions $requestOptions = null,
-    ): CompanyRegistration {
-        $params = [
-            'company' => $company,
-            'workspaceID' => $workspaceID,
-            'sourceID' => $sourceID,
-            'technicalData' => $technicalData,
-        ];
-
-        return $this->createRaw($params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function createRaw(
-        array $params,
+        array|CompanyCreateParams $params,
         ?RequestOptions $requestOptions = null
     ): CompanyRegistration {
         [$parsed, $options] = CompanyCreateParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;
@@ -97,37 +93,18 @@ final class CompaniesService implements CompaniesContract
      *
      * Get a company by ID
      *
-     * @param bool $document Include document signed url
-     * @param string $scope Scope filter (id or scope)
+     * @param array{document?: bool, scope?: string}|CompanyRetrieveParams $params
      *
      * @throws APIException
      */
     public function retrieve(
         string $companyID,
-        $document = omit,
-        $scope = omit,
+        array|CompanyRetrieveParams $params,
         ?RequestOptions $requestOptions = null,
-    ): CompanyRegistration {
-        $params = ['document' => $document, 'scope' => $scope];
-
-        return $this->retrieveRaw($companyID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function retrieveRaw(
-        string $companyID,
-        array $params,
-        ?RequestOptions $requestOptions = null
     ): CompanyRegistration {
         [$parsed, $options] = CompanyRetrieveParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;
@@ -145,46 +122,47 @@ final class CompaniesService implements CompaniesContract
      *
      * Update a company by ID
      *
-     * @param CompanyUpdateParams\Company $company main information about the company being registered
-     * @param string $workspaceID unique identifier of the workspace in which the company is being created
-     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
-     * @param CompanyUpdateParams\TechnicalData $technicalData technical metadata and callback configuration
+     * @param array{
+     *   company: array{
+     *     name: string,
+     *     address?: string,
+     *     commercial_name?: string,
+     *     country?: string,
+     *     email?: string,
+     *     employer_identification_number?: string,
+     *     legal_form?: string,
+     *     phone_number?: string,
+     *     registration_date?: string,
+     *     registration_id?: string,
+     *     share_capital?: string,
+     *     status?: string,
+     *     tax_identification_number?: string,
+     *     type?: string,
+     *     website_url?: string,
+     *   },
+     *   workspace_id: string,
+     *   source_id?: string,
+     *   technical_data?: array{
+     *     active_aml_suspicions?: bool,
+     *     callback_url?: string,
+     *     callback_url_notification?: string,
+     *     filtering_score_aml_suspicions?: float,
+     *     language?: string,
+     *     portal_steps?: list<"identity_verification"|"document_signing"|"proof_of_address"|"selfie"|"face_match">,
+     *     raw_data?: bool,
+     *   },
+     * }|CompanyUpdateParams $params
      *
      * @throws APIException
      */
     public function update(
         string $companyID,
-        $company,
-        $workspaceID,
-        $sourceID = omit,
-        $technicalData = omit,
+        array|CompanyUpdateParams $params,
         ?RequestOptions $requestOptions = null,
-    ): CompanyRegistration {
-        $params = [
-            'company' => $company,
-            'workspaceID' => $workspaceID,
-            'sourceID' => $sourceID,
-            'technicalData' => $technicalData,
-        ];
-
-        return $this->updateRaw($companyID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function updateRaw(
-        string $companyID,
-        array $params,
-        ?RequestOptions $requestOptions = null
     ): CompanyRegistration {
         [$parsed, $options] = CompanyUpdateParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;
@@ -200,62 +178,32 @@ final class CompaniesService implements CompaniesContract
     /**
      * @api
      *
+     * @phpstan-type State = "VOID"|"WAITING"|"STARTED"|"RUNNING"|"PROCESSED"|"FAILED"|"ABORTED"|"EXPIRED"|"DELETED"
+     *
      * Get all companies
      *
-     * @param \DateTimeInterface $endDate Filter companies created before this date (format YYYY-MM-DD)
-     * @param int $limit Number of results to return (between 1 and 100)
-     * @param int $offset Number of results to skip (must be ≥ 0)
-     * @param string $sourceID Filter by source ID
-     * @param \DateTimeInterface $startDate Filter companies created after this date (format YYYY-MM-DD)
-     * @param State|value-of<State> $state Filter by company state (must be one of the allowed values)
-     * @param Status|value-of<Status> $status Filter by individual status (must be one of the allowed values)
-     * @param string $workspaceID Filter by workspace ID
+     * @param array{
+     *   end_date?: string|\DateTimeInterface,
+     *   limit?: int,
+     *   offset?: int,
+     *   source_id?: string,
+     *   start_date?: string|\DateTimeInterface,
+     *   state?: State,
+     *   status?: "rejected"|"need_review"|"approved",
+     *   workspace_id?: string,
+     * }|CompanyListParams $params
      *
      * @return list<CompanyRegistration>
      *
      * @throws APIException
      */
     public function list(
-        $endDate = omit,
-        $limit = omit,
-        $offset = omit,
-        $sourceID = omit,
-        $startDate = omit,
-        $state = omit,
-        $status = omit,
-        $workspaceID = omit,
-        ?RequestOptions $requestOptions = null,
-    ): array {
-        $params = [
-            'endDate' => $endDate,
-            'limit' => $limit,
-            'offset' => $offset,
-            'sourceID' => $sourceID,
-            'startDate' => $startDate,
-            'state' => $state,
-            'status' => $status,
-            'workspaceID' => $workspaceID,
-        ];
-
-        return $this->listRaw($params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @return list<CompanyRegistration>
-     *
-     * @throws APIException
-     */
-    public function listRaw(
-        array $params,
+        array|CompanyListParams $params,
         ?RequestOptions $requestOptions = null
     ): array {
         [$parsed, $options] = CompanyListParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;

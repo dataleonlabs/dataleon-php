@@ -24,26 +24,26 @@ use Dataleon\Individuals\Individual\TechnicalData;
  * Represents a single individual record, including identification, status, and associated metadata.
  *
  * @phpstan-type IndividualShape = array{
- *   id?: string,
- *   amlSuspicions?: list<AmlSuspicion>,
- *   authURL?: string,
- *   certificat?: Certificat,
- *   checks?: list<Check>,
- *   createdAt?: \DateTimeInterface,
- *   documents?: list<GenericDocument>,
- *   identityCard?: IdentityCard,
- *   number?: int,
- *   person?: Person,
- *   portalURL?: string,
- *   properties?: list<Property>,
- *   risk?: Risk,
- *   sourceID?: string,
- *   state?: string,
- *   status?: string,
- *   tags?: list<Tag>,
- *   technicalData?: TechnicalData,
- *   webviewURL?: string,
- *   workspaceID?: string,
+ *   id?: string|null,
+ *   aml_suspicions?: list<AmlSuspicion>|null,
+ *   auth_url?: string|null,
+ *   certificat?: Certificat|null,
+ *   checks?: list<Check>|null,
+ *   created_at?: \DateTimeInterface|null,
+ *   documents?: list<GenericDocument>|null,
+ *   identity_card?: IdentityCard|null,
+ *   number?: int|null,
+ *   person?: Person|null,
+ *   portal_url?: string|null,
+ *   properties?: list<Property>|null,
+ *   risk?: Risk|null,
+ *   source_id?: string|null,
+ *   state?: string|null,
+ *   status?: string|null,
+ *   tags?: list<Tag>|null,
+ *   technical_data?: TechnicalData|null,
+ *   webview_url?: string|null,
+ *   workspace_id?: string|null,
  * }
  */
 final class Individual implements BaseModel, ResponseConverter
@@ -62,16 +62,16 @@ final class Individual implements BaseModel, ResponseConverter
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the individual.
      *
-     * @var list<AmlSuspicion>|null $amlSuspicions
+     * @var list<AmlSuspicion>|null $aml_suspicions
      */
-    #[Api('aml_suspicions', list: AmlSuspicion::class, optional: true)]
-    public ?array $amlSuspicions;
+    #[Api(list: AmlSuspicion::class, optional: true)]
+    public ?array $aml_suspicions;
 
     /**
      * URL to authenticate the individual, usually for document signing or onboarding.
      */
-    #[Api('auth_url', optional: true)]
-    public ?string $authURL;
+    #[Api(optional: true)]
+    public ?string $auth_url;
 
     /**
      * Digital certificate associated with the individual, if any.
@@ -90,8 +90,8 @@ final class Individual implements BaseModel, ResponseConverter
     /**
      * Timestamp of the individual's creation in ISO 8601 format.
      */
-    #[Api('created_at', optional: true)]
-    public ?\DateTimeInterface $createdAt;
+    #[Api(optional: true)]
+    public ?\DateTimeInterface $created_at;
 
     /**
      * All documents submitted or associated with the individual.
@@ -104,8 +104,8 @@ final class Individual implements BaseModel, ResponseConverter
     /**
      * Reference to the individual's identity document.
      */
-    #[Api('identity_card', optional: true)]
-    public ?IdentityCard $identityCard;
+    #[Api(optional: true)]
+    public ?IdentityCard $identity_card;
 
     /**
      * Internal sequential number or reference for the individual.
@@ -122,8 +122,8 @@ final class Individual implements BaseModel, ResponseConverter
     /**
      * Admin or internal portal URL for viewing the individual's details.
      */
-    #[Api('portal_url', optional: true)]
-    public ?string $portalURL;
+    #[Api(optional: true)]
+    public ?string $portal_url;
 
     /**
      * Custom key-value metadata fields associated with the individual.
@@ -142,8 +142,8 @@ final class Individual implements BaseModel, ResponseConverter
     /**
      * Optional identifier indicating the source of the individual record.
      */
-    #[Api('source_id', optional: true)]
-    public ?string $sourceID;
+    #[Api(optional: true)]
+    public ?string $source_id;
 
     /**
      * Current operational state in the workflow (e.g., WAITING, IN_PROGRESS, COMPLETED).
@@ -168,20 +168,20 @@ final class Individual implements BaseModel, ResponseConverter
     /**
      * Technical metadata related to the request (e.g., QR code settings, language).
      */
-    #[Api('technical_data', optional: true)]
-    public ?TechnicalData $technicalData;
+    #[Api(optional: true)]
+    public ?TechnicalData $technical_data;
 
     /**
      * Public-facing webview URL for the individual’s identification process.
      */
-    #[Api('webview_url', optional: true)]
-    public ?string $webviewURL;
+    #[Api(optional: true)]
+    public ?string $webview_url;
 
     /**
      * Identifier of the workspace to which the individual belongs.
      */
-    #[Api('workspace_id', optional: true)]
-    public ?string $workspaceID;
+    #[Api(optional: true)]
+    public ?string $workspace_id;
 
     public function __construct()
     {
@@ -193,7 +193,7 @@ final class Individual implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AmlSuspicion> $amlSuspicions
+     * @param list<AmlSuspicion> $aml_suspicions
      * @param list<Check> $checks
      * @param list<GenericDocument> $documents
      * @param list<Property> $properties
@@ -201,48 +201,48 @@ final class Individual implements BaseModel, ResponseConverter
      */
     public static function with(
         ?string $id = null,
-        ?array $amlSuspicions = null,
-        ?string $authURL = null,
+        ?array $aml_suspicions = null,
+        ?string $auth_url = null,
         ?Certificat $certificat = null,
         ?array $checks = null,
-        ?\DateTimeInterface $createdAt = null,
+        ?\DateTimeInterface $created_at = null,
         ?array $documents = null,
-        ?IdentityCard $identityCard = null,
+        ?IdentityCard $identity_card = null,
         ?int $number = null,
         ?Person $person = null,
-        ?string $portalURL = null,
+        ?string $portal_url = null,
         ?array $properties = null,
         ?Risk $risk = null,
-        ?string $sourceID = null,
+        ?string $source_id = null,
         ?string $state = null,
         ?string $status = null,
         ?array $tags = null,
-        ?TechnicalData $technicalData = null,
-        ?string $webviewURL = null,
-        ?string $workspaceID = null,
+        ?TechnicalData $technical_data = null,
+        ?string $webview_url = null,
+        ?string $workspace_id = null,
     ): self {
         $obj = new self;
 
         null !== $id && $obj->id = $id;
-        null !== $amlSuspicions && $obj->amlSuspicions = $amlSuspicions;
-        null !== $authURL && $obj->authURL = $authURL;
+        null !== $aml_suspicions && $obj->aml_suspicions = $aml_suspicions;
+        null !== $auth_url && $obj->auth_url = $auth_url;
         null !== $certificat && $obj->certificat = $certificat;
         null !== $checks && $obj->checks = $checks;
-        null !== $createdAt && $obj->createdAt = $createdAt;
+        null !== $created_at && $obj->created_at = $created_at;
         null !== $documents && $obj->documents = $documents;
-        null !== $identityCard && $obj->identityCard = $identityCard;
+        null !== $identity_card && $obj->identity_card = $identity_card;
         null !== $number && $obj->number = $number;
         null !== $person && $obj->person = $person;
-        null !== $portalURL && $obj->portalURL = $portalURL;
+        null !== $portal_url && $obj->portal_url = $portal_url;
         null !== $properties && $obj->properties = $properties;
         null !== $risk && $obj->risk = $risk;
-        null !== $sourceID && $obj->sourceID = $sourceID;
+        null !== $source_id && $obj->source_id = $source_id;
         null !== $state && $obj->state = $state;
         null !== $status && $obj->status = $status;
         null !== $tags && $obj->tags = $tags;
-        null !== $technicalData && $obj->technicalData = $technicalData;
-        null !== $webviewURL && $obj->webviewURL = $webviewURL;
-        null !== $workspaceID && $obj->workspaceID = $workspaceID;
+        null !== $technical_data && $obj->technical_data = $technical_data;
+        null !== $webview_url && $obj->webview_url = $webview_url;
+        null !== $workspace_id && $obj->workspace_id = $workspace_id;
 
         return $obj;
     }
@@ -266,7 +266,7 @@ final class Individual implements BaseModel, ResponseConverter
     public function withAmlSuspicions(array $amlSuspicions): self
     {
         $obj = clone $this;
-        $obj->amlSuspicions = $amlSuspicions;
+        $obj->aml_suspicions = $amlSuspicions;
 
         return $obj;
     }
@@ -277,7 +277,7 @@ final class Individual implements BaseModel, ResponseConverter
     public function withAuthURL(string $authURL): self
     {
         $obj = clone $this;
-        $obj->authURL = $authURL;
+        $obj->auth_url = $authURL;
 
         return $obj;
     }
@@ -312,7 +312,7 @@ final class Individual implements BaseModel, ResponseConverter
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj->createdAt = $createdAt;
+        $obj->created_at = $createdAt;
 
         return $obj;
     }
@@ -336,7 +336,7 @@ final class Individual implements BaseModel, ResponseConverter
     public function withIdentityCard(IdentityCard $identityCard): self
     {
         $obj = clone $this;
-        $obj->identityCard = $identityCard;
+        $obj->identity_card = $identityCard;
 
         return $obj;
     }
@@ -369,7 +369,7 @@ final class Individual implements BaseModel, ResponseConverter
     public function withPortalURL(string $portalURL): self
     {
         $obj = clone $this;
-        $obj->portalURL = $portalURL;
+        $obj->portal_url = $portalURL;
 
         return $obj;
     }
@@ -404,7 +404,7 @@ final class Individual implements BaseModel, ResponseConverter
     public function withSourceID(string $sourceID): self
     {
         $obj = clone $this;
-        $obj->sourceID = $sourceID;
+        $obj->source_id = $sourceID;
 
         return $obj;
     }
@@ -450,7 +450,7 @@ final class Individual implements BaseModel, ResponseConverter
     public function withTechnicalData(TechnicalData $technicalData): self
     {
         $obj = clone $this;
-        $obj->technicalData = $technicalData;
+        $obj->technical_data = $technicalData;
 
         return $obj;
     }
@@ -461,7 +461,7 @@ final class Individual implements BaseModel, ResponseConverter
     public function withWebviewURL(string $webviewURL): self
     {
         $obj = clone $this;
-        $obj->webviewURL = $webviewURL;
+        $obj->webview_url = $webviewURL;
 
         return $obj;
     }
@@ -472,7 +472,7 @@ final class Individual implements BaseModel, ResponseConverter
     public function withWorkspaceID(string $workspaceID): self
     {
         $obj = clone $this;
-        $obj->workspaceID = $workspaceID;
+        $obj->workspace_id = $workspaceID;
 
         return $obj;
     }
