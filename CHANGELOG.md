@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.16.0 (2025-11-13)
+
+Full Changelog: [v0.15.0...v0.16.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.15.0...v0.16.0)
+
+### ⚠ BREAKING CHANGES
+
+* **client:** redesign methods
+
+### Features
+
+* **client:** redesign methods ([0415f57](https://github.com/dataleonlabs/dataleon-php/commit/0415f575f014c864ab7a636a23bf5d77cbbd21c9))
+
+
+### Bug Fixes
+
+* rename invalid types ([6a438b1](https://github.com/dataleonlabs/dataleon-php/commit/6a438b140f1a84d47a3125c05d9d3c1198a3ab29))
+
+
+### Chores
+
+* **internal:** codegen related update ([b10fb9d](https://github.com/dataleonlabs/dataleon-php/commit/b10fb9d08ae3acc3ce02950ba1c0c3ccca1bffa6))
+
 ## 0.15.0 (2025-11-05)
 
 Full Changelog: [v0.14.1...v0.15.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.14.1...v0.15.0)

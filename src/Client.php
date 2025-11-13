@@ -44,9 +44,9 @@ class Client extends BaseClient
             headers: [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
-                'User-Agent' => sprintf('dataleon/PHP %s', '0.15.0'),
+                'User-Agent' => sprintf('dataleon/PHP %s', '0.16.0'),
                 'X-Stainless-Lang' => 'php',
-                'X-Stainless-Package-Version' => '0.15.0',
+                'X-Stainless-Package-Version' => '0.16.0',
                 'X-Stainless-OS' => $this->getNormalizedOS(),
                 'X-Stainless-Arch' => $this->getNormalizedArchitecture(),
                 'X-Stainless-Runtime' => 'php',
