@@ -13,7 +13,7 @@ use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
 /**
  * Upload documents to an individual.
  *
- * @see Dataleon\Individuals\Documents->upload
+ * @see Dataleon\Services\Individuals\DocumentsService::upload()
  *
  * @phpstan-type DocumentUploadParamsShape = array{
  *   document_type: DocumentType|value-of<DocumentType>,

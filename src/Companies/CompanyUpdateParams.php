@@ -14,7 +14,7 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Update a company by ID.
  *
- * @see Dataleon\Companies->update
+ * @see Dataleon\Services\CompaniesService::update()
  *
  * @phpstan-type CompanyUpdateParamsShape = array{
  *   company: Company,

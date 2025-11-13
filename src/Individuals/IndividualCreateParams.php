@@ -14,7 +14,7 @@ use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
 /**
  * Create a new individual.
  *
- * @see Dataleon\Individuals->create
+ * @see Dataleon\Services\IndividualsService::create()
  *
  * @phpstan-type IndividualCreateParamsShape = array{
  *   workspace_id: string,

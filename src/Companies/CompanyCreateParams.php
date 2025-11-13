@@ -14,7 +14,7 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Create a new company.
  *
- * @see Dataleon\Companies->create
+ * @see Dataleon\Services\CompaniesService::create()
  *
  * @phpstan-type CompanyCreateParamsShape = array{
  *   company: Company,
