@@ -7,6 +7,7 @@ namespace Dataleon\Services;
 use Dataleon\Client;
 use Dataleon\Companies\CompanyCreateParams;
 use Dataleon\Companies\CompanyListParams;
+use Dataleon\Companies\CompanyListParams\State;
 use Dataleon\Companies\CompanyRegistration;
 use Dataleon\Companies\CompanyRetrieveParams;
 use Dataleon\Companies\CompanyUpdateParams;
@@ -178,8 +179,6 @@ final class CompaniesService implements CompaniesContract
     /**
      * @api
      *
-     * @phpstan-type State = "VOID"|"WAITING"|"STARTED"|"RUNNING"|"PROCESSED"|"FAILED"|"ABORTED"|"EXPIRED"|"DELETED"
-     *
      * Get all companies
      *
      * @param array{
@@ -188,7 +187,7 @@ final class CompaniesService implements CompaniesContract
      *   offset?: int,
      *   source_id?: string,
      *   start_date?: string|\DateTimeInterface,
-     *   state?: State,
+     *   state?: value-of<State>,
      *   status?: "rejected"|"need_review"|"approved",
      *   workspace_id?: string,
      * }|CompanyListParams $params
