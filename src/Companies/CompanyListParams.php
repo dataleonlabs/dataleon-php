@@ -14,7 +14,7 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Get all companies.
  *
- * @see Dataleon\Companies->list
+ * @see Dataleon\Services\CompaniesService::list()
  *
  * @phpstan-type CompanyListParamsShape = array{
  *   end_date?: \DateTimeInterface,

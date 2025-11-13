@@ -14,7 +14,7 @@ use Dataleon\Individuals\IndividualListParams\Status;
 /**
  * Get all individuals.
  *
- * @see Dataleon\Individuals->list
+ * @see Dataleon\Services\IndividualsService::list()
  *
  * @phpstan-type IndividualListParamsShape = array{
  *   end_date?: \DateTimeInterface,

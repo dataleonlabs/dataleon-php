@@ -14,7 +14,7 @@ use Dataleon\Individuals\IndividualUpdateParams\TechnicalData;
 /**
  * Update an individual by ID.
  *
- * @see Dataleon\Individuals->update
+ * @see Dataleon\Services\IndividualsService::update()
  *
  * @phpstan-type IndividualUpdateParamsShape = array{
  *   workspace_id: string,

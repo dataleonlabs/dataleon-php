@@ -12,7 +12,7 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Get a company by ID.
  *
- * @see Dataleon\Companies->retrieve
+ * @see Dataleon\Services\CompaniesService::retrieve()
  *
  * @phpstan-type CompanyRetrieveParamsShape = array{
  *   document?: bool, scope?: string
