@@ -10,6 +10,7 @@ use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams;
 use Dataleon\Individuals\IndividualListParams;
+use Dataleon\Individuals\IndividualListParams\State;
 use Dataleon\Individuals\IndividualRetrieveParams;
 use Dataleon\Individuals\IndividualUpdateParams;
 use Dataleon\RequestOptions;
@@ -164,8 +165,6 @@ final class IndividualsService implements IndividualsContract
     /**
      * @api
      *
-     * @phpstan-type State = "VOID"|"WAITING"|"STARTED"|"RUNNING"|"PROCESSED"|"FAILED"|"ABORTED"|"EXPIRED"|"DELETED"
-     *
      * Get all individuals
      *
      * @param array{
@@ -174,7 +173,7 @@ final class IndividualsService implements IndividualsContract
      *   offset?: int,
      *   source_id?: string,
      *   start_date?: string|\DateTimeInterface,
-     *   state?: State,
+     *   state?: value-of<State>,
      *   status?: "rejected"|"need_review"|"approved",
      *   workspace_id?: string,
      * }|IndividualListParams $params
