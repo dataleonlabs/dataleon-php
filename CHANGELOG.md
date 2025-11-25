@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.16.1 (2025-11-25)
+
+Full Changelog: [v0.16.0...v0.16.1](https://github.com/dataleonlabs/dataleon-php/compare/v0.16.0...v0.16.1)
+
+### Bug Fixes
+
+* phpStan linter errors ([249faee](https://github.com/dataleonlabs/dataleon-php/commit/249faeedfe578b98804596029cd7c64b02b7c0ba))
+
+
+### Chores
+
+* **client:** refactor error type constructors ([51a418f](https://github.com/dataleonlabs/dataleon-php/commit/51a418f178f91f0f3b93a54afbd37b6c43864bd4))
+
 ## 0.16.0 (2025-11-13)
 
 Full Changelog: [v0.15.0...v0.16.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.15.0...v0.16.0)
