@@ -3,6 +3,7 @@
 namespace Tests\Services;
 
 use Dataleon\Client;
+use Dataleon\Companies\CompanyRegistration;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -37,7 +38,8 @@ final class CompaniesTest extends TestCase
             'company' => ['name' => 'ACME Corp'], 'workspace_id' => 'wk_123',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CompanyRegistration::class, $result);
     }
 
     #[Test]
@@ -66,9 +68,20 @@ final class CompaniesTest extends TestCase
                 'website_url' => 'https://acme.fr',
             ],
             'workspace_id' => 'wk_123',
+            'source_id' => 'ID54410069066',
+            'technical_data' => [
+                'active_aml_suspicions' => false,
+                'callback_url' => 'https://example.com/callback',
+                'callback_url_notification' => 'https://example.com/notify',
+                'filtering_score_aml_suspicions' => 0.75,
+                'language' => 'fra',
+                'portal_steps' => ['identity_verification', 'document_signing'],
+                'raw_data' => true,
+            ],
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CompanyRegistration::class, $result);
     }
 
     #[Test]
@@ -80,7 +93,8 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->retrieve('company_id', []);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CompanyRegistration::class, $result);
     }
 
     #[Test]
@@ -95,7 +109,8 @@ final class CompaniesTest extends TestCase
             ['company' => ['name' => 'ACME Corp'], 'workspace_id' => 'wk_123'],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CompanyRegistration::class, $result);
     }
 
     #[Test]
@@ -126,10 +141,21 @@ final class CompaniesTest extends TestCase
                     'website_url' => 'https://acme.fr',
                 ],
                 'workspace_id' => 'wk_123',
+                'source_id' => 'ID54410069066',
+                'technical_data' => [
+                    'active_aml_suspicions' => false,
+                    'callback_url' => 'https://example.com/callback',
+                    'callback_url_notification' => 'https://example.com/notify',
+                    'filtering_score_aml_suspicions' => 0.75,
+                    'language' => 'fra',
+                    'portal_steps' => ['identity_verification', 'document_signing'],
+                    'raw_data' => true,
+                ],
             ],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CompanyRegistration::class, $result);
     }
 
     #[Test]
@@ -141,7 +167,8 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->list([]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertIsList($result);
     }
 
     #[Test]
@@ -153,6 +180,7 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->delete('company_id');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertNull($result);
     }
 }
