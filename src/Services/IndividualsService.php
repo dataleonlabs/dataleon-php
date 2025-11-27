@@ -43,7 +43,7 @@ final class IndividualsService implements IndividualsContract
      *     birthday?: string,
      *     email?: string,
      *     first_name?: string,
-     *     gender?: "M"|"F",
+     *     gender?: 'M'|'F',
      *     last_name?: string,
      *     maiden_name?: string,
      *     nationality?: string,
@@ -56,7 +56,7 @@ final class IndividualsService implements IndividualsContract
      *     callback_url_notification?: string,
      *     filtering_score_aml_suspicions?: float,
      *     language?: string,
-     *     portal_steps?: list<"identity_verification"|"document_signing"|"proof_of_address"|"selfie"|"face_match">,
+     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'>,
      *     raw_data?: bool,
      *   },
      * }|IndividualCreateParams $params
@@ -122,7 +122,7 @@ final class IndividualsService implements IndividualsContract
      *     birthday?: string,
      *     email?: string,
      *     first_name?: string,
-     *     gender?: "M"|"F",
+     *     gender?: 'M'|'F',
      *     last_name?: string,
      *     maiden_name?: string,
      *     nationality?: string,
@@ -135,7 +135,7 @@ final class IndividualsService implements IndividualsContract
      *     callback_url_notification?: string,
      *     filtering_score_aml_suspicions?: float,
      *     language?: string,
-     *     portal_steps?: list<"identity_verification"|"document_signing"|"proof_of_address"|"selfie"|"face_match">,
+     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'>,
      *     raw_data?: bool,
      *   },
      * }|IndividualUpdateParams $params
@@ -174,7 +174,7 @@ final class IndividualsService implements IndividualsContract
      *   source_id?: string,
      *   start_date?: string|\DateTimeInterface,
      *   state?: value-of<State>,
-     *   status?: "rejected"|"need_review"|"approved",
+     *   status?: 'rejected'|'need_review'|'approved',
      *   workspace_id?: string,
      * }|IndividualListParams $params
      *

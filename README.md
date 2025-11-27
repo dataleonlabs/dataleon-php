@@ -35,9 +35,9 @@ Parameters with a default value must be set by name.
 
 use Dataleon\Client;
 
-$client = new Client(apiKey: getenv("DATALEON_API_KEY") ?: "My API Key");
+$client = new Client(apiKey: getenv('DATALEON_API_KEY') ?: 'My API Key');
 
-$individual = $client->individuals->create(["workspace_id" => "wk_123"]);
+$individual = $client->individuals->create(['workspace_id' => 'wk_123']);
 
 var_dump($individual->id);
 ```
@@ -59,7 +59,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 use Dataleon\Core\Exceptions\APIConnectionException;
 
 try {
-  $individual = $client->individuals->create(["workspace_id" => "wk_123"]);
+  $individual = $client->individuals->create(['workspace_id' => 'wk_123']);
 } catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
   var_dump($e->getPrevious());
@@ -106,7 +106,7 @@ $client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
 $result = $client->individuals->create(
-  ["workspace_id" => "wk_123"], RequestOptions::with(maxRetries: 5)
+  ['workspace_id' => 'wk_123'], RequestOptions::with(maxRetries: 5)
 );
 ```
 
@@ -126,11 +126,11 @@ Note: the `extra*` parameters of the same name overrides the documented paramete
 use Dataleon\RequestOptions;
 
 $individual = $client->individuals->create(
-  ["workspace_id" => "wk_123"],
+  ['workspace_id' => 'wk_123'],
   RequestOptions::with(
-    extraQueryParams: ["my_query_parameter" => "value"],
-    extraBodyParams: ["my_body_parameter" => "value"],
-    extraHeaders: ["my-header" => "value"],
+    extraQueryParams: ['my_query_parameter' => 'value'],
+    extraBodyParams: ['my_body_parameter' => 'value'],
+    extraHeaders: ['my-header' => 'value'],
   ),
 );
 ```
