@@ -63,7 +63,7 @@ interface IndividualsContract
      */
     public function list(
         array|IndividualListParams $params,
-        ?RequestOptions $requestOptions = null,
+        ?RequestOptions $requestOptions = null
     ): array;
 
     /**
