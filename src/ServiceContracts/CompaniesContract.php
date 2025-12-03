@@ -23,7 +23,7 @@ interface CompaniesContract
      */
     public function create(
         array|CompanyCreateParams $params,
-        ?RequestOptions $requestOptions = null,
+        ?RequestOptions $requestOptions = null
     ): CompanyRegistration;
 
     /**
