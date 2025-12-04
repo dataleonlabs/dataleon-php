@@ -68,7 +68,7 @@ final class DocumentsTest extends TestCase
             'individual_id',
             [
                 'document_type' => 'liasse_fiscale',
-                'file' => null,
+                'file' => file_get_contents(__FILE__) ?: '',
                 'url' => 'https://example.com/sample.pdf',
             ],
         );
