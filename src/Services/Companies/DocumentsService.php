@@ -31,7 +31,7 @@ final class DocumentsService implements DocumentsContract
         string $companyID,
         ?RequestOptions $requestOptions = null
     ): DocumentResponse {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: ['companies/%1$s/documents', $companyID],
@@ -61,7 +61,7 @@ final class DocumentsService implements DocumentsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: ['companies/%1$s/documents', $companyID],

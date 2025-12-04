@@ -72,7 +72,7 @@ final class IndividualsService implements IndividualsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'individuals',
@@ -101,7 +101,7 @@ final class IndividualsService implements IndividualsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: ['individuals/%1$s', $individualID],
@@ -152,7 +152,7 @@ final class IndividualsService implements IndividualsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'put',
             path: ['individuals/%1$s', $individualID],
@@ -191,7 +191,7 @@ final class IndividualsService implements IndividualsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: 'individuals',
@@ -212,7 +212,7 @@ final class IndividualsService implements IndividualsContract
         string $individualID,
         ?RequestOptions $requestOptions = null
     ): mixed {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'delete',
             path: ['individuals/%1$s', $individualID],
