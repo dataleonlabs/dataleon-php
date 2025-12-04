@@ -79,7 +79,7 @@ final class CompaniesService implements CompaniesContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'companies',
@@ -108,7 +108,7 @@ final class CompaniesService implements CompaniesContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: ['companies/%1$s', $companyID],
@@ -166,7 +166,7 @@ final class CompaniesService implements CompaniesContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'put',
             path: ['companies/%1$s', $companyID],
@@ -205,7 +205,7 @@ final class CompaniesService implements CompaniesContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: 'companies',
@@ -226,7 +226,7 @@ final class CompaniesService implements CompaniesContract
         string $companyID,
         ?RequestOptions $requestOptions = null
     ): mixed {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'delete',
             path: ['companies/%1$s', $companyID],
