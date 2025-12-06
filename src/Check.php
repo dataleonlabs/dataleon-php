@@ -73,11 +73,11 @@ final class Check implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $masked && $obj->masked = $masked;
-        null !== $message && $obj->message = $message;
-        null !== $name && $obj->name = $name;
-        null !== $validate && $obj->validate = $validate;
-        null !== $weight && $obj->weight = $weight;
+        null !== $masked && $obj['masked'] = $masked;
+        null !== $message && $obj['message'] = $message;
+        null !== $name && $obj['name'] = $name;
+        null !== $validate && $obj['validate'] = $validate;
+        null !== $weight && $obj['weight'] = $weight;
 
         return $obj;
     }
@@ -88,7 +88,7 @@ final class Check implements BaseModel
     public function withMasked(bool $masked): self
     {
         $obj = clone $this;
-        $obj->masked = $masked;
+        $obj['masked'] = $masked;
 
         return $obj;
     }
@@ -99,7 +99,7 @@ final class Check implements BaseModel
     public function withMessage(string $message): self
     {
         $obj = clone $this;
-        $obj->message = $message;
+        $obj['message'] = $message;
 
         return $obj;
     }
@@ -110,7 +110,7 @@ final class Check implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -121,7 +121,7 @@ final class Check implements BaseModel
     public function withValidate(bool $validate): self
     {
         $obj = clone $this;
-        $obj->validate = $validate;
+        $obj['validate'] = $validate;
 
         return $obj;
     }
@@ -132,7 +132,7 @@ final class Check implements BaseModel
     public function withWeight(int $weight): self
     {
         $obj = clone $this;
-        $obj->weight = $weight;
+        $obj['weight'] = $weight;
 
         return $obj;
     }

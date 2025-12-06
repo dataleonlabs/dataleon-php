@@ -57,9 +57,9 @@ final class Value implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $confidence && $obj->confidence = $confidence;
-        null !== $name && $obj->name = $name;
-        null !== $value && $obj->value = $value;
+        null !== $confidence && $obj['confidence'] = $confidence;
+        null !== $name && $obj['name'] = $name;
+        null !== $value && $obj['value'] = $value;
 
         return $obj;
     }
@@ -70,7 +70,7 @@ final class Value implements BaseModel
     public function withConfidence(float $confidence): self
     {
         $obj = clone $this;
-        $obj->confidence = $confidence;
+        $obj['confidence'] = $confidence;
 
         return $obj;
     }
@@ -81,7 +81,7 @@ final class Value implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -94,7 +94,7 @@ final class Value implements BaseModel
     public function withValue(array $value): self
     {
         $obj = clone $this;
-        $obj->value = $value;
+        $obj['value'] = $value;
 
         return $obj;
     }

@@ -102,14 +102,14 @@ final class Person implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $birthday && $obj->birthday = $birthday;
-        null !== $email && $obj->email = $email;
-        null !== $first_name && $obj->first_name = $first_name;
+        null !== $birthday && $obj['birthday'] = $birthday;
+        null !== $email && $obj['email'] = $email;
+        null !== $first_name && $obj['first_name'] = $first_name;
         null !== $gender && $obj['gender'] = $gender;
-        null !== $last_name && $obj->last_name = $last_name;
-        null !== $maiden_name && $obj->maiden_name = $maiden_name;
-        null !== $nationality && $obj->nationality = $nationality;
-        null !== $phone_number && $obj->phone_number = $phone_number;
+        null !== $last_name && $obj['last_name'] = $last_name;
+        null !== $maiden_name && $obj['maiden_name'] = $maiden_name;
+        null !== $nationality && $obj['nationality'] = $nationality;
+        null !== $phone_number && $obj['phone_number'] = $phone_number;
 
         return $obj;
     }
@@ -120,7 +120,7 @@ final class Person implements BaseModel
     public function withBirthday(string $birthday): self
     {
         $obj = clone $this;
-        $obj->birthday = $birthday;
+        $obj['birthday'] = $birthday;
 
         return $obj;
     }
@@ -131,7 +131,7 @@ final class Person implements BaseModel
     public function withEmail(string $email): self
     {
         $obj = clone $this;
-        $obj->email = $email;
+        $obj['email'] = $email;
 
         return $obj;
     }
@@ -142,7 +142,7 @@ final class Person implements BaseModel
     public function withFirstName(string $firstName): self
     {
         $obj = clone $this;
-        $obj->first_name = $firstName;
+        $obj['first_name'] = $firstName;
 
         return $obj;
     }
@@ -166,7 +166,7 @@ final class Person implements BaseModel
     public function withLastName(string $lastName): self
     {
         $obj = clone $this;
-        $obj->last_name = $lastName;
+        $obj['last_name'] = $lastName;
 
         return $obj;
     }
@@ -177,7 +177,7 @@ final class Person implements BaseModel
     public function withMaidenName(string $maidenName): self
     {
         $obj = clone $this;
-        $obj->maiden_name = $maidenName;
+        $obj['maiden_name'] = $maidenName;
 
         return $obj;
     }
@@ -188,7 +188,7 @@ final class Person implements BaseModel
     public function withNationality(string $nationality): self
     {
         $obj = clone $this;
-        $obj->nationality = $nationality;
+        $obj['nationality'] = $nationality;
 
         return $obj;
     }
@@ -199,7 +199,7 @@ final class Person implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $obj['phone_number'] = $phoneNumber;
 
         return $obj;
     }

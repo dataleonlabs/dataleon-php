@@ -55,9 +55,9 @@ final class Risk implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $code && $obj->code = $code;
-        null !== $reason && $obj->reason = $reason;
-        null !== $score && $obj->score = $score;
+        null !== $code && $obj['code'] = $code;
+        null !== $reason && $obj['reason'] = $reason;
+        null !== $score && $obj['score'] = $score;
 
         return $obj;
     }
@@ -68,7 +68,7 @@ final class Risk implements BaseModel
     public function withCode(string $code): self
     {
         $obj = clone $this;
-        $obj->code = $code;
+        $obj['code'] = $code;
 
         return $obj;
     }
@@ -79,7 +79,7 @@ final class Risk implements BaseModel
     public function withReason(string $reason): self
     {
         $obj = clone $this;
-        $obj->reason = $reason;
+        $obj['reason'] = $reason;
 
         return $obj;
     }
@@ -90,7 +90,7 @@ final class Risk implements BaseModel
     public function withScore(float $score): self
     {
         $obj = clone $this;
-        $obj->score = $score;
+        $obj['score'] = $score;
 
         return $obj;
     }

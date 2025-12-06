@@ -47,7 +47,16 @@ final class DocumentResponse implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Document> $documents
+     * @param list<Document|array{
+     *   id?: string|null,
+     *   document_type?: string|null,
+     *   filename?: string|null,
+     *   name?: string|null,
+     *   signed_url?: string|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   workspace_id?: string|null,
+     * }> $documents
      */
     public static function with(
         ?array $documents = null,
@@ -55,8 +64,8 @@ final class DocumentResponse implements BaseModel, ResponseConverter
     ): self {
         $obj = new self;
 
-        null !== $documents && $obj->documents = $documents;
-        null !== $total_document && $obj->total_document = $total_document;
+        null !== $documents && $obj['documents'] = $documents;
+        null !== $total_document && $obj['total_document'] = $total_document;
 
         return $obj;
     }
@@ -64,12 +73,21 @@ final class DocumentResponse implements BaseModel, ResponseConverter
     /**
      * List of documents associated with the response.
      *
-     * @param list<Document> $documents
+     * @param list<Document|array{
+     *   id?: string|null,
+     *   document_type?: string|null,
+     *   filename?: string|null,
+     *   name?: string|null,
+     *   signed_url?: string|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   workspace_id?: string|null,
+     * }> $documents
      */
     public function withDocuments(array $documents): self
     {
         $obj = clone $this;
-        $obj->documents = $documents;
+        $obj['documents'] = $documents;
 
         return $obj;
     }
@@ -80,7 +98,7 @@ final class DocumentResponse implements BaseModel, ResponseConverter
     public function withTotalDocument(int $totalDocument): self
     {
         $obj = clone $this;
-        $obj->total_document = $totalDocument;
+        $obj['total_document'] = $totalDocument;
 
         return $obj;
     }

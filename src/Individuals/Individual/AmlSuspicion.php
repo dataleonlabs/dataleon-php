@@ -114,13 +114,13 @@ final class AmlSuspicion implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $caption && $obj->caption = $caption;
-        null !== $country && $obj->country = $country;
-        null !== $gender && $obj->gender = $gender;
-        null !== $relation && $obj->relation = $relation;
-        null !== $schema && $obj->schema = $schema;
-        null !== $score && $obj->score = $score;
-        null !== $source && $obj->source = $source;
+        null !== $caption && $obj['caption'] = $caption;
+        null !== $country && $obj['country'] = $country;
+        null !== $gender && $obj['gender'] = $gender;
+        null !== $relation && $obj['relation'] = $relation;
+        null !== $schema && $obj['schema'] = $schema;
+        null !== $score && $obj['score'] = $score;
+        null !== $source && $obj['source'] = $source;
         null !== $status && $obj['status'] = $status;
         null !== $type && $obj['type'] = $type;
 
@@ -133,7 +133,7 @@ final class AmlSuspicion implements BaseModel
     public function withCaption(string $caption): self
     {
         $obj = clone $this;
-        $obj->caption = $caption;
+        $obj['caption'] = $caption;
 
         return $obj;
     }
@@ -144,7 +144,7 @@ final class AmlSuspicion implements BaseModel
     public function withCountry(string $country): self
     {
         $obj = clone $this;
-        $obj->country = $country;
+        $obj['country'] = $country;
 
         return $obj;
     }
@@ -155,7 +155,7 @@ final class AmlSuspicion implements BaseModel
     public function withGender(string $gender): self
     {
         $obj = clone $this;
-        $obj->gender = $gender;
+        $obj['gender'] = $gender;
 
         return $obj;
     }
@@ -166,7 +166,7 @@ final class AmlSuspicion implements BaseModel
     public function withRelation(string $relation): self
     {
         $obj = clone $this;
-        $obj->relation = $relation;
+        $obj['relation'] = $relation;
 
         return $obj;
     }
@@ -177,7 +177,7 @@ final class AmlSuspicion implements BaseModel
     public function withSchema(string $schema): self
     {
         $obj = clone $this;
-        $obj->schema = $schema;
+        $obj['schema'] = $schema;
 
         return $obj;
     }
@@ -188,7 +188,7 @@ final class AmlSuspicion implements BaseModel
     public function withScore(float $score): self
     {
         $obj = clone $this;
-        $obj->score = $score;
+        $obj['score'] = $score;
 
         return $obj;
     }
@@ -199,7 +199,7 @@ final class AmlSuspicion implements BaseModel
     public function withSource(string $source): self
     {
         $obj = clone $this;
-        $obj->source = $source;
+        $obj['source'] = $source;
 
         return $obj;
     }

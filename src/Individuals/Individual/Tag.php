@@ -65,10 +65,10 @@ final class Tag implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $key && $obj->key = $key;
-        null !== $private && $obj->private = $private;
-        null !== $type && $obj->type = $type;
-        null !== $value && $obj->value = $value;
+        null !== $key && $obj['key'] = $key;
+        null !== $private && $obj['private'] = $private;
+        null !== $type && $obj['type'] = $type;
+        null !== $value && $obj['value'] = $value;
 
         return $obj;
     }
@@ -79,7 +79,7 @@ final class Tag implements BaseModel
     public function withKey(string $key): self
     {
         $obj = clone $this;
-        $obj->key = $key;
+        $obj['key'] = $key;
 
         return $obj;
     }
@@ -90,7 +90,7 @@ final class Tag implements BaseModel
     public function withPrivate(bool $private): self
     {
         $obj = clone $this;
-        $obj->private = $private;
+        $obj['private'] = $private;
 
         return $obj;
     }
@@ -101,7 +101,7 @@ final class Tag implements BaseModel
     public function withType(string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj['type'] = $type;
 
         return $obj;
     }
@@ -112,7 +112,7 @@ final class Tag implements BaseModel
     public function withValue(string $value): self
     {
         $obj = clone $this;
-        $obj->value = $value;
+        $obj['value'] = $value;
 
         return $obj;
     }

@@ -94,13 +94,13 @@ final class TechnicalData implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $active_aml_suspicions && $obj->active_aml_suspicions = $active_aml_suspicions;
-        null !== $callback_url && $obj->callback_url = $callback_url;
-        null !== $callback_url_notification && $obj->callback_url_notification = $callback_url_notification;
-        null !== $filtering_score_aml_suspicions && $obj->filtering_score_aml_suspicions = $filtering_score_aml_suspicions;
-        null !== $language && $obj->language = $language;
+        null !== $active_aml_suspicions && $obj['active_aml_suspicions'] = $active_aml_suspicions;
+        null !== $callback_url && $obj['callback_url'] = $callback_url;
+        null !== $callback_url_notification && $obj['callback_url_notification'] = $callback_url_notification;
+        null !== $filtering_score_aml_suspicions && $obj['filtering_score_aml_suspicions'] = $filtering_score_aml_suspicions;
+        null !== $language && $obj['language'] = $language;
         null !== $portal_steps && $obj['portal_steps'] = $portal_steps;
-        null !== $raw_data && $obj->raw_data = $raw_data;
+        null !== $raw_data && $obj['raw_data'] = $raw_data;
 
         return $obj;
     }
@@ -111,7 +111,7 @@ final class TechnicalData implements BaseModel
     public function withActiveAmlSuspicions(bool $activeAmlSuspicions): self
     {
         $obj = clone $this;
-        $obj->active_aml_suspicions = $activeAmlSuspicions;
+        $obj['active_aml_suspicions'] = $activeAmlSuspicions;
 
         return $obj;
     }
@@ -122,7 +122,7 @@ final class TechnicalData implements BaseModel
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj->callback_url = $callbackURL;
+        $obj['callback_url'] = $callbackURL;
 
         return $obj;
     }
@@ -134,7 +134,7 @@ final class TechnicalData implements BaseModel
         string $callbackURLNotification
     ): self {
         $obj = clone $this;
-        $obj->callback_url_notification = $callbackURLNotification;
+        $obj['callback_url_notification'] = $callbackURLNotification;
 
         return $obj;
     }
@@ -146,7 +146,7 @@ final class TechnicalData implements BaseModel
         float $filteringScoreAmlSuspicions
     ): self {
         $obj = clone $this;
-        $obj->filtering_score_aml_suspicions = $filteringScoreAmlSuspicions;
+        $obj['filtering_score_aml_suspicions'] = $filteringScoreAmlSuspicions;
 
         return $obj;
     }
@@ -157,7 +157,7 @@ final class TechnicalData implements BaseModel
     public function withLanguage(string $language): self
     {
         $obj = clone $this;
-        $obj->language = $language;
+        $obj['language'] = $language;
 
         return $obj;
     }
@@ -181,7 +181,7 @@ final class TechnicalData implements BaseModel
     public function withRawData(bool $rawData): self
     {
         $obj = clone $this;
-        $obj->raw_data = $rawData;
+        $obj['raw_data'] = $rawData;
 
         return $obj;
     }

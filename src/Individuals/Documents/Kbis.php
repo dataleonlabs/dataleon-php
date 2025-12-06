@@ -8,6 +8,7 @@ use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\Kbis\Member;
+use Dataleon\Individuals\Documents\Kbis\Member\Type;
 
 /**
  * A document representing official registration data from the KBIS (France).
@@ -137,7 +138,30 @@ final class Kbis implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Member> $members
+     * @param list<Member|array{
+     *   id?: string|null,
+     *   address?: string|null,
+     *   birthday?: \DateTimeInterface|null,
+     *   birthplace?: string|null,
+     *   country?: string|null,
+     *   email?: string|null,
+     *   first_name?: string|null,
+     *   is_beneficial_owner?: bool|null,
+     *   is_delegator?: bool|null,
+     *   last_name?: string|null,
+     *   liveness_verification?: bool|null,
+     *   name?: string|null,
+     *   ownership_percentage?: int|null,
+     *   phone_number?: string|null,
+     *   postal_code?: string|null,
+     *   registration_id?: string|null,
+     *   relation?: string|null,
+     *   roles?: string|null,
+     *   source?: string|null,
+     *   status?: string|null,
+     *   type?: value-of<Type>|null,
+     *   workspace_id?: string|null,
+     * }> $members
      */
     public static function with(
         ?string $activities = null,
@@ -158,21 +182,21 @@ final class Kbis implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $activities && $obj->activities = $activities;
-        null !== $address && $obj->address = $address;
-        null !== $capital_social && $obj->capital_social = $capital_social;
-        null !== $closure_date && $obj->closure_date = $closure_date;
-        null !== $company_name && $obj->company_name = $company_name;
-        null !== $document_date && $obj->document_date = $document_date;
-        null !== $document_type && $obj->document_type = $document_type;
-        null !== $first_closure_date && $obj->first_closure_date = $first_closure_date;
-        null !== $from_greffe && $obj->from_greffe = $from_greffe;
-        null !== $legal_form && $obj->legal_form = $legal_form;
-        null !== $members && $obj->members = $members;
-        null !== $ngestion && $obj->ngestion = $ngestion;
-        null !== $rcs_number && $obj->rcs_number = $rcs_number;
-        null !== $registration_date && $obj->registration_date = $registration_date;
-        null !== $siren_info && $obj->siren_info = $siren_info;
+        null !== $activities && $obj['activities'] = $activities;
+        null !== $address && $obj['address'] = $address;
+        null !== $capital_social && $obj['capital_social'] = $capital_social;
+        null !== $closure_date && $obj['closure_date'] = $closure_date;
+        null !== $company_name && $obj['company_name'] = $company_name;
+        null !== $document_date && $obj['document_date'] = $document_date;
+        null !== $document_type && $obj['document_type'] = $document_type;
+        null !== $first_closure_date && $obj['first_closure_date'] = $first_closure_date;
+        null !== $from_greffe && $obj['from_greffe'] = $from_greffe;
+        null !== $legal_form && $obj['legal_form'] = $legal_form;
+        null !== $members && $obj['members'] = $members;
+        null !== $ngestion && $obj['ngestion'] = $ngestion;
+        null !== $rcs_number && $obj['rcs_number'] = $rcs_number;
+        null !== $registration_date && $obj['registration_date'] = $registration_date;
+        null !== $siren_info && $obj['siren_info'] = $siren_info;
 
         return $obj;
     }
@@ -183,7 +207,7 @@ final class Kbis implements BaseModel
     public function withActivities(string $activities): self
     {
         $obj = clone $this;
-        $obj->activities = $activities;
+        $obj['activities'] = $activities;
 
         return $obj;
     }
@@ -194,7 +218,7 @@ final class Kbis implements BaseModel
     public function withAddress(string $address): self
     {
         $obj = clone $this;
-        $obj->address = $address;
+        $obj['address'] = $address;
 
         return $obj;
     }
@@ -205,7 +229,7 @@ final class Kbis implements BaseModel
     public function withCapitalSocial(string $capitalSocial): self
     {
         $obj = clone $this;
-        $obj->capital_social = $capitalSocial;
+        $obj['capital_social'] = $capitalSocial;
 
         return $obj;
     }
@@ -216,7 +240,7 @@ final class Kbis implements BaseModel
     public function withClosureDate(\DateTimeInterface $closureDate): self
     {
         $obj = clone $this;
-        $obj->closure_date = $closureDate;
+        $obj['closure_date'] = $closureDate;
 
         return $obj;
     }
@@ -227,7 +251,7 @@ final class Kbis implements BaseModel
     public function withCompanyName(string $companyName): self
     {
         $obj = clone $this;
-        $obj->company_name = $companyName;
+        $obj['company_name'] = $companyName;
 
         return $obj;
     }
@@ -238,7 +262,7 @@ final class Kbis implements BaseModel
     public function withDocumentDate(\DateTimeInterface $documentDate): self
     {
         $obj = clone $this;
-        $obj->document_date = $documentDate;
+        $obj['document_date'] = $documentDate;
 
         return $obj;
     }
@@ -249,7 +273,7 @@ final class Kbis implements BaseModel
     public function withDocumentType(string $documentType): self
     {
         $obj = clone $this;
-        $obj->document_type = $documentType;
+        $obj['document_type'] = $documentType;
 
         return $obj;
     }
@@ -261,7 +285,7 @@ final class Kbis implements BaseModel
         \DateTimeInterface $firstClosureDate
     ): self {
         $obj = clone $this;
-        $obj->first_closure_date = $firstClosureDate;
+        $obj['first_closure_date'] = $firstClosureDate;
 
         return $obj;
     }
@@ -272,7 +296,7 @@ final class Kbis implements BaseModel
     public function withFromGreffe(string $fromGreffe): self
     {
         $obj = clone $this;
-        $obj->from_greffe = $fromGreffe;
+        $obj['from_greffe'] = $fromGreffe;
 
         return $obj;
     }
@@ -283,7 +307,7 @@ final class Kbis implements BaseModel
     public function withLegalForm(string $legalForm): self
     {
         $obj = clone $this;
-        $obj->legal_form = $legalForm;
+        $obj['legal_form'] = $legalForm;
 
         return $obj;
     }
@@ -291,12 +315,35 @@ final class Kbis implements BaseModel
     /**
      * List of people or entities associated with the company.
      *
-     * @param list<Member> $members
+     * @param list<Member|array{
+     *   id?: string|null,
+     *   address?: string|null,
+     *   birthday?: \DateTimeInterface|null,
+     *   birthplace?: string|null,
+     *   country?: string|null,
+     *   email?: string|null,
+     *   first_name?: string|null,
+     *   is_beneficial_owner?: bool|null,
+     *   is_delegator?: bool|null,
+     *   last_name?: string|null,
+     *   liveness_verification?: bool|null,
+     *   name?: string|null,
+     *   ownership_percentage?: int|null,
+     *   phone_number?: string|null,
+     *   postal_code?: string|null,
+     *   registration_id?: string|null,
+     *   relation?: string|null,
+     *   roles?: string|null,
+     *   source?: string|null,
+     *   status?: string|null,
+     *   type?: value-of<Type>|null,
+     *   workspace_id?: string|null,
+     * }> $members
      */
     public function withMembers(array $members): self
     {
         $obj = clone $this;
-        $obj->members = $members;
+        $obj['members'] = $members;
 
         return $obj;
     }
@@ -307,7 +354,7 @@ final class Kbis implements BaseModel
     public function withNgestion(string $ngestion): self
     {
         $obj = clone $this;
-        $obj->ngestion = $ngestion;
+        $obj['ngestion'] = $ngestion;
 
         return $obj;
     }
@@ -318,7 +365,7 @@ final class Kbis implements BaseModel
     public function withRcsNumber(string $rcsNumber): self
     {
         $obj = clone $this;
-        $obj->rcs_number = $rcsNumber;
+        $obj['rcs_number'] = $rcsNumber;
 
         return $obj;
     }
@@ -330,7 +377,7 @@ final class Kbis implements BaseModel
         \DateTimeInterface $registrationDate
     ): self {
         $obj = clone $this;
-        $obj->registration_date = $registrationDate;
+        $obj['registration_date'] = $registrationDate;
 
         return $obj;
     }
@@ -341,7 +388,7 @@ final class Kbis implements BaseModel
     public function withSirenInfo(string $sirenInfo): self
     {
         $obj = clone $this;
-        $obj->siren_info = $sirenInfo;
+        $obj['siren_info'] = $sirenInfo;
 
         return $obj;
     }

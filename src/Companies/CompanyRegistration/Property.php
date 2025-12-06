@@ -55,9 +55,9 @@ final class Property implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $name && $obj->name = $name;
-        null !== $type && $obj->type = $type;
-        null !== $value && $obj->value = $value;
+        null !== $name && $obj['name'] = $name;
+        null !== $type && $obj['type'] = $type;
+        null !== $value && $obj['value'] = $value;
 
         return $obj;
     }
@@ -68,7 +68,7 @@ final class Property implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -79,7 +79,7 @@ final class Property implements BaseModel
     public function withType(string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj['type'] = $type;
 
         return $obj;
     }
@@ -90,7 +90,7 @@ final class Property implements BaseModel
     public function withValue(string $value): self
     {
         $obj = clone $this;
-        $obj->value = $value;
+        $obj['value'] = $value;
 
         return $obj;
     }

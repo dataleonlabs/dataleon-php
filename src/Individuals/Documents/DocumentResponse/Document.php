@@ -97,14 +97,14 @@ final class Document implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $id && $obj->id = $id;
-        null !== $document_type && $obj->document_type = $document_type;
-        null !== $filename && $obj->filename = $filename;
-        null !== $name && $obj->name = $name;
-        null !== $signed_url && $obj->signed_url = $signed_url;
-        null !== $state && $obj->state = $state;
-        null !== $status && $obj->status = $status;
-        null !== $workspace_id && $obj->workspace_id = $workspace_id;
+        null !== $id && $obj['id'] = $id;
+        null !== $document_type && $obj['document_type'] = $document_type;
+        null !== $filename && $obj['filename'] = $filename;
+        null !== $name && $obj['name'] = $name;
+        null !== $signed_url && $obj['signed_url'] = $signed_url;
+        null !== $state && $obj['state'] = $state;
+        null !== $status && $obj['status'] = $status;
+        null !== $workspace_id && $obj['workspace_id'] = $workspace_id;
 
         return $obj;
     }
@@ -115,7 +115,7 @@ final class Document implements BaseModel
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -126,7 +126,7 @@ final class Document implements BaseModel
     public function withDocumentType(string $documentType): self
     {
         $obj = clone $this;
-        $obj->document_type = $documentType;
+        $obj['document_type'] = $documentType;
 
         return $obj;
     }
@@ -137,7 +137,7 @@ final class Document implements BaseModel
     public function withFilename(string $filename): self
     {
         $obj = clone $this;
-        $obj->filename = $filename;
+        $obj['filename'] = $filename;
 
         return $obj;
     }
@@ -148,7 +148,7 @@ final class Document implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -159,7 +159,7 @@ final class Document implements BaseModel
     public function withSignedURL(string $signedURL): self
     {
         $obj = clone $this;
-        $obj->signed_url = $signedURL;
+        $obj['signed_url'] = $signedURL;
 
         return $obj;
     }
@@ -170,7 +170,7 @@ final class Document implements BaseModel
     public function withState(string $state): self
     {
         $obj = clone $this;
-        $obj->state = $state;
+        $obj['state'] = $state;
 
         return $obj;
     }
@@ -181,7 +181,7 @@ final class Document implements BaseModel
     public function withStatus(string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status;
+        $obj['status'] = $status;
 
         return $obj;
     }
@@ -192,7 +192,7 @@ final class Document implements BaseModel
     public function withWorkspaceID(string $workspaceID): self
     {
         $obj = clone $this;
-        $obj->workspace_id = $workspaceID;
+        $obj['workspace_id'] = $workspaceID;
 
         return $obj;
     }

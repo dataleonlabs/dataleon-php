@@ -112,9 +112,17 @@ final class GenericDocument implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Check> $checks
-     * @param list<Table> $tables
-     * @param list<Value> $values
+     * @param list<Check|array{
+     *   masked?: bool|null,
+     *   message?: string|null,
+     *   name?: string|null,
+     *   validate?: bool|null,
+     *   weight?: int|null,
+     * }> $checks
+     * @param list<Table|array{operation?: list<mixed>|null}> $tables
+     * @param list<Value|array{
+     *   confidence?: float|null, name?: string|null, value?: list<int>|null
+     * }> $values
      */
     public static function with(
         ?string $id = null,
@@ -130,16 +138,16 @@ final class GenericDocument implements BaseModel, ResponseConverter
     ): self {
         $obj = new self;
 
-        null !== $id && $obj->id = $id;
-        null !== $checks && $obj->checks = $checks;
-        null !== $created_at && $obj->created_at = $created_at;
-        null !== $document_type && $obj->document_type = $document_type;
-        null !== $name && $obj->name = $name;
-        null !== $signed_url && $obj->signed_url = $signed_url;
-        null !== $state && $obj->state = $state;
-        null !== $status && $obj->status = $status;
-        null !== $tables && $obj->tables = $tables;
-        null !== $values && $obj->values = $values;
+        null !== $id && $obj['id'] = $id;
+        null !== $checks && $obj['checks'] = $checks;
+        null !== $created_at && $obj['created_at'] = $created_at;
+        null !== $document_type && $obj['document_type'] = $document_type;
+        null !== $name && $obj['name'] = $name;
+        null !== $signed_url && $obj['signed_url'] = $signed_url;
+        null !== $state && $obj['state'] = $state;
+        null !== $status && $obj['status'] = $status;
+        null !== $tables && $obj['tables'] = $tables;
+        null !== $values && $obj['values'] = $values;
 
         return $obj;
     }
@@ -150,7 +158,7 @@ final class GenericDocument implements BaseModel, ResponseConverter
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -158,12 +166,18 @@ final class GenericDocument implements BaseModel, ResponseConverter
     /**
      * List of verification checks performed on the document.
      *
-     * @param list<Check> $checks
+     * @param list<Check|array{
+     *   masked?: bool|null,
+     *   message?: string|null,
+     *   name?: string|null,
+     *   validate?: bool|null,
+     *   weight?: int|null,
+     * }> $checks
      */
     public function withChecks(array $checks): self
     {
         $obj = clone $this;
-        $obj->checks = $checks;
+        $obj['checks'] = $checks;
 
         return $obj;
     }
@@ -174,7 +188,7 @@ final class GenericDocument implements BaseModel, ResponseConverter
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj->created_at = $createdAt;
+        $obj['created_at'] = $createdAt;
 
         return $obj;
     }
@@ -185,7 +199,7 @@ final class GenericDocument implements BaseModel, ResponseConverter
     public function withDocumentType(string $documentType): self
     {
         $obj = clone $this;
-        $obj->document_type = $documentType;
+        $obj['document_type'] = $documentType;
 
         return $obj;
     }
@@ -196,7 +210,7 @@ final class GenericDocument implements BaseModel, ResponseConverter
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -207,7 +221,7 @@ final class GenericDocument implements BaseModel, ResponseConverter
     public function withSignedURL(string $signedURL): self
     {
         $obj = clone $this;
-        $obj->signed_url = $signedURL;
+        $obj['signed_url'] = $signedURL;
 
         return $obj;
     }
@@ -218,7 +232,7 @@ final class GenericDocument implements BaseModel, ResponseConverter
     public function withState(string $state): self
     {
         $obj = clone $this;
-        $obj->state = $state;
+        $obj['state'] = $state;
 
         return $obj;
     }
@@ -229,7 +243,7 @@ final class GenericDocument implements BaseModel, ResponseConverter
     public function withStatus(string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status;
+        $obj['status'] = $status;
 
         return $obj;
     }
@@ -237,12 +251,12 @@ final class GenericDocument implements BaseModel, ResponseConverter
     /**
      * List of tables extracted from the document, each containing operations.
      *
-     * @param list<Table> $tables
+     * @param list<Table|array{operation?: list<mixed>|null}> $tables
      */
     public function withTables(array $tables): self
     {
         $obj = clone $this;
-        $obj->tables = $tables;
+        $obj['tables'] = $tables;
 
         return $obj;
     }
@@ -250,12 +264,14 @@ final class GenericDocument implements BaseModel, ResponseConverter
     /**
      * Extracted key-value pairs from the document, including confidence scores.
      *
-     * @param list<Value> $values
+     * @param list<Value|array{
+     *   confidence?: float|null, name?: string|null, value?: list<int>|null
+     * }> $values
      */
     public function withValues(array $values): self
     {
         $obj = clone $this;
-        $obj->values = $values;
+        $obj['values'] = $values;
 
         return $obj;
     }

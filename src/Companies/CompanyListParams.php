@@ -110,14 +110,14 @@ final class CompanyListParams implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $end_date && $obj->end_date = $end_date;
-        null !== $limit && $obj->limit = $limit;
-        null !== $offset && $obj->offset = $offset;
-        null !== $source_id && $obj->source_id = $source_id;
-        null !== $start_date && $obj->start_date = $start_date;
+        null !== $end_date && $obj['end_date'] = $end_date;
+        null !== $limit && $obj['limit'] = $limit;
+        null !== $offset && $obj['offset'] = $offset;
+        null !== $source_id && $obj['source_id'] = $source_id;
+        null !== $start_date && $obj['start_date'] = $start_date;
         null !== $state && $obj['state'] = $state;
         null !== $status && $obj['status'] = $status;
-        null !== $workspace_id && $obj->workspace_id = $workspace_id;
+        null !== $workspace_id && $obj['workspace_id'] = $workspace_id;
 
         return $obj;
     }
@@ -128,7 +128,7 @@ final class CompanyListParams implements BaseModel
     public function withEndDate(\DateTimeInterface $endDate): self
     {
         $obj = clone $this;
-        $obj->end_date = $endDate;
+        $obj['end_date'] = $endDate;
 
         return $obj;
     }
@@ -139,7 +139,7 @@ final class CompanyListParams implements BaseModel
     public function withLimit(int $limit): self
     {
         $obj = clone $this;
-        $obj->limit = $limit;
+        $obj['limit'] = $limit;
 
         return $obj;
     }
@@ -150,7 +150,7 @@ final class CompanyListParams implements BaseModel
     public function withOffset(int $offset): self
     {
         $obj = clone $this;
-        $obj->offset = $offset;
+        $obj['offset'] = $offset;
 
         return $obj;
     }
@@ -161,7 +161,7 @@ final class CompanyListParams implements BaseModel
     public function withSourceID(string $sourceID): self
     {
         $obj = clone $this;
-        $obj->source_id = $sourceID;
+        $obj['source_id'] = $sourceID;
 
         return $obj;
     }
@@ -172,7 +172,7 @@ final class CompanyListParams implements BaseModel
     public function withStartDate(\DateTimeInterface $startDate): self
     {
         $obj = clone $this;
-        $obj->start_date = $startDate;
+        $obj['start_date'] = $startDate;
 
         return $obj;
     }
@@ -209,7 +209,7 @@ final class CompanyListParams implements BaseModel
     public function withWorkspaceID(string $workspaceID): self
     {
         $obj = clone $this;
-        $obj->workspace_id = $workspaceID;
+        $obj['workspace_id'] = $workspaceID;
 
         return $obj;
     }

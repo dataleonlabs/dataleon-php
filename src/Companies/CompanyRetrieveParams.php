@@ -52,8 +52,8 @@ final class CompanyRetrieveParams implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $document && $obj->document = $document;
-        null !== $scope && $obj->scope = $scope;
+        null !== $document && $obj['document'] = $document;
+        null !== $scope && $obj['scope'] = $scope;
 
         return $obj;
     }
@@ -64,7 +64,7 @@ final class CompanyRetrieveParams implements BaseModel
     public function withDocument(bool $document): self
     {
         $obj = clone $this;
-        $obj->document = $document;
+        $obj['document'] = $document;
 
         return $obj;
     }
@@ -75,7 +75,7 @@ final class CompanyRetrieveParams implements BaseModel
     public function withScope(string $scope): self
     {
         $obj = clone $this;
-        $obj->scope = $scope;
+        $obj['scope'] = $scope;
 
         return $obj;
     }
