@@ -40,7 +40,7 @@ final class Table implements BaseModel
     {
         $obj = new self;
 
-        null !== $operation && $obj->operation = $operation;
+        null !== $operation && $obj['operation'] = $operation;
 
         return $obj;
     }
@@ -53,7 +53,7 @@ final class Table implements BaseModel
     public function withOperation(array $operation): self
     {
         $obj = clone $this;
-        $obj->operation = $operation;
+        $obj['operation'] = $operation;
 
         return $obj;
     }

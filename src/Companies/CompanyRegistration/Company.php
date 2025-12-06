@@ -169,12 +169,20 @@ final class Company implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Contact|array{
+     *   department?: string|null,
+     *   email?: string|null,
+     *   first_name?: string|null,
+     *   last_name?: string|null,
+     *   phone_number?: string|null,
+     * } $contact
      */
     public static function with(
         ?string $address = null,
         ?\DateTimeInterface $closure_date = null,
         ?string $commercial_name = null,
-        ?Contact $contact = null,
+        Contact|array|null $contact = null,
         ?string $country = null,
         ?string $email = null,
         ?int $employees = null,
@@ -194,26 +202,26 @@ final class Company implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $address && $obj->address = $address;
-        null !== $closure_date && $obj->closure_date = $closure_date;
-        null !== $commercial_name && $obj->commercial_name = $commercial_name;
-        null !== $contact && $obj->contact = $contact;
-        null !== $country && $obj->country = $country;
-        null !== $email && $obj->email = $email;
-        null !== $employees && $obj->employees = $employees;
-        null !== $employer_identification_number && $obj->employer_identification_number = $employer_identification_number;
-        null !== $insolvency_exists && $obj->insolvency_exists = $insolvency_exists;
-        null !== $insolvency_ongoing && $obj->insolvency_ongoing = $insolvency_ongoing;
-        null !== $legal_form && $obj->legal_form = $legal_form;
-        null !== $name && $obj->name = $name;
-        null !== $phone_number && $obj->phone_number = $phone_number;
-        null !== $registration_date && $obj->registration_date = $registration_date;
-        null !== $registration_id && $obj->registration_id = $registration_id;
-        null !== $share_capital && $obj->share_capital = $share_capital;
-        null !== $status && $obj->status = $status;
-        null !== $tax_identification_number && $obj->tax_identification_number = $tax_identification_number;
-        null !== $type && $obj->type = $type;
-        null !== $website_url && $obj->website_url = $website_url;
+        null !== $address && $obj['address'] = $address;
+        null !== $closure_date && $obj['closure_date'] = $closure_date;
+        null !== $commercial_name && $obj['commercial_name'] = $commercial_name;
+        null !== $contact && $obj['contact'] = $contact;
+        null !== $country && $obj['country'] = $country;
+        null !== $email && $obj['email'] = $email;
+        null !== $employees && $obj['employees'] = $employees;
+        null !== $employer_identification_number && $obj['employer_identification_number'] = $employer_identification_number;
+        null !== $insolvency_exists && $obj['insolvency_exists'] = $insolvency_exists;
+        null !== $insolvency_ongoing && $obj['insolvency_ongoing'] = $insolvency_ongoing;
+        null !== $legal_form && $obj['legal_form'] = $legal_form;
+        null !== $name && $obj['name'] = $name;
+        null !== $phone_number && $obj['phone_number'] = $phone_number;
+        null !== $registration_date && $obj['registration_date'] = $registration_date;
+        null !== $registration_id && $obj['registration_id'] = $registration_id;
+        null !== $share_capital && $obj['share_capital'] = $share_capital;
+        null !== $status && $obj['status'] = $status;
+        null !== $tax_identification_number && $obj['tax_identification_number'] = $tax_identification_number;
+        null !== $type && $obj['type'] = $type;
+        null !== $website_url && $obj['website_url'] = $website_url;
 
         return $obj;
     }
@@ -224,7 +232,7 @@ final class Company implements BaseModel
     public function withAddress(string $address): self
     {
         $obj = clone $this;
-        $obj->address = $address;
+        $obj['address'] = $address;
 
         return $obj;
     }
@@ -235,7 +243,7 @@ final class Company implements BaseModel
     public function withClosureDate(\DateTimeInterface $closureDate): self
     {
         $obj = clone $this;
-        $obj->closure_date = $closureDate;
+        $obj['closure_date'] = $closureDate;
 
         return $obj;
     }
@@ -246,18 +254,26 @@ final class Company implements BaseModel
     public function withCommercialName(string $commercialName): self
     {
         $obj = clone $this;
-        $obj->commercial_name = $commercialName;
+        $obj['commercial_name'] = $commercialName;
 
         return $obj;
     }
 
     /**
      * Contact information for the company, including email, phone number, and address.
+     *
+     * @param Contact|array{
+     *   department?: string|null,
+     *   email?: string|null,
+     *   first_name?: string|null,
+     *   last_name?: string|null,
+     *   phone_number?: string|null,
+     * } $contact
      */
-    public function withContact(Contact $contact): self
+    public function withContact(Contact|array $contact): self
     {
         $obj = clone $this;
-        $obj->contact = $contact;
+        $obj['contact'] = $contact;
 
         return $obj;
     }
@@ -268,7 +284,7 @@ final class Company implements BaseModel
     public function withCountry(string $country): self
     {
         $obj = clone $this;
-        $obj->country = $country;
+        $obj['country'] = $country;
 
         return $obj;
     }
@@ -279,7 +295,7 @@ final class Company implements BaseModel
     public function withEmail(string $email): self
     {
         $obj = clone $this;
-        $obj->email = $email;
+        $obj['email'] = $email;
 
         return $obj;
     }
@@ -290,7 +306,7 @@ final class Company implements BaseModel
     public function withEmployees(int $employees): self
     {
         $obj = clone $this;
-        $obj->employees = $employees;
+        $obj['employees'] = $employees;
 
         return $obj;
     }
@@ -302,7 +318,7 @@ final class Company implements BaseModel
         string $employerIdentificationNumber
     ): self {
         $obj = clone $this;
-        $obj->employer_identification_number = $employerIdentificationNumber;
+        $obj['employer_identification_number'] = $employerIdentificationNumber;
 
         return $obj;
     }
@@ -313,7 +329,7 @@ final class Company implements BaseModel
     public function withInsolvencyExists(bool $insolvencyExists): self
     {
         $obj = clone $this;
-        $obj->insolvency_exists = $insolvencyExists;
+        $obj['insolvency_exists'] = $insolvencyExists;
 
         return $obj;
     }
@@ -324,7 +340,7 @@ final class Company implements BaseModel
     public function withInsolvencyOngoing(bool $insolvencyOngoing): self
     {
         $obj = clone $this;
-        $obj->insolvency_ongoing = $insolvencyOngoing;
+        $obj['insolvency_ongoing'] = $insolvencyOngoing;
 
         return $obj;
     }
@@ -335,7 +351,7 @@ final class Company implements BaseModel
     public function withLegalForm(string $legalForm): self
     {
         $obj = clone $this;
-        $obj->legal_form = $legalForm;
+        $obj['legal_form'] = $legalForm;
 
         return $obj;
     }
@@ -346,7 +362,7 @@ final class Company implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -357,7 +373,7 @@ final class Company implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $obj['phone_number'] = $phoneNumber;
 
         return $obj;
     }
@@ -369,7 +385,7 @@ final class Company implements BaseModel
         \DateTimeInterface $registrationDate
     ): self {
         $obj = clone $this;
-        $obj->registration_date = $registrationDate;
+        $obj['registration_date'] = $registrationDate;
 
         return $obj;
     }
@@ -380,7 +396,7 @@ final class Company implements BaseModel
     public function withRegistrationID(string $registrationID): self
     {
         $obj = clone $this;
-        $obj->registration_id = $registrationID;
+        $obj['registration_id'] = $registrationID;
 
         return $obj;
     }
@@ -391,7 +407,7 @@ final class Company implements BaseModel
     public function withShareCapital(string $shareCapital): self
     {
         $obj = clone $this;
-        $obj->share_capital = $shareCapital;
+        $obj['share_capital'] = $shareCapital;
 
         return $obj;
     }
@@ -402,7 +418,7 @@ final class Company implements BaseModel
     public function withStatus(string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status;
+        $obj['status'] = $status;
 
         return $obj;
     }
@@ -414,7 +430,7 @@ final class Company implements BaseModel
         string $taxIdentificationNumber
     ): self {
         $obj = clone $this;
-        $obj->tax_identification_number = $taxIdentificationNumber;
+        $obj['tax_identification_number'] = $taxIdentificationNumber;
 
         return $obj;
     }
@@ -425,7 +441,7 @@ final class Company implements BaseModel
     public function withType(string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj['type'] = $type;
 
         return $obj;
     }
@@ -436,7 +452,7 @@ final class Company implements BaseModel
     public function withWebsiteURL(string $websiteURL): self
     {
         $obj = clone $this;
-        $obj->website_url = $websiteURL;
+        $obj['website_url'] = $websiteURL;
 
         return $obj;
     }

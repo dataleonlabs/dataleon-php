@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies\CompanyRegistration;
 
+use Dataleon\Check;
 use Dataleon\Companies\CompanyRegistration\Member\Source;
 use Dataleon\Companies\CompanyRegistration\Member\Type;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\GenericDocument;
+use Dataleon\Individuals\Documents\GenericDocument\Table;
+use Dataleon\Individuals\Documents\GenericDocument\Value;
 
 /**
  * Represents a member or actor of a company, including personal and ownership information.
@@ -203,7 +206,18 @@ final class Member implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<GenericDocument> $documents
+     * @param list<GenericDocument|array{
+     *   id?: string|null,
+     *   checks?: list<Check>|null,
+     *   created_at?: \DateTimeInterface|null,
+     *   document_type?: string|null,
+     *   name?: string|null,
+     *   signed_url?: string|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   tables?: list<Table>|null,
+     *   values?: list<Value>|null,
+     * }> $documents
      * @param Source|value-of<Source> $source
      * @param Type|value-of<Type> $type
      */
@@ -235,30 +249,30 @@ final class Member implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $id && $obj->id = $id;
-        null !== $address && $obj->address = $address;
-        null !== $birthday && $obj->birthday = $birthday;
-        null !== $birthplace && $obj->birthplace = $birthplace;
-        null !== $country && $obj->country = $country;
-        null !== $documents && $obj->documents = $documents;
-        null !== $email && $obj->email = $email;
-        null !== $first_name && $obj->first_name = $first_name;
-        null !== $is_beneficial_owner && $obj->is_beneficial_owner = $is_beneficial_owner;
-        null !== $is_delegator && $obj->is_delegator = $is_delegator;
-        null !== $last_name && $obj->last_name = $last_name;
-        null !== $liveness_verification && $obj->liveness_verification = $liveness_verification;
-        null !== $name && $obj->name = $name;
-        null !== $ownership_percentage && $obj->ownership_percentage = $ownership_percentage;
-        null !== $phone_number && $obj->phone_number = $phone_number;
-        null !== $postal_code && $obj->postal_code = $postal_code;
-        null !== $registration_id && $obj->registration_id = $registration_id;
-        null !== $relation && $obj->relation = $relation;
-        null !== $roles && $obj->roles = $roles;
+        null !== $id && $obj['id'] = $id;
+        null !== $address && $obj['address'] = $address;
+        null !== $birthday && $obj['birthday'] = $birthday;
+        null !== $birthplace && $obj['birthplace'] = $birthplace;
+        null !== $country && $obj['country'] = $country;
+        null !== $documents && $obj['documents'] = $documents;
+        null !== $email && $obj['email'] = $email;
+        null !== $first_name && $obj['first_name'] = $first_name;
+        null !== $is_beneficial_owner && $obj['is_beneficial_owner'] = $is_beneficial_owner;
+        null !== $is_delegator && $obj['is_delegator'] = $is_delegator;
+        null !== $last_name && $obj['last_name'] = $last_name;
+        null !== $liveness_verification && $obj['liveness_verification'] = $liveness_verification;
+        null !== $name && $obj['name'] = $name;
+        null !== $ownership_percentage && $obj['ownership_percentage'] = $ownership_percentage;
+        null !== $phone_number && $obj['phone_number'] = $phone_number;
+        null !== $postal_code && $obj['postal_code'] = $postal_code;
+        null !== $registration_id && $obj['registration_id'] = $registration_id;
+        null !== $relation && $obj['relation'] = $relation;
+        null !== $roles && $obj['roles'] = $roles;
         null !== $source && $obj['source'] = $source;
-        null !== $state && $obj->state = $state;
-        null !== $status && $obj->status = $status;
+        null !== $state && $obj['state'] = $state;
+        null !== $status && $obj['status'] = $status;
         null !== $type && $obj['type'] = $type;
-        null !== $workspace_id && $obj->workspace_id = $workspace_id;
+        null !== $workspace_id && $obj['workspace_id'] = $workspace_id;
 
         return $obj;
     }
@@ -266,7 +280,7 @@ final class Member implements BaseModel
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -277,7 +291,7 @@ final class Member implements BaseModel
     public function withAddress(string $address): self
     {
         $obj = clone $this;
-        $obj->address = $address;
+        $obj['address'] = $address;
 
         return $obj;
     }
@@ -288,7 +302,7 @@ final class Member implements BaseModel
     public function withBirthday(\DateTimeInterface $birthday): self
     {
         $obj = clone $this;
-        $obj->birthday = $birthday;
+        $obj['birthday'] = $birthday;
 
         return $obj;
     }
@@ -299,7 +313,7 @@ final class Member implements BaseModel
     public function withBirthplace(string $birthplace): self
     {
         $obj = clone $this;
-        $obj->birthplace = $birthplace;
+        $obj['birthplace'] = $birthplace;
 
         return $obj;
     }
@@ -310,7 +324,7 @@ final class Member implements BaseModel
     public function withCountry(string $country): self
     {
         $obj = clone $this;
-        $obj->country = $country;
+        $obj['country'] = $country;
 
         return $obj;
     }
@@ -318,12 +332,23 @@ final class Member implements BaseModel
     /**
      * List of documents associated with the member, including their metadata and processing status.
      *
-     * @param list<GenericDocument> $documents
+     * @param list<GenericDocument|array{
+     *   id?: string|null,
+     *   checks?: list<Check>|null,
+     *   created_at?: \DateTimeInterface|null,
+     *   document_type?: string|null,
+     *   name?: string|null,
+     *   signed_url?: string|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   tables?: list<Table>|null,
+     *   values?: list<Value>|null,
+     * }> $documents
      */
     public function withDocuments(array $documents): self
     {
         $obj = clone $this;
-        $obj->documents = $documents;
+        $obj['documents'] = $documents;
 
         return $obj;
     }
@@ -334,7 +359,7 @@ final class Member implements BaseModel
     public function withEmail(string $email): self
     {
         $obj = clone $this;
-        $obj->email = $email;
+        $obj['email'] = $email;
 
         return $obj;
     }
@@ -345,7 +370,7 @@ final class Member implements BaseModel
     public function withFirstName(string $firstName): self
     {
         $obj = clone $this;
-        $obj->first_name = $firstName;
+        $obj['first_name'] = $firstName;
 
         return $obj;
     }
@@ -356,7 +381,7 @@ final class Member implements BaseModel
     public function withIsBeneficialOwner(bool $isBeneficialOwner): self
     {
         $obj = clone $this;
-        $obj->is_beneficial_owner = $isBeneficialOwner;
+        $obj['is_beneficial_owner'] = $isBeneficialOwner;
 
         return $obj;
     }
@@ -367,7 +392,7 @@ final class Member implements BaseModel
     public function withIsDelegator(bool $isDelegator): self
     {
         $obj = clone $this;
-        $obj->is_delegator = $isDelegator;
+        $obj['is_delegator'] = $isDelegator;
 
         return $obj;
     }
@@ -378,7 +403,7 @@ final class Member implements BaseModel
     public function withLastName(string $lastName): self
     {
         $obj = clone $this;
-        $obj->last_name = $lastName;
+        $obj['last_name'] = $lastName;
 
         return $obj;
     }
@@ -389,7 +414,7 @@ final class Member implements BaseModel
     public function withLivenessVerification(bool $livenessVerification): self
     {
         $obj = clone $this;
-        $obj->liveness_verification = $livenessVerification;
+        $obj['liveness_verification'] = $livenessVerification;
 
         return $obj;
     }
@@ -400,7 +425,7 @@ final class Member implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -411,7 +436,7 @@ final class Member implements BaseModel
     public function withOwnershipPercentage(int $ownershipPercentage): self
     {
         $obj = clone $this;
-        $obj->ownership_percentage = $ownershipPercentage;
+        $obj['ownership_percentage'] = $ownershipPercentage;
 
         return $obj;
     }
@@ -422,7 +447,7 @@ final class Member implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $obj['phone_number'] = $phoneNumber;
 
         return $obj;
     }
@@ -433,7 +458,7 @@ final class Member implements BaseModel
     public function withPostalCode(string $postalCode): self
     {
         $obj = clone $this;
-        $obj->postal_code = $postalCode;
+        $obj['postal_code'] = $postalCode;
 
         return $obj;
     }
@@ -444,7 +469,7 @@ final class Member implements BaseModel
     public function withRegistrationID(string $registrationID): self
     {
         $obj = clone $this;
-        $obj->registration_id = $registrationID;
+        $obj['registration_id'] = $registrationID;
 
         return $obj;
     }
@@ -455,7 +480,7 @@ final class Member implements BaseModel
     public function withRelation(string $relation): self
     {
         $obj = clone $this;
-        $obj->relation = $relation;
+        $obj['relation'] = $relation;
 
         return $obj;
     }
@@ -466,7 +491,7 @@ final class Member implements BaseModel
     public function withRoles(string $roles): self
     {
         $obj = clone $this;
-        $obj->roles = $roles;
+        $obj['roles'] = $roles;
 
         return $obj;
     }
@@ -490,7 +515,7 @@ final class Member implements BaseModel
     public function withState(string $state): self
     {
         $obj = clone $this;
-        $obj->state = $state;
+        $obj['state'] = $state;
 
         return $obj;
     }
@@ -501,7 +526,7 @@ final class Member implements BaseModel
     public function withStatus(string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status;
+        $obj['status'] = $status;
 
         return $obj;
     }
@@ -525,7 +550,7 @@ final class Member implements BaseModel
     public function withWorkspaceID(string $workspaceID): self
     {
         $obj = clone $this;
-        $obj->workspace_id = $workspaceID;
+        $obj['workspace_id'] = $workspaceID;
 
         return $obj;
     }

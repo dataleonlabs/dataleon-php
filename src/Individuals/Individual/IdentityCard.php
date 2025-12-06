@@ -153,21 +153,21 @@ final class IdentityCard implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $id && $obj->id = $id;
-        null !== $back_document_signed_url && $obj->back_document_signed_url = $back_document_signed_url;
-        null !== $birth_place && $obj->birth_place = $birth_place;
-        null !== $birthday && $obj->birthday = $birthday;
-        null !== $country && $obj->country = $country;
-        null !== $expiration_date && $obj->expiration_date = $expiration_date;
-        null !== $first_name && $obj->first_name = $first_name;
-        null !== $front_document_signed_url && $obj->front_document_signed_url = $front_document_signed_url;
-        null !== $gender && $obj->gender = $gender;
-        null !== $issue_date && $obj->issue_date = $issue_date;
-        null !== $last_name && $obj->last_name = $last_name;
-        null !== $mrz_line_1 && $obj->mrz_line_1 = $mrz_line_1;
-        null !== $mrz_line_2 && $obj->mrz_line_2 = $mrz_line_2;
-        null !== $mrz_line_3 && $obj->mrz_line_3 = $mrz_line_3;
-        null !== $type && $obj->type = $type;
+        null !== $id && $obj['id'] = $id;
+        null !== $back_document_signed_url && $obj['back_document_signed_url'] = $back_document_signed_url;
+        null !== $birth_place && $obj['birth_place'] = $birth_place;
+        null !== $birthday && $obj['birthday'] = $birthday;
+        null !== $country && $obj['country'] = $country;
+        null !== $expiration_date && $obj['expiration_date'] = $expiration_date;
+        null !== $first_name && $obj['first_name'] = $first_name;
+        null !== $front_document_signed_url && $obj['front_document_signed_url'] = $front_document_signed_url;
+        null !== $gender && $obj['gender'] = $gender;
+        null !== $issue_date && $obj['issue_date'] = $issue_date;
+        null !== $last_name && $obj['last_name'] = $last_name;
+        null !== $mrz_line_1 && $obj['mrz_line_1'] = $mrz_line_1;
+        null !== $mrz_line_2 && $obj['mrz_line_2'] = $mrz_line_2;
+        null !== $mrz_line_3 && $obj['mrz_line_3'] = $mrz_line_3;
+        null !== $type && $obj['type'] = $type;
 
         return $obj;
     }
@@ -178,7 +178,7 @@ final class IdentityCard implements BaseModel
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -190,7 +190,7 @@ final class IdentityCard implements BaseModel
         string $backDocumentSignedURL
     ): self {
         $obj = clone $this;
-        $obj->back_document_signed_url = $backDocumentSignedURL;
+        $obj['back_document_signed_url'] = $backDocumentSignedURL;
 
         return $obj;
     }
@@ -201,7 +201,7 @@ final class IdentityCard implements BaseModel
     public function withBirthPlace(string $birthPlace): self
     {
         $obj = clone $this;
-        $obj->birth_place = $birthPlace;
+        $obj['birth_place'] = $birthPlace;
 
         return $obj;
     }
@@ -212,7 +212,7 @@ final class IdentityCard implements BaseModel
     public function withBirthday(string $birthday): self
     {
         $obj = clone $this;
-        $obj->birthday = $birthday;
+        $obj['birthday'] = $birthday;
 
         return $obj;
     }
@@ -223,7 +223,7 @@ final class IdentityCard implements BaseModel
     public function withCountry(string $country): self
     {
         $obj = clone $this;
-        $obj->country = $country;
+        $obj['country'] = $country;
 
         return $obj;
     }
@@ -234,7 +234,7 @@ final class IdentityCard implements BaseModel
     public function withExpirationDate(string $expirationDate): self
     {
         $obj = clone $this;
-        $obj->expiration_date = $expirationDate;
+        $obj['expiration_date'] = $expirationDate;
 
         return $obj;
     }
@@ -245,7 +245,7 @@ final class IdentityCard implements BaseModel
     public function withFirstName(string $firstName): self
     {
         $obj = clone $this;
-        $obj->first_name = $firstName;
+        $obj['first_name'] = $firstName;
 
         return $obj;
     }
@@ -257,7 +257,7 @@ final class IdentityCard implements BaseModel
         string $frontDocumentSignedURL
     ): self {
         $obj = clone $this;
-        $obj->front_document_signed_url = $frontDocumentSignedURL;
+        $obj['front_document_signed_url'] = $frontDocumentSignedURL;
 
         return $obj;
     }
@@ -268,7 +268,7 @@ final class IdentityCard implements BaseModel
     public function withGender(string $gender): self
     {
         $obj = clone $this;
-        $obj->gender = $gender;
+        $obj['gender'] = $gender;
 
         return $obj;
     }
@@ -279,7 +279,7 @@ final class IdentityCard implements BaseModel
     public function withIssueDate(string $issueDate): self
     {
         $obj = clone $this;
-        $obj->issue_date = $issueDate;
+        $obj['issue_date'] = $issueDate;
 
         return $obj;
     }
@@ -290,7 +290,7 @@ final class IdentityCard implements BaseModel
     public function withLastName(string $lastName): self
     {
         $obj = clone $this;
-        $obj->last_name = $lastName;
+        $obj['last_name'] = $lastName;
 
         return $obj;
     }
@@ -301,7 +301,7 @@ final class IdentityCard implements BaseModel
     public function withMrzLine1(string $mrzLine1): self
     {
         $obj = clone $this;
-        $obj->mrz_line_1 = $mrzLine1;
+        $obj['mrz_line_1'] = $mrzLine1;
 
         return $obj;
     }
@@ -312,7 +312,7 @@ final class IdentityCard implements BaseModel
     public function withMrzLine2(string $mrzLine2): self
     {
         $obj = clone $this;
-        $obj->mrz_line_2 = $mrzLine2;
+        $obj['mrz_line_2'] = $mrzLine2;
 
         return $obj;
     }
@@ -323,7 +323,7 @@ final class IdentityCard implements BaseModel
     public function withMrzLine3(?string $mrzLine3): self
     {
         $obj = clone $this;
-        $obj->mrz_line_3 = $mrzLine3;
+        $obj['mrz_line_3'] = $mrzLine3;
 
         return $obj;
     }
@@ -334,7 +334,7 @@ final class IdentityCard implements BaseModel
     public function withType(string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj['type'] = $type;
 
         return $obj;
     }

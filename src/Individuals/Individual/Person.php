@@ -113,16 +113,16 @@ final class Person implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $birthday && $obj->birthday = $birthday;
-        null !== $email && $obj->email = $email;
-        null !== $face_image_signed_url && $obj->face_image_signed_url = $face_image_signed_url;
-        null !== $first_name && $obj->first_name = $first_name;
-        null !== $full_name && $obj->full_name = $full_name;
-        null !== $gender && $obj->gender = $gender;
-        null !== $last_name && $obj->last_name = $last_name;
-        null !== $maiden_name && $obj->maiden_name = $maiden_name;
-        null !== $nationality && $obj->nationality = $nationality;
-        null !== $phone_number && $obj->phone_number = $phone_number;
+        null !== $birthday && $obj['birthday'] = $birthday;
+        null !== $email && $obj['email'] = $email;
+        null !== $face_image_signed_url && $obj['face_image_signed_url'] = $face_image_signed_url;
+        null !== $first_name && $obj['first_name'] = $first_name;
+        null !== $full_name && $obj['full_name'] = $full_name;
+        null !== $gender && $obj['gender'] = $gender;
+        null !== $last_name && $obj['last_name'] = $last_name;
+        null !== $maiden_name && $obj['maiden_name'] = $maiden_name;
+        null !== $nationality && $obj['nationality'] = $nationality;
+        null !== $phone_number && $obj['phone_number'] = $phone_number;
 
         return $obj;
     }
@@ -133,7 +133,7 @@ final class Person implements BaseModel
     public function withBirthday(string $birthday): self
     {
         $obj = clone $this;
-        $obj->birthday = $birthday;
+        $obj['birthday'] = $birthday;
 
         return $obj;
     }
@@ -144,7 +144,7 @@ final class Person implements BaseModel
     public function withEmail(string $email): self
     {
         $obj = clone $this;
-        $obj->email = $email;
+        $obj['email'] = $email;
 
         return $obj;
     }
@@ -155,7 +155,7 @@ final class Person implements BaseModel
     public function withFaceImageSignedURL(string $faceImageSignedURL): self
     {
         $obj = clone $this;
-        $obj->face_image_signed_url = $faceImageSignedURL;
+        $obj['face_image_signed_url'] = $faceImageSignedURL;
 
         return $obj;
     }
@@ -166,7 +166,7 @@ final class Person implements BaseModel
     public function withFirstName(string $firstName): self
     {
         $obj = clone $this;
-        $obj->first_name = $firstName;
+        $obj['first_name'] = $firstName;
 
         return $obj;
     }
@@ -177,7 +177,7 @@ final class Person implements BaseModel
     public function withFullName(string $fullName): self
     {
         $obj = clone $this;
-        $obj->full_name = $fullName;
+        $obj['full_name'] = $fullName;
 
         return $obj;
     }
@@ -188,7 +188,7 @@ final class Person implements BaseModel
     public function withGender(string $gender): self
     {
         $obj = clone $this;
-        $obj->gender = $gender;
+        $obj['gender'] = $gender;
 
         return $obj;
     }
@@ -199,7 +199,7 @@ final class Person implements BaseModel
     public function withLastName(string $lastName): self
     {
         $obj = clone $this;
-        $obj->last_name = $lastName;
+        $obj['last_name'] = $lastName;
 
         return $obj;
     }
@@ -210,7 +210,7 @@ final class Person implements BaseModel
     public function withMaidenName(string $maidenName): self
     {
         $obj = clone $this;
-        $obj->maiden_name = $maidenName;
+        $obj['maiden_name'] = $maidenName;
 
         return $obj;
     }
@@ -221,7 +221,7 @@ final class Person implements BaseModel
     public function withNationality(string $nationality): self
     {
         $obj = clone $this;
-        $obj->nationality = $nationality;
+        $obj['nationality'] = $nationality;
 
         return $obj;
     }
@@ -232,7 +232,7 @@ final class Person implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $obj['phone_number'] = $phoneNumber;
 
         return $obj;
     }

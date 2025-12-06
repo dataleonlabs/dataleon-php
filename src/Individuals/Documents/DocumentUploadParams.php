@@ -82,8 +82,8 @@ final class DocumentUploadParams implements BaseModel
 
         $obj['document_type'] = $document_type;
 
-        null !== $file && $obj->file = $file;
-        null !== $url && $obj->url = $url;
+        null !== $file && $obj['file'] = $file;
+        null !== $url && $obj['url'] = $url;
 
         return $obj;
     }
@@ -107,7 +107,7 @@ final class DocumentUploadParams implements BaseModel
     public function withFile(string $file): self
     {
         $obj = clone $this;
-        $obj->file = $file;
+        $obj['file'] = $file;
 
         return $obj;
     }
@@ -118,7 +118,7 @@ final class DocumentUploadParams implements BaseModel
     public function withURL(string $url): self
     {
         $obj = clone $this;
-        $obj->url = $url;
+        $obj['url'] = $url;
 
         return $obj;
     }
