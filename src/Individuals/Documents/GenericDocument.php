@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Individuals\Documents;
 
 use Dataleon\Check;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\GenericDocument\Table;
@@ -35,7 +35,7 @@ final class GenericDocument implements BaseModel
     /**
      * Unique identifier of the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
@@ -43,43 +43,43 @@ final class GenericDocument implements BaseModel
      *
      * @var list<Check>|null $checks
      */
-    #[Api(list: Check::class, optional: true)]
+    #[Optional(list: Check::class)]
     public ?array $checks;
 
     /**
      * Timestamp when the document was created or uploaded.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $created_at;
 
     /**
      * Type/category of the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $document_type;
 
     /**
      * Name or label for the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     /**
      * Signed URL for accessing the document file.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $signed_url;
 
     /**
      * Current processing state of the document (e.g., WAITING, PROCESSED).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $state;
 
     /**
      * Status of the document reception or approval.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $status;
 
     /**
@@ -87,7 +87,7 @@ final class GenericDocument implements BaseModel
      *
      * @var list<Table>|null $tables
      */
-    #[Api(list: Table::class, optional: true)]
+    #[Optional(list: Table::class)]
     public ?array $tables;
 
     /**
@@ -95,7 +95,7 @@ final class GenericDocument implements BaseModel
      *
      * @var list<Value>|null $values
      */
-    #[Api(list: Value::class, optional: true)]
+    #[Optional(list: Value::class)]
     public ?array $values;
 
     public function __construct()

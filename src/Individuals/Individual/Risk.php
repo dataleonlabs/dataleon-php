@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Individual;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -23,19 +23,19 @@ final class Risk implements BaseModel
     /**
      * Risk category or code identifier.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $code;
 
     /**
      * Explanation or justification for the assigned risk.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $reason;
 
     /**
      * Numeric risk score between 0.0 and 1.0 indicating severity or confidence.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $score;
 
     public function __construct()

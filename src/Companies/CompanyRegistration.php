@@ -17,7 +17,7 @@ use Dataleon\Companies\CompanyRegistration\Property;
 use Dataleon\Companies\CompanyRegistration\Risk;
 use Dataleon\Companies\CompanyRegistration\TechnicalData;
 use Dataleon\Companies\CompanyRegistration\TechnicalData\PortalStep;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\GenericDocument;
@@ -50,13 +50,13 @@ final class CompanyRegistration implements BaseModel
      *
      * @var list<AmlSuspicion>|null $aml_suspicions
      */
-    #[Api(list: AmlSuspicion::class, optional: true)]
+    #[Optional(list: AmlSuspicion::class)]
     public ?array $aml_suspicions;
 
     /**
      * Digital certificate associated with the company, if any, including its creation timestamp and filename.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Certificat $certificat;
 
     /**
@@ -64,13 +64,13 @@ final class CompanyRegistration implements BaseModel
      *
      * @var list<Check>|null $checks
      */
-    #[Api(list: Check::class, optional: true)]
+    #[Optional(list: Check::class)]
     public ?array $checks;
 
     /**
      * Main information about the company being registered, including legal name, registration ID, and address.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Company $company;
 
     /**
@@ -78,7 +78,7 @@ final class CompanyRegistration implements BaseModel
      *
      * @var list<GenericDocument>|null $documents
      */
-    #[Api(list: GenericDocument::class, optional: true)]
+    #[Optional(list: GenericDocument::class)]
     public ?array $documents;
 
     /**
@@ -86,13 +86,13 @@ final class CompanyRegistration implements BaseModel
      *
      * @var list<Member>|null $members
      */
-    #[Api(list: Member::class, optional: true)]
+    #[Optional(list: Member::class)]
     public ?array $members;
 
     /**
      * Admin or internal portal URL for viewing the company's details, typically used by internal users.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $portal_url;
 
     /**
@@ -100,31 +100,31 @@ final class CompanyRegistration implements BaseModel
      *
      * @var list<Property>|null $properties
      */
-    #[Api(list: Property::class, optional: true)]
+    #[Optional(list: Property::class)]
     public ?array $properties;
 
     /**
      * Risk assessment associated with the company, including a risk code, reason, and confidence score.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Risk $risk;
 
     /**
      * Optional identifier indicating the source of the company record, useful for tracking or integration purposes.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $source_id;
 
     /**
      * Technical metadata related to the request, such as IP address, QR code settings, and callback URLs.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?TechnicalData $technical_data;
 
     /**
      * Public-facing webview URL for the company’s identification process, allowing external access to the company data.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $webview_url;
 
     public function __construct()

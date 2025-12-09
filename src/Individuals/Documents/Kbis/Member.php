@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Documents\Kbis;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\Kbis\Member\Type;
@@ -45,121 +45,121 @@ final class Member implements BaseModel
     /**
      * Unique identifier for the member.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
      * Address of the member.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $address;
 
     /**
      * Birth date of the person (only if type = person).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $birthday;
 
     /**
      * Place of birth (only if type = person).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $birthplace;
 
     /**
      * Country of residence or registration.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $country;
 
     /**
      * Email address of the member.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $email;
 
     /**
      * First name of the person (only if type = person).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $first_name;
 
     /**
      * Indicates if this member is a beneficial owner.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $is_beneficial_owner;
 
     /**
      * Indicates if this member is a delegator.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $is_delegator;
 
     /**
      * Last name of the person (only if type = person).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $last_name;
 
     /**
      * Indicates if the member passed liveness verification.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $liveness_verification;
 
     /**
      * Name of the company (only if type = company).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     /**
      * Ownership percentage held by the member.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $ownership_percentage;
 
     /**
      * Phone number of the member.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $phone_number;
 
     /**
      * Postal code of the member's address.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $postal_code;
 
     /**
      * Company registration number (if type = company).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $registration_id;
 
     /**
      * Type of relation (e.g., shareholder, director).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $relation;
 
     /**
      * Roles held by the member (e.g., legal_representative or shareholder).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $roles;
 
     /**
      * Source of the data (e.g., gouv, user, company).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $source;
 
     /**
      * Current status of the member.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $status;
 
     /**
@@ -167,13 +167,13 @@ final class Member implements BaseModel
      *
      * @var value-of<Type>|null $type
      */
-    #[Api(enum: Type::class, optional: true)]
+    #[Optional(enum: Type::class)]
     public ?string $type;
 
     /**
      * Workspace identifier for internal tracking.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $workspace_id;
 
     public function __construct()

@@ -7,7 +7,8 @@ namespace Dataleon\Companies;
 use Dataleon\Companies\CompanyUpdateParams\Company;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData\PortalStep;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
+use Dataleon\Core\Attributes\Required;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
@@ -57,25 +58,25 @@ final class CompanyUpdateParams implements BaseModel
     /**
      * Main information about the company being registered.
      */
-    #[Api]
+    #[Required]
     public Company $company;
 
     /**
      * Unique identifier of the workspace in which the company is being created.
      */
-    #[Api]
+    #[Required]
     public string $workspace_id;
 
     /**
      * Optional identifier to track the origin of the request or integration from your system.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $source_id;
 
     /**
      * Technical metadata and callback configuration.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?TechnicalData $technical_data;
 
     /**

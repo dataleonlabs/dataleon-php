@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Individual;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -32,61 +32,61 @@ final class Person implements BaseModel
     /**
      * Date of birth, formatted as DD/MM/YYYY.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $birthday;
 
     /**
      * Email address of the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $email;
 
     /**
      * Signed URL linking to the person’s face image.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $face_image_signed_url;
 
     /**
      * First (given) name of the person.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $first_name;
 
     /**
      * Full name of the person, typically concatenation of first and last names.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $full_name;
 
     /**
      * Gender of the individual (e.g., "M" for male, "F" for female).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $gender;
 
     /**
      * Last (family) name of the person.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $last_name;
 
     /**
      * Maiden name of the person, if applicable.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $maiden_name;
 
     /**
      * Nationality of the individual (ISO 3166-1 alpha-3 country code).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $nationality;
 
     /**
      * Contact phone number including country code.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $phone_number;
 
     public function __construct()

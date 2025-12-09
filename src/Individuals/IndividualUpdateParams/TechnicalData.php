@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\IndividualUpdateParams;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\IndividualUpdateParams\TechnicalData\PortalStep;
@@ -30,31 +30,31 @@ final class TechnicalData implements BaseModel
     /**
      * Flag indicating whether there are active research AML (Anti-Money Laundering) suspicions for the individual when you apply for a new entry or get an existing one.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $active_aml_suspicions;
 
     /**
      * URL to call back upon completion of processing.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $callback_url;
 
     /**
      * URL for receive notifications about the processing state or status.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $callback_url_notification;
 
     /**
      * Minimum filtering score (between 0 and 1) for AML suspicions to be considered.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $filtering_score_aml_suspicions;
 
     /**
      * Preferred language for communication (e.g., "eng", "fra").
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $language;
 
     /**
@@ -62,13 +62,13 @@ final class TechnicalData implements BaseModel
      *
      * @var list<value-of<PortalStep>>|null $portal_steps
      */
-    #[Api(list: PortalStep::class, optional: true)]
+    #[Optional(list: PortalStep::class)]
     public ?array $portal_steps;
 
     /**
      * Flag indicating whether to include raw data in the response.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $raw_data;
 
     public function __construct()

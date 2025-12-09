@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Documents;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\Kbis\Member;
@@ -39,61 +39,61 @@ final class Kbis implements BaseModel
     /**
      * Declared business activities.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $activities;
 
     /**
      * Official address of the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $address;
 
     /**
      * Registered social capital of the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $capital_social;
 
     /**
      * Date of closure, if applicable.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $closure_date;
 
     /**
      * Official name of the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $company_name;
 
     /**
      * Date when the document was issued.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $document_date;
 
     /**
      * Fixed identifier for the document type.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $document_type;
 
     /**
      * Date of the first fiscal closure.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $first_closure_date;
 
     /**
      * Registry office that issued the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $from_greffe;
 
     /**
      * Legal form of the company (e.g., SAS, SARL).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $legal_form;
 
     /**
@@ -101,31 +101,31 @@ final class Kbis implements BaseModel
      *
      * @var list<Member>|null $members
      */
-    #[Api(list: Member::class, optional: true)]
+    #[Optional(list: Member::class)]
     public ?array $members;
 
     /**
      * Business registry number or NGestion.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $ngestion;
 
     /**
      * RCS (Company Registration Number).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $rcs_number;
 
     /**
      * Date of registration with the registry.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $registration_date;
 
     /**
      * SIREN number of the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $siren_info;
 
     public function __construct()

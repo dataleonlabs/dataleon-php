@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Individual;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -26,25 +26,25 @@ final class Tag implements BaseModel
     /**
      * Name of the tag used to identify the metadata field.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $key;
 
     /**
      * Indicates whether the tag is private (not visible to external users).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $private;
 
     /**
      * Data type of the tag value (e.g., "string", "number", "boolean").
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $type;
 
     /**
      * Value assigned to the tag.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $value;
 
     public function __construct()

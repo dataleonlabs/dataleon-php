@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Individual;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -37,91 +37,91 @@ final class IdentityCard implements BaseModel
     /**
      * Unique identifier for the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
      * Signed URL linking to the back image of the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $back_document_signed_url;
 
     /**
      * Place of birth as indicated on the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $birth_place;
 
     /**
      * Date of birth in DD/MM/YYYY format as shown on the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $birthday;
 
     /**
      * Country code issuing the document (ISO 3166-1 alpha-2).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $country;
 
     /**
      * Expiration date of the document, in YYYY-MM-DD format.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $expiration_date;
 
     /**
      * First name as shown on the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $first_name;
 
     /**
      * Signed URL linking to the front image of the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $front_document_signed_url;
 
     /**
      * Gender indicated on the document (e.g., "M" or "F").
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $gender;
 
     /**
      * Date when the document was issued, in YYYY-MM-DD format.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $issue_date;
 
     /**
      * Last name as shown on the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $last_name;
 
     /**
      * First line of the Machine Readable Zone (MRZ) on the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $mrz_line_1;
 
     /**
      * Second line of the MRZ on the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $mrz_line_2;
 
     /**
      * Third line of the MRZ if applicable; otherwise null.
      */
-    #[Api(nullable: true, optional: true)]
+    #[Optional(nullable: true)]
     public ?string $mrz_line_3;
 
     /**
      * Type of document (e.g., passport, identity card).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $type;
 
     public function __construct()

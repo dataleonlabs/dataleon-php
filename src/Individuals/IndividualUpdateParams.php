@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
+use Dataleon\Core\Attributes\Required;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
@@ -51,25 +52,25 @@ final class IndividualUpdateParams implements BaseModel
     /**
      * Unique identifier of the workspace where the individual is being registered.
      */
-    #[Api]
+    #[Required]
     public string $workspace_id;
 
     /**
      * Personal information about the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Person $person;
 
     /**
      * Optional identifier for tracking the source system or integration from your system.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $source_id;
 
     /**
      * Technical metadata related to the request or processing.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?TechnicalData $technical_data;
 
     /**

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -27,31 +27,31 @@ final class Check implements BaseModel
     /**
      * Indicates whether the result or data is masked/hidden.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $masked;
 
     /**
      * Additional message or explanation about the check result.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $message;
 
     /**
      * Name or type of the check performed.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     /**
      * Result of the check, true if passed.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $validate;
 
     /**
      * Importance or weight of the check, often used in scoring.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $weight;
 
     public function __construct()

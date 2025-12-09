@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies\CompanyUpdateParams;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
+use Dataleon\Core\Attributes\Required;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -37,91 +38,91 @@ final class Company implements BaseModel
     /**
      * Legal name of the company.
      */
-    #[Api]
+    #[Required]
     public string $name;
 
     /**
      * Registered address of the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $address;
 
     /**
      * Commercial or trade name of the company, if different from the legal name.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $commercial_name;
 
     /**
      * ISO 3166-1 alpha-2 country code of company registration (e.g., "FR" for France).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $country;
 
     /**
      * Contact email address for the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $email;
 
     /**
      * Employer Identification Number (EIN) or equivalent.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $employer_identification_number;
 
     /**
      * Legal structure of the company (e.g., SARL, SAS).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $legal_form;
 
     /**
      * Contact phone number for the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $phone_number;
 
     /**
      * Date of official company registration in YYYY-MM-DD format.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $registration_date;
 
     /**
      * Official company registration identifier.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $registration_id;
 
     /**
      * Declared share capital of the company, usually in euros.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $share_capital;
 
     /**
      * Current status of the company (e.g., active, inactive).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $status;
 
     /**
      * National tax identifier (e.g., VAT or TIN).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $tax_identification_number;
 
     /**
      * Type of company, such as "main" or "affiliated".
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $type;
 
     /**
      * Company’s official website URL.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $website_url;
 
     /**

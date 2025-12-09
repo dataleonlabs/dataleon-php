@@ -6,7 +6,7 @@ namespace Dataleon\Companies;
 
 use Dataleon\Companies\CompanyListParams\State;
 use Dataleon\Companies\CompanyListParams\Status;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
@@ -36,31 +36,31 @@ final class CompanyListParams implements BaseModel
     /**
      * Filter companies created before this date (format YYYY-MM-DD).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $end_date;
 
     /**
      * Number of results to return (between 1 and 100).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $limit;
 
     /**
      * Number of results to skip (must be ≥ 0).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $offset;
 
     /**
      * Filter by source ID.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $source_id;
 
     /**
      * Filter companies created after this date (format YYYY-MM-DD).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $start_date;
 
     /**
@@ -68,7 +68,7 @@ final class CompanyListParams implements BaseModel
      *
      * @var value-of<State>|null $state
      */
-    #[Api(enum: State::class, optional: true)]
+    #[Optional(enum: State::class)]
     public ?string $state;
 
     /**
@@ -76,13 +76,13 @@ final class CompanyListParams implements BaseModel
      *
      * @var value-of<Status>|null $status
      */
-    #[Api(enum: Status::class, optional: true)]
+    #[Optional(enum: Status::class)]
     public ?string $status;
 
     /**
      * Filter by workspace ID.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $workspace_id;
 
     public function __construct()

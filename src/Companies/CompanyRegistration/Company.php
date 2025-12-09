@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Companies\CompanyRegistration;
 
 use Dataleon\Companies\CompanyRegistration\Company\Contact;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -43,121 +43,121 @@ final class Company implements BaseModel
     /**
      * Full registered address of the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $address;
 
     /**
      * Closure date of the company, if applicable.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $closure_date;
 
     /**
      * Trade or commercial name of the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $commercial_name;
 
     /**
      * Contact information for the company, including email, phone number, and address.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Contact $contact;
 
     /**
      * Country code where the company is registered.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $country;
 
     /**
      * Contact email address for the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $email;
 
     /**
      * Number of employees in the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $employees;
 
     /**
      * Employer Identification Number (EIN) or equivalent.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $employer_identification_number;
 
     /**
      * Indicates whether an insolvency procedure exists for the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $insolvency_exists;
 
     /**
      * Indicates whether an insolvency procedure is ongoing for the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $insolvency_ongoing;
 
     /**
      * Legal form or structure of the company (e.g., LLC, SARL).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $legal_form;
 
     /**
      * Legal registered name of the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     /**
      * Contact phone number for the company, including country code.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $phone_number;
 
     /**
      * Date when the company was officially registered.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $registration_date;
 
     /**
      * Official company registration number or ID.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $registration_id;
 
     /**
      * Total share capital of the company, including currency.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $share_capital;
 
     /**
      * Current status of the company (e.g., active, inactive).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $status;
 
     /**
      * Tax identification number for the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $tax_identification_number;
 
     /**
      * Type of company within the workspace, e.g., main or affiliated.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $type;
 
     /**
      * Official website URL of the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $website_url;
 
     public function __construct()

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Documents;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\DocumentResponse\Document;
@@ -24,13 +24,13 @@ final class DocumentResponse implements BaseModel
      *
      * @var list<Document>|null $documents
      */
-    #[Api(list: Document::class, optional: true)]
+    #[Optional(list: Document::class)]
     public ?array $documents;
 
     /**
      * Total number of documents available in the response.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $total_document;
 
     public function __construct()

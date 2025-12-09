@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Companies\CompanyRegistration;
 
 use Dataleon\Companies\CompanyRegistration\TechnicalData\PortalStep;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -46,91 +46,91 @@ final class TechnicalData implements BaseModel
     /**
      * Flag indicating whether there are active research AML (Anti-Money Laundering) suspicions for the object when you apply for a new entry or get an existing one.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $active_aml_suspicions;
 
     /**
      * Version number of the API used.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $api_version;
 
     /**
      * Timestamp when the request or process was approved.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $approved_at;
 
     /**
      * URL to receive callback data from the AML system.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $callback_url;
 
     /**
      * URL to receive notification updates about the processing status.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $callback_url_notification;
 
     /**
      * Flag to indicate if notifications are disabled.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $disable_notification;
 
     /**
      * Timestamp when notifications were disabled; null if never disabled.
      */
-    #[Api(nullable: true, optional: true)]
+    #[Optional(nullable: true)]
     public ?\DateTimeInterface $disable_notification_date;
 
     /**
      * Export format defined by the API (e.g., "json", "xml").
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $export_type;
 
     /**
      * Minimum filtering score (between 0 and 1) for AML suspicions to be considered.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $filtering_score_aml_suspicions;
 
     /**
      * Timestamp when the process finished.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $finished_at;
 
     /**
      * IP address of the our system handling the request.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $ip;
 
     /**
      * Language preference used in the client workspace (e.g., "fra").
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $language;
 
     /**
      * IP address of the end client (final user) captured.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $location_ip;
 
     /**
      * Timestamp indicating when the request or process needs review; null if none.
      */
-    #[Api(nullable: true, optional: true)]
+    #[Optional(nullable: true)]
     public ?\DateTimeInterface $need_review_at;
 
     /**
      * Flag indicating if notification confirmation is required or received.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $notification_confirmation;
 
     /**
@@ -138,49 +138,49 @@ final class TechnicalData implements BaseModel
      *
      * @var list<value-of<PortalStep>>|null $portal_steps
      */
-    #[Api(list: PortalStep::class, optional: true)]
+    #[Optional(list: PortalStep::class)]
     public ?array $portal_steps;
 
     /**
      * Indicates whether QR code is enabled ("true" or "false").
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $qr_code;
 
     /**
      * Flag indicating whether to include raw data in the response.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $raw_data;
 
     /**
      * Timestamp when the request or process was rejected; null if not rejected.
      */
-    #[Api(nullable: true, optional: true)]
+    #[Optional(nullable: true)]
     public ?\DateTimeInterface $rejected_at;
 
     /**
      * Duration of the user session in seconds.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $session_duration;
 
     /**
      * Timestamp when the process started.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $started_at;
 
     /**
      * Date/time of data transfer.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $transfer_at;
 
     /**
      * Mode of data transfer.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $transfer_mode;
 
     public function __construct()

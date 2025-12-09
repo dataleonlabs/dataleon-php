@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
@@ -27,13 +27,13 @@ final class CompanyRetrieveParams implements BaseModel
     /**
      * Include document signed url.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $document;
 
     /**
      * Scope filter (id or scope).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $scope;
 
     public function __construct()
