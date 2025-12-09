@@ -12,7 +12,7 @@ use Dataleon\Core\Contracts\BaseModel;
  * Digital certificate associated with the individual, if any.
  *
  * @phpstan-type CertificatShape = array{
- *   id?: string|null, created_at?: \DateTimeInterface|null, filename?: string|null
+ *   id?: string|null, createdAt?: \DateTimeInterface|null, filename?: string|null
  * }
  */
 final class Certificat implements BaseModel
@@ -29,8 +29,8 @@ final class Certificat implements BaseModel
     /**
      * Timestamp when the certificate was created.
      */
-    #[Optional]
-    public ?\DateTimeInterface $created_at;
+    #[Optional('created_at')]
+    public ?\DateTimeInterface $createdAt;
 
     /**
      * Name of the certificate file.
@@ -50,13 +50,13 @@ final class Certificat implements BaseModel
      */
     public static function with(
         ?string $id = null,
-        ?\DateTimeInterface $created_at = null,
+        ?\DateTimeInterface $createdAt = null,
         ?string $filename = null,
     ): self {
         $obj = new self;
 
         null !== $id && $obj['id'] = $id;
-        null !== $created_at && $obj['created_at'] = $created_at;
+        null !== $createdAt && $obj['createdAt'] = $createdAt;
         null !== $filename && $obj['filename'] = $filename;
 
         return $obj;
@@ -79,7 +79,7 @@ final class Certificat implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj['created_at'] = $createdAt;
+        $obj['createdAt'] = $createdAt;
 
         return $obj;
     }

@@ -17,10 +17,10 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
  * @phpstan-type GenericDocumentShape = array{
  *   id?: string|null,
  *   checks?: list<Check>|null,
- *   created_at?: \DateTimeInterface|null,
- *   document_type?: string|null,
+ *   createdAt?: \DateTimeInterface|null,
+ *   documentType?: string|null,
  *   name?: string|null,
- *   signed_url?: string|null,
+ *   signedURL?: string|null,
  *   state?: string|null,
  *   status?: string|null,
  *   tables?: list<Table>|null,
@@ -49,14 +49,14 @@ final class GenericDocument implements BaseModel
     /**
      * Timestamp when the document was created or uploaded.
      */
-    #[Optional]
-    public ?\DateTimeInterface $created_at;
+    #[Optional('created_at')]
+    public ?\DateTimeInterface $createdAt;
 
     /**
      * Type/category of the document.
      */
-    #[Optional]
-    public ?string $document_type;
+    #[Optional('document_type')]
+    public ?string $documentType;
 
     /**
      * Name or label for the document.
@@ -67,8 +67,8 @@ final class GenericDocument implements BaseModel
     /**
      * Signed URL for accessing the document file.
      */
-    #[Optional]
-    public ?string $signed_url;
+    #[Optional('signed_url')]
+    public ?string $signedURL;
 
     /**
      * Current processing state of the document (e.g., WAITING, PROCESSED).
@@ -123,10 +123,10 @@ final class GenericDocument implements BaseModel
     public static function with(
         ?string $id = null,
         ?array $checks = null,
-        ?\DateTimeInterface $created_at = null,
-        ?string $document_type = null,
+        ?\DateTimeInterface $createdAt = null,
+        ?string $documentType = null,
         ?string $name = null,
-        ?string $signed_url = null,
+        ?string $signedURL = null,
         ?string $state = null,
         ?string $status = null,
         ?array $tables = null,
@@ -136,10 +136,10 @@ final class GenericDocument implements BaseModel
 
         null !== $id && $obj['id'] = $id;
         null !== $checks && $obj['checks'] = $checks;
-        null !== $created_at && $obj['created_at'] = $created_at;
-        null !== $document_type && $obj['document_type'] = $document_type;
+        null !== $createdAt && $obj['createdAt'] = $createdAt;
+        null !== $documentType && $obj['documentType'] = $documentType;
         null !== $name && $obj['name'] = $name;
-        null !== $signed_url && $obj['signed_url'] = $signed_url;
+        null !== $signedURL && $obj['signedURL'] = $signedURL;
         null !== $state && $obj['state'] = $state;
         null !== $status && $obj['status'] = $status;
         null !== $tables && $obj['tables'] = $tables;
@@ -184,7 +184,7 @@ final class GenericDocument implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj['created_at'] = $createdAt;
+        $obj['createdAt'] = $createdAt;
 
         return $obj;
     }
@@ -195,7 +195,7 @@ final class GenericDocument implements BaseModel
     public function withDocumentType(string $documentType): self
     {
         $obj = clone $this;
-        $obj['document_type'] = $documentType;
+        $obj['documentType'] = $documentType;
 
         return $obj;
     }
@@ -217,7 +217,7 @@ final class GenericDocument implements BaseModel
     public function withSignedURL(string $signedURL): self
     {
         $obj = clone $this;
-        $obj['signed_url'] = $signedURL;
+        $obj['signedURL'] = $signedURL;
 
         return $obj;
     }

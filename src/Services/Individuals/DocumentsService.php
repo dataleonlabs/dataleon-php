@@ -49,7 +49,7 @@ final class DocumentsService implements DocumentsContract
      * Upload documents to an individual
      *
      * @param array{
-     *   document_type: value-of<DocumentType>, file?: string, url?: string
+     *   documentType: value-of<DocumentType>, file?: string, url?: string
      * }|DocumentUploadParams $params
      *
      * @throws APIException

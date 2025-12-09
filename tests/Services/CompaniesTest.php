@@ -35,7 +35,7 @@ final class CompaniesTest extends TestCase
         }
 
         $result = $this->client->companies->create([
-            'company' => ['name' => 'ACME Corp'], 'workspace_id' => 'wk_123',
+            'company' => ['name' => 'ACME Corp'], 'workspaceID' => 'wk_123',
         ]);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -53,30 +53,30 @@ final class CompaniesTest extends TestCase
             'company' => [
                 'name' => 'ACME Corp',
                 'address' => '123 rue Exemple, Paris',
-                'commercial_name' => 'ACME',
+                'commercialName' => 'ACME',
                 'country' => 'FR',
                 'email' => 'info@acme.fr',
-                'employer_identification_number' => 'EIN123456',
-                'legal_form' => 'SARL',
-                'phone_number' => '+33 1 23 45 67 89',
-                'registration_date' => '2010-05-15',
-                'registration_id' => 'RCS123456',
-                'share_capital' => '100000',
+                'employerIdentificationNumber' => 'EIN123456',
+                'legalForm' => 'SARL',
+                'phoneNumber' => '+33 1 23 45 67 89',
+                'registrationDate' => '2010-05-15',
+                'registrationID' => 'RCS123456',
+                'shareCapital' => '100000',
                 'status' => 'active',
-                'tax_identification_number' => 'FR123456789',
+                'taxIdentificationNumber' => 'FR123456789',
                 'type' => 'main',
-                'website_url' => 'https://acme.fr',
+                'websiteURL' => 'https://acme.fr',
             ],
-            'workspace_id' => 'wk_123',
-            'source_id' => 'ID54410069066',
-            'technical_data' => [
-                'active_aml_suspicions' => false,
-                'callback_url' => 'https://example.com/callback',
-                'callback_url_notification' => 'https://example.com/notify',
-                'filtering_score_aml_suspicions' => 0.75,
+            'workspaceID' => 'wk_123',
+            'sourceID' => 'ID54410069066',
+            'technicalData' => [
+                'activeAmlSuspicions' => false,
+                'callbackURL' => 'https://example.com/callback',
+                'callbackURLNotification' => 'https://example.com/notify',
+                'filteringScoreAmlSuspicions' => 0.75,
                 'language' => 'fra',
-                'portal_steps' => ['identity_verification', 'document_signing'],
-                'raw_data' => true,
+                'portalSteps' => ['identity_verification', 'document_signing'],
+                'rawData' => true,
             ],
         ]);
 
@@ -106,7 +106,7 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->update(
             'company_id',
-            ['company' => ['name' => 'ACME Corp'], 'workspace_id' => 'wk_123'],
+            ['company' => ['name' => 'ACME Corp'], 'workspaceID' => 'wk_123'],
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -126,30 +126,30 @@ final class CompaniesTest extends TestCase
                 'company' => [
                     'name' => 'ACME Corp',
                     'address' => '123 rue Exemple, Paris',
-                    'commercial_name' => 'ACME',
+                    'commercialName' => 'ACME',
                     'country' => 'FR',
                     'email' => 'info@acme.fr',
-                    'employer_identification_number' => 'EIN123456',
-                    'legal_form' => 'SARL',
-                    'phone_number' => '+33 1 23 45 67 89',
-                    'registration_date' => '2010-05-15',
-                    'registration_id' => 'RCS123456',
-                    'share_capital' => '100000',
+                    'employerIdentificationNumber' => 'EIN123456',
+                    'legalForm' => 'SARL',
+                    'phoneNumber' => '+33 1 23 45 67 89',
+                    'registrationDate' => '2010-05-15',
+                    'registrationID' => 'RCS123456',
+                    'shareCapital' => '100000',
                     'status' => 'active',
-                    'tax_identification_number' => 'FR123456789',
+                    'taxIdentificationNumber' => 'FR123456789',
                     'type' => 'main',
-                    'website_url' => 'https://acme.fr',
+                    'websiteURL' => 'https://acme.fr',
                 ],
-                'workspace_id' => 'wk_123',
-                'source_id' => 'ID54410069066',
-                'technical_data' => [
-                    'active_aml_suspicions' => false,
-                    'callback_url' => 'https://example.com/callback',
-                    'callback_url_notification' => 'https://example.com/notify',
-                    'filtering_score_aml_suspicions' => 0.75,
+                'workspaceID' => 'wk_123',
+                'sourceID' => 'ID54410069066',
+                'technicalData' => [
+                    'activeAmlSuspicions' => false,
+                    'callbackURL' => 'https://example.com/callback',
+                    'callbackURLNotification' => 'https://example.com/notify',
+                    'filteringScoreAmlSuspicions' => 0.75,
                     'language' => 'fra',
-                    'portal_steps' => ['identity_verification', 'document_signing'],
-                    'raw_data' => true,
+                    'portalSteps' => ['identity_verification', 'document_signing'],
+                    'rawData' => true,
                 ],
             ],
         );

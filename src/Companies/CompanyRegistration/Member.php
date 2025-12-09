@@ -25,23 +25,23 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
  *   country?: string|null,
  *   documents?: list<GenericDocument>|null,
  *   email?: string|null,
- *   first_name?: string|null,
- *   is_beneficial_owner?: bool|null,
- *   is_delegator?: bool|null,
- *   last_name?: string|null,
- *   liveness_verification?: bool|null,
+ *   firstName?: string|null,
+ *   isBeneficialOwner?: bool|null,
+ *   isDelegator?: bool|null,
+ *   lastName?: string|null,
+ *   livenessVerification?: bool|null,
  *   name?: string|null,
- *   ownership_percentage?: int|null,
- *   phone_number?: string|null,
- *   postal_code?: string|null,
- *   registration_id?: string|null,
+ *   ownershipPercentage?: int|null,
+ *   phoneNumber?: string|null,
+ *   postalCode?: string|null,
+ *   registrationID?: string|null,
  *   relation?: string|null,
  *   roles?: string|null,
  *   source?: value-of<Source>|null,
  *   state?: string|null,
  *   status?: string|null,
  *   type?: value-of<Type>|null,
- *   workspace_id?: string|null,
+ *   workspaceID?: string|null,
  * }
  */
 final class Member implements BaseModel
@@ -93,32 +93,32 @@ final class Member implements BaseModel
     /**
      * First name (available only if type = person).
      */
-    #[Optional]
-    public ?string $first_name;
+    #[Optional('first_name')]
+    public ?string $firstName;
 
     /**
      * Indicates whether the member is a beneficial owner of the company, meaning they have significant control or ownership.
      */
-    #[Optional]
-    public ?bool $is_beneficial_owner;
+    #[Optional('is_beneficial_owner')]
+    public ?bool $isBeneficialOwner;
 
     /**
      * Indicates whether the member is a delegator, meaning they have authority to act on behalf of the company.
      */
-    #[Optional]
-    public ?bool $is_delegator;
+    #[Optional('is_delegator')]
+    public ?bool $isDelegator;
 
     /**
      * Last name (available only if type = person).
      */
-    #[Optional]
-    public ?string $last_name;
+    #[Optional('last_name')]
+    public ?string $lastName;
 
     /**
      * Indicates whether liveness verification was performed for the member, typically in the context of identity checks.
      */
-    #[Optional]
-    public ?bool $liveness_verification;
+    #[Optional('liveness_verification')]
+    public ?bool $livenessVerification;
 
     /**
      * Company name (available only if type = company).
@@ -129,26 +129,26 @@ final class Member implements BaseModel
     /**
      * Percentage of ownership the member has in the company, expressed as an integer between 0 and 100.
      */
-    #[Optional]
-    public ?int $ownership_percentage;
+    #[Optional('ownership_percentage')]
+    public ?int $ownershipPercentage;
 
     /**
      * Contact phone number of the member, including country code and area code.
      */
-    #[Optional]
-    public ?string $phone_number;
+    #[Optional('phone_number')]
+    public ?string $phoneNumber;
 
     /**
      * Postal code of the member's address, typically a numeric or alphanumeric code.
      */
-    #[Optional]
-    public ?string $postal_code;
+    #[Optional('postal_code')]
+    public ?string $postalCode;
 
     /**
      * Official registration identifier of the member, such as a national ID or company registration number.
      */
-    #[Optional]
-    public ?string $registration_id;
+    #[Optional('registration_id')]
+    public ?string $registrationID;
 
     /**
      * Type of relationship the member has with the company, such as "shareholder", "director", or "beneficial_owner".
@@ -193,8 +193,8 @@ final class Member implements BaseModel
     /**
      * Identifier of the workspace to which the member belongs, used for organizational purposes.
      */
-    #[Optional]
-    public ?string $workspace_id;
+    #[Optional('workspace_id')]
+    public ?string $workspaceID;
 
     public function __construct()
     {
@@ -209,10 +209,10 @@ final class Member implements BaseModel
      * @param list<GenericDocument|array{
      *   id?: string|null,
      *   checks?: list<Check>|null,
-     *   created_at?: \DateTimeInterface|null,
-     *   document_type?: string|null,
+     *   createdAt?: \DateTimeInterface|null,
+     *   documentType?: string|null,
      *   name?: string|null,
-     *   signed_url?: string|null,
+     *   signedURL?: string|null,
      *   state?: string|null,
      *   status?: string|null,
      *   tables?: list<Table>|null,
@@ -229,23 +229,23 @@ final class Member implements BaseModel
         ?string $country = null,
         ?array $documents = null,
         ?string $email = null,
-        ?string $first_name = null,
-        ?bool $is_beneficial_owner = null,
-        ?bool $is_delegator = null,
-        ?string $last_name = null,
-        ?bool $liveness_verification = null,
+        ?string $firstName = null,
+        ?bool $isBeneficialOwner = null,
+        ?bool $isDelegator = null,
+        ?string $lastName = null,
+        ?bool $livenessVerification = null,
         ?string $name = null,
-        ?int $ownership_percentage = null,
-        ?string $phone_number = null,
-        ?string $postal_code = null,
-        ?string $registration_id = null,
+        ?int $ownershipPercentage = null,
+        ?string $phoneNumber = null,
+        ?string $postalCode = null,
+        ?string $registrationID = null,
         ?string $relation = null,
         ?string $roles = null,
         Source|string|null $source = null,
         ?string $state = null,
         ?string $status = null,
         Type|string|null $type = null,
-        ?string $workspace_id = null,
+        ?string $workspaceID = null,
     ): self {
         $obj = new self;
 
@@ -256,23 +256,23 @@ final class Member implements BaseModel
         null !== $country && $obj['country'] = $country;
         null !== $documents && $obj['documents'] = $documents;
         null !== $email && $obj['email'] = $email;
-        null !== $first_name && $obj['first_name'] = $first_name;
-        null !== $is_beneficial_owner && $obj['is_beneficial_owner'] = $is_beneficial_owner;
-        null !== $is_delegator && $obj['is_delegator'] = $is_delegator;
-        null !== $last_name && $obj['last_name'] = $last_name;
-        null !== $liveness_verification && $obj['liveness_verification'] = $liveness_verification;
+        null !== $firstName && $obj['firstName'] = $firstName;
+        null !== $isBeneficialOwner && $obj['isBeneficialOwner'] = $isBeneficialOwner;
+        null !== $isDelegator && $obj['isDelegator'] = $isDelegator;
+        null !== $lastName && $obj['lastName'] = $lastName;
+        null !== $livenessVerification && $obj['livenessVerification'] = $livenessVerification;
         null !== $name && $obj['name'] = $name;
-        null !== $ownership_percentage && $obj['ownership_percentage'] = $ownership_percentage;
-        null !== $phone_number && $obj['phone_number'] = $phone_number;
-        null !== $postal_code && $obj['postal_code'] = $postal_code;
-        null !== $registration_id && $obj['registration_id'] = $registration_id;
+        null !== $ownershipPercentage && $obj['ownershipPercentage'] = $ownershipPercentage;
+        null !== $phoneNumber && $obj['phoneNumber'] = $phoneNumber;
+        null !== $postalCode && $obj['postalCode'] = $postalCode;
+        null !== $registrationID && $obj['registrationID'] = $registrationID;
         null !== $relation && $obj['relation'] = $relation;
         null !== $roles && $obj['roles'] = $roles;
         null !== $source && $obj['source'] = $source;
         null !== $state && $obj['state'] = $state;
         null !== $status && $obj['status'] = $status;
         null !== $type && $obj['type'] = $type;
-        null !== $workspace_id && $obj['workspace_id'] = $workspace_id;
+        null !== $workspaceID && $obj['workspaceID'] = $workspaceID;
 
         return $obj;
     }
@@ -335,10 +335,10 @@ final class Member implements BaseModel
      * @param list<GenericDocument|array{
      *   id?: string|null,
      *   checks?: list<Check>|null,
-     *   created_at?: \DateTimeInterface|null,
-     *   document_type?: string|null,
+     *   createdAt?: \DateTimeInterface|null,
+     *   documentType?: string|null,
      *   name?: string|null,
-     *   signed_url?: string|null,
+     *   signedURL?: string|null,
      *   state?: string|null,
      *   status?: string|null,
      *   tables?: list<Table>|null,
@@ -370,7 +370,7 @@ final class Member implements BaseModel
     public function withFirstName(string $firstName): self
     {
         $obj = clone $this;
-        $obj['first_name'] = $firstName;
+        $obj['firstName'] = $firstName;
 
         return $obj;
     }
@@ -381,7 +381,7 @@ final class Member implements BaseModel
     public function withIsBeneficialOwner(bool $isBeneficialOwner): self
     {
         $obj = clone $this;
-        $obj['is_beneficial_owner'] = $isBeneficialOwner;
+        $obj['isBeneficialOwner'] = $isBeneficialOwner;
 
         return $obj;
     }
@@ -392,7 +392,7 @@ final class Member implements BaseModel
     public function withIsDelegator(bool $isDelegator): self
     {
         $obj = clone $this;
-        $obj['is_delegator'] = $isDelegator;
+        $obj['isDelegator'] = $isDelegator;
 
         return $obj;
     }
@@ -403,7 +403,7 @@ final class Member implements BaseModel
     public function withLastName(string $lastName): self
     {
         $obj = clone $this;
-        $obj['last_name'] = $lastName;
+        $obj['lastName'] = $lastName;
 
         return $obj;
     }
@@ -414,7 +414,7 @@ final class Member implements BaseModel
     public function withLivenessVerification(bool $livenessVerification): self
     {
         $obj = clone $this;
-        $obj['liveness_verification'] = $livenessVerification;
+        $obj['livenessVerification'] = $livenessVerification;
 
         return $obj;
     }
@@ -436,7 +436,7 @@ final class Member implements BaseModel
     public function withOwnershipPercentage(int $ownershipPercentage): self
     {
         $obj = clone $this;
-        $obj['ownership_percentage'] = $ownershipPercentage;
+        $obj['ownershipPercentage'] = $ownershipPercentage;
 
         return $obj;
     }
@@ -447,7 +447,7 @@ final class Member implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj['phone_number'] = $phoneNumber;
+        $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }
@@ -458,7 +458,7 @@ final class Member implements BaseModel
     public function withPostalCode(string $postalCode): self
     {
         $obj = clone $this;
-        $obj['postal_code'] = $postalCode;
+        $obj['postalCode'] = $postalCode;
 
         return $obj;
     }
@@ -469,7 +469,7 @@ final class Member implements BaseModel
     public function withRegistrationID(string $registrationID): self
     {
         $obj = clone $this;
-        $obj['registration_id'] = $registrationID;
+        $obj['registrationID'] = $registrationID;
 
         return $obj;
     }
@@ -550,7 +550,7 @@ final class Member implements BaseModel
     public function withWorkspaceID(string $workspaceID): self
     {
         $obj = clone $this;
-        $obj['workspace_id'] = $workspaceID;
+        $obj['workspaceID'] = $workspaceID;
 
         return $obj;
     }

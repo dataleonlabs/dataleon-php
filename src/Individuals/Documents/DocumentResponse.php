@@ -11,7 +11,7 @@ use Dataleon\Individuals\Documents\DocumentResponse\Document;
 
 /**
  * @phpstan-type DocumentResponseShape = array{
- *   documents?: list<Document>|null, total_document?: int|null
+ *   documents?: list<Document>|null, totalDocument?: int|null
  * }
  */
 final class DocumentResponse implements BaseModel
@@ -30,8 +30,8 @@ final class DocumentResponse implements BaseModel
     /**
      * Total number of documents available in the response.
      */
-    #[Optional]
-    public ?int $total_document;
+    #[Optional('total_document')]
+    public ?int $totalDocument;
 
     public function __construct()
     {
@@ -45,23 +45,23 @@ final class DocumentResponse implements BaseModel
      *
      * @param list<Document|array{
      *   id?: string|null,
-     *   document_type?: string|null,
+     *   documentType?: string|null,
      *   filename?: string|null,
      *   name?: string|null,
-     *   signed_url?: string|null,
+     *   signedURL?: string|null,
      *   state?: string|null,
      *   status?: string|null,
-     *   workspace_id?: string|null,
+     *   workspaceID?: string|null,
      * }> $documents
      */
     public static function with(
         ?array $documents = null,
-        ?int $total_document = null
+        ?int $totalDocument = null
     ): self {
         $obj = new self;
 
         null !== $documents && $obj['documents'] = $documents;
-        null !== $total_document && $obj['total_document'] = $total_document;
+        null !== $totalDocument && $obj['totalDocument'] = $totalDocument;
 
         return $obj;
     }
@@ -71,13 +71,13 @@ final class DocumentResponse implements BaseModel
      *
      * @param list<Document|array{
      *   id?: string|null,
-     *   document_type?: string|null,
+     *   documentType?: string|null,
      *   filename?: string|null,
      *   name?: string|null,
-     *   signed_url?: string|null,
+     *   signedURL?: string|null,
      *   state?: string|null,
      *   status?: string|null,
-     *   workspace_id?: string|null,
+     *   workspaceID?: string|null,
      * }> $documents
      */
     public function withDocuments(array $documents): self
@@ -94,7 +94,7 @@ final class DocumentResponse implements BaseModel
     public function withTotalDocument(int $totalDocument): self
     {
         $obj = clone $this;
-        $obj['total_document'] = $totalDocument;
+        $obj['totalDocument'] = $totalDocument;
 
         return $obj;
     }

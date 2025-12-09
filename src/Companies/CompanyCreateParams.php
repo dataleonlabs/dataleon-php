@@ -22,30 +22,30 @@ use Dataleon\Core\Contracts\BaseModel;
  *   company: Company|array{
  *     name: string,
  *     address?: string|null,
- *     commercial_name?: string|null,
+ *     commercialName?: string|null,
  *     country?: string|null,
  *     email?: string|null,
- *     employer_identification_number?: string|null,
- *     legal_form?: string|null,
- *     phone_number?: string|null,
- *     registration_date?: string|null,
- *     registration_id?: string|null,
- *     share_capital?: string|null,
+ *     employerIdentificationNumber?: string|null,
+ *     legalForm?: string|null,
+ *     phoneNumber?: string|null,
+ *     registrationDate?: string|null,
+ *     registrationID?: string|null,
+ *     shareCapital?: string|null,
  *     status?: string|null,
- *     tax_identification_number?: string|null,
+ *     taxIdentificationNumber?: string|null,
  *     type?: string|null,
- *     website_url?: string|null,
+ *     websiteURL?: string|null,
  *   },
- *   workspace_id: string,
- *   source_id?: string,
- *   technical_data?: TechnicalData|array{
- *     active_aml_suspicions?: bool|null,
- *     callback_url?: string|null,
- *     callback_url_notification?: string|null,
- *     filtering_score_aml_suspicions?: float|null,
+ *   workspaceID: string,
+ *   sourceID?: string,
+ *   technicalData?: TechnicalData|array{
+ *     activeAmlSuspicions?: bool|null,
+ *     callbackURL?: string|null,
+ *     callbackURLNotification?: string|null,
+ *     filteringScoreAmlSuspicions?: float|null,
  *     language?: string|null,
- *     portal_steps?: list<value-of<PortalStep>>|null,
- *     raw_data?: bool|null,
+ *     portalSteps?: list<value-of<PortalStep>>|null,
+ *     rawData?: bool|null,
  *   },
  * }
  */
@@ -64,27 +64,27 @@ final class CompanyCreateParams implements BaseModel
     /**
      * Unique identifier of the workspace in which the company is being created.
      */
-    #[Required]
-    public string $workspace_id;
+    #[Required('workspace_id')]
+    public string $workspaceID;
 
     /**
      * Optional identifier to track the origin of the request or integration from your system.
      */
-    #[Optional]
-    public ?string $source_id;
+    #[Optional('source_id')]
+    public ?string $sourceID;
 
     /**
      * Technical metadata and callback configuration.
      */
-    #[Optional]
-    public ?TechnicalData $technical_data;
+    #[Optional('technical_data')]
+    public ?TechnicalData $technicalData;
 
     /**
      * `new CompanyCreateParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * CompanyCreateParams::with(company: ..., workspace_id: ...)
+     * CompanyCreateParams::with(company: ..., workspaceID: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -106,43 +106,43 @@ final class CompanyCreateParams implements BaseModel
      * @param Company|array{
      *   name: string,
      *   address?: string|null,
-     *   commercial_name?: string|null,
+     *   commercialName?: string|null,
      *   country?: string|null,
      *   email?: string|null,
-     *   employer_identification_number?: string|null,
-     *   legal_form?: string|null,
-     *   phone_number?: string|null,
-     *   registration_date?: string|null,
-     *   registration_id?: string|null,
-     *   share_capital?: string|null,
+     *   employerIdentificationNumber?: string|null,
+     *   legalForm?: string|null,
+     *   phoneNumber?: string|null,
+     *   registrationDate?: string|null,
+     *   registrationID?: string|null,
+     *   shareCapital?: string|null,
      *   status?: string|null,
-     *   tax_identification_number?: string|null,
+     *   taxIdentificationNumber?: string|null,
      *   type?: string|null,
-     *   website_url?: string|null,
+     *   websiteURL?: string|null,
      * } $company
      * @param TechnicalData|array{
-     *   active_aml_suspicions?: bool|null,
-     *   callback_url?: string|null,
-     *   callback_url_notification?: string|null,
-     *   filtering_score_aml_suspicions?: float|null,
+     *   activeAmlSuspicions?: bool|null,
+     *   callbackURL?: string|null,
+     *   callbackURLNotification?: string|null,
+     *   filteringScoreAmlSuspicions?: float|null,
      *   language?: string|null,
-     *   portal_steps?: list<value-of<PortalStep>>|null,
-     *   raw_data?: bool|null,
-     * } $technical_data
+     *   portalSteps?: list<value-of<PortalStep>>|null,
+     *   rawData?: bool|null,
+     * } $technicalData
      */
     public static function with(
         Company|array $company,
-        string $workspace_id,
-        ?string $source_id = null,
-        TechnicalData|array|null $technical_data = null,
+        string $workspaceID,
+        ?string $sourceID = null,
+        TechnicalData|array|null $technicalData = null,
     ): self {
         $obj = new self;
 
         $obj['company'] = $company;
-        $obj['workspace_id'] = $workspace_id;
+        $obj['workspaceID'] = $workspaceID;
 
-        null !== $source_id && $obj['source_id'] = $source_id;
-        null !== $technical_data && $obj['technical_data'] = $technical_data;
+        null !== $sourceID && $obj['sourceID'] = $sourceID;
+        null !== $technicalData && $obj['technicalData'] = $technicalData;
 
         return $obj;
     }
@@ -153,19 +153,19 @@ final class CompanyCreateParams implements BaseModel
      * @param Company|array{
      *   name: string,
      *   address?: string|null,
-     *   commercial_name?: string|null,
+     *   commercialName?: string|null,
      *   country?: string|null,
      *   email?: string|null,
-     *   employer_identification_number?: string|null,
-     *   legal_form?: string|null,
-     *   phone_number?: string|null,
-     *   registration_date?: string|null,
-     *   registration_id?: string|null,
-     *   share_capital?: string|null,
+     *   employerIdentificationNumber?: string|null,
+     *   legalForm?: string|null,
+     *   phoneNumber?: string|null,
+     *   registrationDate?: string|null,
+     *   registrationID?: string|null,
+     *   shareCapital?: string|null,
      *   status?: string|null,
-     *   tax_identification_number?: string|null,
+     *   taxIdentificationNumber?: string|null,
      *   type?: string|null,
-     *   website_url?: string|null,
+     *   websiteURL?: string|null,
      * } $company
      */
     public function withCompany(Company|array $company): self
@@ -182,7 +182,7 @@ final class CompanyCreateParams implements BaseModel
     public function withWorkspaceID(string $workspaceID): self
     {
         $obj = clone $this;
-        $obj['workspace_id'] = $workspaceID;
+        $obj['workspaceID'] = $workspaceID;
 
         return $obj;
     }
@@ -193,7 +193,7 @@ final class CompanyCreateParams implements BaseModel
     public function withSourceID(string $sourceID): self
     {
         $obj = clone $this;
-        $obj['source_id'] = $sourceID;
+        $obj['sourceID'] = $sourceID;
 
         return $obj;
     }
@@ -202,19 +202,19 @@ final class CompanyCreateParams implements BaseModel
      * Technical metadata and callback configuration.
      *
      * @param TechnicalData|array{
-     *   active_aml_suspicions?: bool|null,
-     *   callback_url?: string|null,
-     *   callback_url_notification?: string|null,
-     *   filtering_score_aml_suspicions?: float|null,
+     *   activeAmlSuspicions?: bool|null,
+     *   callbackURL?: string|null,
+     *   callbackURLNotification?: string|null,
+     *   filteringScoreAmlSuspicions?: float|null,
      *   language?: string|null,
-     *   portal_steps?: list<value-of<PortalStep>>|null,
-     *   raw_data?: bool|null,
+     *   portalSteps?: list<value-of<PortalStep>>|null,
+     *   rawData?: bool|null,
      * } $technicalData
      */
     public function withTechnicalData(TechnicalData|array $technicalData): self
     {
         $obj = clone $this;
-        $obj['technical_data'] = $technicalData;
+        $obj['technicalData'] = $technicalData;
 
         return $obj;
     }

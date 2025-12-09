@@ -17,14 +17,14 @@ use Dataleon\Individuals\IndividualListParams\Status;
  * @see Dataleon\Services\IndividualsService::list()
  *
  * @phpstan-type IndividualListParamsShape = array{
- *   end_date?: \DateTimeInterface,
+ *   endDate?: \DateTimeInterface,
  *   limit?: int,
  *   offset?: int,
- *   source_id?: string,
- *   start_date?: \DateTimeInterface,
+ *   sourceID?: string,
+ *   startDate?: \DateTimeInterface,
  *   state?: State|value-of<State>,
  *   status?: Status|value-of<Status>,
- *   workspace_id?: string,
+ *   workspaceID?: string,
  * }
  */
 final class IndividualListParams implements BaseModel
@@ -37,7 +37,7 @@ final class IndividualListParams implements BaseModel
      * Filter individuals created before this date (format YYYY-MM-DD).
      */
     #[Optional]
-    public ?\DateTimeInterface $end_date;
+    public ?\DateTimeInterface $endDate;
 
     /**
      * Number of results to return (between 1 and 100).
@@ -55,13 +55,13 @@ final class IndividualListParams implements BaseModel
      * Filter by source ID.
      */
     #[Optional]
-    public ?string $source_id;
+    public ?string $sourceID;
 
     /**
      * Filter individuals created after this date (format YYYY-MM-DD).
      */
     #[Optional]
-    public ?\DateTimeInterface $start_date;
+    public ?\DateTimeInterface $startDate;
 
     /**
      * Filter by individual status (must be one of the allowed values).
@@ -83,7 +83,7 @@ final class IndividualListParams implements BaseModel
      * Filter by workspace ID.
      */
     #[Optional]
-    public ?string $workspace_id;
+    public ?string $workspaceID;
 
     public function __construct()
     {
@@ -99,25 +99,25 @@ final class IndividualListParams implements BaseModel
      * @param Status|value-of<Status> $status
      */
     public static function with(
-        ?\DateTimeInterface $end_date = null,
+        ?\DateTimeInterface $endDate = null,
         ?int $limit = null,
         ?int $offset = null,
-        ?string $source_id = null,
-        ?\DateTimeInterface $start_date = null,
+        ?string $sourceID = null,
+        ?\DateTimeInterface $startDate = null,
         State|string|null $state = null,
         Status|string|null $status = null,
-        ?string $workspace_id = null,
+        ?string $workspaceID = null,
     ): self {
         $obj = new self;
 
-        null !== $end_date && $obj['end_date'] = $end_date;
+        null !== $endDate && $obj['endDate'] = $endDate;
         null !== $limit && $obj['limit'] = $limit;
         null !== $offset && $obj['offset'] = $offset;
-        null !== $source_id && $obj['source_id'] = $source_id;
-        null !== $start_date && $obj['start_date'] = $start_date;
+        null !== $sourceID && $obj['sourceID'] = $sourceID;
+        null !== $startDate && $obj['startDate'] = $startDate;
         null !== $state && $obj['state'] = $state;
         null !== $status && $obj['status'] = $status;
-        null !== $workspace_id && $obj['workspace_id'] = $workspace_id;
+        null !== $workspaceID && $obj['workspaceID'] = $workspaceID;
 
         return $obj;
     }
@@ -128,7 +128,7 @@ final class IndividualListParams implements BaseModel
     public function withEndDate(\DateTimeInterface $endDate): self
     {
         $obj = clone $this;
-        $obj['end_date'] = $endDate;
+        $obj['endDate'] = $endDate;
 
         return $obj;
     }
@@ -161,7 +161,7 @@ final class IndividualListParams implements BaseModel
     public function withSourceID(string $sourceID): self
     {
         $obj = clone $this;
-        $obj['source_id'] = $sourceID;
+        $obj['sourceID'] = $sourceID;
 
         return $obj;
     }
@@ -172,7 +172,7 @@ final class IndividualListParams implements BaseModel
     public function withStartDate(\DateTimeInterface $startDate): self
     {
         $obj = clone $this;
-        $obj['start_date'] = $startDate;
+        $obj['startDate'] = $startDate;
 
         return $obj;
     }
@@ -209,7 +209,7 @@ final class IndividualListParams implements BaseModel
     public function withWorkspaceID(string $workspaceID): self
     {
         $obj = clone $this;
-        $obj['workspace_id'] = $workspaceID;
+        $obj['workspaceID'] = $workspaceID;
 
         return $obj;
     }

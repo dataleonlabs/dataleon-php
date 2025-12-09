@@ -16,6 +16,7 @@ use Dataleon\Companies\CompanyUpdateParams;
 use Dataleon\Core\Contracts\BaseResponse;
 use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Core\Exceptions\APIException;
+use Dataleon\Core\Util;
 use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\CompaniesContract;
 use Dataleon\Services\Companies\DocumentsService;
@@ -44,30 +45,30 @@ final class CompaniesService implements CompaniesContract
      *   company: array{
      *     name: string,
      *     address?: string,
-     *     commercial_name?: string,
+     *     commercialName?: string,
      *     country?: string,
      *     email?: string,
-     *     employer_identification_number?: string,
-     *     legal_form?: string,
-     *     phone_number?: string,
-     *     registration_date?: string,
-     *     registration_id?: string,
-     *     share_capital?: string,
+     *     employerIdentificationNumber?: string,
+     *     legalForm?: string,
+     *     phoneNumber?: string,
+     *     registrationDate?: string,
+     *     registrationID?: string,
+     *     shareCapital?: string,
      *     status?: string,
-     *     tax_identification_number?: string,
+     *     taxIdentificationNumber?: string,
      *     type?: string,
-     *     website_url?: string,
+     *     websiteURL?: string,
      *   },
-     *   workspace_id: string,
-     *   source_id?: string,
-     *   technical_data?: array{
-     *     active_aml_suspicions?: bool,
-     *     callback_url?: string,
-     *     callback_url_notification?: string,
-     *     filtering_score_aml_suspicions?: float,
+     *   workspaceID: string,
+     *   sourceID?: string,
+     *   technicalData?: array{
+     *     activeAmlSuspicions?: bool,
+     *     callbackURL?: string,
+     *     callbackURLNotification?: string,
+     *     filteringScoreAmlSuspicions?: float,
      *     language?: string,
-     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|PortalStep>,
-     *     raw_data?: bool,
+     *     portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|PortalStep>,
+     *     rawData?: bool,
      *   },
      * }|CompanyCreateParams $params
      *
@@ -134,30 +135,30 @@ final class CompaniesService implements CompaniesContract
      *   company: array{
      *     name: string,
      *     address?: string,
-     *     commercial_name?: string,
+     *     commercialName?: string,
      *     country?: string,
      *     email?: string,
-     *     employer_identification_number?: string,
-     *     legal_form?: string,
-     *     phone_number?: string,
-     *     registration_date?: string,
-     *     registration_id?: string,
-     *     share_capital?: string,
+     *     employerIdentificationNumber?: string,
+     *     legalForm?: string,
+     *     phoneNumber?: string,
+     *     registrationDate?: string,
+     *     registrationID?: string,
+     *     shareCapital?: string,
      *     status?: string,
-     *     tax_identification_number?: string,
+     *     taxIdentificationNumber?: string,
      *     type?: string,
-     *     website_url?: string,
+     *     websiteURL?: string,
      *   },
-     *   workspace_id: string,
-     *   source_id?: string,
-     *   technical_data?: array{
-     *     active_aml_suspicions?: bool,
-     *     callback_url?: string,
-     *     callback_url_notification?: string,
-     *     filtering_score_aml_suspicions?: float,
+     *   workspaceID: string,
+     *   sourceID?: string,
+     *   technicalData?: array{
+     *     activeAmlSuspicions?: bool,
+     *     callbackURL?: string,
+     *     callbackURLNotification?: string,
+     *     filteringScoreAmlSuspicions?: float,
      *     language?: string,
-     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|CompanyUpdateParams\TechnicalData\PortalStep>,
-     *     raw_data?: bool,
+     *     portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|CompanyUpdateParams\TechnicalData\PortalStep>,
+     *     rawData?: bool,
      *   },
      * }|CompanyUpdateParams $params
      *
@@ -191,14 +192,14 @@ final class CompaniesService implements CompaniesContract
      * Get all companies
      *
      * @param array{
-     *   end_date?: string|\DateTimeInterface,
+     *   endDate?: string|\DateTimeInterface,
      *   limit?: int,
      *   offset?: int,
-     *   source_id?: string,
-     *   start_date?: string|\DateTimeInterface,
+     *   sourceID?: string,
+     *   startDate?: string|\DateTimeInterface,
      *   state?: value-of<State>,
      *   status?: 'rejected'|'need_review'|'approved'|Status,
-     *   workspace_id?: string,
+     *   workspaceID?: string,
      * }|CompanyListParams $params
      *
      * @return list<CompanyRegistration>
@@ -218,7 +219,15 @@ final class CompaniesService implements CompaniesContract
         $response = $this->client->request(
             method: 'get',
             path: 'companies',
-            query: $parsed,
+            query: Util::array_transform_keys(
+                $parsed,
+                [
+                    'endDate' => 'end_date',
+                    'sourceID' => 'source_id',
+                    'startDate' => 'start_date',
+                    'workspaceID' => 'workspace_id',
+                ],
+            ),
             options: $options,
             convert: new ListOf(CompanyRegistration::class),
         );

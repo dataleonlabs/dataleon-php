@@ -34,7 +34,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->individuals->create(['workspace_id' => 'wk_123']);
+        $result = $this->client->individuals->create(['workspaceID' => 'wk_123']);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(Individual::class, $result);
@@ -48,26 +48,26 @@ final class IndividualsTest extends TestCase
         }
 
         $result = $this->client->individuals->create([
-            'workspace_id' => 'wk_123',
+            'workspaceID' => 'wk_123',
             'person' => [
                 'birthday' => '15/05/1985',
                 'email' => 'john.doe@example.com',
-                'first_name' => 'John',
+                'firstName' => 'John',
                 'gender' => 'M',
-                'last_name' => 'Doe',
-                'maiden_name' => 'John Doe',
+                'lastName' => 'Doe',
+                'maidenName' => 'John Doe',
                 'nationality' => 'FRA',
-                'phone_number' => '+33 1 23 45 67 89',
+                'phoneNumber' => '+33 1 23 45 67 89',
             ],
-            'source_id' => 'ID54410069066',
-            'technical_data' => [
-                'active_aml_suspicions' => false,
-                'callback_url' => 'https://example.com/callback',
-                'callback_url_notification' => 'https://example.com/notify',
-                'filtering_score_aml_suspicions' => 0.75,
+            'sourceID' => 'ID54410069066',
+            'technicalData' => [
+                'activeAmlSuspicions' => false,
+                'callbackURL' => 'https://example.com/callback',
+                'callbackURLNotification' => 'https://example.com/notify',
+                'filteringScoreAmlSuspicions' => 0.75,
                 'language' => 'fra',
-                'portal_steps' => ['identity_verification', 'selfie', 'face_match'],
-                'raw_data' => true,
+                'portalSteps' => ['identity_verification', 'selfie', 'face_match'],
+                'rawData' => true,
             ],
         ]);
 
@@ -97,7 +97,7 @@ final class IndividualsTest extends TestCase
 
         $result = $this->client->individuals->update(
             'individual_id',
-            ['workspace_id' => 'wk_123']
+            ['workspaceID' => 'wk_123']
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -114,26 +114,26 @@ final class IndividualsTest extends TestCase
         $result = $this->client->individuals->update(
             'individual_id',
             [
-                'workspace_id' => 'wk_123',
+                'workspaceID' => 'wk_123',
                 'person' => [
                     'birthday' => '15/05/1985',
                     'email' => 'john.doe@example.com',
-                    'first_name' => 'John',
+                    'firstName' => 'John',
                     'gender' => 'M',
-                    'last_name' => 'Doe',
-                    'maiden_name' => 'John Doe',
+                    'lastName' => 'Doe',
+                    'maidenName' => 'John Doe',
                     'nationality' => 'FRA',
-                    'phone_number' => '+33 1 23 45 67 89',
+                    'phoneNumber' => '+33 1 23 45 67 89',
                 ],
-                'source_id' => 'ID54410069066',
-                'technical_data' => [
-                    'active_aml_suspicions' => false,
-                    'callback_url' => 'https://example.com/callback',
-                    'callback_url_notification' => 'https://example.com/notify',
-                    'filtering_score_aml_suspicions' => 0.75,
+                'sourceID' => 'ID54410069066',
+                'technicalData' => [
+                    'activeAmlSuspicions' => false,
+                    'callbackURL' => 'https://example.com/callback',
+                    'callbackURLNotification' => 'https://example.com/notify',
+                    'filteringScoreAmlSuspicions' => 0.75,
                     'language' => 'fra',
-                    'portal_steps' => ['identity_verification', 'selfie', 'face_match'],
-                    'raw_data' => true,
+                    'portalSteps' => ['identity_verification', 'selfie', 'face_match'],
+                    'rawData' => true,
                 ],
             ],
         );

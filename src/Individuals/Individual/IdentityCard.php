@@ -13,19 +13,19 @@ use Dataleon\Core\Contracts\BaseModel;
  *
  * @phpstan-type IdentityCardShape = array{
  *   id?: string|null,
- *   back_document_signed_url?: string|null,
- *   birth_place?: string|null,
+ *   backDocumentSignedURL?: string|null,
+ *   birthPlace?: string|null,
  *   birthday?: string|null,
  *   country?: string|null,
- *   expiration_date?: string|null,
- *   first_name?: string|null,
- *   front_document_signed_url?: string|null,
+ *   expirationDate?: string|null,
+ *   firstName?: string|null,
+ *   frontDocumentSignedURL?: string|null,
  *   gender?: string|null,
- *   issue_date?: string|null,
- *   last_name?: string|null,
- *   mrz_line_1?: string|null,
- *   mrz_line_2?: string|null,
- *   mrz_line_3?: string|null,
+ *   issueDate?: string|null,
+ *   lastName?: string|null,
+ *   mrzLine1?: string|null,
+ *   mrzLine2?: string|null,
+ *   mrzLine3?: string|null,
  *   type?: string|null,
  * }
  */
@@ -43,14 +43,14 @@ final class IdentityCard implements BaseModel
     /**
      * Signed URL linking to the back image of the document.
      */
-    #[Optional]
-    public ?string $back_document_signed_url;
+    #[Optional('back_document_signed_url')]
+    public ?string $backDocumentSignedURL;
 
     /**
      * Place of birth as indicated on the document.
      */
-    #[Optional]
-    public ?string $birth_place;
+    #[Optional('birth_place')]
+    public ?string $birthPlace;
 
     /**
      * Date of birth in DD/MM/YYYY format as shown on the document.
@@ -67,20 +67,20 @@ final class IdentityCard implements BaseModel
     /**
      * Expiration date of the document, in YYYY-MM-DD format.
      */
-    #[Optional]
-    public ?string $expiration_date;
+    #[Optional('expiration_date')]
+    public ?string $expirationDate;
 
     /**
      * First name as shown on the document.
      */
-    #[Optional]
-    public ?string $first_name;
+    #[Optional('first_name')]
+    public ?string $firstName;
 
     /**
      * Signed URL linking to the front image of the document.
      */
-    #[Optional]
-    public ?string $front_document_signed_url;
+    #[Optional('front_document_signed_url')]
+    public ?string $frontDocumentSignedURL;
 
     /**
      * Gender indicated on the document (e.g., "M" or "F").
@@ -91,32 +91,32 @@ final class IdentityCard implements BaseModel
     /**
      * Date when the document was issued, in YYYY-MM-DD format.
      */
-    #[Optional]
-    public ?string $issue_date;
+    #[Optional('issue_date')]
+    public ?string $issueDate;
 
     /**
      * Last name as shown on the document.
      */
-    #[Optional]
-    public ?string $last_name;
+    #[Optional('last_name')]
+    public ?string $lastName;
 
     /**
      * First line of the Machine Readable Zone (MRZ) on the document.
      */
-    #[Optional]
-    public ?string $mrz_line_1;
+    #[Optional('mrz_line_1')]
+    public ?string $mrzLine1;
 
     /**
      * Second line of the MRZ on the document.
      */
-    #[Optional]
-    public ?string $mrz_line_2;
+    #[Optional('mrz_line_2')]
+    public ?string $mrzLine2;
 
     /**
      * Third line of the MRZ if applicable; otherwise null.
      */
-    #[Optional(nullable: true)]
-    public ?string $mrz_line_3;
+    #[Optional('mrz_line_3', nullable: true)]
+    public ?string $mrzLine3;
 
     /**
      * Type of document (e.g., passport, identity card).
@@ -136,37 +136,37 @@ final class IdentityCard implements BaseModel
      */
     public static function with(
         ?string $id = null,
-        ?string $back_document_signed_url = null,
-        ?string $birth_place = null,
+        ?string $backDocumentSignedURL = null,
+        ?string $birthPlace = null,
         ?string $birthday = null,
         ?string $country = null,
-        ?string $expiration_date = null,
-        ?string $first_name = null,
-        ?string $front_document_signed_url = null,
+        ?string $expirationDate = null,
+        ?string $firstName = null,
+        ?string $frontDocumentSignedURL = null,
         ?string $gender = null,
-        ?string $issue_date = null,
-        ?string $last_name = null,
-        ?string $mrz_line_1 = null,
-        ?string $mrz_line_2 = null,
-        ?string $mrz_line_3 = null,
+        ?string $issueDate = null,
+        ?string $lastName = null,
+        ?string $mrzLine1 = null,
+        ?string $mrzLine2 = null,
+        ?string $mrzLine3 = null,
         ?string $type = null,
     ): self {
         $obj = new self;
 
         null !== $id && $obj['id'] = $id;
-        null !== $back_document_signed_url && $obj['back_document_signed_url'] = $back_document_signed_url;
-        null !== $birth_place && $obj['birth_place'] = $birth_place;
+        null !== $backDocumentSignedURL && $obj['backDocumentSignedURL'] = $backDocumentSignedURL;
+        null !== $birthPlace && $obj['birthPlace'] = $birthPlace;
         null !== $birthday && $obj['birthday'] = $birthday;
         null !== $country && $obj['country'] = $country;
-        null !== $expiration_date && $obj['expiration_date'] = $expiration_date;
-        null !== $first_name && $obj['first_name'] = $first_name;
-        null !== $front_document_signed_url && $obj['front_document_signed_url'] = $front_document_signed_url;
+        null !== $expirationDate && $obj['expirationDate'] = $expirationDate;
+        null !== $firstName && $obj['firstName'] = $firstName;
+        null !== $frontDocumentSignedURL && $obj['frontDocumentSignedURL'] = $frontDocumentSignedURL;
         null !== $gender && $obj['gender'] = $gender;
-        null !== $issue_date && $obj['issue_date'] = $issue_date;
-        null !== $last_name && $obj['last_name'] = $last_name;
-        null !== $mrz_line_1 && $obj['mrz_line_1'] = $mrz_line_1;
-        null !== $mrz_line_2 && $obj['mrz_line_2'] = $mrz_line_2;
-        null !== $mrz_line_3 && $obj['mrz_line_3'] = $mrz_line_3;
+        null !== $issueDate && $obj['issueDate'] = $issueDate;
+        null !== $lastName && $obj['lastName'] = $lastName;
+        null !== $mrzLine1 && $obj['mrzLine1'] = $mrzLine1;
+        null !== $mrzLine2 && $obj['mrzLine2'] = $mrzLine2;
+        null !== $mrzLine3 && $obj['mrzLine3'] = $mrzLine3;
         null !== $type && $obj['type'] = $type;
 
         return $obj;
@@ -190,7 +190,7 @@ final class IdentityCard implements BaseModel
         string $backDocumentSignedURL
     ): self {
         $obj = clone $this;
-        $obj['back_document_signed_url'] = $backDocumentSignedURL;
+        $obj['backDocumentSignedURL'] = $backDocumentSignedURL;
 
         return $obj;
     }
@@ -201,7 +201,7 @@ final class IdentityCard implements BaseModel
     public function withBirthPlace(string $birthPlace): self
     {
         $obj = clone $this;
-        $obj['birth_place'] = $birthPlace;
+        $obj['birthPlace'] = $birthPlace;
 
         return $obj;
     }
@@ -234,7 +234,7 @@ final class IdentityCard implements BaseModel
     public function withExpirationDate(string $expirationDate): self
     {
         $obj = clone $this;
-        $obj['expiration_date'] = $expirationDate;
+        $obj['expirationDate'] = $expirationDate;
 
         return $obj;
     }
@@ -245,7 +245,7 @@ final class IdentityCard implements BaseModel
     public function withFirstName(string $firstName): self
     {
         $obj = clone $this;
-        $obj['first_name'] = $firstName;
+        $obj['firstName'] = $firstName;
 
         return $obj;
     }
@@ -257,7 +257,7 @@ final class IdentityCard implements BaseModel
         string $frontDocumentSignedURL
     ): self {
         $obj = clone $this;
-        $obj['front_document_signed_url'] = $frontDocumentSignedURL;
+        $obj['frontDocumentSignedURL'] = $frontDocumentSignedURL;
 
         return $obj;
     }
@@ -279,7 +279,7 @@ final class IdentityCard implements BaseModel
     public function withIssueDate(string $issueDate): self
     {
         $obj = clone $this;
-        $obj['issue_date'] = $issueDate;
+        $obj['issueDate'] = $issueDate;
 
         return $obj;
     }
@@ -290,7 +290,7 @@ final class IdentityCard implements BaseModel
     public function withLastName(string $lastName): self
     {
         $obj = clone $this;
-        $obj['last_name'] = $lastName;
+        $obj['lastName'] = $lastName;
 
         return $obj;
     }
@@ -301,7 +301,7 @@ final class IdentityCard implements BaseModel
     public function withMrzLine1(string $mrzLine1): self
     {
         $obj = clone $this;
-        $obj['mrz_line_1'] = $mrzLine1;
+        $obj['mrzLine1'] = $mrzLine1;
 
         return $obj;
     }
@@ -312,7 +312,7 @@ final class IdentityCard implements BaseModel
     public function withMrzLine2(string $mrzLine2): self
     {
         $obj = clone $this;
-        $obj['mrz_line_2'] = $mrzLine2;
+        $obj['mrzLine2'] = $mrzLine2;
 
         return $obj;
     }
@@ -323,7 +323,7 @@ final class IdentityCard implements BaseModel
     public function withMrzLine3(?string $mrzLine3): self
     {
         $obj = clone $this;
-        $obj['mrz_line_3'] = $mrzLine3;
+        $obj['mrzLine3'] = $mrzLine3;
 
         return $obj;
     }

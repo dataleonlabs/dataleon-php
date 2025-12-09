@@ -14,9 +14,9 @@ use Dataleon\Core\Contracts\BaseModel;
  * @phpstan-type ContactShape = array{
  *   department?: string|null,
  *   email?: string|null,
- *   first_name?: string|null,
- *   last_name?: string|null,
- *   phone_number?: string|null,
+ *   firstName?: string|null,
+ *   lastName?: string|null,
+ *   phoneNumber?: string|null,
  * }
  */
 final class Contact implements BaseModel
@@ -39,20 +39,20 @@ final class Contact implements BaseModel
     /**
      * First name of the contact person.
      */
-    #[Optional]
-    public ?string $first_name;
+    #[Optional('first_name')]
+    public ?string $firstName;
 
     /**
      * Last name of the contact person.
      */
-    #[Optional]
-    public ?string $last_name;
+    #[Optional('last_name')]
+    public ?string $lastName;
 
     /**
      * Phone number of the contact person.
      */
-    #[Optional]
-    public ?string $phone_number;
+    #[Optional('phone_number')]
+    public ?string $phoneNumber;
 
     public function __construct()
     {
@@ -67,17 +67,17 @@ final class Contact implements BaseModel
     public static function with(
         ?string $department = null,
         ?string $email = null,
-        ?string $first_name = null,
-        ?string $last_name = null,
-        ?string $phone_number = null,
+        ?string $firstName = null,
+        ?string $lastName = null,
+        ?string $phoneNumber = null,
     ): self {
         $obj = new self;
 
         null !== $department && $obj['department'] = $department;
         null !== $email && $obj['email'] = $email;
-        null !== $first_name && $obj['first_name'] = $first_name;
-        null !== $last_name && $obj['last_name'] = $last_name;
-        null !== $phone_number && $obj['phone_number'] = $phone_number;
+        null !== $firstName && $obj['firstName'] = $firstName;
+        null !== $lastName && $obj['lastName'] = $lastName;
+        null !== $phoneNumber && $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }
@@ -110,7 +110,7 @@ final class Contact implements BaseModel
     public function withFirstName(string $firstName): self
     {
         $obj = clone $this;
-        $obj['first_name'] = $firstName;
+        $obj['firstName'] = $firstName;
 
         return $obj;
     }
@@ -121,7 +121,7 @@ final class Contact implements BaseModel
     public function withLastName(string $lastName): self
     {
         $obj = clone $this;
-        $obj['last_name'] = $lastName;
+        $obj['lastName'] = $lastName;
 
         return $obj;
     }
@@ -132,7 +132,7 @@ final class Contact implements BaseModel
     public function withPhoneNumber(string $phoneNumber): self
     {
         $obj = clone $this;
-        $obj['phone_number'] = $phoneNumber;
+        $obj['phoneNumber'] = $phoneNumber;
 
         return $obj;
     }
