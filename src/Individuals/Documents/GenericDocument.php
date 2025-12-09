@@ -7,9 +7,7 @@ namespace Dataleon\Individuals\Documents;
 use Dataleon\Check;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
-use Dataleon\Core\Concerns\SdkResponse;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\Contracts\ResponseConverter;
 use Dataleon\Individuals\Documents\GenericDocument\Table;
 use Dataleon\Individuals\Documents\GenericDocument\Value;
 
@@ -29,12 +27,10 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
  *   values?: list<Value>|null,
  * }
  */
-final class GenericDocument implements BaseModel, ResponseConverter
+final class GenericDocument implements BaseModel
 {
     /** @use SdkModel<GenericDocumentShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * Unique identifier of the document.

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Services;
 
 use Dataleon\Client;
+use Dataleon\Core\Contracts\BaseResponse;
 use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Individuals\Individual;
@@ -72,14 +73,16 @@ final class IndividualsService implements IndividualsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<Individual> */
+        $response = $this->client->request(
             method: 'post',
             path: 'individuals',
             body: (object) $parsed,
             options: $options,
             convert: Individual::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -101,14 +104,16 @@ final class IndividualsService implements IndividualsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<Individual> */
+        $response = $this->client->request(
             method: 'get',
             path: ['individuals/%1$s', $individualID],
             query: $parsed,
             options: $options,
             convert: Individual::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -152,14 +157,16 @@ final class IndividualsService implements IndividualsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<Individual> */
+        $response = $this->client->request(
             method: 'put',
             path: ['individuals/%1$s', $individualID],
             body: (object) $parsed,
             options: $options,
             convert: Individual::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -191,14 +198,16 @@ final class IndividualsService implements IndividualsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<list<Individual>> */
+        $response = $this->client->request(
             method: 'get',
             path: 'individuals',
             query: $parsed,
             options: $options,
             convert: new ListOf(Individual::class),
         );
+
+        return $response->parse();
     }
 
     /**
@@ -212,12 +221,14 @@ final class IndividualsService implements IndividualsContract
         string $individualID,
         ?RequestOptions $requestOptions = null
     ): mixed {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<mixed> */
+        $response = $this->client->request(
             method: 'delete',
             path: ['individuals/%1$s', $individualID],
             options: $requestOptions,
             convert: null,
         );
+
+        return $response->parse();
     }
 }

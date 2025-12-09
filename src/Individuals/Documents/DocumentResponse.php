@@ -6,9 +6,7 @@ namespace Dataleon\Individuals\Documents;
 
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
-use Dataleon\Core\Concerns\SdkResponse;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\Contracts\ResponseConverter;
 use Dataleon\Individuals\Documents\DocumentResponse\Document;
 
 /**
@@ -16,12 +14,10 @@ use Dataleon\Individuals\Documents\DocumentResponse\Document;
  *   documents?: list<Document>|null, total_document?: int|null
  * }
  */
-final class DocumentResponse implements BaseModel, ResponseConverter
+final class DocumentResponse implements BaseModel
 {
     /** @use SdkModel<DocumentResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * List of documents associated with the response.
