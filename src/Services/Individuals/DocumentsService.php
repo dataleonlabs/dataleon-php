@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Services\Individuals;
 
 use Dataleon\Client;
+use Dataleon\Core\Contracts\BaseResponse;
 use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\DocumentUploadParams;
@@ -31,13 +32,15 @@ final class DocumentsService implements DocumentsContract
         string $individualID,
         ?RequestOptions $requestOptions = null
     ): DocumentResponse {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<DocumentResponse> */
+        $response = $this->client->request(
             method: 'get',
             path: ['individuals/%1$s/documents', $individualID],
             options: $requestOptions,
             convert: DocumentResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -61,8 +64,8 @@ final class DocumentsService implements DocumentsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<GenericDocument> */
+        $response = $this->client->request(
             method: 'post',
             path: ['individuals/%1$s/documents', $individualID],
             headers: ['Content-Type' => 'multipart/form-data'],
@@ -70,5 +73,7 @@ final class DocumentsService implements DocumentsContract
             options: $options,
             convert: GenericDocument::class,
         );
+
+        return $response->parse();
     }
 }

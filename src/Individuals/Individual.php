@@ -7,9 +7,7 @@ namespace Dataleon\Individuals;
 use Dataleon\Check;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
-use Dataleon\Core\Concerns\SdkResponse;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\Contracts\ResponseConverter;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\Individuals\Documents\GenericDocument\Table;
 use Dataleon\Individuals\Documents\GenericDocument\Value;
@@ -51,12 +49,10 @@ use Dataleon\Individuals\Individual\TechnicalData\PortalStep;
  *   workspace_id?: string|null,
  * }
  */
-final class Individual implements BaseModel, ResponseConverter
+final class Individual implements BaseModel
 {
     /** @use SdkModel<IndividualShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * Unique identifier of the individual.

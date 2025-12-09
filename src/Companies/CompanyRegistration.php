@@ -19,9 +19,7 @@ use Dataleon\Companies\CompanyRegistration\TechnicalData;
 use Dataleon\Companies\CompanyRegistration\TechnicalData\PortalStep;
 use Dataleon\Core\Attributes\Api;
 use Dataleon\Core\Concerns\SdkModel;
-use Dataleon\Core\Concerns\SdkResponse;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\Contracts\ResponseConverter;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\Individuals\Documents\GenericDocument\Table;
 use Dataleon\Individuals\Documents\GenericDocument\Value;
@@ -42,12 +40,10 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
  *   webview_url?: string|null,
  * }
  */
-final class CompanyRegistration implements BaseModel, ResponseConverter
+final class CompanyRegistration implements BaseModel
 {
     /** @use SdkModel<CompanyRegistrationShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the company, including their details.
