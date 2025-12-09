@@ -8,6 +8,7 @@ use Dataleon\Client;
 use Dataleon\Core\Contracts\BaseResponse;
 use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Core\Exceptions\APIException;
+use Dataleon\Core\Util;
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams;
 use Dataleon\Individuals\IndividualCreateParams\Person\Gender;
@@ -42,26 +43,26 @@ final class IndividualsService implements IndividualsContract
      * Create a new individual
      *
      * @param array{
-     *   workspace_id: string,
+     *   workspaceID: string,
      *   person?: array{
      *     birthday?: string,
      *     email?: string,
-     *     first_name?: string,
+     *     firstName?: string,
      *     gender?: 'M'|'F'|Gender,
-     *     last_name?: string,
-     *     maiden_name?: string,
+     *     lastName?: string,
+     *     maidenName?: string,
      *     nationality?: string,
-     *     phone_number?: string,
+     *     phoneNumber?: string,
      *   },
-     *   source_id?: string,
-     *   technical_data?: array{
-     *     active_aml_suspicions?: bool,
-     *     callback_url?: string,
-     *     callback_url_notification?: string,
-     *     filtering_score_aml_suspicions?: float,
+     *   sourceID?: string,
+     *   technicalData?: array{
+     *     activeAmlSuspicions?: bool,
+     *     callbackURL?: string,
+     *     callbackURLNotification?: string,
+     *     filteringScoreAmlSuspicions?: float,
      *     language?: string,
-     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|PortalStep>,
-     *     raw_data?: bool,
+     *     portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|PortalStep>,
+     *     rawData?: bool,
      *   },
      * }|IndividualCreateParams $params
      *
@@ -125,26 +126,26 @@ final class IndividualsService implements IndividualsContract
      * Update an individual by ID
      *
      * @param array{
-     *   workspace_id: string,
+     *   workspaceID: string,
      *   person?: array{
      *     birthday?: string,
      *     email?: string,
-     *     first_name?: string,
+     *     firstName?: string,
      *     gender?: 'M'|'F'|IndividualUpdateParams\Person\Gender,
-     *     last_name?: string,
-     *     maiden_name?: string,
+     *     lastName?: string,
+     *     maidenName?: string,
      *     nationality?: string,
-     *     phone_number?: string,
+     *     phoneNumber?: string,
      *   },
-     *   source_id?: string,
-     *   technical_data?: array{
-     *     active_aml_suspicions?: bool,
-     *     callback_url?: string,
-     *     callback_url_notification?: string,
-     *     filtering_score_aml_suspicions?: float,
+     *   sourceID?: string,
+     *   technicalData?: array{
+     *     activeAmlSuspicions?: bool,
+     *     callbackURL?: string,
+     *     callbackURLNotification?: string,
+     *     filteringScoreAmlSuspicions?: float,
      *     language?: string,
-     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|IndividualUpdateParams\TechnicalData\PortalStep>,
-     *     raw_data?: bool,
+     *     portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|IndividualUpdateParams\TechnicalData\PortalStep>,
+     *     rawData?: bool,
      *   },
      * }|IndividualUpdateParams $params
      *
@@ -178,14 +179,14 @@ final class IndividualsService implements IndividualsContract
      * Get all individuals
      *
      * @param array{
-     *   end_date?: string|\DateTimeInterface,
+     *   endDate?: string|\DateTimeInterface,
      *   limit?: int,
      *   offset?: int,
-     *   source_id?: string,
-     *   start_date?: string|\DateTimeInterface,
+     *   sourceID?: string,
+     *   startDate?: string|\DateTimeInterface,
      *   state?: value-of<State>,
      *   status?: 'rejected'|'need_review'|'approved'|Status,
-     *   workspace_id?: string,
+     *   workspaceID?: string,
      * }|IndividualListParams $params
      *
      * @return list<Individual>
@@ -205,7 +206,15 @@ final class IndividualsService implements IndividualsContract
         $response = $this->client->request(
             method: 'get',
             path: 'individuals',
-            query: $parsed,
+            query: Util::array_transform_keys(
+                $parsed,
+                [
+                    'endDate' => 'end_date',
+                    'sourceID' => 'source_id',
+                    'startDate' => 'start_date',
+                    'workspaceID' => 'workspace_id',
+                ],
+            ),
             options: $options,
             convert: new ListOf(Individual::class),
         );

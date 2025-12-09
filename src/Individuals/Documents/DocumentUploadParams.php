@@ -17,9 +17,7 @@ use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
  * @see Dataleon\Services\Individuals\DocumentsService::upload()
  *
  * @phpstan-type DocumentUploadParamsShape = array{
- *   document_type: DocumentType|value-of<DocumentType>,
- *   file?: string,
- *   url?: string,
+ *   documentType: DocumentType|value-of<DocumentType>, file?: string, url?: string
  * }
  */
 final class DocumentUploadParams implements BaseModel
@@ -31,10 +29,10 @@ final class DocumentUploadParams implements BaseModel
     /**
      * Filter by document type for upload (must be one of the allowed values).
      *
-     * @var value-of<DocumentType> $document_type
+     * @var value-of<DocumentType> $documentType
      */
-    #[Required(enum: DocumentType::class)]
-    public string $document_type;
+    #[Required('document_type', enum: DocumentType::class)]
+    public string $documentType;
 
     /**
      * File to upload (required).
@@ -53,7 +51,7 @@ final class DocumentUploadParams implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * DocumentUploadParams::with(document_type: ...)
+     * DocumentUploadParams::with(documentType: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -72,16 +70,16 @@ final class DocumentUploadParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param DocumentType|value-of<DocumentType> $document_type
+     * @param DocumentType|value-of<DocumentType> $documentType
      */
     public static function with(
-        DocumentType|string $document_type,
+        DocumentType|string $documentType,
         ?string $file = null,
         ?string $url = null
     ): self {
         $obj = new self;
 
-        $obj['document_type'] = $document_type;
+        $obj['documentType'] = $documentType;
 
         null !== $file && $obj['file'] = $file;
         null !== $url && $obj['url'] = $url;
@@ -97,7 +95,7 @@ final class DocumentUploadParams implements BaseModel
     public function withDocumentType(DocumentType|string $documentType): self
     {
         $obj = clone $this;
-        $obj['document_type'] = $documentType;
+        $obj['documentType'] = $documentType;
 
         return $obj;
     }

@@ -13,29 +13,29 @@ use Dataleon\Core\Contracts\BaseModel;
  * Technical metadata related to the request, such as IP address, QR code settings, and callback URLs.
  *
  * @phpstan-type TechnicalDataShape = array{
- *   active_aml_suspicions?: bool|null,
- *   api_version?: int|null,
- *   approved_at?: \DateTimeInterface|null,
- *   callback_url?: string|null,
- *   callback_url_notification?: string|null,
- *   disable_notification?: bool|null,
- *   disable_notification_date?: \DateTimeInterface|null,
- *   export_type?: string|null,
- *   filtering_score_aml_suspicions?: float|null,
- *   finished_at?: \DateTimeInterface|null,
+ *   activeAmlSuspicions?: bool|null,
+ *   apiVersion?: int|null,
+ *   approvedAt?: \DateTimeInterface|null,
+ *   callbackURL?: string|null,
+ *   callbackURLNotification?: string|null,
+ *   disableNotification?: bool|null,
+ *   disableNotificationDate?: \DateTimeInterface|null,
+ *   exportType?: string|null,
+ *   filteringScoreAmlSuspicions?: float|null,
+ *   finishedAt?: \DateTimeInterface|null,
  *   ip?: string|null,
  *   language?: string|null,
- *   location_ip?: string|null,
- *   need_review_at?: \DateTimeInterface|null,
- *   notification_confirmation?: bool|null,
- *   portal_steps?: list<value-of<PortalStep>>|null,
- *   qr_code?: string|null,
- *   raw_data?: bool|null,
- *   rejected_at?: \DateTimeInterface|null,
- *   session_duration?: int|null,
- *   started_at?: \DateTimeInterface|null,
- *   transfer_at?: \DateTimeInterface|null,
- *   transfer_mode?: string|null,
+ *   locationIP?: string|null,
+ *   needReviewAt?: \DateTimeInterface|null,
+ *   notificationConfirmation?: bool|null,
+ *   portalSteps?: list<value-of<PortalStep>>|null,
+ *   qrCode?: string|null,
+ *   rawData?: bool|null,
+ *   rejectedAt?: \DateTimeInterface|null,
+ *   sessionDuration?: int|null,
+ *   startedAt?: \DateTimeInterface|null,
+ *   transferAt?: \DateTimeInterface|null,
+ *   transferMode?: string|null,
  * }
  */
 final class TechnicalData implements BaseModel
@@ -46,62 +46,62 @@ final class TechnicalData implements BaseModel
     /**
      * Flag indicating whether there are active research AML (Anti-Money Laundering) suspicions for the object when you apply for a new entry or get an existing one.
      */
-    #[Optional]
-    public ?bool $active_aml_suspicions;
+    #[Optional('active_aml_suspicions')]
+    public ?bool $activeAmlSuspicions;
 
     /**
      * Version number of the API used.
      */
-    #[Optional]
-    public ?int $api_version;
+    #[Optional('api_version')]
+    public ?int $apiVersion;
 
     /**
      * Timestamp when the request or process was approved.
      */
-    #[Optional]
-    public ?\DateTimeInterface $approved_at;
+    #[Optional('approved_at')]
+    public ?\DateTimeInterface $approvedAt;
 
     /**
      * URL to receive callback data from the AML system.
      */
-    #[Optional]
-    public ?string $callback_url;
+    #[Optional('callback_url')]
+    public ?string $callbackURL;
 
     /**
      * URL to receive notification updates about the processing status.
      */
-    #[Optional]
-    public ?string $callback_url_notification;
+    #[Optional('callback_url_notification')]
+    public ?string $callbackURLNotification;
 
     /**
      * Flag to indicate if notifications are disabled.
      */
-    #[Optional]
-    public ?bool $disable_notification;
+    #[Optional('disable_notification')]
+    public ?bool $disableNotification;
 
     /**
      * Timestamp when notifications were disabled; null if never disabled.
      */
-    #[Optional(nullable: true)]
-    public ?\DateTimeInterface $disable_notification_date;
+    #[Optional('disable_notification_date', nullable: true)]
+    public ?\DateTimeInterface $disableNotificationDate;
 
     /**
      * Export format defined by the API (e.g., "json", "xml").
      */
-    #[Optional]
-    public ?string $export_type;
+    #[Optional('export_type')]
+    public ?string $exportType;
 
     /**
      * Minimum filtering score (between 0 and 1) for AML suspicions to be considered.
      */
-    #[Optional]
-    public ?float $filtering_score_aml_suspicions;
+    #[Optional('filtering_score_aml_suspicions')]
+    public ?float $filteringScoreAmlSuspicions;
 
     /**
      * Timestamp when the process finished.
      */
-    #[Optional]
-    public ?\DateTimeInterface $finished_at;
+    #[Optional('finished_at')]
+    public ?\DateTimeInterface $finishedAt;
 
     /**
      * IP address of the our system handling the request.
@@ -118,70 +118,70 @@ final class TechnicalData implements BaseModel
     /**
      * IP address of the end client (final user) captured.
      */
-    #[Optional]
-    public ?string $location_ip;
+    #[Optional('location_ip')]
+    public ?string $locationIP;
 
     /**
      * Timestamp indicating when the request or process needs review; null if none.
      */
-    #[Optional(nullable: true)]
-    public ?\DateTimeInterface $need_review_at;
+    #[Optional('need_review_at', nullable: true)]
+    public ?\DateTimeInterface $needReviewAt;
 
     /**
      * Flag indicating if notification confirmation is required or received.
      */
-    #[Optional]
-    public ?bool $notification_confirmation;
+    #[Optional('notification_confirmation')]
+    public ?bool $notificationConfirmation;
 
     /**
      * List of steps to include in the portal workflow.
      *
-     * @var list<value-of<PortalStep>>|null $portal_steps
+     * @var list<value-of<PortalStep>>|null $portalSteps
      */
-    #[Optional(list: PortalStep::class)]
-    public ?array $portal_steps;
+    #[Optional('portal_steps', list: PortalStep::class)]
+    public ?array $portalSteps;
 
     /**
      * Indicates whether QR code is enabled ("true" or "false").
      */
-    #[Optional]
-    public ?string $qr_code;
+    #[Optional('qr_code')]
+    public ?string $qrCode;
 
     /**
      * Flag indicating whether to include raw data in the response.
      */
-    #[Optional]
-    public ?bool $raw_data;
+    #[Optional('raw_data')]
+    public ?bool $rawData;
 
     /**
      * Timestamp when the request or process was rejected; null if not rejected.
      */
-    #[Optional(nullable: true)]
-    public ?\DateTimeInterface $rejected_at;
+    #[Optional('rejected_at', nullable: true)]
+    public ?\DateTimeInterface $rejectedAt;
 
     /**
      * Duration of the user session in seconds.
      */
-    #[Optional]
-    public ?int $session_duration;
+    #[Optional('session_duration')]
+    public ?int $sessionDuration;
 
     /**
      * Timestamp when the process started.
      */
-    #[Optional]
-    public ?\DateTimeInterface $started_at;
+    #[Optional('started_at')]
+    public ?\DateTimeInterface $startedAt;
 
     /**
      * Date/time of data transfer.
      */
-    #[Optional]
-    public ?\DateTimeInterface $transfer_at;
+    #[Optional('transfer_at')]
+    public ?\DateTimeInterface $transferAt;
 
     /**
      * Mode of data transfer.
      */
-    #[Optional]
-    public ?string $transfer_mode;
+    #[Optional('transfer_mode')]
+    public ?string $transferMode;
 
     public function __construct()
     {
@@ -193,58 +193,58 @@ final class TechnicalData implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<PortalStep|value-of<PortalStep>> $portal_steps
+     * @param list<PortalStep|value-of<PortalStep>> $portalSteps
      */
     public static function with(
-        ?bool $active_aml_suspicions = null,
-        ?int $api_version = null,
-        ?\DateTimeInterface $approved_at = null,
-        ?string $callback_url = null,
-        ?string $callback_url_notification = null,
-        ?bool $disable_notification = null,
-        ?\DateTimeInterface $disable_notification_date = null,
-        ?string $export_type = null,
-        ?float $filtering_score_aml_suspicions = null,
-        ?\DateTimeInterface $finished_at = null,
+        ?bool $activeAmlSuspicions = null,
+        ?int $apiVersion = null,
+        ?\DateTimeInterface $approvedAt = null,
+        ?string $callbackURL = null,
+        ?string $callbackURLNotification = null,
+        ?bool $disableNotification = null,
+        ?\DateTimeInterface $disableNotificationDate = null,
+        ?string $exportType = null,
+        ?float $filteringScoreAmlSuspicions = null,
+        ?\DateTimeInterface $finishedAt = null,
         ?string $ip = null,
         ?string $language = null,
-        ?string $location_ip = null,
-        ?\DateTimeInterface $need_review_at = null,
-        ?bool $notification_confirmation = null,
-        ?array $portal_steps = null,
-        ?string $qr_code = null,
-        ?bool $raw_data = null,
-        ?\DateTimeInterface $rejected_at = null,
-        ?int $session_duration = null,
-        ?\DateTimeInterface $started_at = null,
-        ?\DateTimeInterface $transfer_at = null,
-        ?string $transfer_mode = null,
+        ?string $locationIP = null,
+        ?\DateTimeInterface $needReviewAt = null,
+        ?bool $notificationConfirmation = null,
+        ?array $portalSteps = null,
+        ?string $qrCode = null,
+        ?bool $rawData = null,
+        ?\DateTimeInterface $rejectedAt = null,
+        ?int $sessionDuration = null,
+        ?\DateTimeInterface $startedAt = null,
+        ?\DateTimeInterface $transferAt = null,
+        ?string $transferMode = null,
     ): self {
         $obj = new self;
 
-        null !== $active_aml_suspicions && $obj['active_aml_suspicions'] = $active_aml_suspicions;
-        null !== $api_version && $obj['api_version'] = $api_version;
-        null !== $approved_at && $obj['approved_at'] = $approved_at;
-        null !== $callback_url && $obj['callback_url'] = $callback_url;
-        null !== $callback_url_notification && $obj['callback_url_notification'] = $callback_url_notification;
-        null !== $disable_notification && $obj['disable_notification'] = $disable_notification;
-        null !== $disable_notification_date && $obj['disable_notification_date'] = $disable_notification_date;
-        null !== $export_type && $obj['export_type'] = $export_type;
-        null !== $filtering_score_aml_suspicions && $obj['filtering_score_aml_suspicions'] = $filtering_score_aml_suspicions;
-        null !== $finished_at && $obj['finished_at'] = $finished_at;
+        null !== $activeAmlSuspicions && $obj['activeAmlSuspicions'] = $activeAmlSuspicions;
+        null !== $apiVersion && $obj['apiVersion'] = $apiVersion;
+        null !== $approvedAt && $obj['approvedAt'] = $approvedAt;
+        null !== $callbackURL && $obj['callbackURL'] = $callbackURL;
+        null !== $callbackURLNotification && $obj['callbackURLNotification'] = $callbackURLNotification;
+        null !== $disableNotification && $obj['disableNotification'] = $disableNotification;
+        null !== $disableNotificationDate && $obj['disableNotificationDate'] = $disableNotificationDate;
+        null !== $exportType && $obj['exportType'] = $exportType;
+        null !== $filteringScoreAmlSuspicions && $obj['filteringScoreAmlSuspicions'] = $filteringScoreAmlSuspicions;
+        null !== $finishedAt && $obj['finishedAt'] = $finishedAt;
         null !== $ip && $obj['ip'] = $ip;
         null !== $language && $obj['language'] = $language;
-        null !== $location_ip && $obj['location_ip'] = $location_ip;
-        null !== $need_review_at && $obj['need_review_at'] = $need_review_at;
-        null !== $notification_confirmation && $obj['notification_confirmation'] = $notification_confirmation;
-        null !== $portal_steps && $obj['portal_steps'] = $portal_steps;
-        null !== $qr_code && $obj['qr_code'] = $qr_code;
-        null !== $raw_data && $obj['raw_data'] = $raw_data;
-        null !== $rejected_at && $obj['rejected_at'] = $rejected_at;
-        null !== $session_duration && $obj['session_duration'] = $session_duration;
-        null !== $started_at && $obj['started_at'] = $started_at;
-        null !== $transfer_at && $obj['transfer_at'] = $transfer_at;
-        null !== $transfer_mode && $obj['transfer_mode'] = $transfer_mode;
+        null !== $locationIP && $obj['locationIP'] = $locationIP;
+        null !== $needReviewAt && $obj['needReviewAt'] = $needReviewAt;
+        null !== $notificationConfirmation && $obj['notificationConfirmation'] = $notificationConfirmation;
+        null !== $portalSteps && $obj['portalSteps'] = $portalSteps;
+        null !== $qrCode && $obj['qrCode'] = $qrCode;
+        null !== $rawData && $obj['rawData'] = $rawData;
+        null !== $rejectedAt && $obj['rejectedAt'] = $rejectedAt;
+        null !== $sessionDuration && $obj['sessionDuration'] = $sessionDuration;
+        null !== $startedAt && $obj['startedAt'] = $startedAt;
+        null !== $transferAt && $obj['transferAt'] = $transferAt;
+        null !== $transferMode && $obj['transferMode'] = $transferMode;
 
         return $obj;
     }
@@ -255,7 +255,7 @@ final class TechnicalData implements BaseModel
     public function withActiveAmlSuspicions(bool $activeAmlSuspicions): self
     {
         $obj = clone $this;
-        $obj['active_aml_suspicions'] = $activeAmlSuspicions;
+        $obj['activeAmlSuspicions'] = $activeAmlSuspicions;
 
         return $obj;
     }
@@ -266,7 +266,7 @@ final class TechnicalData implements BaseModel
     public function withAPIVersion(int $apiVersion): self
     {
         $obj = clone $this;
-        $obj['api_version'] = $apiVersion;
+        $obj['apiVersion'] = $apiVersion;
 
         return $obj;
     }
@@ -277,7 +277,7 @@ final class TechnicalData implements BaseModel
     public function withApprovedAt(\DateTimeInterface $approvedAt): self
     {
         $obj = clone $this;
-        $obj['approved_at'] = $approvedAt;
+        $obj['approvedAt'] = $approvedAt;
 
         return $obj;
     }
@@ -288,7 +288,7 @@ final class TechnicalData implements BaseModel
     public function withCallbackURL(string $callbackURL): self
     {
         $obj = clone $this;
-        $obj['callback_url'] = $callbackURL;
+        $obj['callbackURL'] = $callbackURL;
 
         return $obj;
     }
@@ -300,7 +300,7 @@ final class TechnicalData implements BaseModel
         string $callbackURLNotification
     ): self {
         $obj = clone $this;
-        $obj['callback_url_notification'] = $callbackURLNotification;
+        $obj['callbackURLNotification'] = $callbackURLNotification;
 
         return $obj;
     }
@@ -311,7 +311,7 @@ final class TechnicalData implements BaseModel
     public function withDisableNotification(bool $disableNotification): self
     {
         $obj = clone $this;
-        $obj['disable_notification'] = $disableNotification;
+        $obj['disableNotification'] = $disableNotification;
 
         return $obj;
     }
@@ -323,7 +323,7 @@ final class TechnicalData implements BaseModel
         ?\DateTimeInterface $disableNotificationDate
     ): self {
         $obj = clone $this;
-        $obj['disable_notification_date'] = $disableNotificationDate;
+        $obj['disableNotificationDate'] = $disableNotificationDate;
 
         return $obj;
     }
@@ -334,7 +334,7 @@ final class TechnicalData implements BaseModel
     public function withExportType(string $exportType): self
     {
         $obj = clone $this;
-        $obj['export_type'] = $exportType;
+        $obj['exportType'] = $exportType;
 
         return $obj;
     }
@@ -346,7 +346,7 @@ final class TechnicalData implements BaseModel
         float $filteringScoreAmlSuspicions
     ): self {
         $obj = clone $this;
-        $obj['filtering_score_aml_suspicions'] = $filteringScoreAmlSuspicions;
+        $obj['filteringScoreAmlSuspicions'] = $filteringScoreAmlSuspicions;
 
         return $obj;
     }
@@ -357,7 +357,7 @@ final class TechnicalData implements BaseModel
     public function withFinishedAt(\DateTimeInterface $finishedAt): self
     {
         $obj = clone $this;
-        $obj['finished_at'] = $finishedAt;
+        $obj['finishedAt'] = $finishedAt;
 
         return $obj;
     }
@@ -390,7 +390,7 @@ final class TechnicalData implements BaseModel
     public function withLocationIP(string $locationIP): self
     {
         $obj = clone $this;
-        $obj['location_ip'] = $locationIP;
+        $obj['locationIP'] = $locationIP;
 
         return $obj;
     }
@@ -401,7 +401,7 @@ final class TechnicalData implements BaseModel
     public function withNeedReviewAt(?\DateTimeInterface $needReviewAt): self
     {
         $obj = clone $this;
-        $obj['need_review_at'] = $needReviewAt;
+        $obj['needReviewAt'] = $needReviewAt;
 
         return $obj;
     }
@@ -413,7 +413,7 @@ final class TechnicalData implements BaseModel
         bool $notificationConfirmation
     ): self {
         $obj = clone $this;
-        $obj['notification_confirmation'] = $notificationConfirmation;
+        $obj['notificationConfirmation'] = $notificationConfirmation;
 
         return $obj;
     }
@@ -426,7 +426,7 @@ final class TechnicalData implements BaseModel
     public function withPortalSteps(array $portalSteps): self
     {
         $obj = clone $this;
-        $obj['portal_steps'] = $portalSteps;
+        $obj['portalSteps'] = $portalSteps;
 
         return $obj;
     }
@@ -437,7 +437,7 @@ final class TechnicalData implements BaseModel
     public function withQrCode(string $qrCode): self
     {
         $obj = clone $this;
-        $obj['qr_code'] = $qrCode;
+        $obj['qrCode'] = $qrCode;
 
         return $obj;
     }
@@ -448,7 +448,7 @@ final class TechnicalData implements BaseModel
     public function withRawData(bool $rawData): self
     {
         $obj = clone $this;
-        $obj['raw_data'] = $rawData;
+        $obj['rawData'] = $rawData;
 
         return $obj;
     }
@@ -459,7 +459,7 @@ final class TechnicalData implements BaseModel
     public function withRejectedAt(?\DateTimeInterface $rejectedAt): self
     {
         $obj = clone $this;
-        $obj['rejected_at'] = $rejectedAt;
+        $obj['rejectedAt'] = $rejectedAt;
 
         return $obj;
     }
@@ -470,7 +470,7 @@ final class TechnicalData implements BaseModel
     public function withSessionDuration(int $sessionDuration): self
     {
         $obj = clone $this;
-        $obj['session_duration'] = $sessionDuration;
+        $obj['sessionDuration'] = $sessionDuration;
 
         return $obj;
     }
@@ -481,7 +481,7 @@ final class TechnicalData implements BaseModel
     public function withStartedAt(\DateTimeInterface $startedAt): self
     {
         $obj = clone $this;
-        $obj['started_at'] = $startedAt;
+        $obj['startedAt'] = $startedAt;
 
         return $obj;
     }
@@ -492,7 +492,7 @@ final class TechnicalData implements BaseModel
     public function withTransferAt(\DateTimeInterface $transferAt): self
     {
         $obj = clone $this;
-        $obj['transfer_at'] = $transferAt;
+        $obj['transferAt'] = $transferAt;
 
         return $obj;
     }
@@ -503,7 +503,7 @@ final class TechnicalData implements BaseModel
     public function withTransferMode(string $transferMode): self
     {
         $obj = clone $this;
-        $obj['transfer_mode'] = $transferMode;
+        $obj['transferMode'] = $transferMode;
 
         return $obj;
     }

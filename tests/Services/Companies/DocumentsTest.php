@@ -50,7 +50,7 @@ final class DocumentsTest extends TestCase
 
         $result = $this->client->companies->documents->upload(
             'company_id',
-            ['document_type' => 'liasse_fiscale']
+            ['documentType' => 'liasse_fiscale']
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -67,7 +67,7 @@ final class DocumentsTest extends TestCase
         $result = $this->client->companies->documents->upload(
             'company_id',
             [
-                'document_type' => 'liasse_fiscale',
+                'documentType' => 'liasse_fiscale',
                 'file' => 'file',
                 'url' => 'https://example.com/sample.pdf',
             ],
