@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\IndividualCreateParams;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\IndividualCreateParams\Person\Gender;
@@ -31,19 +31,19 @@ final class Person implements BaseModel
     /**
      * Date of birth in DD/MM/YYYY format.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $birthday;
 
     /**
      * Email address of the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $email;
 
     /**
      * First name of the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $first_name;
 
     /**
@@ -51,31 +51,31 @@ final class Person implements BaseModel
      *
      * @var value-of<Gender>|null $gender
      */
-    #[Api(enum: Gender::class, optional: true)]
+    #[Optional(enum: Gender::class)]
     public ?string $gender;
 
     /**
      * Last name (family name) of the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $last_name;
 
     /**
      * Maiden name, if applicable.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $maiden_name;
 
     /**
      * Nationality of the individual (ISO 3166-1 alpha-3 country code).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $nationality;
 
     /**
      * Phone number of the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $phone_number;
 
     public function __construct()

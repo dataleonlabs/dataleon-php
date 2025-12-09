@@ -7,7 +7,7 @@ namespace Dataleon\Companies\CompanyRegistration;
 use Dataleon\Check;
 use Dataleon\Companies\CompanyRegistration\Member\Source;
 use Dataleon\Companies\CompanyRegistration\Member\Type;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\GenericDocument;
@@ -49,31 +49,31 @@ final class Member implements BaseModel
     /** @use SdkModel<MemberShape> */
     use SdkModel;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
      * Address of the member, which may include street, city, postal code, and country.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $address;
 
     /**
      * Birthday (available only if type = person).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $birthday;
 
     /**
      * Birthplace (available only if type = person).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $birthplace;
 
     /**
      * ISO 3166-1 alpha-2 country code of the member's address (e.g., "FR" for France).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $country;
 
     /**
@@ -81,85 +81,85 @@ final class Member implements BaseModel
      *
      * @var list<GenericDocument>|null $documents
      */
-    #[Api(list: GenericDocument::class, optional: true)]
+    #[Optional(list: GenericDocument::class)]
     public ?array $documents;
 
     /**
      * Email address of the member, which may be used for communication or verification purposes.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $email;
 
     /**
      * First name (available only if type = person).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $first_name;
 
     /**
      * Indicates whether the member is a beneficial owner of the company, meaning they have significant control or ownership.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $is_beneficial_owner;
 
     /**
      * Indicates whether the member is a delegator, meaning they have authority to act on behalf of the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $is_delegator;
 
     /**
      * Last name (available only if type = person).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $last_name;
 
     /**
      * Indicates whether liveness verification was performed for the member, typically in the context of identity checks.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $liveness_verification;
 
     /**
      * Company name (available only if type = company).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     /**
      * Percentage of ownership the member has in the company, expressed as an integer between 0 and 100.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $ownership_percentage;
 
     /**
      * Contact phone number of the member, including country code and area code.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $phone_number;
 
     /**
      * Postal code of the member's address, typically a numeric or alphanumeric code.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $postal_code;
 
     /**
      * Official registration identifier of the member, such as a national ID or company registration number.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $registration_id;
 
     /**
      * Type of relationship the member has with the company, such as "shareholder", "director", or "beneficial_owner".
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $relation;
 
     /**
      * Role of the member within the company, such as "legal_representative", "director", or "manager".
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $roles;
 
     /**
@@ -167,19 +167,19 @@ final class Member implements BaseModel
      *
      * @var value-of<Source>|null $source
      */
-    #[Api(enum: Source::class, optional: true)]
+    #[Optional(enum: Source::class)]
     public ?string $source;
 
     /**
      * Current state of the member in the workflow, such as "WAITING", "STARTED", "RUNNING", or "PROCESSED".
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $state;
 
     /**
      * Status of the member in the system, indicating whether they are approved, pending, or rejected. Possible values include "approved", "need_review", "rejected".
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $status;
 
     /**
@@ -187,13 +187,13 @@ final class Member implements BaseModel
      *
      * @var value-of<Type>|null $type
      */
-    #[Api(enum: Type::class, optional: true)]
+    #[Optional(enum: Type::class)]
     public ?string $type;
 
     /**
      * Identifier of the workspace to which the member belongs, used for organizational purposes.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $workspace_id;
 
     public function __construct()

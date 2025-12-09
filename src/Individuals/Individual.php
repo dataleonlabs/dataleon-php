@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Individuals;
 
 use Dataleon\Check;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\GenericDocument;
@@ -57,7 +57,7 @@ final class Individual implements BaseModel
     /**
      * Unique identifier of the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
@@ -65,19 +65,19 @@ final class Individual implements BaseModel
      *
      * @var list<AmlSuspicion>|null $aml_suspicions
      */
-    #[Api(list: AmlSuspicion::class, optional: true)]
+    #[Optional(list: AmlSuspicion::class)]
     public ?array $aml_suspicions;
 
     /**
      * URL to authenticate the individual, usually for document signing or onboarding.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $auth_url;
 
     /**
      * Digital certificate associated with the individual, if any.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Certificat $certificat;
 
     /**
@@ -85,13 +85,13 @@ final class Individual implements BaseModel
      *
      * @var list<Check>|null $checks
      */
-    #[Api(list: Check::class, optional: true)]
+    #[Optional(list: Check::class)]
     public ?array $checks;
 
     /**
      * Timestamp of the individual's creation in ISO 8601 format.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $created_at;
 
     /**
@@ -99,31 +99,31 @@ final class Individual implements BaseModel
      *
      * @var list<GenericDocument>|null $documents
      */
-    #[Api(list: GenericDocument::class, optional: true)]
+    #[Optional(list: GenericDocument::class)]
     public ?array $documents;
 
     /**
      * Reference to the individual's identity document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?IdentityCard $identity_card;
 
     /**
      * Internal sequential number or reference for the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $number;
 
     /**
      * Personal details of the individual, such as name, date of birth, and contact info.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Person $person;
 
     /**
      * Admin or internal portal URL for viewing the individual's details.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $portal_url;
 
     /**
@@ -131,31 +131,31 @@ final class Individual implements BaseModel
      *
      * @var list<Property>|null $properties
      */
-    #[Api(list: Property::class, optional: true)]
+    #[Optional(list: Property::class)]
     public ?array $properties;
 
     /**
      * Risk assessment associated with the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Risk $risk;
 
     /**
      * Optional identifier indicating the source of the individual record.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $source_id;
 
     /**
      * Current operational state in the workflow (e.g., WAITING, IN_PROGRESS, COMPLETED).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $state;
 
     /**
      * Overall processing status of the individual (e.g., rejected, need_review, approved).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $status;
 
     /**
@@ -163,25 +163,25 @@ final class Individual implements BaseModel
      *
      * @var list<Tag>|null $tags
      */
-    #[Api(list: Tag::class, optional: true)]
+    #[Optional(list: Tag::class)]
     public ?array $tags;
 
     /**
      * Technical metadata related to the request (e.g., QR code settings, language).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?TechnicalData $technical_data;
 
     /**
      * Public-facing webview URL for the individual’s identification process.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $webview_url;
 
     /**
      * Identifier of the workspace to which the individual belongs.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $workspace_id;
 
     public function __construct()

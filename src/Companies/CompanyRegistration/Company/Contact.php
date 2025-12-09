@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies\CompanyRegistration\Company;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -27,31 +27,31 @@ final class Contact implements BaseModel
     /**
      * Department of the contact person.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $department;
 
     /**
      * Email address of the contact person.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $email;
 
     /**
      * First name of the contact person.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $first_name;
 
     /**
      * Last name of the contact person.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $last_name;
 
     /**
      * Phone number of the contact person.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $phone_number;
 
     public function __construct()

@@ -6,7 +6,7 @@ namespace Dataleon\Companies\CompanyRegistration;
 
 use Dataleon\Companies\CompanyRegistration\AmlSuspicion\Status;
 use Dataleon\Companies\CompanyRegistration\AmlSuspicion\Type;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -33,43 +33,43 @@ final class AmlSuspicion implements BaseModel
     /**
      * Human-readable description or title for the suspicious finding.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $caption;
 
     /**
      * Country associated with the suspicion (ISO 3166-1 alpha-2 code).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $country;
 
     /**
      * Gender associated with the suspicion, if applicable.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $gender;
 
     /**
      * Nature of the relationship between the entity and the suspicious activity (e.g., "linked", "associated").
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $relation;
 
     /**
      * Version of the evaluation schema or rule engine used.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $schema;
 
     /**
      * Risk score between 0.0 and 1 indicating the severity of the suspicion.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $score;
 
     /**
      * Source system or service providing this suspicion.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $source;
 
     /**
@@ -77,7 +77,7 @@ final class AmlSuspicion implements BaseModel
      *
      * @var value-of<Status>|null $status
      */
-    #[Api(enum: Status::class, optional: true)]
+    #[Optional(enum: Status::class)]
     public ?string $status;
 
     /**
@@ -85,7 +85,7 @@ final class AmlSuspicion implements BaseModel
      *
      * @var value-of<Type>|null $type
      */
-    #[Api(enum: Type::class, optional: true)]
+    #[Optional(enum: Type::class)]
     public ?string $type;
 
     public function __construct()

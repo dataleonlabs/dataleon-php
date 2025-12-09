@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Individual;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -23,19 +23,19 @@ final class Certificat implements BaseModel
     /**
      * Unique identifier for the certificate.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
      * Timestamp when the certificate was created.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $created_at;
 
     /**
      * Name of the certificate file.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $filename;
 
     public function __construct()

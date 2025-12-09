@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Dataleon\Companies\Documents;
 
 use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
+use Dataleon\Core\Attributes\Required;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
@@ -32,19 +33,19 @@ final class DocumentUploadParams implements BaseModel
      *
      * @var value-of<DocumentType> $document_type
      */
-    #[Api(enum: DocumentType::class)]
+    #[Required(enum: DocumentType::class)]
     public string $document_type;
 
     /**
      * File to upload (required).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $file;
 
     /**
      * URL of the file to upload (either `file` or `url` is required).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $url;
 
     /**

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Documents\DocumentResponse;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -30,49 +30,49 @@ final class Document implements BaseModel
     /**
      * Unique identifier of the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
      * Functional type of the document (e.g., identity document, invoice).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $document_type;
 
     /**
      * Original filename of the uploaded document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $filename;
 
     /**
      * Human-readable name of the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     /**
      * Secure URL to access the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $signed_url;
 
     /**
      * Processing state of the document (e.g., WAITING, STARTED, RUNNING, PROCESSED).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $state;
 
     /**
      * Validation status of the document (e.g., need_review, approved, rejected).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $status;
 
     /**
      * Identifier of the workspace to which the document belongs.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $workspace_id;
 
     public function __construct()
