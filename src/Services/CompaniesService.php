@@ -6,8 +6,10 @@ namespace Dataleon\Services;
 
 use Dataleon\Client;
 use Dataleon\Companies\CompanyCreateParams;
+use Dataleon\Companies\CompanyCreateParams\TechnicalData\PortalStep;
 use Dataleon\Companies\CompanyListParams;
 use Dataleon\Companies\CompanyListParams\State;
+use Dataleon\Companies\CompanyListParams\Status;
 use Dataleon\Companies\CompanyRegistration;
 use Dataleon\Companies\CompanyRetrieveParams;
 use Dataleon\Companies\CompanyUpdateParams;
@@ -64,7 +66,7 @@ final class CompaniesService implements CompaniesContract
      *     callback_url_notification?: string,
      *     filtering_score_aml_suspicions?: float,
      *     language?: string,
-     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'>,
+     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|PortalStep>,
      *     raw_data?: bool,
      *   },
      * }|CompanyCreateParams $params
@@ -154,7 +156,7 @@ final class CompaniesService implements CompaniesContract
      *     callback_url_notification?: string,
      *     filtering_score_aml_suspicions?: float,
      *     language?: string,
-     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'>,
+     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|CompanyUpdateParams\TechnicalData\PortalStep>,
      *     raw_data?: bool,
      *   },
      * }|CompanyUpdateParams $params
@@ -195,7 +197,7 @@ final class CompaniesService implements CompaniesContract
      *   source_id?: string,
      *   start_date?: string|\DateTimeInterface,
      *   state?: value-of<State>,
-     *   status?: 'rejected'|'need_review'|'approved',
+     *   status?: 'rejected'|'need_review'|'approved'|Status,
      *   workspace_id?: string,
      * }|CompanyListParams $params
      *

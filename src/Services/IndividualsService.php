@@ -10,8 +10,11 @@ use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams;
+use Dataleon\Individuals\IndividualCreateParams\Person\Gender;
+use Dataleon\Individuals\IndividualCreateParams\TechnicalData\PortalStep;
 use Dataleon\Individuals\IndividualListParams;
 use Dataleon\Individuals\IndividualListParams\State;
+use Dataleon\Individuals\IndividualListParams\Status;
 use Dataleon\Individuals\IndividualRetrieveParams;
 use Dataleon\Individuals\IndividualUpdateParams;
 use Dataleon\RequestOptions;
@@ -44,7 +47,7 @@ final class IndividualsService implements IndividualsContract
      *     birthday?: string,
      *     email?: string,
      *     first_name?: string,
-     *     gender?: 'M'|'F',
+     *     gender?: 'M'|'F'|Gender,
      *     last_name?: string,
      *     maiden_name?: string,
      *     nationality?: string,
@@ -57,7 +60,7 @@ final class IndividualsService implements IndividualsContract
      *     callback_url_notification?: string,
      *     filtering_score_aml_suspicions?: float,
      *     language?: string,
-     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'>,
+     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|PortalStep>,
      *     raw_data?: bool,
      *   },
      * }|IndividualCreateParams $params
@@ -127,7 +130,7 @@ final class IndividualsService implements IndividualsContract
      *     birthday?: string,
      *     email?: string,
      *     first_name?: string,
-     *     gender?: 'M'|'F',
+     *     gender?: 'M'|'F'|IndividualUpdateParams\Person\Gender,
      *     last_name?: string,
      *     maiden_name?: string,
      *     nationality?: string,
@@ -140,7 +143,7 @@ final class IndividualsService implements IndividualsContract
      *     callback_url_notification?: string,
      *     filtering_score_aml_suspicions?: float,
      *     language?: string,
-     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'>,
+     *     portal_steps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|IndividualUpdateParams\TechnicalData\PortalStep>,
      *     raw_data?: bool,
      *   },
      * }|IndividualUpdateParams $params
@@ -181,7 +184,7 @@ final class IndividualsService implements IndividualsContract
      *   source_id?: string,
      *   start_date?: string|\DateTimeInterface,
      *   state?: value-of<State>,
-     *   status?: 'rejected'|'need_review'|'approved',
+     *   status?: 'rejected'|'need_review'|'approved'|Status,
      *   workspace_id?: string,
      * }|IndividualListParams $params
      *
