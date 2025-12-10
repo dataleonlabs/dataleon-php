@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Dataleon\Individuals\Documents;
 
 use Dataleon\Check;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
-use Dataleon\Core\Concerns\SdkResponse;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\Contracts\ResponseConverter;
 use Dataleon\Individuals\Documents\GenericDocument\Table;
 use Dataleon\Individuals\Documents\GenericDocument\Value;
 
@@ -19,27 +17,25 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
  * @phpstan-type GenericDocumentShape = array{
  *   id?: string|null,
  *   checks?: list<Check>|null,
- *   created_at?: \DateTimeInterface|null,
- *   document_type?: string|null,
+ *   createdAt?: \DateTimeInterface|null,
+ *   documentType?: string|null,
  *   name?: string|null,
- *   signed_url?: string|null,
+ *   signedURL?: string|null,
  *   state?: string|null,
  *   status?: string|null,
  *   tables?: list<Table>|null,
  *   values?: list<Value>|null,
  * }
  */
-final class GenericDocument implements BaseModel, ResponseConverter
+final class GenericDocument implements BaseModel
 {
     /** @use SdkModel<GenericDocumentShape> */
     use SdkModel;
 
-    use SdkResponse;
-
     /**
      * Unique identifier of the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
@@ -47,43 +43,43 @@ final class GenericDocument implements BaseModel, ResponseConverter
      *
      * @var list<Check>|null $checks
      */
-    #[Api(list: Check::class, optional: true)]
+    #[Optional(list: Check::class)]
     public ?array $checks;
 
     /**
      * Timestamp when the document was created or uploaded.
      */
-    #[Api(optional: true)]
-    public ?\DateTimeInterface $created_at;
+    #[Optional('created_at')]
+    public ?\DateTimeInterface $createdAt;
 
     /**
      * Type/category of the document.
      */
-    #[Api(optional: true)]
-    public ?string $document_type;
+    #[Optional('document_type')]
+    public ?string $documentType;
 
     /**
      * Name or label for the document.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     /**
      * Signed URL for accessing the document file.
      */
-    #[Api(optional: true)]
-    public ?string $signed_url;
+    #[Optional('signed_url')]
+    public ?string $signedURL;
 
     /**
      * Current processing state of the document (e.g., WAITING, PROCESSED).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $state;
 
     /**
      * Status of the document reception or approval.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $status;
 
     /**
@@ -91,7 +87,7 @@ final class GenericDocument implements BaseModel, ResponseConverter
      *
      * @var list<Table>|null $tables
      */
-    #[Api(list: Table::class, optional: true)]
+    #[Optional(list: Table::class)]
     public ?array $tables;
 
     /**
@@ -99,7 +95,7 @@ final class GenericDocument implements BaseModel, ResponseConverter
      *
      * @var list<Value>|null $values
      */
-    #[Api(list: Value::class, optional: true)]
+    #[Optional(list: Value::class)]
     public ?array $values;
 
     public function __construct()
@@ -112,36 +108,44 @@ final class GenericDocument implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Check> $checks
-     * @param list<Table> $tables
-     * @param list<Value> $values
+     * @param list<Check|array{
+     *   masked?: bool|null,
+     *   message?: string|null,
+     *   name?: string|null,
+     *   validate?: bool|null,
+     *   weight?: int|null,
+     * }> $checks
+     * @param list<Table|array{operation?: list<mixed>|null}> $tables
+     * @param list<Value|array{
+     *   confidence?: float|null, name?: string|null, value?: list<int>|null
+     * }> $values
      */
     public static function with(
         ?string $id = null,
         ?array $checks = null,
-        ?\DateTimeInterface $created_at = null,
-        ?string $document_type = null,
+        ?\DateTimeInterface $createdAt = null,
+        ?string $documentType = null,
         ?string $name = null,
-        ?string $signed_url = null,
+        ?string $signedURL = null,
         ?string $state = null,
         ?string $status = null,
         ?array $tables = null,
         ?array $values = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $id && $obj->id = $id;
-        null !== $checks && $obj->checks = $checks;
-        null !== $created_at && $obj->created_at = $created_at;
-        null !== $document_type && $obj->document_type = $document_type;
-        null !== $name && $obj->name = $name;
-        null !== $signed_url && $obj->signed_url = $signed_url;
-        null !== $state && $obj->state = $state;
-        null !== $status && $obj->status = $status;
-        null !== $tables && $obj->tables = $tables;
-        null !== $values && $obj->values = $values;
+        null !== $id && $self['id'] = $id;
+        null !== $checks && $self['checks'] = $checks;
+        null !== $createdAt && $self['createdAt'] = $createdAt;
+        null !== $documentType && $self['documentType'] = $documentType;
+        null !== $name && $self['name'] = $name;
+        null !== $signedURL && $self['signedURL'] = $signedURL;
+        null !== $state && $self['state'] = $state;
+        null !== $status && $self['status'] = $status;
+        null !== $tables && $self['tables'] = $tables;
+        null !== $values && $self['values'] = $values;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -149,23 +153,29 @@ final class GenericDocument implements BaseModel, ResponseConverter
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj->id = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * List of verification checks performed on the document.
      *
-     * @param list<Check> $checks
+     * @param list<Check|array{
+     *   masked?: bool|null,
+     *   message?: string|null,
+     *   name?: string|null,
+     *   validate?: bool|null,
+     *   weight?: int|null,
+     * }> $checks
      */
     public function withChecks(array $checks): self
     {
-        $obj = clone $this;
-        $obj->checks = $checks;
+        $self = clone $this;
+        $self['checks'] = $checks;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -173,10 +183,10 @@ final class GenericDocument implements BaseModel, ResponseConverter
      */
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $obj = clone $this;
-        $obj->created_at = $createdAt;
+        $self = clone $this;
+        $self['createdAt'] = $createdAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -184,10 +194,10 @@ final class GenericDocument implements BaseModel, ResponseConverter
      */
     public function withDocumentType(string $documentType): self
     {
-        $obj = clone $this;
-        $obj->document_type = $documentType;
+        $self = clone $this;
+        $self['documentType'] = $documentType;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -195,10 +205,10 @@ final class GenericDocument implements BaseModel, ResponseConverter
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj->name = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -206,10 +216,10 @@ final class GenericDocument implements BaseModel, ResponseConverter
      */
     public function withSignedURL(string $signedURL): self
     {
-        $obj = clone $this;
-        $obj->signed_url = $signedURL;
+        $self = clone $this;
+        $self['signedURL'] = $signedURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -217,10 +227,10 @@ final class GenericDocument implements BaseModel, ResponseConverter
      */
     public function withState(string $state): self
     {
-        $obj = clone $this;
-        $obj->state = $state;
+        $self = clone $this;
+        $self['state'] = $state;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -228,35 +238,37 @@ final class GenericDocument implements BaseModel, ResponseConverter
      */
     public function withStatus(string $status): self
     {
-        $obj = clone $this;
-        $obj->status = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * List of tables extracted from the document, each containing operations.
      *
-     * @param list<Table> $tables
+     * @param list<Table|array{operation?: list<mixed>|null}> $tables
      */
     public function withTables(array $tables): self
     {
-        $obj = clone $this;
-        $obj->tables = $tables;
+        $self = clone $this;
+        $self['tables'] = $tables;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Extracted key-value pairs from the document, including confidence scores.
      *
-     * @param list<Value> $values
+     * @param list<Value|array{
+     *   confidence?: float|null, name?: string|null, value?: list<int>|null
+     * }> $values
      */
     public function withValues(array $values): self
     {
-        $obj = clone $this;
-        $obj->values = $values;
+        $self = clone $this;
+        $self['values'] = $values;
 
-        return $obj;
+        return $self;
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dataleon\Companies\CompanyUpdateParams;
 
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData\PortalStep;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -13,13 +13,13 @@ use Dataleon\Core\Contracts\BaseModel;
  * Technical metadata and callback configuration.
  *
  * @phpstan-type TechnicalDataShape = array{
- *   active_aml_suspicions?: bool|null,
- *   callback_url?: string|null,
- *   callback_url_notification?: string|null,
- *   filtering_score_aml_suspicions?: float|null,
+ *   activeAmlSuspicions?: bool|null,
+ *   callbackURL?: string|null,
+ *   callbackURLNotification?: string|null,
+ *   filteringScoreAmlSuspicions?: float|null,
  *   language?: string|null,
- *   portal_steps?: list<value-of<PortalStep>>|null,
- *   raw_data?: bool|null,
+ *   portalSteps?: list<value-of<PortalStep>>|null,
+ *   rawData?: bool|null,
  * }
  */
 final class TechnicalData implements BaseModel
@@ -30,46 +30,46 @@ final class TechnicalData implements BaseModel
     /**
      * Flag indicating whether there are active research AML (Anti-Money Laundering) suspicions for the company when you apply for a new entry or get an existing one.
      */
-    #[Api(optional: true)]
-    public ?bool $active_aml_suspicions;
+    #[Optional('active_aml_suspicions')]
+    public ?bool $activeAmlSuspicions;
 
     /**
      * URL to receive a callback once the company is processed.
      */
-    #[Api(optional: true)]
-    public ?string $callback_url;
+    #[Optional('callback_url')]
+    public ?string $callbackURL;
 
     /**
      * URL to receive notifications about the processing state and status.
      */
-    #[Api(optional: true)]
-    public ?string $callback_url_notification;
+    #[Optional('callback_url_notification')]
+    public ?string $callbackURLNotification;
 
     /**
      * Minimum filtering score (between 0 and 1) for AML suspicions to be considered.
      */
-    #[Api(optional: true)]
-    public ?float $filtering_score_aml_suspicions;
+    #[Optional('filtering_score_aml_suspicions')]
+    public ?float $filteringScoreAmlSuspicions;
 
     /**
      * Preferred language for responses or notifications (e.g., "eng", "fra").
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $language;
 
     /**
      * List of steps to include in the portal workflow.
      *
-     * @var list<value-of<PortalStep>>|null $portal_steps
+     * @var list<value-of<PortalStep>>|null $portalSteps
      */
-    #[Api(list: PortalStep::class, optional: true)]
-    public ?array $portal_steps;
+    #[Optional('portal_steps', list: PortalStep::class)]
+    public ?array $portalSteps;
 
     /**
      * Flag indicating whether to include raw data in the response.
      */
-    #[Api(optional: true)]
-    public ?bool $raw_data;
+    #[Optional('raw_data')]
+    public ?bool $rawData;
 
     public function __construct()
     {
@@ -81,28 +81,28 @@ final class TechnicalData implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<PortalStep|value-of<PortalStep>> $portal_steps
+     * @param list<PortalStep|value-of<PortalStep>> $portalSteps
      */
     public static function with(
-        ?bool $active_aml_suspicions = null,
-        ?string $callback_url = null,
-        ?string $callback_url_notification = null,
-        ?float $filtering_score_aml_suspicions = null,
+        ?bool $activeAmlSuspicions = null,
+        ?string $callbackURL = null,
+        ?string $callbackURLNotification = null,
+        ?float $filteringScoreAmlSuspicions = null,
         ?string $language = null,
-        ?array $portal_steps = null,
-        ?bool $raw_data = null,
+        ?array $portalSteps = null,
+        ?bool $rawData = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $active_aml_suspicions && $obj->active_aml_suspicions = $active_aml_suspicions;
-        null !== $callback_url && $obj->callback_url = $callback_url;
-        null !== $callback_url_notification && $obj->callback_url_notification = $callback_url_notification;
-        null !== $filtering_score_aml_suspicions && $obj->filtering_score_aml_suspicions = $filtering_score_aml_suspicions;
-        null !== $language && $obj->language = $language;
-        null !== $portal_steps && $obj['portal_steps'] = $portal_steps;
-        null !== $raw_data && $obj->raw_data = $raw_data;
+        null !== $activeAmlSuspicions && $self['activeAmlSuspicions'] = $activeAmlSuspicions;
+        null !== $callbackURL && $self['callbackURL'] = $callbackURL;
+        null !== $callbackURLNotification && $self['callbackURLNotification'] = $callbackURLNotification;
+        null !== $filteringScoreAmlSuspicions && $self['filteringScoreAmlSuspicions'] = $filteringScoreAmlSuspicions;
+        null !== $language && $self['language'] = $language;
+        null !== $portalSteps && $self['portalSteps'] = $portalSteps;
+        null !== $rawData && $self['rawData'] = $rawData;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -110,10 +110,10 @@ final class TechnicalData implements BaseModel
      */
     public function withActiveAmlSuspicions(bool $activeAmlSuspicions): self
     {
-        $obj = clone $this;
-        $obj->active_aml_suspicions = $activeAmlSuspicions;
+        $self = clone $this;
+        $self['activeAmlSuspicions'] = $activeAmlSuspicions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -121,10 +121,10 @@ final class TechnicalData implements BaseModel
      */
     public function withCallbackURL(string $callbackURL): self
     {
-        $obj = clone $this;
-        $obj->callback_url = $callbackURL;
+        $self = clone $this;
+        $self['callbackURL'] = $callbackURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -133,10 +133,10 @@ final class TechnicalData implements BaseModel
     public function withCallbackURLNotification(
         string $callbackURLNotification
     ): self {
-        $obj = clone $this;
-        $obj->callback_url_notification = $callbackURLNotification;
+        $self = clone $this;
+        $self['callbackURLNotification'] = $callbackURLNotification;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -145,10 +145,10 @@ final class TechnicalData implements BaseModel
     public function withFilteringScoreAmlSuspicions(
         float $filteringScoreAmlSuspicions
     ): self {
-        $obj = clone $this;
-        $obj->filtering_score_aml_suspicions = $filteringScoreAmlSuspicions;
+        $self = clone $this;
+        $self['filteringScoreAmlSuspicions'] = $filteringScoreAmlSuspicions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -156,10 +156,10 @@ final class TechnicalData implements BaseModel
      */
     public function withLanguage(string $language): self
     {
-        $obj = clone $this;
-        $obj->language = $language;
+        $self = clone $this;
+        $self['language'] = $language;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -169,10 +169,10 @@ final class TechnicalData implements BaseModel
      */
     public function withPortalSteps(array $portalSteps): self
     {
-        $obj = clone $this;
-        $obj['portal_steps'] = $portalSteps;
+        $self = clone $this;
+        $self['portalSteps'] = $portalSteps;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -180,9 +180,9 @@ final class TechnicalData implements BaseModel
      */
     public function withRawData(bool $rawData): self
     {
-        $obj = clone $this;
-        $obj->raw_data = $rawData;
+        $self = clone $this;
+        $self['rawData'] = $rawData;
 
-        return $obj;
+        return $self;
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Documents\GenericDocument;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -21,7 +21,7 @@ final class Table implements BaseModel
      *
      * @var list<mixed>|null $operation
      */
-    #[Api(list: 'mixed', optional: true)]
+    #[Optional(list: 'mixed')]
     public ?array $operation;
 
     public function __construct()
@@ -38,11 +38,11 @@ final class Table implements BaseModel
      */
     public static function with(?array $operation = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $operation && $obj->operation = $operation;
+        null !== $operation && $self['operation'] = $operation;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -52,9 +52,9 @@ final class Table implements BaseModel
      */
     public function withOperation(array $operation): self
     {
-        $obj = clone $this;
-        $obj->operation = $operation;
+        $self = clone $this;
+        $self['operation'] = $operation;
 
-        return $obj;
+        return $self;
     }
 }

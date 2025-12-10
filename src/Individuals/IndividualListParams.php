@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
@@ -17,14 +17,14 @@ use Dataleon\Individuals\IndividualListParams\Status;
  * @see Dataleon\Services\IndividualsService::list()
  *
  * @phpstan-type IndividualListParamsShape = array{
- *   end_date?: \DateTimeInterface,
+ *   endDate?: \DateTimeInterface,
  *   limit?: int,
  *   offset?: int,
- *   source_id?: string,
- *   start_date?: \DateTimeInterface,
+ *   sourceID?: string,
+ *   startDate?: \DateTimeInterface,
  *   state?: State|value-of<State>,
  *   status?: Status|value-of<Status>,
- *   workspace_id?: string,
+ *   workspaceID?: string,
  * }
  */
 final class IndividualListParams implements BaseModel
@@ -36,39 +36,39 @@ final class IndividualListParams implements BaseModel
     /**
      * Filter individuals created before this date (format YYYY-MM-DD).
      */
-    #[Api(optional: true)]
-    public ?\DateTimeInterface $end_date;
+    #[Optional]
+    public ?\DateTimeInterface $endDate;
 
     /**
      * Number of results to return (between 1 and 100).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $limit;
 
     /**
      * Number of results to offset (must be ≥ 0).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $offset;
 
     /**
      * Filter by source ID.
      */
-    #[Api(optional: true)]
-    public ?string $source_id;
+    #[Optional]
+    public ?string $sourceID;
 
     /**
      * Filter individuals created after this date (format YYYY-MM-DD).
      */
-    #[Api(optional: true)]
-    public ?\DateTimeInterface $start_date;
+    #[Optional]
+    public ?\DateTimeInterface $startDate;
 
     /**
      * Filter by individual status (must be one of the allowed values).
      *
      * @var value-of<State>|null $state
      */
-    #[Api(enum: State::class, optional: true)]
+    #[Optional(enum: State::class)]
     public ?string $state;
 
     /**
@@ -76,14 +76,14 @@ final class IndividualListParams implements BaseModel
      *
      * @var value-of<Status>|null $status
      */
-    #[Api(enum: Status::class, optional: true)]
+    #[Optional(enum: Status::class)]
     public ?string $status;
 
     /**
      * Filter by workspace ID.
      */
-    #[Api(optional: true)]
-    public ?string $workspace_id;
+    #[Optional]
+    public ?string $workspaceID;
 
     public function __construct()
     {
@@ -99,27 +99,27 @@ final class IndividualListParams implements BaseModel
      * @param Status|value-of<Status> $status
      */
     public static function with(
-        ?\DateTimeInterface $end_date = null,
+        ?\DateTimeInterface $endDate = null,
         ?int $limit = null,
         ?int $offset = null,
-        ?string $source_id = null,
-        ?\DateTimeInterface $start_date = null,
+        ?string $sourceID = null,
+        ?\DateTimeInterface $startDate = null,
         State|string|null $state = null,
         Status|string|null $status = null,
-        ?string $workspace_id = null,
+        ?string $workspaceID = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $end_date && $obj->end_date = $end_date;
-        null !== $limit && $obj->limit = $limit;
-        null !== $offset && $obj->offset = $offset;
-        null !== $source_id && $obj->source_id = $source_id;
-        null !== $start_date && $obj->start_date = $start_date;
-        null !== $state && $obj['state'] = $state;
-        null !== $status && $obj['status'] = $status;
-        null !== $workspace_id && $obj->workspace_id = $workspace_id;
+        null !== $endDate && $self['endDate'] = $endDate;
+        null !== $limit && $self['limit'] = $limit;
+        null !== $offset && $self['offset'] = $offset;
+        null !== $sourceID && $self['sourceID'] = $sourceID;
+        null !== $startDate && $self['startDate'] = $startDate;
+        null !== $state && $self['state'] = $state;
+        null !== $status && $self['status'] = $status;
+        null !== $workspaceID && $self['workspaceID'] = $workspaceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -127,10 +127,10 @@ final class IndividualListParams implements BaseModel
      */
     public function withEndDate(\DateTimeInterface $endDate): self
     {
-        $obj = clone $this;
-        $obj->end_date = $endDate;
+        $self = clone $this;
+        $self['endDate'] = $endDate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -138,10 +138,10 @@ final class IndividualListParams implements BaseModel
      */
     public function withLimit(int $limit): self
     {
-        $obj = clone $this;
-        $obj->limit = $limit;
+        $self = clone $this;
+        $self['limit'] = $limit;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -149,10 +149,10 @@ final class IndividualListParams implements BaseModel
      */
     public function withOffset(int $offset): self
     {
-        $obj = clone $this;
-        $obj->offset = $offset;
+        $self = clone $this;
+        $self['offset'] = $offset;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -160,10 +160,10 @@ final class IndividualListParams implements BaseModel
      */
     public function withSourceID(string $sourceID): self
     {
-        $obj = clone $this;
-        $obj->source_id = $sourceID;
+        $self = clone $this;
+        $self['sourceID'] = $sourceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -171,10 +171,10 @@ final class IndividualListParams implements BaseModel
      */
     public function withStartDate(\DateTimeInterface $startDate): self
     {
-        $obj = clone $this;
-        $obj->start_date = $startDate;
+        $self = clone $this;
+        $self['startDate'] = $startDate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -184,10 +184,10 @@ final class IndividualListParams implements BaseModel
      */
     public function withState(State|string $state): self
     {
-        $obj = clone $this;
-        $obj['state'] = $state;
+        $self = clone $this;
+        $self['state'] = $state;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -197,10 +197,10 @@ final class IndividualListParams implements BaseModel
      */
     public function withStatus(Status|string $status): self
     {
-        $obj = clone $this;
-        $obj['status'] = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -208,9 +208,9 @@ final class IndividualListParams implements BaseModel
      */
     public function withWorkspaceID(string $workspaceID): self
     {
-        $obj = clone $this;
-        $obj->workspace_id = $workspaceID;
+        $self = clone $this;
+        $self['workspaceID'] = $workspaceID;
 
-        return $obj;
+        return $self;
     }
 }

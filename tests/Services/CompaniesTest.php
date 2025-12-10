@@ -3,6 +3,7 @@
 namespace Tests\Services;
 
 use Dataleon\Client;
+use Dataleon\Companies\CompanyRegistration;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -33,11 +34,13 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->companies->create([
-            'company' => ['name' => 'ACME Corp'], 'workspace_id' => 'wk_123',
-        ]);
+        $result = $this->client->companies->create(
+            company: ['name' => 'ACME Corp'],
+            workspaceID: 'wk_123'
+        );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CompanyRegistration::class, $result);
     }
 
     #[Test]
@@ -47,28 +50,39 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->companies->create([
-            'company' => [
+        $result = $this->client->companies->create(
+            company: [
                 'name' => 'ACME Corp',
                 'address' => '123 rue Exemple, Paris',
-                'commercial_name' => 'ACME',
+                'commercialName' => 'ACME',
                 'country' => 'FR',
                 'email' => 'info@acme.fr',
-                'employer_identification_number' => 'EIN123456',
-                'legal_form' => 'SARL',
-                'phone_number' => '+33 1 23 45 67 89',
-                'registration_date' => '2010-05-15',
-                'registration_id' => 'RCS123456',
-                'share_capital' => '100000',
+                'employerIdentificationNumber' => 'EIN123456',
+                'legalForm' => 'SARL',
+                'phoneNumber' => '+33 1 23 45 67 89',
+                'registrationDate' => '2010-05-15',
+                'registrationID' => 'RCS123456',
+                'shareCapital' => '100000',
                 'status' => 'active',
-                'tax_identification_number' => 'FR123456789',
+                'taxIdentificationNumber' => 'FR123456789',
                 'type' => 'main',
-                'website_url' => 'https://acme.fr',
+                'websiteURL' => 'https://acme.fr',
             ],
-            'workspace_id' => 'wk_123',
-        ]);
+            workspaceID: 'wk_123',
+            sourceID: 'ID54410069066',
+            technicalData: [
+                'activeAmlSuspicions' => false,
+                'callbackURL' => 'https://example.com/callback',
+                'callbackURLNotification' => 'https://example.com/notify',
+                'filteringScoreAmlSuspicions' => 0.75,
+                'language' => 'fra',
+                'portalSteps' => ['identity_verification', 'document_signing'],
+                'rawData' => true,
+            ],
+        );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CompanyRegistration::class, $result);
     }
 
     #[Test]
@@ -78,9 +92,10 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->companies->retrieve('company_id', []);
+        $result = $this->client->companies->retrieve('company_id');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CompanyRegistration::class, $result);
     }
 
     #[Test]
@@ -92,10 +107,12 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->update(
             'company_id',
-            ['company' => ['name' => 'ACME Corp'], 'workspace_id' => 'wk_123'],
+            company: ['name' => 'ACME Corp'],
+            workspaceID: 'wk_123'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CompanyRegistration::class, $result);
     }
 
     #[Test]
@@ -107,29 +124,38 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->update(
             'company_id',
-            [
-                'company' => [
-                    'name' => 'ACME Corp',
-                    'address' => '123 rue Exemple, Paris',
-                    'commercial_name' => 'ACME',
-                    'country' => 'FR',
-                    'email' => 'info@acme.fr',
-                    'employer_identification_number' => 'EIN123456',
-                    'legal_form' => 'SARL',
-                    'phone_number' => '+33 1 23 45 67 89',
-                    'registration_date' => '2010-05-15',
-                    'registration_id' => 'RCS123456',
-                    'share_capital' => '100000',
-                    'status' => 'active',
-                    'tax_identification_number' => 'FR123456789',
-                    'type' => 'main',
-                    'website_url' => 'https://acme.fr',
-                ],
-                'workspace_id' => 'wk_123',
+            company: [
+                'name' => 'ACME Corp',
+                'address' => '123 rue Exemple, Paris',
+                'commercialName' => 'ACME',
+                'country' => 'FR',
+                'email' => 'info@acme.fr',
+                'employerIdentificationNumber' => 'EIN123456',
+                'legalForm' => 'SARL',
+                'phoneNumber' => '+33 1 23 45 67 89',
+                'registrationDate' => '2010-05-15',
+                'registrationID' => 'RCS123456',
+                'shareCapital' => '100000',
+                'status' => 'active',
+                'taxIdentificationNumber' => 'FR123456789',
+                'type' => 'main',
+                'websiteURL' => 'https://acme.fr',
+            ],
+            workspaceID: 'wk_123',
+            sourceID: 'ID54410069066',
+            technicalData: [
+                'activeAmlSuspicions' => false,
+                'callbackURL' => 'https://example.com/callback',
+                'callbackURLNotification' => 'https://example.com/notify',
+                'filteringScoreAmlSuspicions' => 0.75,
+                'language' => 'fra',
+                'portalSteps' => ['identity_verification', 'document_signing'],
+                'rawData' => true,
             ],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CompanyRegistration::class, $result);
     }
 
     #[Test]
@@ -139,9 +165,10 @@ final class CompaniesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->companies->list([]);
+        $result = $this->client->companies->list();
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertIsList($result);
     }
 
     #[Test]
@@ -153,6 +180,7 @@ final class CompaniesTest extends TestCase
 
         $result = $this->client->companies->delete('company_id');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertNull($result);
     }
 }

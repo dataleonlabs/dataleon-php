@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Individual;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -12,7 +12,7 @@ use Dataleon\Core\Contracts\BaseModel;
  * Digital certificate associated with the individual, if any.
  *
  * @phpstan-type CertificatShape = array{
- *   id?: string|null, created_at?: \DateTimeInterface|null, filename?: string|null
+ *   id?: string|null, createdAt?: \DateTimeInterface|null, filename?: string|null
  * }
  */
 final class Certificat implements BaseModel
@@ -23,19 +23,19 @@ final class Certificat implements BaseModel
     /**
      * Unique identifier for the certificate.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
      * Timestamp when the certificate was created.
      */
-    #[Api(optional: true)]
-    public ?\DateTimeInterface $created_at;
+    #[Optional('created_at')]
+    public ?\DateTimeInterface $createdAt;
 
     /**
      * Name of the certificate file.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $filename;
 
     public function __construct()
@@ -50,16 +50,16 @@ final class Certificat implements BaseModel
      */
     public static function with(
         ?string $id = null,
-        ?\DateTimeInterface $created_at = null,
+        ?\DateTimeInterface $createdAt = null,
         ?string $filename = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $id && $obj->id = $id;
-        null !== $created_at && $obj->created_at = $created_at;
-        null !== $filename && $obj->filename = $filename;
+        null !== $id && $self['id'] = $id;
+        null !== $createdAt && $self['createdAt'] = $createdAt;
+        null !== $filename && $self['filename'] = $filename;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -67,10 +67,10 @@ final class Certificat implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj->id = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -78,10 +78,10 @@ final class Certificat implements BaseModel
      */
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $obj = clone $this;
-        $obj->created_at = $createdAt;
+        $self = clone $this;
+        $self['createdAt'] = $createdAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -89,9 +89,9 @@ final class Certificat implements BaseModel
      */
     public function withFilename(string $filename): self
     {
-        $obj = clone $this;
-        $obj->filename = $filename;
+        $self = clone $this;
+        $self['filename'] = $filename;
 
-        return $obj;
+        return $self;
     }
 }

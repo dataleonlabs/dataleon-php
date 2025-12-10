@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Dataleon\Companies\Documents;
 
 use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
+use Dataleon\Core\Attributes\Required;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
@@ -16,9 +17,7 @@ use Dataleon\Core\Contracts\BaseModel;
  * @see Dataleon\Services\Companies\DocumentsService::upload()
  *
  * @phpstan-type DocumentUploadParamsShape = array{
- *   document_type: DocumentType|value-of<DocumentType>,
- *   file?: string,
- *   url?: string,
+ *   documentType: DocumentType|value-of<DocumentType>, file?: string, url?: string
  * }
  */
 final class DocumentUploadParams implements BaseModel
@@ -30,21 +29,21 @@ final class DocumentUploadParams implements BaseModel
     /**
      * Filter by document type for upload (must be one of the allowed values).
      *
-     * @var value-of<DocumentType> $document_type
+     * @var value-of<DocumentType> $documentType
      */
-    #[Api(enum: DocumentType::class)]
-    public string $document_type;
+    #[Required('document_type', enum: DocumentType::class)]
+    public string $documentType;
 
     /**
      * File to upload (required).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $file;
 
     /**
      * URL of the file to upload (either `file` or `url` is required).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $url;
 
     /**
@@ -52,7 +51,7 @@ final class DocumentUploadParams implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * DocumentUploadParams::with(document_type: ...)
+     * DocumentUploadParams::with(documentType: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -71,21 +70,21 @@ final class DocumentUploadParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param DocumentType|value-of<DocumentType> $document_type
+     * @param DocumentType|value-of<DocumentType> $documentType
      */
     public static function with(
-        DocumentType|string $document_type,
+        DocumentType|string $documentType,
         ?string $file = null,
         ?string $url = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['document_type'] = $document_type;
+        $self['documentType'] = $documentType;
 
-        null !== $file && $obj->file = $file;
-        null !== $url && $obj->url = $url;
+        null !== $file && $self['file'] = $file;
+        null !== $url && $self['url'] = $url;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -95,10 +94,10 @@ final class DocumentUploadParams implements BaseModel
      */
     public function withDocumentType(DocumentType|string $documentType): self
     {
-        $obj = clone $this;
-        $obj['document_type'] = $documentType;
+        $self = clone $this;
+        $self['documentType'] = $documentType;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -106,10 +105,10 @@ final class DocumentUploadParams implements BaseModel
      */
     public function withFile(string $file): self
     {
-        $obj = clone $this;
-        $obj->file = $file;
+        $self = clone $this;
+        $self['file'] = $file;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -117,9 +116,9 @@ final class DocumentUploadParams implements BaseModel
      */
     public function withURL(string $url): self
     {
-        $obj = clone $this;
-        $obj->url = $url;
+        $self = clone $this;
+        $self['url'] = $url;
 
-        return $obj;
+        return $self;
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Individual;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -26,25 +26,25 @@ final class Tag implements BaseModel
     /**
      * Name of the tag used to identify the metadata field.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $key;
 
     /**
      * Indicates whether the tag is private (not visible to external users).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $private;
 
     /**
      * Data type of the tag value (e.g., "string", "number", "boolean").
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $type;
 
     /**
      * Value assigned to the tag.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $value;
 
     public function __construct()
@@ -63,14 +63,14 @@ final class Tag implements BaseModel
         ?string $type = null,
         ?string $value = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $key && $obj->key = $key;
-        null !== $private && $obj->private = $private;
-        null !== $type && $obj->type = $type;
-        null !== $value && $obj->value = $value;
+        null !== $key && $self['key'] = $key;
+        null !== $private && $self['private'] = $private;
+        null !== $type && $self['type'] = $type;
+        null !== $value && $self['value'] = $value;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -78,10 +78,10 @@ final class Tag implements BaseModel
      */
     public function withKey(string $key): self
     {
-        $obj = clone $this;
-        $obj->key = $key;
+        $self = clone $this;
+        $self['key'] = $key;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -89,10 +89,10 @@ final class Tag implements BaseModel
      */
     public function withPrivate(bool $private): self
     {
-        $obj = clone $this;
-        $obj->private = $private;
+        $self = clone $this;
+        $self['private'] = $private;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -100,10 +100,10 @@ final class Tag implements BaseModel
      */
     public function withType(string $type): self
     {
-        $obj = clone $this;
-        $obj->type = $type;
+        $self = clone $this;
+        $self['type'] = $type;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -111,9 +111,9 @@ final class Tag implements BaseModel
      */
     public function withValue(string $value): self
     {
-        $obj = clone $this;
-        $obj->value = $value;
+        $self = clone $this;
+        $self['value'] = $value;
 
-        return $obj;
+        return $self;
     }
 }

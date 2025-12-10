@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace Dataleon\Individuals;
 
 use Dataleon\Check;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
-use Dataleon\Core\Concerns\SdkResponse;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\Contracts\ResponseConverter;
 use Dataleon\Individuals\Documents\GenericDocument;
+use Dataleon\Individuals\Documents\GenericDocument\Table;
+use Dataleon\Individuals\Documents\GenericDocument\Value;
 use Dataleon\Individuals\Individual\AmlSuspicion;
+use Dataleon\Individuals\Individual\AmlSuspicion\Status;
+use Dataleon\Individuals\Individual\AmlSuspicion\Type;
 use Dataleon\Individuals\Individual\Certificat;
 use Dataleon\Individuals\Individual\IdentityCard;
 use Dataleon\Individuals\Individual\Person;
@@ -19,64 +21,63 @@ use Dataleon\Individuals\Individual\Property;
 use Dataleon\Individuals\Individual\Risk;
 use Dataleon\Individuals\Individual\Tag;
 use Dataleon\Individuals\Individual\TechnicalData;
+use Dataleon\Individuals\Individual\TechnicalData\PortalStep;
 
 /**
  * Represents a single individual record, including identification, status, and associated metadata.
  *
  * @phpstan-type IndividualShape = array{
  *   id?: string|null,
- *   aml_suspicions?: list<AmlSuspicion>|null,
- *   auth_url?: string|null,
+ *   amlSuspicions?: list<AmlSuspicion>|null,
+ *   authURL?: string|null,
  *   certificat?: Certificat|null,
  *   checks?: list<Check>|null,
- *   created_at?: \DateTimeInterface|null,
+ *   createdAt?: \DateTimeInterface|null,
  *   documents?: list<GenericDocument>|null,
- *   identity_card?: IdentityCard|null,
+ *   identityCard?: IdentityCard|null,
  *   number?: int|null,
  *   person?: Person|null,
- *   portal_url?: string|null,
+ *   portalURL?: string|null,
  *   properties?: list<Property>|null,
  *   risk?: Risk|null,
- *   source_id?: string|null,
+ *   sourceID?: string|null,
  *   state?: string|null,
  *   status?: string|null,
  *   tags?: list<Tag>|null,
- *   technical_data?: TechnicalData|null,
- *   webview_url?: string|null,
- *   workspace_id?: string|null,
+ *   technicalData?: TechnicalData|null,
+ *   webviewURL?: string|null,
+ *   workspaceID?: string|null,
  * }
  */
-final class Individual implements BaseModel, ResponseConverter
+final class Individual implements BaseModel
 {
     /** @use SdkModel<IndividualShape> */
     use SdkModel;
 
-    use SdkResponse;
-
     /**
      * Unique identifier of the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the individual.
      *
-     * @var list<AmlSuspicion>|null $aml_suspicions
+     * @var list<AmlSuspicion>|null $amlSuspicions
      */
-    #[Api(list: AmlSuspicion::class, optional: true)]
-    public ?array $aml_suspicions;
+    #[Optional('aml_suspicions', list: AmlSuspicion::class)]
+    public ?array $amlSuspicions;
 
     /**
      * URL to authenticate the individual, usually for document signing or onboarding.
      */
-    #[Api(optional: true)]
-    public ?string $auth_url;
+    #[Optional('auth_url')]
+    public ?string $authURL;
 
     /**
      * Digital certificate associated with the individual, if any.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Certificat $certificat;
 
     /**
@@ -84,77 +85,77 @@ final class Individual implements BaseModel, ResponseConverter
      *
      * @var list<Check>|null $checks
      */
-    #[Api(list: Check::class, optional: true)]
+    #[Optional(list: Check::class)]
     public ?array $checks;
 
     /**
      * Timestamp of the individual's creation in ISO 8601 format.
      */
-    #[Api(optional: true)]
-    public ?\DateTimeInterface $created_at;
+    #[Optional('created_at')]
+    public ?\DateTimeInterface $createdAt;
 
     /**
      * All documents submitted or associated with the individual.
      *
      * @var list<GenericDocument>|null $documents
      */
-    #[Api(list: GenericDocument::class, optional: true)]
+    #[Optional(list: GenericDocument::class)]
     public ?array $documents;
 
     /**
      * Reference to the individual's identity document.
      */
-    #[Api(optional: true)]
-    public ?IdentityCard $identity_card;
+    #[Optional('identity_card')]
+    public ?IdentityCard $identityCard;
 
     /**
      * Internal sequential number or reference for the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $number;
 
     /**
      * Personal details of the individual, such as name, date of birth, and contact info.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Person $person;
 
     /**
      * Admin or internal portal URL for viewing the individual's details.
      */
-    #[Api(optional: true)]
-    public ?string $portal_url;
+    #[Optional('portal_url')]
+    public ?string $portalURL;
 
     /**
      * Custom key-value metadata fields associated with the individual.
      *
      * @var list<Property>|null $properties
      */
-    #[Api(list: Property::class, optional: true)]
+    #[Optional(list: Property::class)]
     public ?array $properties;
 
     /**
      * Risk assessment associated with the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Risk $risk;
 
     /**
      * Optional identifier indicating the source of the individual record.
      */
-    #[Api(optional: true)]
-    public ?string $source_id;
+    #[Optional('source_id')]
+    public ?string $sourceID;
 
     /**
      * Current operational state in the workflow (e.g., WAITING, IN_PROGRESS, COMPLETED).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $state;
 
     /**
      * Overall processing status of the individual (e.g., rejected, need_review, approved).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $status;
 
     /**
@@ -162,26 +163,26 @@ final class Individual implements BaseModel, ResponseConverter
      *
      * @var list<Tag>|null $tags
      */
-    #[Api(list: Tag::class, optional: true)]
+    #[Optional(list: Tag::class)]
     public ?array $tags;
 
     /**
      * Technical metadata related to the request (e.g., QR code settings, language).
      */
-    #[Api(optional: true)]
-    public ?TechnicalData $technical_data;
+    #[Optional('technical_data')]
+    public ?TechnicalData $technicalData;
 
     /**
      * Public-facing webview URL for the individual’s identification process.
      */
-    #[Api(optional: true)]
-    public ?string $webview_url;
+    #[Optional('webview_url')]
+    public ?string $webviewURL;
 
     /**
      * Identifier of the workspace to which the individual belongs.
      */
-    #[Api(optional: true)]
-    public ?string $workspace_id;
+    #[Optional('workspace_id')]
+    public ?string $workspaceID;
 
     public function __construct()
     {
@@ -193,58 +194,152 @@ final class Individual implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AmlSuspicion> $aml_suspicions
-     * @param list<Check> $checks
-     * @param list<GenericDocument> $documents
-     * @param list<Property> $properties
-     * @param list<Tag> $tags
+     * @param list<AmlSuspicion|array{
+     *   caption?: string|null,
+     *   country?: string|null,
+     *   gender?: string|null,
+     *   relation?: string|null,
+     *   schema?: string|null,
+     *   score?: float|null,
+     *   source?: string|null,
+     *   status?: value-of<Status>|null,
+     *   type?: value-of<Type>|null,
+     * }> $amlSuspicions
+     * @param Certificat|array{
+     *   id?: string|null, createdAt?: \DateTimeInterface|null, filename?: string|null
+     * } $certificat
+     * @param list<Check|array{
+     *   masked?: bool|null,
+     *   message?: string|null,
+     *   name?: string|null,
+     *   validate?: bool|null,
+     *   weight?: int|null,
+     * }> $checks
+     * @param list<GenericDocument|array{
+     *   id?: string|null,
+     *   checks?: list<Check>|null,
+     *   createdAt?: \DateTimeInterface|null,
+     *   documentType?: string|null,
+     *   name?: string|null,
+     *   signedURL?: string|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   tables?: list<Table>|null,
+     *   values?: list<Value>|null,
+     * }> $documents
+     * @param IdentityCard|array{
+     *   id?: string|null,
+     *   backDocumentSignedURL?: string|null,
+     *   birthPlace?: string|null,
+     *   birthday?: string|null,
+     *   country?: string|null,
+     *   expirationDate?: string|null,
+     *   firstName?: string|null,
+     *   frontDocumentSignedURL?: string|null,
+     *   gender?: string|null,
+     *   issueDate?: string|null,
+     *   lastName?: string|null,
+     *   mrzLine1?: string|null,
+     *   mrzLine2?: string|null,
+     *   mrzLine3?: string|null,
+     *   type?: string|null,
+     * } $identityCard
+     * @param Person|array{
+     *   birthday?: string|null,
+     *   email?: string|null,
+     *   faceImageSignedURL?: string|null,
+     *   firstName?: string|null,
+     *   fullName?: string|null,
+     *   gender?: string|null,
+     *   lastName?: string|null,
+     *   maidenName?: string|null,
+     *   nationality?: string|null,
+     *   phoneNumber?: string|null,
+     * } $person
+     * @param list<Property|array{
+     *   name?: string|null, type?: string|null, value?: string|null
+     * }> $properties
+     * @param Risk|array{
+     *   code?: string|null, reason?: string|null, score?: float|null
+     * } $risk
+     * @param list<Tag|array{
+     *   key?: string|null,
+     *   private?: bool|null,
+     *   type?: string|null,
+     *   value?: string|null,
+     * }> $tags
+     * @param TechnicalData|array{
+     *   activeAmlSuspicions?: bool|null,
+     *   apiVersion?: int|null,
+     *   approvedAt?: \DateTimeInterface|null,
+     *   callbackURL?: string|null,
+     *   callbackURLNotification?: string|null,
+     *   disableNotification?: bool|null,
+     *   disableNotificationDate?: \DateTimeInterface|null,
+     *   exportType?: string|null,
+     *   filteringScoreAmlSuspicions?: float|null,
+     *   finishedAt?: \DateTimeInterface|null,
+     *   ip?: string|null,
+     *   language?: string|null,
+     *   locationIP?: string|null,
+     *   needReviewAt?: \DateTimeInterface|null,
+     *   notificationConfirmation?: bool|null,
+     *   portalSteps?: list<value-of<PortalStep>>|null,
+     *   qrCode?: string|null,
+     *   rawData?: bool|null,
+     *   rejectedAt?: \DateTimeInterface|null,
+     *   sessionDuration?: int|null,
+     *   startedAt?: \DateTimeInterface|null,
+     *   transferAt?: \DateTimeInterface|null,
+     *   transferMode?: string|null,
+     * } $technicalData
      */
     public static function with(
         ?string $id = null,
-        ?array $aml_suspicions = null,
-        ?string $auth_url = null,
-        ?Certificat $certificat = null,
+        ?array $amlSuspicions = null,
+        ?string $authURL = null,
+        Certificat|array|null $certificat = null,
         ?array $checks = null,
-        ?\DateTimeInterface $created_at = null,
+        ?\DateTimeInterface $createdAt = null,
         ?array $documents = null,
-        ?IdentityCard $identity_card = null,
+        IdentityCard|array|null $identityCard = null,
         ?int $number = null,
-        ?Person $person = null,
-        ?string $portal_url = null,
+        Person|array|null $person = null,
+        ?string $portalURL = null,
         ?array $properties = null,
-        ?Risk $risk = null,
-        ?string $source_id = null,
+        Risk|array|null $risk = null,
+        ?string $sourceID = null,
         ?string $state = null,
         ?string $status = null,
         ?array $tags = null,
-        ?TechnicalData $technical_data = null,
-        ?string $webview_url = null,
-        ?string $workspace_id = null,
+        TechnicalData|array|null $technicalData = null,
+        ?string $webviewURL = null,
+        ?string $workspaceID = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $id && $obj->id = $id;
-        null !== $aml_suspicions && $obj->aml_suspicions = $aml_suspicions;
-        null !== $auth_url && $obj->auth_url = $auth_url;
-        null !== $certificat && $obj->certificat = $certificat;
-        null !== $checks && $obj->checks = $checks;
-        null !== $created_at && $obj->created_at = $created_at;
-        null !== $documents && $obj->documents = $documents;
-        null !== $identity_card && $obj->identity_card = $identity_card;
-        null !== $number && $obj->number = $number;
-        null !== $person && $obj->person = $person;
-        null !== $portal_url && $obj->portal_url = $portal_url;
-        null !== $properties && $obj->properties = $properties;
-        null !== $risk && $obj->risk = $risk;
-        null !== $source_id && $obj->source_id = $source_id;
-        null !== $state && $obj->state = $state;
-        null !== $status && $obj->status = $status;
-        null !== $tags && $obj->tags = $tags;
-        null !== $technical_data && $obj->technical_data = $technical_data;
-        null !== $webview_url && $obj->webview_url = $webview_url;
-        null !== $workspace_id && $obj->workspace_id = $workspace_id;
+        null !== $id && $self['id'] = $id;
+        null !== $amlSuspicions && $self['amlSuspicions'] = $amlSuspicions;
+        null !== $authURL && $self['authURL'] = $authURL;
+        null !== $certificat && $self['certificat'] = $certificat;
+        null !== $checks && $self['checks'] = $checks;
+        null !== $createdAt && $self['createdAt'] = $createdAt;
+        null !== $documents && $self['documents'] = $documents;
+        null !== $identityCard && $self['identityCard'] = $identityCard;
+        null !== $number && $self['number'] = $number;
+        null !== $person && $self['person'] = $person;
+        null !== $portalURL && $self['portalURL'] = $portalURL;
+        null !== $properties && $self['properties'] = $properties;
+        null !== $risk && $self['risk'] = $risk;
+        null !== $sourceID && $self['sourceID'] = $sourceID;
+        null !== $state && $self['state'] = $state;
+        null !== $status && $self['status'] = $status;
+        null !== $tags && $self['tags'] = $tags;
+        null !== $technicalData && $self['technicalData'] = $technicalData;
+        null !== $webviewURL && $self['webviewURL'] = $webviewURL;
+        null !== $workspaceID && $self['workspaceID'] = $workspaceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -252,23 +347,33 @@ final class Individual implements BaseModel, ResponseConverter
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj->id = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the individual.
      *
-     * @param list<AmlSuspicion> $amlSuspicions
+     * @param list<AmlSuspicion|array{
+     *   caption?: string|null,
+     *   country?: string|null,
+     *   gender?: string|null,
+     *   relation?: string|null,
+     *   schema?: string|null,
+     *   score?: float|null,
+     *   source?: string|null,
+     *   status?: value-of<Status>|null,
+     *   type?: value-of<Type>|null,
+     * }> $amlSuspicions
      */
     public function withAmlSuspicions(array $amlSuspicions): self
     {
-        $obj = clone $this;
-        $obj->aml_suspicions = $amlSuspicions;
+        $self = clone $this;
+        $self['amlSuspicions'] = $amlSuspicions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -276,34 +381,44 @@ final class Individual implements BaseModel, ResponseConverter
      */
     public function withAuthURL(string $authURL): self
     {
-        $obj = clone $this;
-        $obj->auth_url = $authURL;
+        $self = clone $this;
+        $self['authURL'] = $authURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Digital certificate associated with the individual, if any.
+     *
+     * @param Certificat|array{
+     *   id?: string|null, createdAt?: \DateTimeInterface|null, filename?: string|null
+     * } $certificat
      */
-    public function withCertificat(Certificat $certificat): self
+    public function withCertificat(Certificat|array $certificat): self
     {
-        $obj = clone $this;
-        $obj->certificat = $certificat;
+        $self = clone $this;
+        $self['certificat'] = $certificat;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * List of verification or validation checks applied to the individual.
      *
-     * @param list<Check> $checks
+     * @param list<Check|array{
+     *   masked?: bool|null,
+     *   message?: string|null,
+     *   name?: string|null,
+     *   validate?: bool|null,
+     *   weight?: int|null,
+     * }> $checks
      */
     public function withChecks(array $checks): self
     {
-        $obj = clone $this;
-        $obj->checks = $checks;
+        $self = clone $this;
+        $self['checks'] = $checks;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -311,34 +426,63 @@ final class Individual implements BaseModel, ResponseConverter
      */
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $obj = clone $this;
-        $obj->created_at = $createdAt;
+        $self = clone $this;
+        $self['createdAt'] = $createdAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * All documents submitted or associated with the individual.
      *
-     * @param list<GenericDocument> $documents
+     * @param list<GenericDocument|array{
+     *   id?: string|null,
+     *   checks?: list<Check>|null,
+     *   createdAt?: \DateTimeInterface|null,
+     *   documentType?: string|null,
+     *   name?: string|null,
+     *   signedURL?: string|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   tables?: list<Table>|null,
+     *   values?: list<Value>|null,
+     * }> $documents
      */
     public function withDocuments(array $documents): self
     {
-        $obj = clone $this;
-        $obj->documents = $documents;
+        $self = clone $this;
+        $self['documents'] = $documents;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Reference to the individual's identity document.
+     *
+     * @param IdentityCard|array{
+     *   id?: string|null,
+     *   backDocumentSignedURL?: string|null,
+     *   birthPlace?: string|null,
+     *   birthday?: string|null,
+     *   country?: string|null,
+     *   expirationDate?: string|null,
+     *   firstName?: string|null,
+     *   frontDocumentSignedURL?: string|null,
+     *   gender?: string|null,
+     *   issueDate?: string|null,
+     *   lastName?: string|null,
+     *   mrzLine1?: string|null,
+     *   mrzLine2?: string|null,
+     *   mrzLine3?: string|null,
+     *   type?: string|null,
+     * } $identityCard
      */
-    public function withIdentityCard(IdentityCard $identityCard): self
+    public function withIdentityCard(IdentityCard|array $identityCard): self
     {
-        $obj = clone $this;
-        $obj->identity_card = $identityCard;
+        $self = clone $this;
+        $self['identityCard'] = $identityCard;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -346,21 +490,34 @@ final class Individual implements BaseModel, ResponseConverter
      */
     public function withNumber(int $number): self
     {
-        $obj = clone $this;
-        $obj->number = $number;
+        $self = clone $this;
+        $self['number'] = $number;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Personal details of the individual, such as name, date of birth, and contact info.
+     *
+     * @param Person|array{
+     *   birthday?: string|null,
+     *   email?: string|null,
+     *   faceImageSignedURL?: string|null,
+     *   firstName?: string|null,
+     *   fullName?: string|null,
+     *   gender?: string|null,
+     *   lastName?: string|null,
+     *   maidenName?: string|null,
+     *   nationality?: string|null,
+     *   phoneNumber?: string|null,
+     * } $person
      */
-    public function withPerson(Person $person): self
+    public function withPerson(Person|array $person): self
     {
-        $obj = clone $this;
-        $obj->person = $person;
+        $self = clone $this;
+        $self['person'] = $person;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -368,34 +525,40 @@ final class Individual implements BaseModel, ResponseConverter
      */
     public function withPortalURL(string $portalURL): self
     {
-        $obj = clone $this;
-        $obj->portal_url = $portalURL;
+        $self = clone $this;
+        $self['portalURL'] = $portalURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Custom key-value metadata fields associated with the individual.
      *
-     * @param list<Property> $properties
+     * @param list<Property|array{
+     *   name?: string|null, type?: string|null, value?: string|null
+     * }> $properties
      */
     public function withProperties(array $properties): self
     {
-        $obj = clone $this;
-        $obj->properties = $properties;
+        $self = clone $this;
+        $self['properties'] = $properties;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Risk assessment associated with the individual.
+     *
+     * @param Risk|array{
+     *   code?: string|null, reason?: string|null, score?: float|null
+     * } $risk
      */
-    public function withRisk(Risk $risk): self
+    public function withRisk(Risk|array $risk): self
     {
-        $obj = clone $this;
-        $obj->risk = $risk;
+        $self = clone $this;
+        $self['risk'] = $risk;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -403,10 +566,10 @@ final class Individual implements BaseModel, ResponseConverter
      */
     public function withSourceID(string $sourceID): self
     {
-        $obj = clone $this;
-        $obj->source_id = $sourceID;
+        $self = clone $this;
+        $self['sourceID'] = $sourceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -414,10 +577,10 @@ final class Individual implements BaseModel, ResponseConverter
      */
     public function withState(string $state): self
     {
-        $obj = clone $this;
-        $obj->state = $state;
+        $self = clone $this;
+        $self['state'] = $state;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -425,34 +588,65 @@ final class Individual implements BaseModel, ResponseConverter
      */
     public function withStatus(string $status): self
     {
-        $obj = clone $this;
-        $obj->status = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * List of tags assigned to the individual for categorization or metadata purposes.
      *
-     * @param list<Tag> $tags
+     * @param list<Tag|array{
+     *   key?: string|null,
+     *   private?: bool|null,
+     *   type?: string|null,
+     *   value?: string|null,
+     * }> $tags
      */
     public function withTags(array $tags): self
     {
-        $obj = clone $this;
-        $obj->tags = $tags;
+        $self = clone $this;
+        $self['tags'] = $tags;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Technical metadata related to the request (e.g., QR code settings, language).
+     *
+     * @param TechnicalData|array{
+     *   activeAmlSuspicions?: bool|null,
+     *   apiVersion?: int|null,
+     *   approvedAt?: \DateTimeInterface|null,
+     *   callbackURL?: string|null,
+     *   callbackURLNotification?: string|null,
+     *   disableNotification?: bool|null,
+     *   disableNotificationDate?: \DateTimeInterface|null,
+     *   exportType?: string|null,
+     *   filteringScoreAmlSuspicions?: float|null,
+     *   finishedAt?: \DateTimeInterface|null,
+     *   ip?: string|null,
+     *   language?: string|null,
+     *   locationIP?: string|null,
+     *   needReviewAt?: \DateTimeInterface|null,
+     *   notificationConfirmation?: bool|null,
+     *   portalSteps?: list<value-of<PortalStep>>|null,
+     *   qrCode?: string|null,
+     *   rawData?: bool|null,
+     *   rejectedAt?: \DateTimeInterface|null,
+     *   sessionDuration?: int|null,
+     *   startedAt?: \DateTimeInterface|null,
+     *   transferAt?: \DateTimeInterface|null,
+     *   transferMode?: string|null,
+     * } $technicalData
      */
-    public function withTechnicalData(TechnicalData $technicalData): self
+    public function withTechnicalData(TechnicalData|array $technicalData): self
     {
-        $obj = clone $this;
-        $obj->technical_data = $technicalData;
+        $self = clone $this;
+        $self['technicalData'] = $technicalData;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -460,10 +654,10 @@ final class Individual implements BaseModel, ResponseConverter
      */
     public function withWebviewURL(string $webviewURL): self
     {
-        $obj = clone $this;
-        $obj->webview_url = $webviewURL;
+        $self = clone $this;
+        $self['webviewURL'] = $webviewURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -471,9 +665,9 @@ final class Individual implements BaseModel, ResponseConverter
      */
     public function withWorkspaceID(string $workspaceID): self
     {
-        $obj = clone $this;
-        $obj->workspace_id = $workspaceID;
+        $self = clone $this;
+        $self['workspaceID'] = $workspaceID;
 
-        return $obj;
+        return $self;
     }
 }

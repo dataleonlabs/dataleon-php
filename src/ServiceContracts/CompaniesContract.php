@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Dataleon\ServiceContracts;
 
-use Dataleon\Companies\CompanyCreateParams;
-use Dataleon\Companies\CompanyListParams;
+use Dataleon\Companies\CompanyCreateParams\TechnicalData\PortalStep;
+use Dataleon\Companies\CompanyListParams\State;
+use Dataleon\Companies\CompanyListParams\Status;
 use Dataleon\Companies\CompanyRegistration;
-use Dataleon\Companies\CompanyRetrieveParams;
-use Dataleon\Companies\CompanyUpdateParams;
 use Dataleon\Core\Exceptions\APIException;
 use Dataleon\RequestOptions;
 
@@ -17,57 +16,137 @@ interface CompaniesContract
     /**
      * @api
      *
-     * @param array<mixed>|CompanyCreateParams $params
+     * @param array{
+     *   name: string,
+     *   address?: string,
+     *   commercialName?: string,
+     *   country?: string,
+     *   email?: string,
+     *   employerIdentificationNumber?: string,
+     *   legalForm?: string,
+     *   phoneNumber?: string,
+     *   registrationDate?: string,
+     *   registrationID?: string,
+     *   shareCapital?: string,
+     *   status?: string,
+     *   taxIdentificationNumber?: string,
+     *   type?: string,
+     *   websiteURL?: string,
+     * } $company Main information about the company being registered
+     * @param string $workspaceID unique identifier of the workspace in which the company is being created
+     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
+     * @param array{
+     *   activeAmlSuspicions?: bool,
+     *   callbackURL?: string,
+     *   callbackURLNotification?: string,
+     *   filteringScoreAmlSuspicions?: float,
+     *   language?: string,
+     *   portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|PortalStep>,
+     *   rawData?: bool,
+     * } $technicalData Technical metadata and callback configuration
      *
      * @throws APIException
      */
     public function create(
-        array|CompanyCreateParams $params,
+        array $company,
+        string $workspaceID,
+        ?string $sourceID = null,
+        ?array $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration;
 
     /**
      * @api
      *
-     * @param array<mixed>|CompanyRetrieveParams $params
+     * @param string $companyID ID of the company
+     * @param bool $document Include document signed url
+     * @param string $scope Scope filter (id or scope)
      *
      * @throws APIException
      */
     public function retrieve(
         string $companyID,
-        array|CompanyRetrieveParams $params,
+        ?bool $document = null,
+        ?string $scope = null,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration;
 
     /**
      * @api
      *
-     * @param array<mixed>|CompanyUpdateParams $params
+     * @param string $companyID ID of the company to update
+     * @param array{
+     *   name: string,
+     *   address?: string,
+     *   commercialName?: string,
+     *   country?: string,
+     *   email?: string,
+     *   employerIdentificationNumber?: string,
+     *   legalForm?: string,
+     *   phoneNumber?: string,
+     *   registrationDate?: string,
+     *   registrationID?: string,
+     *   shareCapital?: string,
+     *   status?: string,
+     *   taxIdentificationNumber?: string,
+     *   type?: string,
+     *   websiteURL?: string,
+     * } $company Main information about the company being registered
+     * @param string $workspaceID unique identifier of the workspace in which the company is being created
+     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
+     * @param array{
+     *   activeAmlSuspicions?: bool,
+     *   callbackURL?: string,
+     *   callbackURLNotification?: string,
+     *   filteringScoreAmlSuspicions?: float,
+     *   language?: string,
+     *   portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|\Dataleon\Companies\CompanyUpdateParams\TechnicalData\PortalStep>,
+     *   rawData?: bool,
+     * } $technicalData Technical metadata and callback configuration
      *
      * @throws APIException
      */
     public function update(
         string $companyID,
-        array|CompanyUpdateParams $params,
+        array $company,
+        string $workspaceID,
+        ?string $sourceID = null,
+        ?array $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration;
 
     /**
      * @api
      *
-     * @param array<mixed>|CompanyListParams $params
+     * @param string|\DateTimeInterface $endDate Filter companies created before this date (format YYYY-MM-DD)
+     * @param int $limit Number of results to return (between 1 and 100)
+     * @param int $offset Number of results to skip (must be ≥ 0)
+     * @param string $sourceID Filter by source ID
+     * @param string|\DateTimeInterface $startDate Filter companies created after this date (format YYYY-MM-DD)
+     * @param 'VOID'|'WAITING'|'STARTED'|'RUNNING'|'PROCESSED'|'FAILED'|'ABORTED'|'EXPIRED'|'DELETED'|State $state Filter by company state (must be one of the allowed values)
+     * @param 'rejected'|'need_review'|'approved'|Status $status Filter by individual status (must be one of the allowed values)
+     * @param string $workspaceID Filter by workspace ID
      *
      * @return list<CompanyRegistration>
      *
      * @throws APIException
      */
     public function list(
-        array|CompanyListParams $params,
-        ?RequestOptions $requestOptions = null
+        string|\DateTimeInterface|null $endDate = null,
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $sourceID = null,
+        string|\DateTimeInterface|null $startDate = null,
+        string|State|null $state = null,
+        string|Status|null $status = null,
+        ?string $workspaceID = null,
+        ?RequestOptions $requestOptions = null,
     ): array;
 
     /**
      * @api
+     *
+     * @param string $companyID ID of the company to delete
      *
      * @throws APIException
      */

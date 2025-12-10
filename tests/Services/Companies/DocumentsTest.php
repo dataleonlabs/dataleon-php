@@ -3,6 +3,8 @@
 namespace Tests\Services\Companies;
 
 use Dataleon\Client;
+use Dataleon\Individuals\Documents\DocumentResponse;
+use Dataleon\Individuals\Documents\GenericDocument;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -35,7 +37,8 @@ final class DocumentsTest extends TestCase
 
         $result = $this->client->companies->documents->list('company_id');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(DocumentResponse::class, $result);
     }
 
     #[Test]
@@ -47,10 +50,11 @@ final class DocumentsTest extends TestCase
 
         $result = $this->client->companies->documents->upload(
             'company_id',
-            ['document_type' => 'liasse_fiscale']
+            documentType: 'liasse_fiscale'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(GenericDocument::class, $result);
     }
 
     #[Test]
@@ -62,9 +66,12 @@ final class DocumentsTest extends TestCase
 
         $result = $this->client->companies->documents->upload(
             'company_id',
-            ['document_type' => 'liasse_fiscale']
+            documentType: 'liasse_fiscale',
+            file: 'file',
+            url: 'https://example.com/sample.pdf',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(GenericDocument::class, $result);
     }
 }

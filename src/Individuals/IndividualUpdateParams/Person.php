@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\IndividualUpdateParams;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\IndividualUpdateParams\Person\Gender;
@@ -15,12 +15,12 @@ use Dataleon\Individuals\IndividualUpdateParams\Person\Gender;
  * @phpstan-type PersonShape = array{
  *   birthday?: string|null,
  *   email?: string|null,
- *   first_name?: string|null,
+ *   firstName?: string|null,
  *   gender?: value-of<Gender>|null,
- *   last_name?: string|null,
- *   maiden_name?: string|null,
+ *   lastName?: string|null,
+ *   maidenName?: string|null,
  *   nationality?: string|null,
- *   phone_number?: string|null,
+ *   phoneNumber?: string|null,
  * }
  */
 final class Person implements BaseModel
@@ -31,52 +31,52 @@ final class Person implements BaseModel
     /**
      * Date of birth in DD/MM/YYYY format.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $birthday;
 
     /**
      * Email address of the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $email;
 
     /**
      * First name of the individual.
      */
-    #[Api(optional: true)]
-    public ?string $first_name;
+    #[Optional('first_name')]
+    public ?string $firstName;
 
     /**
      * Gender of the individual (M for male, F for female).
      *
      * @var value-of<Gender>|null $gender
      */
-    #[Api(enum: Gender::class, optional: true)]
+    #[Optional(enum: Gender::class)]
     public ?string $gender;
 
     /**
      * Last name (family name) of the individual.
      */
-    #[Api(optional: true)]
-    public ?string $last_name;
+    #[Optional('last_name')]
+    public ?string $lastName;
 
     /**
      * Maiden name, if applicable.
      */
-    #[Api(optional: true)]
-    public ?string $maiden_name;
+    #[Optional('maiden_name')]
+    public ?string $maidenName;
 
     /**
      * Nationality of the individual (ISO 3166-1 alpha-3 country code).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $nationality;
 
     /**
      * Phone number of the individual.
      */
-    #[Api(optional: true)]
-    public ?string $phone_number;
+    #[Optional('phone_number')]
+    public ?string $phoneNumber;
 
     public function __construct()
     {
@@ -93,25 +93,25 @@ final class Person implements BaseModel
     public static function with(
         ?string $birthday = null,
         ?string $email = null,
-        ?string $first_name = null,
+        ?string $firstName = null,
         Gender|string|null $gender = null,
-        ?string $last_name = null,
-        ?string $maiden_name = null,
+        ?string $lastName = null,
+        ?string $maidenName = null,
         ?string $nationality = null,
-        ?string $phone_number = null,
+        ?string $phoneNumber = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $birthday && $obj->birthday = $birthday;
-        null !== $email && $obj->email = $email;
-        null !== $first_name && $obj->first_name = $first_name;
-        null !== $gender && $obj['gender'] = $gender;
-        null !== $last_name && $obj->last_name = $last_name;
-        null !== $maiden_name && $obj->maiden_name = $maiden_name;
-        null !== $nationality && $obj->nationality = $nationality;
-        null !== $phone_number && $obj->phone_number = $phone_number;
+        null !== $birthday && $self['birthday'] = $birthday;
+        null !== $email && $self['email'] = $email;
+        null !== $firstName && $self['firstName'] = $firstName;
+        null !== $gender && $self['gender'] = $gender;
+        null !== $lastName && $self['lastName'] = $lastName;
+        null !== $maidenName && $self['maidenName'] = $maidenName;
+        null !== $nationality && $self['nationality'] = $nationality;
+        null !== $phoneNumber && $self['phoneNumber'] = $phoneNumber;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -119,10 +119,10 @@ final class Person implements BaseModel
      */
     public function withBirthday(string $birthday): self
     {
-        $obj = clone $this;
-        $obj->birthday = $birthday;
+        $self = clone $this;
+        $self['birthday'] = $birthday;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -130,10 +130,10 @@ final class Person implements BaseModel
      */
     public function withEmail(string $email): self
     {
-        $obj = clone $this;
-        $obj->email = $email;
+        $self = clone $this;
+        $self['email'] = $email;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -141,10 +141,10 @@ final class Person implements BaseModel
      */
     public function withFirstName(string $firstName): self
     {
-        $obj = clone $this;
-        $obj->first_name = $firstName;
+        $self = clone $this;
+        $self['firstName'] = $firstName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -154,10 +154,10 @@ final class Person implements BaseModel
      */
     public function withGender(Gender|string $gender): self
     {
-        $obj = clone $this;
-        $obj['gender'] = $gender;
+        $self = clone $this;
+        $self['gender'] = $gender;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -165,10 +165,10 @@ final class Person implements BaseModel
      */
     public function withLastName(string $lastName): self
     {
-        $obj = clone $this;
-        $obj->last_name = $lastName;
+        $self = clone $this;
+        $self['lastName'] = $lastName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -176,10 +176,10 @@ final class Person implements BaseModel
      */
     public function withMaidenName(string $maidenName): self
     {
-        $obj = clone $this;
-        $obj->maiden_name = $maidenName;
+        $self = clone $this;
+        $self['maidenName'] = $maidenName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -187,10 +187,10 @@ final class Person implements BaseModel
      */
     public function withNationality(string $nationality): self
     {
-        $obj = clone $this;
-        $obj->nationality = $nationality;
+        $self = clone $this;
+        $self['nationality'] = $nationality;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -198,9 +198,9 @@ final class Person implements BaseModel
      */
     public function withPhoneNumber(string $phoneNumber): self
     {
-        $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $self = clone $this;
+        $self['phoneNumber'] = $phoneNumber;
 
-        return $obj;
+        return $self;
     }
 }

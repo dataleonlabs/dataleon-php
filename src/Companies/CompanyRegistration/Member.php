@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies\CompanyRegistration;
 
+use Dataleon\Check;
 use Dataleon\Companies\CompanyRegistration\Member\Source;
 use Dataleon\Companies\CompanyRegistration\Member\Type;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\GenericDocument;
+use Dataleon\Individuals\Documents\GenericDocument\Table;
+use Dataleon\Individuals\Documents\GenericDocument\Value;
 
 /**
  * Represents a member or actor of a company, including personal and ownership information.
@@ -22,23 +25,23 @@ use Dataleon\Individuals\Documents\GenericDocument;
  *   country?: string|null,
  *   documents?: list<GenericDocument>|null,
  *   email?: string|null,
- *   first_name?: string|null,
- *   is_beneficial_owner?: bool|null,
- *   is_delegator?: bool|null,
- *   last_name?: string|null,
- *   liveness_verification?: bool|null,
+ *   firstName?: string|null,
+ *   isBeneficialOwner?: bool|null,
+ *   isDelegator?: bool|null,
+ *   lastName?: string|null,
+ *   livenessVerification?: bool|null,
  *   name?: string|null,
- *   ownership_percentage?: int|null,
- *   phone_number?: string|null,
- *   postal_code?: string|null,
- *   registration_id?: string|null,
+ *   ownershipPercentage?: int|null,
+ *   phoneNumber?: string|null,
+ *   postalCode?: string|null,
+ *   registrationID?: string|null,
  *   relation?: string|null,
  *   roles?: string|null,
  *   source?: value-of<Source>|null,
  *   state?: string|null,
  *   status?: string|null,
  *   type?: value-of<Type>|null,
- *   workspace_id?: string|null,
+ *   workspaceID?: string|null,
  * }
  */
 final class Member implements BaseModel
@@ -46,31 +49,31 @@ final class Member implements BaseModel
     /** @use SdkModel<MemberShape> */
     use SdkModel;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
      * Address of the member, which may include street, city, postal code, and country.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $address;
 
     /**
      * Birthday (available only if type = person).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $birthday;
 
     /**
      * Birthplace (available only if type = person).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $birthplace;
 
     /**
      * ISO 3166-1 alpha-2 country code of the member's address (e.g., "FR" for France).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $country;
 
     /**
@@ -78,85 +81,85 @@ final class Member implements BaseModel
      *
      * @var list<GenericDocument>|null $documents
      */
-    #[Api(list: GenericDocument::class, optional: true)]
+    #[Optional(list: GenericDocument::class)]
     public ?array $documents;
 
     /**
      * Email address of the member, which may be used for communication or verification purposes.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $email;
 
     /**
      * First name (available only if type = person).
      */
-    #[Api(optional: true)]
-    public ?string $first_name;
+    #[Optional('first_name')]
+    public ?string $firstName;
 
     /**
      * Indicates whether the member is a beneficial owner of the company, meaning they have significant control or ownership.
      */
-    #[Api(optional: true)]
-    public ?bool $is_beneficial_owner;
+    #[Optional('is_beneficial_owner')]
+    public ?bool $isBeneficialOwner;
 
     /**
      * Indicates whether the member is a delegator, meaning they have authority to act on behalf of the company.
      */
-    #[Api(optional: true)]
-    public ?bool $is_delegator;
+    #[Optional('is_delegator')]
+    public ?bool $isDelegator;
 
     /**
      * Last name (available only if type = person).
      */
-    #[Api(optional: true)]
-    public ?string $last_name;
+    #[Optional('last_name')]
+    public ?string $lastName;
 
     /**
      * Indicates whether liveness verification was performed for the member, typically in the context of identity checks.
      */
-    #[Api(optional: true)]
-    public ?bool $liveness_verification;
+    #[Optional('liveness_verification')]
+    public ?bool $livenessVerification;
 
     /**
      * Company name (available only if type = company).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     /**
      * Percentage of ownership the member has in the company, expressed as an integer between 0 and 100.
      */
-    #[Api(optional: true)]
-    public ?int $ownership_percentage;
+    #[Optional('ownership_percentage')]
+    public ?int $ownershipPercentage;
 
     /**
      * Contact phone number of the member, including country code and area code.
      */
-    #[Api(optional: true)]
-    public ?string $phone_number;
+    #[Optional('phone_number')]
+    public ?string $phoneNumber;
 
     /**
      * Postal code of the member's address, typically a numeric or alphanumeric code.
      */
-    #[Api(optional: true)]
-    public ?string $postal_code;
+    #[Optional('postal_code')]
+    public ?string $postalCode;
 
     /**
      * Official registration identifier of the member, such as a national ID or company registration number.
      */
-    #[Api(optional: true)]
-    public ?string $registration_id;
+    #[Optional('registration_id')]
+    public ?string $registrationID;
 
     /**
      * Type of relationship the member has with the company, such as "shareholder", "director", or "beneficial_owner".
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $relation;
 
     /**
      * Role of the member within the company, such as "legal_representative", "director", or "manager".
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $roles;
 
     /**
@@ -164,19 +167,19 @@ final class Member implements BaseModel
      *
      * @var value-of<Source>|null $source
      */
-    #[Api(enum: Source::class, optional: true)]
+    #[Optional(enum: Source::class)]
     public ?string $source;
 
     /**
      * Current state of the member in the workflow, such as "WAITING", "STARTED", "RUNNING", or "PROCESSED".
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $state;
 
     /**
      * Status of the member in the system, indicating whether they are approved, pending, or rejected. Possible values include "approved", "need_review", "rejected".
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $status;
 
     /**
@@ -184,14 +187,14 @@ final class Member implements BaseModel
      *
      * @var value-of<Type>|null $type
      */
-    #[Api(enum: Type::class, optional: true)]
+    #[Optional(enum: Type::class)]
     public ?string $type;
 
     /**
      * Identifier of the workspace to which the member belongs, used for organizational purposes.
      */
-    #[Api(optional: true)]
-    public ?string $workspace_id;
+    #[Optional('workspace_id')]
+    public ?string $workspaceID;
 
     public function __construct()
     {
@@ -203,7 +206,18 @@ final class Member implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<GenericDocument> $documents
+     * @param list<GenericDocument|array{
+     *   id?: string|null,
+     *   checks?: list<Check>|null,
+     *   createdAt?: \DateTimeInterface|null,
+     *   documentType?: string|null,
+     *   name?: string|null,
+     *   signedURL?: string|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   tables?: list<Table>|null,
+     *   values?: list<Value>|null,
+     * }> $documents
      * @param Source|value-of<Source> $source
      * @param Type|value-of<Type> $type
      */
@@ -215,60 +229,60 @@ final class Member implements BaseModel
         ?string $country = null,
         ?array $documents = null,
         ?string $email = null,
-        ?string $first_name = null,
-        ?bool $is_beneficial_owner = null,
-        ?bool $is_delegator = null,
-        ?string $last_name = null,
-        ?bool $liveness_verification = null,
+        ?string $firstName = null,
+        ?bool $isBeneficialOwner = null,
+        ?bool $isDelegator = null,
+        ?string $lastName = null,
+        ?bool $livenessVerification = null,
         ?string $name = null,
-        ?int $ownership_percentage = null,
-        ?string $phone_number = null,
-        ?string $postal_code = null,
-        ?string $registration_id = null,
+        ?int $ownershipPercentage = null,
+        ?string $phoneNumber = null,
+        ?string $postalCode = null,
+        ?string $registrationID = null,
         ?string $relation = null,
         ?string $roles = null,
         Source|string|null $source = null,
         ?string $state = null,
         ?string $status = null,
         Type|string|null $type = null,
-        ?string $workspace_id = null,
+        ?string $workspaceID = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $id && $obj->id = $id;
-        null !== $address && $obj->address = $address;
-        null !== $birthday && $obj->birthday = $birthday;
-        null !== $birthplace && $obj->birthplace = $birthplace;
-        null !== $country && $obj->country = $country;
-        null !== $documents && $obj->documents = $documents;
-        null !== $email && $obj->email = $email;
-        null !== $first_name && $obj->first_name = $first_name;
-        null !== $is_beneficial_owner && $obj->is_beneficial_owner = $is_beneficial_owner;
-        null !== $is_delegator && $obj->is_delegator = $is_delegator;
-        null !== $last_name && $obj->last_name = $last_name;
-        null !== $liveness_verification && $obj->liveness_verification = $liveness_verification;
-        null !== $name && $obj->name = $name;
-        null !== $ownership_percentage && $obj->ownership_percentage = $ownership_percentage;
-        null !== $phone_number && $obj->phone_number = $phone_number;
-        null !== $postal_code && $obj->postal_code = $postal_code;
-        null !== $registration_id && $obj->registration_id = $registration_id;
-        null !== $relation && $obj->relation = $relation;
-        null !== $roles && $obj->roles = $roles;
-        null !== $source && $obj['source'] = $source;
-        null !== $state && $obj->state = $state;
-        null !== $status && $obj->status = $status;
-        null !== $type && $obj['type'] = $type;
-        null !== $workspace_id && $obj->workspace_id = $workspace_id;
+        null !== $id && $self['id'] = $id;
+        null !== $address && $self['address'] = $address;
+        null !== $birthday && $self['birthday'] = $birthday;
+        null !== $birthplace && $self['birthplace'] = $birthplace;
+        null !== $country && $self['country'] = $country;
+        null !== $documents && $self['documents'] = $documents;
+        null !== $email && $self['email'] = $email;
+        null !== $firstName && $self['firstName'] = $firstName;
+        null !== $isBeneficialOwner && $self['isBeneficialOwner'] = $isBeneficialOwner;
+        null !== $isDelegator && $self['isDelegator'] = $isDelegator;
+        null !== $lastName && $self['lastName'] = $lastName;
+        null !== $livenessVerification && $self['livenessVerification'] = $livenessVerification;
+        null !== $name && $self['name'] = $name;
+        null !== $ownershipPercentage && $self['ownershipPercentage'] = $ownershipPercentage;
+        null !== $phoneNumber && $self['phoneNumber'] = $phoneNumber;
+        null !== $postalCode && $self['postalCode'] = $postalCode;
+        null !== $registrationID && $self['registrationID'] = $registrationID;
+        null !== $relation && $self['relation'] = $relation;
+        null !== $roles && $self['roles'] = $roles;
+        null !== $source && $self['source'] = $source;
+        null !== $state && $self['state'] = $state;
+        null !== $status && $self['status'] = $status;
+        null !== $type && $self['type'] = $type;
+        null !== $workspaceID && $self['workspaceID'] = $workspaceID;
 
-        return $obj;
+        return $self;
     }
 
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj->id = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -276,10 +290,10 @@ final class Member implements BaseModel
      */
     public function withAddress(string $address): self
     {
-        $obj = clone $this;
-        $obj->address = $address;
+        $self = clone $this;
+        $self['address'] = $address;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -287,10 +301,10 @@ final class Member implements BaseModel
      */
     public function withBirthday(\DateTimeInterface $birthday): self
     {
-        $obj = clone $this;
-        $obj->birthday = $birthday;
+        $self = clone $this;
+        $self['birthday'] = $birthday;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -298,10 +312,10 @@ final class Member implements BaseModel
      */
     public function withBirthplace(string $birthplace): self
     {
-        $obj = clone $this;
-        $obj->birthplace = $birthplace;
+        $self = clone $this;
+        $self['birthplace'] = $birthplace;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -309,23 +323,34 @@ final class Member implements BaseModel
      */
     public function withCountry(string $country): self
     {
-        $obj = clone $this;
-        $obj->country = $country;
+        $self = clone $this;
+        $self['country'] = $country;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * List of documents associated with the member, including their metadata and processing status.
      *
-     * @param list<GenericDocument> $documents
+     * @param list<GenericDocument|array{
+     *   id?: string|null,
+     *   checks?: list<Check>|null,
+     *   createdAt?: \DateTimeInterface|null,
+     *   documentType?: string|null,
+     *   name?: string|null,
+     *   signedURL?: string|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   tables?: list<Table>|null,
+     *   values?: list<Value>|null,
+     * }> $documents
      */
     public function withDocuments(array $documents): self
     {
-        $obj = clone $this;
-        $obj->documents = $documents;
+        $self = clone $this;
+        $self['documents'] = $documents;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -333,10 +358,10 @@ final class Member implements BaseModel
      */
     public function withEmail(string $email): self
     {
-        $obj = clone $this;
-        $obj->email = $email;
+        $self = clone $this;
+        $self['email'] = $email;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -344,10 +369,10 @@ final class Member implements BaseModel
      */
     public function withFirstName(string $firstName): self
     {
-        $obj = clone $this;
-        $obj->first_name = $firstName;
+        $self = clone $this;
+        $self['firstName'] = $firstName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -355,10 +380,10 @@ final class Member implements BaseModel
      */
     public function withIsBeneficialOwner(bool $isBeneficialOwner): self
     {
-        $obj = clone $this;
-        $obj->is_beneficial_owner = $isBeneficialOwner;
+        $self = clone $this;
+        $self['isBeneficialOwner'] = $isBeneficialOwner;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -366,10 +391,10 @@ final class Member implements BaseModel
      */
     public function withIsDelegator(bool $isDelegator): self
     {
-        $obj = clone $this;
-        $obj->is_delegator = $isDelegator;
+        $self = clone $this;
+        $self['isDelegator'] = $isDelegator;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -377,10 +402,10 @@ final class Member implements BaseModel
      */
     public function withLastName(string $lastName): self
     {
-        $obj = clone $this;
-        $obj->last_name = $lastName;
+        $self = clone $this;
+        $self['lastName'] = $lastName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -388,10 +413,10 @@ final class Member implements BaseModel
      */
     public function withLivenessVerification(bool $livenessVerification): self
     {
-        $obj = clone $this;
-        $obj->liveness_verification = $livenessVerification;
+        $self = clone $this;
+        $self['livenessVerification'] = $livenessVerification;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -399,10 +424,10 @@ final class Member implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj->name = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -410,10 +435,10 @@ final class Member implements BaseModel
      */
     public function withOwnershipPercentage(int $ownershipPercentage): self
     {
-        $obj = clone $this;
-        $obj->ownership_percentage = $ownershipPercentage;
+        $self = clone $this;
+        $self['ownershipPercentage'] = $ownershipPercentage;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -421,10 +446,10 @@ final class Member implements BaseModel
      */
     public function withPhoneNumber(string $phoneNumber): self
     {
-        $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $self = clone $this;
+        $self['phoneNumber'] = $phoneNumber;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -432,10 +457,10 @@ final class Member implements BaseModel
      */
     public function withPostalCode(string $postalCode): self
     {
-        $obj = clone $this;
-        $obj->postal_code = $postalCode;
+        $self = clone $this;
+        $self['postalCode'] = $postalCode;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -443,10 +468,10 @@ final class Member implements BaseModel
      */
     public function withRegistrationID(string $registrationID): self
     {
-        $obj = clone $this;
-        $obj->registration_id = $registrationID;
+        $self = clone $this;
+        $self['registrationID'] = $registrationID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -454,10 +479,10 @@ final class Member implements BaseModel
      */
     public function withRelation(string $relation): self
     {
-        $obj = clone $this;
-        $obj->relation = $relation;
+        $self = clone $this;
+        $self['relation'] = $relation;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -465,10 +490,10 @@ final class Member implements BaseModel
      */
     public function withRoles(string $roles): self
     {
-        $obj = clone $this;
-        $obj->roles = $roles;
+        $self = clone $this;
+        $self['roles'] = $roles;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -478,10 +503,10 @@ final class Member implements BaseModel
      */
     public function withSource(Source|string $source): self
     {
-        $obj = clone $this;
-        $obj['source'] = $source;
+        $self = clone $this;
+        $self['source'] = $source;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -489,10 +514,10 @@ final class Member implements BaseModel
      */
     public function withState(string $state): self
     {
-        $obj = clone $this;
-        $obj->state = $state;
+        $self = clone $this;
+        $self['state'] = $state;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -500,10 +525,10 @@ final class Member implements BaseModel
      */
     public function withStatus(string $status): self
     {
-        $obj = clone $this;
-        $obj->status = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -513,10 +538,10 @@ final class Member implements BaseModel
      */
     public function withType(Type|string $type): self
     {
-        $obj = clone $this;
-        $obj['type'] = $type;
+        $self = clone $this;
+        $self['type'] = $type;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -524,9 +549,9 @@ final class Member implements BaseModel
      */
     public function withWorkspaceID(string $workspaceID): self
     {
-        $obj = clone $this;
-        $obj->workspace_id = $workspaceID;
+        $self = clone $this;
+        $self['workspaceID'] = $workspaceID;
 
-        return $obj;
+        return $self;
     }
 }

@@ -6,7 +6,9 @@ namespace Dataleon\Companies;
 
 use Dataleon\Companies\CompanyUpdateParams\Company;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Companies\CompanyUpdateParams\TechnicalData\PortalStep;
+use Dataleon\Core\Attributes\Optional;
+use Dataleon\Core\Attributes\Required;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
@@ -17,10 +19,34 @@ use Dataleon\Core\Contracts\BaseModel;
  * @see Dataleon\Services\CompaniesService::update()
  *
  * @phpstan-type CompanyUpdateParamsShape = array{
- *   company: Company,
- *   workspace_id: string,
- *   source_id?: string,
- *   technical_data?: TechnicalData,
+ *   company: Company|array{
+ *     name: string,
+ *     address?: string|null,
+ *     commercialName?: string|null,
+ *     country?: string|null,
+ *     email?: string|null,
+ *     employerIdentificationNumber?: string|null,
+ *     legalForm?: string|null,
+ *     phoneNumber?: string|null,
+ *     registrationDate?: string|null,
+ *     registrationID?: string|null,
+ *     shareCapital?: string|null,
+ *     status?: string|null,
+ *     taxIdentificationNumber?: string|null,
+ *     type?: string|null,
+ *     websiteURL?: string|null,
+ *   },
+ *   workspaceID: string,
+ *   sourceID?: string,
+ *   technicalData?: TechnicalData|array{
+ *     activeAmlSuspicions?: bool|null,
+ *     callbackURL?: string|null,
+ *     callbackURLNotification?: string|null,
+ *     filteringScoreAmlSuspicions?: float|null,
+ *     language?: string|null,
+ *     portalSteps?: list<value-of<PortalStep>>|null,
+ *     rawData?: bool|null,
+ *   },
  * }
  */
 final class CompanyUpdateParams implements BaseModel
@@ -32,33 +58,33 @@ final class CompanyUpdateParams implements BaseModel
     /**
      * Main information about the company being registered.
      */
-    #[Api]
+    #[Required]
     public Company $company;
 
     /**
      * Unique identifier of the workspace in which the company is being created.
      */
-    #[Api]
-    public string $workspace_id;
+    #[Required('workspace_id')]
+    public string $workspaceID;
 
     /**
      * Optional identifier to track the origin of the request or integration from your system.
      */
-    #[Api(optional: true)]
-    public ?string $source_id;
+    #[Optional('source_id')]
+    public ?string $sourceID;
 
     /**
      * Technical metadata and callback configuration.
      */
-    #[Api(optional: true)]
-    public ?TechnicalData $technical_data;
+    #[Optional('technical_data')]
+    public ?TechnicalData $technicalData;
 
     /**
      * `new CompanyUpdateParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * CompanyUpdateParams::with(company: ..., workspace_id: ...)
+     * CompanyUpdateParams::with(company: ..., workspaceID: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -76,33 +102,78 @@ final class CompanyUpdateParams implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Company|array{
+     *   name: string,
+     *   address?: string|null,
+     *   commercialName?: string|null,
+     *   country?: string|null,
+     *   email?: string|null,
+     *   employerIdentificationNumber?: string|null,
+     *   legalForm?: string|null,
+     *   phoneNumber?: string|null,
+     *   registrationDate?: string|null,
+     *   registrationID?: string|null,
+     *   shareCapital?: string|null,
+     *   status?: string|null,
+     *   taxIdentificationNumber?: string|null,
+     *   type?: string|null,
+     *   websiteURL?: string|null,
+     * } $company
+     * @param TechnicalData|array{
+     *   activeAmlSuspicions?: bool|null,
+     *   callbackURL?: string|null,
+     *   callbackURLNotification?: string|null,
+     *   filteringScoreAmlSuspicions?: float|null,
+     *   language?: string|null,
+     *   portalSteps?: list<value-of<PortalStep>>|null,
+     *   rawData?: bool|null,
+     * } $technicalData
      */
     public static function with(
-        Company $company,
-        string $workspace_id,
-        ?string $source_id = null,
-        ?TechnicalData $technical_data = null,
+        Company|array $company,
+        string $workspaceID,
+        ?string $sourceID = null,
+        TechnicalData|array|null $technicalData = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj->company = $company;
-        $obj->workspace_id = $workspace_id;
+        $self['company'] = $company;
+        $self['workspaceID'] = $workspaceID;
 
-        null !== $source_id && $obj->source_id = $source_id;
-        null !== $technical_data && $obj->technical_data = $technical_data;
+        null !== $sourceID && $self['sourceID'] = $sourceID;
+        null !== $technicalData && $self['technicalData'] = $technicalData;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Main information about the company being registered.
+     *
+     * @param Company|array{
+     *   name: string,
+     *   address?: string|null,
+     *   commercialName?: string|null,
+     *   country?: string|null,
+     *   email?: string|null,
+     *   employerIdentificationNumber?: string|null,
+     *   legalForm?: string|null,
+     *   phoneNumber?: string|null,
+     *   registrationDate?: string|null,
+     *   registrationID?: string|null,
+     *   shareCapital?: string|null,
+     *   status?: string|null,
+     *   taxIdentificationNumber?: string|null,
+     *   type?: string|null,
+     *   websiteURL?: string|null,
+     * } $company
      */
-    public function withCompany(Company $company): self
+    public function withCompany(Company|array $company): self
     {
-        $obj = clone $this;
-        $obj->company = $company;
+        $self = clone $this;
+        $self['company'] = $company;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -110,10 +181,10 @@ final class CompanyUpdateParams implements BaseModel
      */
     public function withWorkspaceID(string $workspaceID): self
     {
-        $obj = clone $this;
-        $obj->workspace_id = $workspaceID;
+        $self = clone $this;
+        $self['workspaceID'] = $workspaceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -121,20 +192,30 @@ final class CompanyUpdateParams implements BaseModel
      */
     public function withSourceID(string $sourceID): self
     {
-        $obj = clone $this;
-        $obj->source_id = $sourceID;
+        $self = clone $this;
+        $self['sourceID'] = $sourceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Technical metadata and callback configuration.
+     *
+     * @param TechnicalData|array{
+     *   activeAmlSuspicions?: bool|null,
+     *   callbackURL?: string|null,
+     *   callbackURLNotification?: string|null,
+     *   filteringScoreAmlSuspicions?: float|null,
+     *   language?: string|null,
+     *   portalSteps?: list<value-of<PortalStep>>|null,
+     *   rawData?: bool|null,
+     * } $technicalData
      */
-    public function withTechnicalData(TechnicalData $technicalData): self
+    public function withTechnicalData(TechnicalData|array $technicalData): self
     {
-        $obj = clone $this;
-        $obj->technical_data = $technicalData;
+        $self = clone $this;
+        $self['technicalData'] = $technicalData;
 
-        return $obj;
+        return $self;
     }
 }

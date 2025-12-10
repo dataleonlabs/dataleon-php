@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies\CompanyUpdateParams;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
+use Dataleon\Core\Attributes\Required;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -14,19 +15,19 @@ use Dataleon\Core\Contracts\BaseModel;
  * @phpstan-type CompanyShape = array{
  *   name: string,
  *   address?: string|null,
- *   commercial_name?: string|null,
+ *   commercialName?: string|null,
  *   country?: string|null,
  *   email?: string|null,
- *   employer_identification_number?: string|null,
- *   legal_form?: string|null,
- *   phone_number?: string|null,
- *   registration_date?: string|null,
- *   registration_id?: string|null,
- *   share_capital?: string|null,
+ *   employerIdentificationNumber?: string|null,
+ *   legalForm?: string|null,
+ *   phoneNumber?: string|null,
+ *   registrationDate?: string|null,
+ *   registrationID?: string|null,
+ *   shareCapital?: string|null,
  *   status?: string|null,
- *   tax_identification_number?: string|null,
+ *   taxIdentificationNumber?: string|null,
  *   type?: string|null,
- *   website_url?: string|null,
+ *   websiteURL?: string|null,
  * }
  */
 final class Company implements BaseModel
@@ -37,92 +38,92 @@ final class Company implements BaseModel
     /**
      * Legal name of the company.
      */
-    #[Api]
+    #[Required]
     public string $name;
 
     /**
      * Registered address of the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $address;
 
     /**
      * Commercial or trade name of the company, if different from the legal name.
      */
-    #[Api(optional: true)]
-    public ?string $commercial_name;
+    #[Optional('commercial_name')]
+    public ?string $commercialName;
 
     /**
      * ISO 3166-1 alpha-2 country code of company registration (e.g., "FR" for France).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $country;
 
     /**
      * Contact email address for the company.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $email;
 
     /**
      * Employer Identification Number (EIN) or equivalent.
      */
-    #[Api(optional: true)]
-    public ?string $employer_identification_number;
+    #[Optional('employer_identification_number')]
+    public ?string $employerIdentificationNumber;
 
     /**
      * Legal structure of the company (e.g., SARL, SAS).
      */
-    #[Api(optional: true)]
-    public ?string $legal_form;
+    #[Optional('legal_form')]
+    public ?string $legalForm;
 
     /**
      * Contact phone number for the company.
      */
-    #[Api(optional: true)]
-    public ?string $phone_number;
+    #[Optional('phone_number')]
+    public ?string $phoneNumber;
 
     /**
      * Date of official company registration in YYYY-MM-DD format.
      */
-    #[Api(optional: true)]
-    public ?string $registration_date;
+    #[Optional('registration_date')]
+    public ?string $registrationDate;
 
     /**
      * Official company registration identifier.
      */
-    #[Api(optional: true)]
-    public ?string $registration_id;
+    #[Optional('registration_id')]
+    public ?string $registrationID;
 
     /**
      * Declared share capital of the company, usually in euros.
      */
-    #[Api(optional: true)]
-    public ?string $share_capital;
+    #[Optional('share_capital')]
+    public ?string $shareCapital;
 
     /**
      * Current status of the company (e.g., active, inactive).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $status;
 
     /**
      * National tax identifier (e.g., VAT or TIN).
      */
-    #[Api(optional: true)]
-    public ?string $tax_identification_number;
+    #[Optional('tax_identification_number')]
+    public ?string $taxIdentificationNumber;
 
     /**
      * Type of company, such as "main" or "affiliated".
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $type;
 
     /**
      * Company’s official website URL.
      */
-    #[Api(optional: true)]
-    public ?string $website_url;
+    #[Optional('website_url')]
+    public ?string $websiteURL;
 
     /**
      * `new Company()` is missing required properties by the API.
@@ -151,40 +152,40 @@ final class Company implements BaseModel
     public static function with(
         string $name,
         ?string $address = null,
-        ?string $commercial_name = null,
+        ?string $commercialName = null,
         ?string $country = null,
         ?string $email = null,
-        ?string $employer_identification_number = null,
-        ?string $legal_form = null,
-        ?string $phone_number = null,
-        ?string $registration_date = null,
-        ?string $registration_id = null,
-        ?string $share_capital = null,
+        ?string $employerIdentificationNumber = null,
+        ?string $legalForm = null,
+        ?string $phoneNumber = null,
+        ?string $registrationDate = null,
+        ?string $registrationID = null,
+        ?string $shareCapital = null,
         ?string $status = null,
-        ?string $tax_identification_number = null,
+        ?string $taxIdentificationNumber = null,
         ?string $type = null,
-        ?string $website_url = null,
+        ?string $websiteURL = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj->name = $name;
+        $self['name'] = $name;
 
-        null !== $address && $obj->address = $address;
-        null !== $commercial_name && $obj->commercial_name = $commercial_name;
-        null !== $country && $obj->country = $country;
-        null !== $email && $obj->email = $email;
-        null !== $employer_identification_number && $obj->employer_identification_number = $employer_identification_number;
-        null !== $legal_form && $obj->legal_form = $legal_form;
-        null !== $phone_number && $obj->phone_number = $phone_number;
-        null !== $registration_date && $obj->registration_date = $registration_date;
-        null !== $registration_id && $obj->registration_id = $registration_id;
-        null !== $share_capital && $obj->share_capital = $share_capital;
-        null !== $status && $obj->status = $status;
-        null !== $tax_identification_number && $obj->tax_identification_number = $tax_identification_number;
-        null !== $type && $obj->type = $type;
-        null !== $website_url && $obj->website_url = $website_url;
+        null !== $address && $self['address'] = $address;
+        null !== $commercialName && $self['commercialName'] = $commercialName;
+        null !== $country && $self['country'] = $country;
+        null !== $email && $self['email'] = $email;
+        null !== $employerIdentificationNumber && $self['employerIdentificationNumber'] = $employerIdentificationNumber;
+        null !== $legalForm && $self['legalForm'] = $legalForm;
+        null !== $phoneNumber && $self['phoneNumber'] = $phoneNumber;
+        null !== $registrationDate && $self['registrationDate'] = $registrationDate;
+        null !== $registrationID && $self['registrationID'] = $registrationID;
+        null !== $shareCapital && $self['shareCapital'] = $shareCapital;
+        null !== $status && $self['status'] = $status;
+        null !== $taxIdentificationNumber && $self['taxIdentificationNumber'] = $taxIdentificationNumber;
+        null !== $type && $self['type'] = $type;
+        null !== $websiteURL && $self['websiteURL'] = $websiteURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -192,10 +193,10 @@ final class Company implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj->name = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -203,10 +204,10 @@ final class Company implements BaseModel
      */
     public function withAddress(string $address): self
     {
-        $obj = clone $this;
-        $obj->address = $address;
+        $self = clone $this;
+        $self['address'] = $address;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -214,10 +215,10 @@ final class Company implements BaseModel
      */
     public function withCommercialName(string $commercialName): self
     {
-        $obj = clone $this;
-        $obj->commercial_name = $commercialName;
+        $self = clone $this;
+        $self['commercialName'] = $commercialName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -225,10 +226,10 @@ final class Company implements BaseModel
      */
     public function withCountry(string $country): self
     {
-        $obj = clone $this;
-        $obj->country = $country;
+        $self = clone $this;
+        $self['country'] = $country;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -236,10 +237,10 @@ final class Company implements BaseModel
      */
     public function withEmail(string $email): self
     {
-        $obj = clone $this;
-        $obj->email = $email;
+        $self = clone $this;
+        $self['email'] = $email;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -248,10 +249,10 @@ final class Company implements BaseModel
     public function withEmployerIdentificationNumber(
         string $employerIdentificationNumber
     ): self {
-        $obj = clone $this;
-        $obj->employer_identification_number = $employerIdentificationNumber;
+        $self = clone $this;
+        $self['employerIdentificationNumber'] = $employerIdentificationNumber;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -259,10 +260,10 @@ final class Company implements BaseModel
      */
     public function withLegalForm(string $legalForm): self
     {
-        $obj = clone $this;
-        $obj->legal_form = $legalForm;
+        $self = clone $this;
+        $self['legalForm'] = $legalForm;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -270,10 +271,10 @@ final class Company implements BaseModel
      */
     public function withPhoneNumber(string $phoneNumber): self
     {
-        $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $self = clone $this;
+        $self['phoneNumber'] = $phoneNumber;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -281,10 +282,10 @@ final class Company implements BaseModel
      */
     public function withRegistrationDate(string $registrationDate): self
     {
-        $obj = clone $this;
-        $obj->registration_date = $registrationDate;
+        $self = clone $this;
+        $self['registrationDate'] = $registrationDate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -292,10 +293,10 @@ final class Company implements BaseModel
      */
     public function withRegistrationID(string $registrationID): self
     {
-        $obj = clone $this;
-        $obj->registration_id = $registrationID;
+        $self = clone $this;
+        $self['registrationID'] = $registrationID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -303,10 +304,10 @@ final class Company implements BaseModel
      */
     public function withShareCapital(string $shareCapital): self
     {
-        $obj = clone $this;
-        $obj->share_capital = $shareCapital;
+        $self = clone $this;
+        $self['shareCapital'] = $shareCapital;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -314,10 +315,10 @@ final class Company implements BaseModel
      */
     public function withStatus(string $status): self
     {
-        $obj = clone $this;
-        $obj->status = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -326,10 +327,10 @@ final class Company implements BaseModel
     public function withTaxIdentificationNumber(
         string $taxIdentificationNumber
     ): self {
-        $obj = clone $this;
-        $obj->tax_identification_number = $taxIdentificationNumber;
+        $self = clone $this;
+        $self['taxIdentificationNumber'] = $taxIdentificationNumber;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -337,10 +338,10 @@ final class Company implements BaseModel
      */
     public function withType(string $type): self
     {
-        $obj = clone $this;
-        $obj->type = $type;
+        $self = clone $this;
+        $self['type'] = $type;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -348,9 +349,9 @@ final class Company implements BaseModel
      */
     public function withWebsiteURL(string $websiteURL): self
     {
-        $obj = clone $this;
-        $obj->website_url = $websiteURL;
+        $self = clone $this;
+        $self['websiteURL'] = $websiteURL;
 
-        return $obj;
+        return $self;
     }
 }

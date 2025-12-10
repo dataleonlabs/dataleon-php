@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies\CompanyRegistration\Company;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -14,9 +14,9 @@ use Dataleon\Core\Contracts\BaseModel;
  * @phpstan-type ContactShape = array{
  *   department?: string|null,
  *   email?: string|null,
- *   first_name?: string|null,
- *   last_name?: string|null,
- *   phone_number?: string|null,
+ *   firstName?: string|null,
+ *   lastName?: string|null,
+ *   phoneNumber?: string|null,
  * }
  */
 final class Contact implements BaseModel
@@ -27,32 +27,32 @@ final class Contact implements BaseModel
     /**
      * Department of the contact person.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $department;
 
     /**
      * Email address of the contact person.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $email;
 
     /**
      * First name of the contact person.
      */
-    #[Api(optional: true)]
-    public ?string $first_name;
+    #[Optional('first_name')]
+    public ?string $firstName;
 
     /**
      * Last name of the contact person.
      */
-    #[Api(optional: true)]
-    public ?string $last_name;
+    #[Optional('last_name')]
+    public ?string $lastName;
 
     /**
      * Phone number of the contact person.
      */
-    #[Api(optional: true)]
-    public ?string $phone_number;
+    #[Optional('phone_number')]
+    public ?string $phoneNumber;
 
     public function __construct()
     {
@@ -67,19 +67,19 @@ final class Contact implements BaseModel
     public static function with(
         ?string $department = null,
         ?string $email = null,
-        ?string $first_name = null,
-        ?string $last_name = null,
-        ?string $phone_number = null,
+        ?string $firstName = null,
+        ?string $lastName = null,
+        ?string $phoneNumber = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $department && $obj->department = $department;
-        null !== $email && $obj->email = $email;
-        null !== $first_name && $obj->first_name = $first_name;
-        null !== $last_name && $obj->last_name = $last_name;
-        null !== $phone_number && $obj->phone_number = $phone_number;
+        null !== $department && $self['department'] = $department;
+        null !== $email && $self['email'] = $email;
+        null !== $firstName && $self['firstName'] = $firstName;
+        null !== $lastName && $self['lastName'] = $lastName;
+        null !== $phoneNumber && $self['phoneNumber'] = $phoneNumber;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -87,10 +87,10 @@ final class Contact implements BaseModel
      */
     public function withDepartment(string $department): self
     {
-        $obj = clone $this;
-        $obj->department = $department;
+        $self = clone $this;
+        $self['department'] = $department;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -98,10 +98,10 @@ final class Contact implements BaseModel
      */
     public function withEmail(string $email): self
     {
-        $obj = clone $this;
-        $obj->email = $email;
+        $self = clone $this;
+        $self['email'] = $email;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -109,10 +109,10 @@ final class Contact implements BaseModel
      */
     public function withFirstName(string $firstName): self
     {
-        $obj = clone $this;
-        $obj->first_name = $firstName;
+        $self = clone $this;
+        $self['firstName'] = $firstName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -120,10 +120,10 @@ final class Contact implements BaseModel
      */
     public function withLastName(string $lastName): self
     {
-        $obj = clone $this;
-        $obj->last_name = $lastName;
+        $self = clone $this;
+        $self['lastName'] = $lastName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -131,9 +131,9 @@ final class Contact implements BaseModel
      */
     public function withPhoneNumber(string $phoneNumber): self
     {
-        $obj = clone $this;
-        $obj->phone_number = $phoneNumber;
+        $self = clone $this;
+        $self['phoneNumber'] = $phoneNumber;
 
-        return $obj;
+        return $self;
     }
 }

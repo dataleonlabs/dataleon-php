@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Individual;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 
@@ -23,19 +23,19 @@ final class Risk implements BaseModel
     /**
      * Risk category or code identifier.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $code;
 
     /**
      * Explanation or justification for the assigned risk.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $reason;
 
     /**
      * Numeric risk score between 0.0 and 1.0 indicating severity or confidence.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $score;
 
     public function __construct()
@@ -53,13 +53,13 @@ final class Risk implements BaseModel
         ?string $reason = null,
         ?float $score = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $code && $obj->code = $code;
-        null !== $reason && $obj->reason = $reason;
-        null !== $score && $obj->score = $score;
+        null !== $code && $self['code'] = $code;
+        null !== $reason && $self['reason'] = $reason;
+        null !== $score && $self['score'] = $score;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -67,10 +67,10 @@ final class Risk implements BaseModel
      */
     public function withCode(string $code): self
     {
-        $obj = clone $this;
-        $obj->code = $code;
+        $self = clone $this;
+        $self['code'] = $code;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -78,10 +78,10 @@ final class Risk implements BaseModel
      */
     public function withReason(string $reason): self
     {
-        $obj = clone $this;
-        $obj->reason = $reason;
+        $self = clone $this;
+        $self['reason'] = $reason;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -89,9 +89,9 @@ final class Risk implements BaseModel
      */
     public function withScore(float $score): self
     {
-        $obj = clone $this;
-        $obj->score = $score;
+        $self = clone $this;
+        $self['score'] = $score;
 
-        return $obj;
+        return $self;
     }
 }

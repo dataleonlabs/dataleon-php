@@ -6,54 +6,57 @@ namespace Dataleon\Companies;
 
 use Dataleon\Check;
 use Dataleon\Companies\CompanyRegistration\AmlSuspicion;
+use Dataleon\Companies\CompanyRegistration\AmlSuspicion\Status;
+use Dataleon\Companies\CompanyRegistration\AmlSuspicion\Type;
 use Dataleon\Companies\CompanyRegistration\Certificat;
 use Dataleon\Companies\CompanyRegistration\Company;
+use Dataleon\Companies\CompanyRegistration\Company\Contact;
 use Dataleon\Companies\CompanyRegistration\Member;
+use Dataleon\Companies\CompanyRegistration\Member\Source;
 use Dataleon\Companies\CompanyRegistration\Property;
 use Dataleon\Companies\CompanyRegistration\Risk;
 use Dataleon\Companies\CompanyRegistration\TechnicalData;
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Companies\CompanyRegistration\TechnicalData\PortalStep;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
-use Dataleon\Core\Concerns\SdkResponse;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\Contracts\ResponseConverter;
 use Dataleon\Individuals\Documents\GenericDocument;
+use Dataleon\Individuals\Documents\GenericDocument\Table;
+use Dataleon\Individuals\Documents\GenericDocument\Value;
 
 /**
  * @phpstan-type CompanyRegistrationShape = array{
- *   aml_suspicions?: list<AmlSuspicion>|null,
+ *   amlSuspicions?: list<AmlSuspicion>|null,
  *   certificat?: Certificat|null,
  *   checks?: list<Check>|null,
  *   company?: Company|null,
  *   documents?: list<GenericDocument>|null,
  *   members?: list<Member>|null,
- *   portal_url?: string|null,
+ *   portalURL?: string|null,
  *   properties?: list<Property>|null,
  *   risk?: Risk|null,
- *   source_id?: string|null,
- *   technical_data?: TechnicalData|null,
- *   webview_url?: string|null,
+ *   sourceID?: string|null,
+ *   technicalData?: TechnicalData|null,
+ *   webviewURL?: string|null,
  * }
  */
-final class CompanyRegistration implements BaseModel, ResponseConverter
+final class CompanyRegistration implements BaseModel
 {
     /** @use SdkModel<CompanyRegistrationShape> */
     use SdkModel;
 
-    use SdkResponse;
-
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the company, including their details.
      *
-     * @var list<AmlSuspicion>|null $aml_suspicions
+     * @var list<AmlSuspicion>|null $amlSuspicions
      */
-    #[Api(list: AmlSuspicion::class, optional: true)]
-    public ?array $aml_suspicions;
+    #[Optional('aml_suspicions', list: AmlSuspicion::class)]
+    public ?array $amlSuspicions;
 
     /**
      * Digital certificate associated with the company, if any, including its creation timestamp and filename.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Certificat $certificat;
 
     /**
@@ -61,13 +64,13 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
      *
      * @var list<Check>|null $checks
      */
-    #[Api(list: Check::class, optional: true)]
+    #[Optional(list: Check::class)]
     public ?array $checks;
 
     /**
      * Main information about the company being registered, including legal name, registration ID, and address.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Company $company;
 
     /**
@@ -75,7 +78,7 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
      *
      * @var list<GenericDocument>|null $documents
      */
-    #[Api(list: GenericDocument::class, optional: true)]
+    #[Optional(list: GenericDocument::class)]
     public ?array $documents;
 
     /**
@@ -83,46 +86,46 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
      *
      * @var list<Member>|null $members
      */
-    #[Api(list: Member::class, optional: true)]
+    #[Optional(list: Member::class)]
     public ?array $members;
 
     /**
      * Admin or internal portal URL for viewing the company's details, typically used by internal users.
      */
-    #[Api(optional: true)]
-    public ?string $portal_url;
+    #[Optional('portal_url')]
+    public ?string $portalURL;
 
     /**
      * Custom key-value metadata fields associated with the company, allowing for flexible data storage.
      *
      * @var list<Property>|null $properties
      */
-    #[Api(list: Property::class, optional: true)]
+    #[Optional(list: Property::class)]
     public ?array $properties;
 
     /**
      * Risk assessment associated with the company, including a risk code, reason, and confidence score.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Risk $risk;
 
     /**
      * Optional identifier indicating the source of the company record, useful for tracking or integration purposes.
      */
-    #[Api(optional: true)]
-    public ?string $source_id;
+    #[Optional('source_id')]
+    public ?string $sourceID;
 
     /**
      * Technical metadata related to the request, such as IP address, QR code settings, and callback URLs.
      */
-    #[Api(optional: true)]
-    public ?TechnicalData $technical_data;
+    #[Optional('technical_data')]
+    public ?TechnicalData $technicalData;
 
     /**
      * Public-facing webview URL for the company’s identification process, allowing external access to the company data.
      */
-    #[Api(optional: true)]
-    public ?string $webview_url;
+    #[Optional('webview_url')]
+    public ?string $webviewURL;
 
     public function __construct()
     {
@@ -134,116 +137,302 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AmlSuspicion> $aml_suspicions
-     * @param list<Check> $checks
-     * @param list<GenericDocument> $documents
-     * @param list<Member> $members
-     * @param list<Property> $properties
+     * @param list<AmlSuspicion|array{
+     *   caption?: string|null,
+     *   country?: string|null,
+     *   gender?: string|null,
+     *   relation?: string|null,
+     *   schema?: string|null,
+     *   score?: float|null,
+     *   source?: string|null,
+     *   status?: value-of<Status>|null,
+     *   type?: value-of<Type>|null,
+     * }> $amlSuspicions
+     * @param Certificat|array{
+     *   id?: string|null, createdAt?: \DateTimeInterface|null, filename?: string|null
+     * } $certificat
+     * @param list<Check|array{
+     *   masked?: bool|null,
+     *   message?: string|null,
+     *   name?: string|null,
+     *   validate?: bool|null,
+     *   weight?: int|null,
+     * }> $checks
+     * @param Company|array{
+     *   address?: string|null,
+     *   closureDate?: \DateTimeInterface|null,
+     *   commercialName?: string|null,
+     *   contact?: Contact|null,
+     *   country?: string|null,
+     *   email?: string|null,
+     *   employees?: int|null,
+     *   employerIdentificationNumber?: string|null,
+     *   insolvencyExists?: bool|null,
+     *   insolvencyOngoing?: bool|null,
+     *   legalForm?: string|null,
+     *   name?: string|null,
+     *   phoneNumber?: string|null,
+     *   registrationDate?: \DateTimeInterface|null,
+     *   registrationID?: string|null,
+     *   shareCapital?: string|null,
+     *   status?: string|null,
+     *   taxIdentificationNumber?: string|null,
+     *   type?: string|null,
+     *   websiteURL?: string|null,
+     * } $company
+     * @param list<GenericDocument|array{
+     *   id?: string|null,
+     *   checks?: list<Check>|null,
+     *   createdAt?: \DateTimeInterface|null,
+     *   documentType?: string|null,
+     *   name?: string|null,
+     *   signedURL?: string|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   tables?: list<Table>|null,
+     *   values?: list<Value>|null,
+     * }> $documents
+     * @param list<Member|array{
+     *   id?: string|null,
+     *   address?: string|null,
+     *   birthday?: \DateTimeInterface|null,
+     *   birthplace?: string|null,
+     *   country?: string|null,
+     *   documents?: list<GenericDocument>|null,
+     *   email?: string|null,
+     *   firstName?: string|null,
+     *   isBeneficialOwner?: bool|null,
+     *   isDelegator?: bool|null,
+     *   lastName?: string|null,
+     *   livenessVerification?: bool|null,
+     *   name?: string|null,
+     *   ownershipPercentage?: int|null,
+     *   phoneNumber?: string|null,
+     *   postalCode?: string|null,
+     *   registrationID?: string|null,
+     *   relation?: string|null,
+     *   roles?: string|null,
+     *   source?: value-of<Source>|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   type?: value-of<Member\Type>|null,
+     *   workspaceID?: string|null,
+     * }> $members
+     * @param list<Property|array{
+     *   name?: string|null, type?: string|null, value?: string|null
+     * }> $properties
+     * @param Risk|array{
+     *   code?: string|null, reason?: string|null, score?: float|null
+     * } $risk
+     * @param TechnicalData|array{
+     *   activeAmlSuspicions?: bool|null,
+     *   apiVersion?: int|null,
+     *   approvedAt?: \DateTimeInterface|null,
+     *   callbackURL?: string|null,
+     *   callbackURLNotification?: string|null,
+     *   disableNotification?: bool|null,
+     *   disableNotificationDate?: \DateTimeInterface|null,
+     *   exportType?: string|null,
+     *   filteringScoreAmlSuspicions?: float|null,
+     *   finishedAt?: \DateTimeInterface|null,
+     *   ip?: string|null,
+     *   language?: string|null,
+     *   locationIP?: string|null,
+     *   needReviewAt?: \DateTimeInterface|null,
+     *   notificationConfirmation?: bool|null,
+     *   portalSteps?: list<value-of<PortalStep>>|null,
+     *   qrCode?: string|null,
+     *   rawData?: bool|null,
+     *   rejectedAt?: \DateTimeInterface|null,
+     *   sessionDuration?: int|null,
+     *   startedAt?: \DateTimeInterface|null,
+     *   transferAt?: \DateTimeInterface|null,
+     *   transferMode?: string|null,
+     * } $technicalData
      */
     public static function with(
-        ?array $aml_suspicions = null,
-        ?Certificat $certificat = null,
+        ?array $amlSuspicions = null,
+        Certificat|array|null $certificat = null,
         ?array $checks = null,
-        ?Company $company = null,
+        Company|array|null $company = null,
         ?array $documents = null,
         ?array $members = null,
-        ?string $portal_url = null,
+        ?string $portalURL = null,
         ?array $properties = null,
-        ?Risk $risk = null,
-        ?string $source_id = null,
-        ?TechnicalData $technical_data = null,
-        ?string $webview_url = null,
+        Risk|array|null $risk = null,
+        ?string $sourceID = null,
+        TechnicalData|array|null $technicalData = null,
+        ?string $webviewURL = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $aml_suspicions && $obj->aml_suspicions = $aml_suspicions;
-        null !== $certificat && $obj->certificat = $certificat;
-        null !== $checks && $obj->checks = $checks;
-        null !== $company && $obj->company = $company;
-        null !== $documents && $obj->documents = $documents;
-        null !== $members && $obj->members = $members;
-        null !== $portal_url && $obj->portal_url = $portal_url;
-        null !== $properties && $obj->properties = $properties;
-        null !== $risk && $obj->risk = $risk;
-        null !== $source_id && $obj->source_id = $source_id;
-        null !== $technical_data && $obj->technical_data = $technical_data;
-        null !== $webview_url && $obj->webview_url = $webview_url;
+        null !== $amlSuspicions && $self['amlSuspicions'] = $amlSuspicions;
+        null !== $certificat && $self['certificat'] = $certificat;
+        null !== $checks && $self['checks'] = $checks;
+        null !== $company && $self['company'] = $company;
+        null !== $documents && $self['documents'] = $documents;
+        null !== $members && $self['members'] = $members;
+        null !== $portalURL && $self['portalURL'] = $portalURL;
+        null !== $properties && $self['properties'] = $properties;
+        null !== $risk && $self['risk'] = $risk;
+        null !== $sourceID && $self['sourceID'] = $sourceID;
+        null !== $technicalData && $self['technicalData'] = $technicalData;
+        null !== $webviewURL && $self['webviewURL'] = $webviewURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the company, including their details.
      *
-     * @param list<AmlSuspicion> $amlSuspicions
+     * @param list<AmlSuspicion|array{
+     *   caption?: string|null,
+     *   country?: string|null,
+     *   gender?: string|null,
+     *   relation?: string|null,
+     *   schema?: string|null,
+     *   score?: float|null,
+     *   source?: string|null,
+     *   status?: value-of<Status>|null,
+     *   type?: value-of<Type>|null,
+     * }> $amlSuspicions
      */
     public function withAmlSuspicions(array $amlSuspicions): self
     {
-        $obj = clone $this;
-        $obj->aml_suspicions = $amlSuspicions;
+        $self = clone $this;
+        $self['amlSuspicions'] = $amlSuspicions;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Digital certificate associated with the company, if any, including its creation timestamp and filename.
+     *
+     * @param Certificat|array{
+     *   id?: string|null, createdAt?: \DateTimeInterface|null, filename?: string|null
+     * } $certificat
      */
-    public function withCertificat(Certificat $certificat): self
+    public function withCertificat(Certificat|array $certificat): self
     {
-        $obj = clone $this;
-        $obj->certificat = $certificat;
+        $self = clone $this;
+        $self['certificat'] = $certificat;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * List of verification or validation checks applied to the company, including their results and messages.
      *
-     * @param list<Check> $checks
+     * @param list<Check|array{
+     *   masked?: bool|null,
+     *   message?: string|null,
+     *   name?: string|null,
+     *   validate?: bool|null,
+     *   weight?: int|null,
+     * }> $checks
      */
     public function withChecks(array $checks): self
     {
-        $obj = clone $this;
-        $obj->checks = $checks;
+        $self = clone $this;
+        $self['checks'] = $checks;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Main information about the company being registered, including legal name, registration ID, and address.
+     *
+     * @param Company|array{
+     *   address?: string|null,
+     *   closureDate?: \DateTimeInterface|null,
+     *   commercialName?: string|null,
+     *   contact?: Contact|null,
+     *   country?: string|null,
+     *   email?: string|null,
+     *   employees?: int|null,
+     *   employerIdentificationNumber?: string|null,
+     *   insolvencyExists?: bool|null,
+     *   insolvencyOngoing?: bool|null,
+     *   legalForm?: string|null,
+     *   name?: string|null,
+     *   phoneNumber?: string|null,
+     *   registrationDate?: \DateTimeInterface|null,
+     *   registrationID?: string|null,
+     *   shareCapital?: string|null,
+     *   status?: string|null,
+     *   taxIdentificationNumber?: string|null,
+     *   type?: string|null,
+     *   websiteURL?: string|null,
+     * } $company
      */
-    public function withCompany(Company $company): self
+    public function withCompany(Company|array $company): self
     {
-        $obj = clone $this;
-        $obj->company = $company;
+        $self = clone $this;
+        $self['company'] = $company;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * All documents submitted or associated with the company, including their metadata and processing status.
      *
-     * @param list<GenericDocument> $documents
+     * @param list<GenericDocument|array{
+     *   id?: string|null,
+     *   checks?: list<Check>|null,
+     *   createdAt?: \DateTimeInterface|null,
+     *   documentType?: string|null,
+     *   name?: string|null,
+     *   signedURL?: string|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   tables?: list<Table>|null,
+     *   values?: list<Value>|null,
+     * }> $documents
      */
     public function withDocuments(array $documents): self
     {
-        $obj = clone $this;
-        $obj->documents = $documents;
+        $self = clone $this;
+        $self['documents'] = $documents;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * List of members or actors associated with the company, including personal and ownership information.
      *
-     * @param list<Member> $members
+     * @param list<Member|array{
+     *   id?: string|null,
+     *   address?: string|null,
+     *   birthday?: \DateTimeInterface|null,
+     *   birthplace?: string|null,
+     *   country?: string|null,
+     *   documents?: list<GenericDocument>|null,
+     *   email?: string|null,
+     *   firstName?: string|null,
+     *   isBeneficialOwner?: bool|null,
+     *   isDelegator?: bool|null,
+     *   lastName?: string|null,
+     *   livenessVerification?: bool|null,
+     *   name?: string|null,
+     *   ownershipPercentage?: int|null,
+     *   phoneNumber?: string|null,
+     *   postalCode?: string|null,
+     *   registrationID?: string|null,
+     *   relation?: string|null,
+     *   roles?: string|null,
+     *   source?: value-of<Source>|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   type?: value-of<Member\Type>|null,
+     *   workspaceID?: string|null,
+     * }> $members
      */
     public function withMembers(array $members): self
     {
-        $obj = clone $this;
-        $obj->members = $members;
+        $self = clone $this;
+        $self['members'] = $members;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -251,34 +440,40 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
      */
     public function withPortalURL(string $portalURL): self
     {
-        $obj = clone $this;
-        $obj->portal_url = $portalURL;
+        $self = clone $this;
+        $self['portalURL'] = $portalURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Custom key-value metadata fields associated with the company, allowing for flexible data storage.
      *
-     * @param list<Property> $properties
+     * @param list<Property|array{
+     *   name?: string|null, type?: string|null, value?: string|null
+     * }> $properties
      */
     public function withProperties(array $properties): self
     {
-        $obj = clone $this;
-        $obj->properties = $properties;
+        $self = clone $this;
+        $self['properties'] = $properties;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Risk assessment associated with the company, including a risk code, reason, and confidence score.
+     *
+     * @param Risk|array{
+     *   code?: string|null, reason?: string|null, score?: float|null
+     * } $risk
      */
-    public function withRisk(Risk $risk): self
+    public function withRisk(Risk|array $risk): self
     {
-        $obj = clone $this;
-        $obj->risk = $risk;
+        $self = clone $this;
+        $self['risk'] = $risk;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -286,21 +481,47 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
      */
     public function withSourceID(string $sourceID): self
     {
-        $obj = clone $this;
-        $obj->source_id = $sourceID;
+        $self = clone $this;
+        $self['sourceID'] = $sourceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Technical metadata related to the request, such as IP address, QR code settings, and callback URLs.
+     *
+     * @param TechnicalData|array{
+     *   activeAmlSuspicions?: bool|null,
+     *   apiVersion?: int|null,
+     *   approvedAt?: \DateTimeInterface|null,
+     *   callbackURL?: string|null,
+     *   callbackURLNotification?: string|null,
+     *   disableNotification?: bool|null,
+     *   disableNotificationDate?: \DateTimeInterface|null,
+     *   exportType?: string|null,
+     *   filteringScoreAmlSuspicions?: float|null,
+     *   finishedAt?: \DateTimeInterface|null,
+     *   ip?: string|null,
+     *   language?: string|null,
+     *   locationIP?: string|null,
+     *   needReviewAt?: \DateTimeInterface|null,
+     *   notificationConfirmation?: bool|null,
+     *   portalSteps?: list<value-of<PortalStep>>|null,
+     *   qrCode?: string|null,
+     *   rawData?: bool|null,
+     *   rejectedAt?: \DateTimeInterface|null,
+     *   sessionDuration?: int|null,
+     *   startedAt?: \DateTimeInterface|null,
+     *   transferAt?: \DateTimeInterface|null,
+     *   transferMode?: string|null,
+     * } $technicalData
      */
-    public function withTechnicalData(TechnicalData $technicalData): self
+    public function withTechnicalData(TechnicalData|array $technicalData): self
     {
-        $obj = clone $this;
-        $obj->technical_data = $technicalData;
+        $self = clone $this;
+        $self['technicalData'] = $technicalData;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -308,9 +529,9 @@ final class CompanyRegistration implements BaseModel, ResponseConverter
      */
     public function withWebviewURL(string $webviewURL): self
     {
-        $obj = clone $this;
-        $obj->webview_url = $webviewURL;
+        $self = clone $this;
+        $self['webviewURL'] = $webviewURL;
 
-        return $obj;
+        return $self;
     }
 }

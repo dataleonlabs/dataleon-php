@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
+use Dataleon\Core\Attributes\Required;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\IndividualUpdateParams\Person;
+use Dataleon\Individuals\IndividualUpdateParams\Person\Gender;
 use Dataleon\Individuals\IndividualUpdateParams\TechnicalData;
+use Dataleon\Individuals\IndividualUpdateParams\TechnicalData\PortalStep;
 
 /**
  * Update an individual by ID.
@@ -17,10 +20,27 @@ use Dataleon\Individuals\IndividualUpdateParams\TechnicalData;
  * @see Dataleon\Services\IndividualsService::update()
  *
  * @phpstan-type IndividualUpdateParamsShape = array{
- *   workspace_id: string,
- *   person?: Person,
- *   source_id?: string,
- *   technical_data?: TechnicalData,
+ *   workspaceID: string,
+ *   person?: Person|array{
+ *     birthday?: string|null,
+ *     email?: string|null,
+ *     firstName?: string|null,
+ *     gender?: value-of<Gender>|null,
+ *     lastName?: string|null,
+ *     maidenName?: string|null,
+ *     nationality?: string|null,
+ *     phoneNumber?: string|null,
+ *   },
+ *   sourceID?: string,
+ *   technicalData?: TechnicalData|array{
+ *     activeAmlSuspicions?: bool|null,
+ *     callbackURL?: string|null,
+ *     callbackURLNotification?: string|null,
+ *     filteringScoreAmlSuspicions?: float|null,
+ *     language?: string|null,
+ *     portalSteps?: list<value-of<PortalStep>>|null,
+ *     rawData?: bool|null,
+ *   },
  * }
  */
 final class IndividualUpdateParams implements BaseModel
@@ -32,33 +52,33 @@ final class IndividualUpdateParams implements BaseModel
     /**
      * Unique identifier of the workspace where the individual is being registered.
      */
-    #[Api]
-    public string $workspace_id;
+    #[Required('workspace_id')]
+    public string $workspaceID;
 
     /**
      * Personal information about the individual.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Person $person;
 
     /**
      * Optional identifier for tracking the source system or integration from your system.
      */
-    #[Api(optional: true)]
-    public ?string $source_id;
+    #[Optional('source_id')]
+    public ?string $sourceID;
 
     /**
      * Technical metadata related to the request or processing.
      */
-    #[Api(optional: true)]
-    public ?TechnicalData $technical_data;
+    #[Optional('technical_data')]
+    public ?TechnicalData $technicalData;
 
     /**
      * `new IndividualUpdateParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * IndividualUpdateParams::with(workspace_id: ...)
+     * IndividualUpdateParams::with(workspaceID: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -76,22 +96,42 @@ final class IndividualUpdateParams implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Person|array{
+     *   birthday?: string|null,
+     *   email?: string|null,
+     *   firstName?: string|null,
+     *   gender?: value-of<Gender>|null,
+     *   lastName?: string|null,
+     *   maidenName?: string|null,
+     *   nationality?: string|null,
+     *   phoneNumber?: string|null,
+     * } $person
+     * @param TechnicalData|array{
+     *   activeAmlSuspicions?: bool|null,
+     *   callbackURL?: string|null,
+     *   callbackURLNotification?: string|null,
+     *   filteringScoreAmlSuspicions?: float|null,
+     *   language?: string|null,
+     *   portalSteps?: list<value-of<PortalStep>>|null,
+     *   rawData?: bool|null,
+     * } $technicalData
      */
     public static function with(
-        string $workspace_id,
-        ?Person $person = null,
-        ?string $source_id = null,
-        ?TechnicalData $technical_data = null,
+        string $workspaceID,
+        Person|array|null $person = null,
+        ?string $sourceID = null,
+        TechnicalData|array|null $technicalData = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj->workspace_id = $workspace_id;
+        $self['workspaceID'] = $workspaceID;
 
-        null !== $person && $obj->person = $person;
-        null !== $source_id && $obj->source_id = $source_id;
-        null !== $technical_data && $obj->technical_data = $technical_data;
+        null !== $person && $self['person'] = $person;
+        null !== $sourceID && $self['sourceID'] = $sourceID;
+        null !== $technicalData && $self['technicalData'] = $technicalData;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -99,21 +139,32 @@ final class IndividualUpdateParams implements BaseModel
      */
     public function withWorkspaceID(string $workspaceID): self
     {
-        $obj = clone $this;
-        $obj->workspace_id = $workspaceID;
+        $self = clone $this;
+        $self['workspaceID'] = $workspaceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Personal information about the individual.
+     *
+     * @param Person|array{
+     *   birthday?: string|null,
+     *   email?: string|null,
+     *   firstName?: string|null,
+     *   gender?: value-of<Gender>|null,
+     *   lastName?: string|null,
+     *   maidenName?: string|null,
+     *   nationality?: string|null,
+     *   phoneNumber?: string|null,
+     * } $person
      */
-    public function withPerson(Person $person): self
+    public function withPerson(Person|array $person): self
     {
-        $obj = clone $this;
-        $obj->person = $person;
+        $self = clone $this;
+        $self['person'] = $person;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -121,20 +172,30 @@ final class IndividualUpdateParams implements BaseModel
      */
     public function withSourceID(string $sourceID): self
     {
-        $obj = clone $this;
-        $obj->source_id = $sourceID;
+        $self = clone $this;
+        $self['sourceID'] = $sourceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * Technical metadata related to the request or processing.
+     *
+     * @param TechnicalData|array{
+     *   activeAmlSuspicions?: bool|null,
+     *   callbackURL?: string|null,
+     *   callbackURLNotification?: string|null,
+     *   filteringScoreAmlSuspicions?: float|null,
+     *   language?: string|null,
+     *   portalSteps?: list<value-of<PortalStep>>|null,
+     *   rawData?: bool|null,
+     * } $technicalData
      */
-    public function withTechnicalData(TechnicalData $technicalData): self
+    public function withTechnicalData(TechnicalData|array $technicalData): self
     {
-        $obj = clone $this;
-        $obj->technical_data = $technicalData;
+        $self = clone $this;
+        $self['technicalData'] = $technicalData;
 
-        return $obj;
+        return $self;
     }
 }

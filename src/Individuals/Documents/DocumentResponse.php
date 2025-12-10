@@ -4,38 +4,34 @@ declare(strict_types=1);
 
 namespace Dataleon\Individuals\Documents;
 
-use Dataleon\Core\Attributes\Api;
+use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
-use Dataleon\Core\Concerns\SdkResponse;
 use Dataleon\Core\Contracts\BaseModel;
-use Dataleon\Core\Conversion\Contracts\ResponseConverter;
 use Dataleon\Individuals\Documents\DocumentResponse\Document;
 
 /**
  * @phpstan-type DocumentResponseShape = array{
- *   documents?: list<Document>|null, total_document?: int|null
+ *   documents?: list<Document>|null, totalDocument?: int|null
  * }
  */
-final class DocumentResponse implements BaseModel, ResponseConverter
+final class DocumentResponse implements BaseModel
 {
     /** @use SdkModel<DocumentResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * List of documents associated with the response.
      *
      * @var list<Document>|null $documents
      */
-    #[Api(list: Document::class, optional: true)]
+    #[Optional(list: Document::class)]
     public ?array $documents;
 
     /**
      * Total number of documents available in the response.
      */
-    #[Api(optional: true)]
-    public ?int $total_document;
+    #[Optional('total_document')]
+    public ?int $totalDocument;
 
     public function __construct()
     {
@@ -47,31 +43,49 @@ final class DocumentResponse implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Document> $documents
+     * @param list<Document|array{
+     *   id?: string|null,
+     *   documentType?: string|null,
+     *   filename?: string|null,
+     *   name?: string|null,
+     *   signedURL?: string|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   workspaceID?: string|null,
+     * }> $documents
      */
     public static function with(
         ?array $documents = null,
-        ?int $total_document = null
+        ?int $totalDocument = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $documents && $obj->documents = $documents;
-        null !== $total_document && $obj->total_document = $total_document;
+        null !== $documents && $self['documents'] = $documents;
+        null !== $totalDocument && $self['totalDocument'] = $totalDocument;
 
-        return $obj;
+        return $self;
     }
 
     /**
      * List of documents associated with the response.
      *
-     * @param list<Document> $documents
+     * @param list<Document|array{
+     *   id?: string|null,
+     *   documentType?: string|null,
+     *   filename?: string|null,
+     *   name?: string|null,
+     *   signedURL?: string|null,
+     *   state?: string|null,
+     *   status?: string|null,
+     *   workspaceID?: string|null,
+     * }> $documents
      */
     public function withDocuments(array $documents): self
     {
-        $obj = clone $this;
-        $obj->documents = $documents;
+        $self = clone $this;
+        $self['documents'] = $documents;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -79,9 +93,9 @@ final class DocumentResponse implements BaseModel, ResponseConverter
      */
     public function withTotalDocument(int $totalDocument): self
     {
-        $obj = clone $this;
-        $obj->total_document = $totalDocument;
+        $self = clone $this;
+        $self['totalDocument'] = $totalDocument;
 
-        return $obj;
+        return $self;
     }
 }

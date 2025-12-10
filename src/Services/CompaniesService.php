@@ -5,13 +5,10 @@ declare(strict_types=1);
 namespace Dataleon\Services;
 
 use Dataleon\Client;
-use Dataleon\Companies\CompanyCreateParams;
-use Dataleon\Companies\CompanyListParams;
+use Dataleon\Companies\CompanyCreateParams\TechnicalData\PortalStep;
 use Dataleon\Companies\CompanyListParams\State;
+use Dataleon\Companies\CompanyListParams\Status;
 use Dataleon\Companies\CompanyRegistration;
-use Dataleon\Companies\CompanyRetrieveParams;
-use Dataleon\Companies\CompanyUpdateParams;
-use Dataleon\Core\Conversion\ListOf;
 use Dataleon\Core\Exceptions\APIException;
 use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\CompaniesContract;
@@ -22,6 +19,11 @@ final class CompaniesService implements CompaniesContract
     /**
      * @api
      */
+    public CompaniesRawService $raw;
+
+    /**
+     * @api
+     */
     public DocumentsService $documents;
 
     /**
@@ -29,6 +31,7 @@ final class CompaniesService implements CompaniesContract
      */
     public function __construct(private Client $client)
     {
+        $this->raw = new CompaniesRawService($client);
         $this->documents = new DocumentsService($client);
     }
 
@@ -38,55 +41,56 @@ final class CompaniesService implements CompaniesContract
      * Create a new company
      *
      * @param array{
-     *   company: array{
-     *     name: string,
-     *     address?: string,
-     *     commercial_name?: string,
-     *     country?: string,
-     *     email?: string,
-     *     employer_identification_number?: string,
-     *     legal_form?: string,
-     *     phone_number?: string,
-     *     registration_date?: string,
-     *     registration_id?: string,
-     *     share_capital?: string,
-     *     status?: string,
-     *     tax_identification_number?: string,
-     *     type?: string,
-     *     website_url?: string,
-     *   },
-     *   workspace_id: string,
-     *   source_id?: string,
-     *   technical_data?: array{
-     *     active_aml_suspicions?: bool,
-     *     callback_url?: string,
-     *     callback_url_notification?: string,
-     *     filtering_score_aml_suspicions?: float,
-     *     language?: string,
-     *     portal_steps?: list<"identity_verification"|"document_signing"|"proof_of_address"|"selfie"|"face_match">,
-     *     raw_data?: bool,
-     *   },
-     * }|CompanyCreateParams $params
+     *   name: string,
+     *   address?: string,
+     *   commercialName?: string,
+     *   country?: string,
+     *   email?: string,
+     *   employerIdentificationNumber?: string,
+     *   legalForm?: string,
+     *   phoneNumber?: string,
+     *   registrationDate?: string,
+     *   registrationID?: string,
+     *   shareCapital?: string,
+     *   status?: string,
+     *   taxIdentificationNumber?: string,
+     *   type?: string,
+     *   websiteURL?: string,
+     * } $company Main information about the company being registered
+     * @param string $workspaceID unique identifier of the workspace in which the company is being created
+     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
+     * @param array{
+     *   activeAmlSuspicions?: bool,
+     *   callbackURL?: string,
+     *   callbackURLNotification?: string,
+     *   filteringScoreAmlSuspicions?: float,
+     *   language?: string,
+     *   portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|PortalStep>,
+     *   rawData?: bool,
+     * } $technicalData Technical metadata and callback configuration
      *
      * @throws APIException
      */
     public function create(
-        array|CompanyCreateParams $params,
-        ?RequestOptions $requestOptions = null
+        array $company,
+        string $workspaceID,
+        ?string $sourceID = null,
+        ?array $technicalData = null,
+        ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        [$parsed, $options] = CompanyCreateParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = [
+            'company' => $company,
+            'workspaceID' => $workspaceID,
+            'sourceID' => $sourceID,
+            'technicalData' => $technicalData,
+        ];
+        // @phpstan-ignore-next-line function.impossibleType
+        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
 
-        // @phpstan-ignore-next-line;
-        return $this->client->request(
-            method: 'post',
-            path: 'companies',
-            body: (object) $parsed,
-            options: $options,
-            convert: CompanyRegistration::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->create(params: $params, requestOptions: $requestOptions);
+
+        return $response->parse();
     }
 
     /**
@@ -94,28 +98,26 @@ final class CompaniesService implements CompaniesContract
      *
      * Get a company by ID
      *
-     * @param array{document?: bool, scope?: string}|CompanyRetrieveParams $params
+     * @param string $companyID ID of the company
+     * @param bool $document Include document signed url
+     * @param string $scope Scope filter (id or scope)
      *
      * @throws APIException
      */
     public function retrieve(
         string $companyID,
-        array|CompanyRetrieveParams $params,
+        ?bool $document = null,
+        ?string $scope = null,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        [$parsed, $options] = CompanyRetrieveParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = ['document' => $document, 'scope' => $scope];
+        // @phpstan-ignore-next-line function.impossibleType
+        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
 
-        // @phpstan-ignore-next-line;
-        return $this->client->request(
-            method: 'get',
-            path: ['companies/%1$s', $companyID],
-            query: $parsed,
-            options: $options,
-            convert: CompanyRegistration::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->retrieve($companyID, params: $params, requestOptions: $requestOptions);
+
+        return $response->parse();
     }
 
     /**
@@ -123,57 +125,59 @@ final class CompaniesService implements CompaniesContract
      *
      * Update a company by ID
      *
+     * @param string $companyID ID of the company to update
      * @param array{
-     *   company: array{
-     *     name: string,
-     *     address?: string,
-     *     commercial_name?: string,
-     *     country?: string,
-     *     email?: string,
-     *     employer_identification_number?: string,
-     *     legal_form?: string,
-     *     phone_number?: string,
-     *     registration_date?: string,
-     *     registration_id?: string,
-     *     share_capital?: string,
-     *     status?: string,
-     *     tax_identification_number?: string,
-     *     type?: string,
-     *     website_url?: string,
-     *   },
-     *   workspace_id: string,
-     *   source_id?: string,
-     *   technical_data?: array{
-     *     active_aml_suspicions?: bool,
-     *     callback_url?: string,
-     *     callback_url_notification?: string,
-     *     filtering_score_aml_suspicions?: float,
-     *     language?: string,
-     *     portal_steps?: list<"identity_verification"|"document_signing"|"proof_of_address"|"selfie"|"face_match">,
-     *     raw_data?: bool,
-     *   },
-     * }|CompanyUpdateParams $params
+     *   name: string,
+     *   address?: string,
+     *   commercialName?: string,
+     *   country?: string,
+     *   email?: string,
+     *   employerIdentificationNumber?: string,
+     *   legalForm?: string,
+     *   phoneNumber?: string,
+     *   registrationDate?: string,
+     *   registrationID?: string,
+     *   shareCapital?: string,
+     *   status?: string,
+     *   taxIdentificationNumber?: string,
+     *   type?: string,
+     *   websiteURL?: string,
+     * } $company Main information about the company being registered
+     * @param string $workspaceID unique identifier of the workspace in which the company is being created
+     * @param string $sourceID optional identifier to track the origin of the request or integration from your system
+     * @param array{
+     *   activeAmlSuspicions?: bool,
+     *   callbackURL?: string,
+     *   callbackURLNotification?: string,
+     *   filteringScoreAmlSuspicions?: float,
+     *   language?: string,
+     *   portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|\Dataleon\Companies\CompanyUpdateParams\TechnicalData\PortalStep>,
+     *   rawData?: bool,
+     * } $technicalData Technical metadata and callback configuration
      *
      * @throws APIException
      */
     public function update(
         string $companyID,
-        array|CompanyUpdateParams $params,
+        array $company,
+        string $workspaceID,
+        ?string $sourceID = null,
+        ?array $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        [$parsed, $options] = CompanyUpdateParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = [
+            'company' => $company,
+            'workspaceID' => $workspaceID,
+            'sourceID' => $sourceID,
+            'technicalData' => $technicalData,
+        ];
+        // @phpstan-ignore-next-line function.impossibleType
+        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
 
-        // @phpstan-ignore-next-line;
-        return $this->client->request(
-            method: 'put',
-            path: ['companies/%1$s', $companyID],
-            body: (object) $parsed,
-            options: $options,
-            convert: CompanyRegistration::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->update($companyID, params: $params, requestOptions: $requestOptions);
+
+        return $response->parse();
     }
 
     /**
@@ -181,38 +185,47 @@ final class CompaniesService implements CompaniesContract
      *
      * Get all companies
      *
-     * @param array{
-     *   end_date?: string|\DateTimeInterface,
-     *   limit?: int,
-     *   offset?: int,
-     *   source_id?: string,
-     *   start_date?: string|\DateTimeInterface,
-     *   state?: value-of<State>,
-     *   status?: "rejected"|"need_review"|"approved",
-     *   workspace_id?: string,
-     * }|CompanyListParams $params
+     * @param string|\DateTimeInterface $endDate Filter companies created before this date (format YYYY-MM-DD)
+     * @param int $limit Number of results to return (between 1 and 100)
+     * @param int $offset Number of results to skip (must be ≥ 0)
+     * @param string $sourceID Filter by source ID
+     * @param string|\DateTimeInterface $startDate Filter companies created after this date (format YYYY-MM-DD)
+     * @param 'VOID'|'WAITING'|'STARTED'|'RUNNING'|'PROCESSED'|'FAILED'|'ABORTED'|'EXPIRED'|'DELETED'|State $state Filter by company state (must be one of the allowed values)
+     * @param 'rejected'|'need_review'|'approved'|Status $status Filter by individual status (must be one of the allowed values)
+     * @param string $workspaceID Filter by workspace ID
      *
      * @return list<CompanyRegistration>
      *
      * @throws APIException
      */
     public function list(
-        array|CompanyListParams $params,
-        ?RequestOptions $requestOptions = null
+        string|\DateTimeInterface|null $endDate = null,
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $sourceID = null,
+        string|\DateTimeInterface|null $startDate = null,
+        string|State|null $state = null,
+        string|Status|null $status = null,
+        ?string $workspaceID = null,
+        ?RequestOptions $requestOptions = null,
     ): array {
-        [$parsed, $options] = CompanyListParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = [
+            'endDate' => $endDate,
+            'limit' => $limit,
+            'offset' => $offset,
+            'sourceID' => $sourceID,
+            'startDate' => $startDate,
+            'state' => $state,
+            'status' => $status,
+            'workspaceID' => $workspaceID,
+        ];
+        // @phpstan-ignore-next-line function.impossibleType
+        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
 
-        // @phpstan-ignore-next-line;
-        return $this->client->request(
-            method: 'get',
-            path: 'companies',
-            query: $parsed,
-            options: $options,
-            convert: new ListOf(CompanyRegistration::class),
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->list(params: $params, requestOptions: $requestOptions);
+
+        return $response->parse();
     }
 
     /**
@@ -220,18 +233,17 @@ final class CompaniesService implements CompaniesContract
      *
      * Delete a company by ID
      *
+     * @param string $companyID ID of the company to delete
+     *
      * @throws APIException
      */
     public function delete(
         string $companyID,
         ?RequestOptions $requestOptions = null
     ): mixed {
-        // @phpstan-ignore-next-line;
-        return $this->client->request(
-            method: 'delete',
-            path: ['companies/%1$s', $companyID],
-            options: $requestOptions,
-            convert: null,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->delete($companyID, requestOptions: $requestOptions);
+
+        return $response->parse();
     }
 }
