@@ -34,7 +34,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->individuals->create(['workspaceID' => 'wk_123']);
+        $result = $this->client->individuals->create(workspaceID: 'wk_123');
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(Individual::class, $result);
@@ -47,9 +47,9 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->individuals->create([
-            'workspaceID' => 'wk_123',
-            'person' => [
+        $result = $this->client->individuals->create(
+            workspaceID: 'wk_123',
+            person: [
                 'birthday' => '15/05/1985',
                 'email' => 'john.doe@example.com',
                 'firstName' => 'John',
@@ -59,8 +59,8 @@ final class IndividualsTest extends TestCase
                 'nationality' => 'FRA',
                 'phoneNumber' => '+33 1 23 45 67 89',
             ],
-            'sourceID' => 'ID54410069066',
-            'technicalData' => [
+            sourceID: 'ID54410069066',
+            technicalData: [
                 'activeAmlSuspicions' => false,
                 'callbackURL' => 'https://example.com/callback',
                 'callbackURLNotification' => 'https://example.com/notify',
@@ -69,7 +69,7 @@ final class IndividualsTest extends TestCase
                 'portalSteps' => ['identity_verification', 'selfie', 'face_match'],
                 'rawData' => true,
             ],
-        ]);
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(Individual::class, $result);
@@ -82,7 +82,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->individuals->retrieve('individual_id', []);
+        $result = $this->client->individuals->retrieve('individual_id');
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(Individual::class, $result);
@@ -97,7 +97,7 @@ final class IndividualsTest extends TestCase
 
         $result = $this->client->individuals->update(
             'individual_id',
-            ['workspaceID' => 'wk_123']
+            workspaceID: 'wk_123'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -113,28 +113,26 @@ final class IndividualsTest extends TestCase
 
         $result = $this->client->individuals->update(
             'individual_id',
-            [
-                'workspaceID' => 'wk_123',
-                'person' => [
-                    'birthday' => '15/05/1985',
-                    'email' => 'john.doe@example.com',
-                    'firstName' => 'John',
-                    'gender' => 'M',
-                    'lastName' => 'Doe',
-                    'maidenName' => 'John Doe',
-                    'nationality' => 'FRA',
-                    'phoneNumber' => '+33 1 23 45 67 89',
-                ],
-                'sourceID' => 'ID54410069066',
-                'technicalData' => [
-                    'activeAmlSuspicions' => false,
-                    'callbackURL' => 'https://example.com/callback',
-                    'callbackURLNotification' => 'https://example.com/notify',
-                    'filteringScoreAmlSuspicions' => 0.75,
-                    'language' => 'fra',
-                    'portalSteps' => ['identity_verification', 'selfie', 'face_match'],
-                    'rawData' => true,
-                ],
+            workspaceID: 'wk_123',
+            person: [
+                'birthday' => '15/05/1985',
+                'email' => 'john.doe@example.com',
+                'firstName' => 'John',
+                'gender' => 'M',
+                'lastName' => 'Doe',
+                'maidenName' => 'John Doe',
+                'nationality' => 'FRA',
+                'phoneNumber' => '+33 1 23 45 67 89',
+            ],
+            sourceID: 'ID54410069066',
+            technicalData: [
+                'activeAmlSuspicions' => false,
+                'callbackURL' => 'https://example.com/callback',
+                'callbackURLNotification' => 'https://example.com/notify',
+                'filteringScoreAmlSuspicions' => 0.75,
+                'language' => 'fra',
+                'portalSteps' => ['identity_verification', 'selfie', 'face_match'],
+                'rawData' => true,
             ],
         );
 
@@ -149,7 +147,7 @@ final class IndividualsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->individuals->list([]);
+        $result = $this->client->individuals->list();
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertIsList($result);
