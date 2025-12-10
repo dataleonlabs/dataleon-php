@@ -95,18 +95,18 @@ final class Document implements BaseModel
         ?string $status = null,
         ?string $workspaceID = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $id && $obj['id'] = $id;
-        null !== $documentType && $obj['documentType'] = $documentType;
-        null !== $filename && $obj['filename'] = $filename;
-        null !== $name && $obj['name'] = $name;
-        null !== $signedURL && $obj['signedURL'] = $signedURL;
-        null !== $state && $obj['state'] = $state;
-        null !== $status && $obj['status'] = $status;
-        null !== $workspaceID && $obj['workspaceID'] = $workspaceID;
+        null !== $id && $self['id'] = $id;
+        null !== $documentType && $self['documentType'] = $documentType;
+        null !== $filename && $self['filename'] = $filename;
+        null !== $name && $self['name'] = $name;
+        null !== $signedURL && $self['signedURL'] = $signedURL;
+        null !== $state && $self['state'] = $state;
+        null !== $status && $self['status'] = $status;
+        null !== $workspaceID && $self['workspaceID'] = $workspaceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -114,10 +114,10 @@ final class Document implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj['id'] = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -125,10 +125,10 @@ final class Document implements BaseModel
      */
     public function withDocumentType(string $documentType): self
     {
-        $obj = clone $this;
-        $obj['documentType'] = $documentType;
+        $self = clone $this;
+        $self['documentType'] = $documentType;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -136,10 +136,10 @@ final class Document implements BaseModel
      */
     public function withFilename(string $filename): self
     {
-        $obj = clone $this;
-        $obj['filename'] = $filename;
+        $self = clone $this;
+        $self['filename'] = $filename;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -147,10 +147,10 @@ final class Document implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -158,10 +158,10 @@ final class Document implements BaseModel
      */
     public function withSignedURL(string $signedURL): self
     {
-        $obj = clone $this;
-        $obj['signedURL'] = $signedURL;
+        $self = clone $this;
+        $self['signedURL'] = $signedURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -169,10 +169,10 @@ final class Document implements BaseModel
      */
     public function withState(string $state): self
     {
-        $obj = clone $this;
-        $obj['state'] = $state;
+        $self = clone $this;
+        $self['state'] = $state;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -180,10 +180,10 @@ final class Document implements BaseModel
      */
     public function withStatus(string $status): self
     {
-        $obj = clone $this;
-        $obj['status'] = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -191,9 +191,9 @@ final class Document implements BaseModel
      */
     public function withWorkspaceID(string $workspaceID): self
     {
-        $obj = clone $this;
-        $obj['workspaceID'] = $workspaceID;
+        $self = clone $this;
+        $self['workspaceID'] = $workspaceID;
 
-        return $obj;
+        return $self;
     }
 }

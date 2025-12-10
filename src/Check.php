@@ -71,15 +71,15 @@ final class Check implements BaseModel
         ?bool $validate = null,
         ?int $weight = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $masked && $obj['masked'] = $masked;
-        null !== $message && $obj['message'] = $message;
-        null !== $name && $obj['name'] = $name;
-        null !== $validate && $obj['validate'] = $validate;
-        null !== $weight && $obj['weight'] = $weight;
+        null !== $masked && $self['masked'] = $masked;
+        null !== $message && $self['message'] = $message;
+        null !== $name && $self['name'] = $name;
+        null !== $validate && $self['validate'] = $validate;
+        null !== $weight && $self['weight'] = $weight;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -87,10 +87,10 @@ final class Check implements BaseModel
      */
     public function withMasked(bool $masked): self
     {
-        $obj = clone $this;
-        $obj['masked'] = $masked;
+        $self = clone $this;
+        $self['masked'] = $masked;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -98,10 +98,10 @@ final class Check implements BaseModel
      */
     public function withMessage(string $message): self
     {
-        $obj = clone $this;
-        $obj['message'] = $message;
+        $self = clone $this;
+        $self['message'] = $message;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -109,10 +109,10 @@ final class Check implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -120,10 +120,10 @@ final class Check implements BaseModel
      */
     public function withValidate(bool $validate): self
     {
-        $obj = clone $this;
-        $obj['validate'] = $validate;
+        $self = clone $this;
+        $self['validate'] = $validate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -131,9 +131,9 @@ final class Check implements BaseModel
      */
     public function withWeight(int $weight): self
     {
-        $obj = clone $this;
-        $obj['weight'] = $weight;
+        $self = clone $this;
+        $self['weight'] = $weight;
 
-        return $obj;
+        return $self;
     }
 }

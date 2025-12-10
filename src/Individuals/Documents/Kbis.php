@@ -180,25 +180,25 @@ final class Kbis implements BaseModel
         ?\DateTimeInterface $registrationDate = null,
         ?string $sirenInfo = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $activities && $obj['activities'] = $activities;
-        null !== $address && $obj['address'] = $address;
-        null !== $capitalSocial && $obj['capitalSocial'] = $capitalSocial;
-        null !== $closureDate && $obj['closureDate'] = $closureDate;
-        null !== $companyName && $obj['companyName'] = $companyName;
-        null !== $documentDate && $obj['documentDate'] = $documentDate;
-        null !== $documentType && $obj['documentType'] = $documentType;
-        null !== $firstClosureDate && $obj['firstClosureDate'] = $firstClosureDate;
-        null !== $fromGreffe && $obj['fromGreffe'] = $fromGreffe;
-        null !== $legalForm && $obj['legalForm'] = $legalForm;
-        null !== $members && $obj['members'] = $members;
-        null !== $ngestion && $obj['ngestion'] = $ngestion;
-        null !== $rcsNumber && $obj['rcsNumber'] = $rcsNumber;
-        null !== $registrationDate && $obj['registrationDate'] = $registrationDate;
-        null !== $sirenInfo && $obj['sirenInfo'] = $sirenInfo;
+        null !== $activities && $self['activities'] = $activities;
+        null !== $address && $self['address'] = $address;
+        null !== $capitalSocial && $self['capitalSocial'] = $capitalSocial;
+        null !== $closureDate && $self['closureDate'] = $closureDate;
+        null !== $companyName && $self['companyName'] = $companyName;
+        null !== $documentDate && $self['documentDate'] = $documentDate;
+        null !== $documentType && $self['documentType'] = $documentType;
+        null !== $firstClosureDate && $self['firstClosureDate'] = $firstClosureDate;
+        null !== $fromGreffe && $self['fromGreffe'] = $fromGreffe;
+        null !== $legalForm && $self['legalForm'] = $legalForm;
+        null !== $members && $self['members'] = $members;
+        null !== $ngestion && $self['ngestion'] = $ngestion;
+        null !== $rcsNumber && $self['rcsNumber'] = $rcsNumber;
+        null !== $registrationDate && $self['registrationDate'] = $registrationDate;
+        null !== $sirenInfo && $self['sirenInfo'] = $sirenInfo;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -206,10 +206,10 @@ final class Kbis implements BaseModel
      */
     public function withActivities(string $activities): self
     {
-        $obj = clone $this;
-        $obj['activities'] = $activities;
+        $self = clone $this;
+        $self['activities'] = $activities;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -217,10 +217,10 @@ final class Kbis implements BaseModel
      */
     public function withAddress(string $address): self
     {
-        $obj = clone $this;
-        $obj['address'] = $address;
+        $self = clone $this;
+        $self['address'] = $address;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -228,10 +228,10 @@ final class Kbis implements BaseModel
      */
     public function withCapitalSocial(string $capitalSocial): self
     {
-        $obj = clone $this;
-        $obj['capitalSocial'] = $capitalSocial;
+        $self = clone $this;
+        $self['capitalSocial'] = $capitalSocial;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -239,10 +239,10 @@ final class Kbis implements BaseModel
      */
     public function withClosureDate(\DateTimeInterface $closureDate): self
     {
-        $obj = clone $this;
-        $obj['closureDate'] = $closureDate;
+        $self = clone $this;
+        $self['closureDate'] = $closureDate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -250,10 +250,10 @@ final class Kbis implements BaseModel
      */
     public function withCompanyName(string $companyName): self
     {
-        $obj = clone $this;
-        $obj['companyName'] = $companyName;
+        $self = clone $this;
+        $self['companyName'] = $companyName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -261,10 +261,10 @@ final class Kbis implements BaseModel
      */
     public function withDocumentDate(\DateTimeInterface $documentDate): self
     {
-        $obj = clone $this;
-        $obj['documentDate'] = $documentDate;
+        $self = clone $this;
+        $self['documentDate'] = $documentDate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -272,10 +272,10 @@ final class Kbis implements BaseModel
      */
     public function withDocumentType(string $documentType): self
     {
-        $obj = clone $this;
-        $obj['documentType'] = $documentType;
+        $self = clone $this;
+        $self['documentType'] = $documentType;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -284,10 +284,10 @@ final class Kbis implements BaseModel
     public function withFirstClosureDate(
         \DateTimeInterface $firstClosureDate
     ): self {
-        $obj = clone $this;
-        $obj['firstClosureDate'] = $firstClosureDate;
+        $self = clone $this;
+        $self['firstClosureDate'] = $firstClosureDate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -295,10 +295,10 @@ final class Kbis implements BaseModel
      */
     public function withFromGreffe(string $fromGreffe): self
     {
-        $obj = clone $this;
-        $obj['fromGreffe'] = $fromGreffe;
+        $self = clone $this;
+        $self['fromGreffe'] = $fromGreffe;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -306,10 +306,10 @@ final class Kbis implements BaseModel
      */
     public function withLegalForm(string $legalForm): self
     {
-        $obj = clone $this;
-        $obj['legalForm'] = $legalForm;
+        $self = clone $this;
+        $self['legalForm'] = $legalForm;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -342,10 +342,10 @@ final class Kbis implements BaseModel
      */
     public function withMembers(array $members): self
     {
-        $obj = clone $this;
-        $obj['members'] = $members;
+        $self = clone $this;
+        $self['members'] = $members;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -353,10 +353,10 @@ final class Kbis implements BaseModel
      */
     public function withNgestion(string $ngestion): self
     {
-        $obj = clone $this;
-        $obj['ngestion'] = $ngestion;
+        $self = clone $this;
+        $self['ngestion'] = $ngestion;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -364,10 +364,10 @@ final class Kbis implements BaseModel
      */
     public function withRcsNumber(string $rcsNumber): self
     {
-        $obj = clone $this;
-        $obj['rcsNumber'] = $rcsNumber;
+        $self = clone $this;
+        $self['rcsNumber'] = $rcsNumber;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -376,10 +376,10 @@ final class Kbis implements BaseModel
     public function withRegistrationDate(
         \DateTimeInterface $registrationDate
     ): self {
-        $obj = clone $this;
-        $obj['registrationDate'] = $registrationDate;
+        $self = clone $this;
+        $self['registrationDate'] = $registrationDate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -387,9 +387,9 @@ final class Kbis implements BaseModel
      */
     public function withSirenInfo(string $sirenInfo): self
     {
-        $obj = clone $this;
-        $obj['sirenInfo'] = $sirenInfo;
+        $self = clone $this;
+        $self['sirenInfo'] = $sirenInfo;
 
-        return $obj;
+        return $self;
     }
 }

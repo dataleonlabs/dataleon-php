@@ -132,20 +132,20 @@ final class GenericDocument implements BaseModel
         ?array $tables = null,
         ?array $values = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $id && $obj['id'] = $id;
-        null !== $checks && $obj['checks'] = $checks;
-        null !== $createdAt && $obj['createdAt'] = $createdAt;
-        null !== $documentType && $obj['documentType'] = $documentType;
-        null !== $name && $obj['name'] = $name;
-        null !== $signedURL && $obj['signedURL'] = $signedURL;
-        null !== $state && $obj['state'] = $state;
-        null !== $status && $obj['status'] = $status;
-        null !== $tables && $obj['tables'] = $tables;
-        null !== $values && $obj['values'] = $values;
+        null !== $id && $self['id'] = $id;
+        null !== $checks && $self['checks'] = $checks;
+        null !== $createdAt && $self['createdAt'] = $createdAt;
+        null !== $documentType && $self['documentType'] = $documentType;
+        null !== $name && $self['name'] = $name;
+        null !== $signedURL && $self['signedURL'] = $signedURL;
+        null !== $state && $self['state'] = $state;
+        null !== $status && $self['status'] = $status;
+        null !== $tables && $self['tables'] = $tables;
+        null !== $values && $self['values'] = $values;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -153,10 +153,10 @@ final class GenericDocument implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj['id'] = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -172,10 +172,10 @@ final class GenericDocument implements BaseModel
      */
     public function withChecks(array $checks): self
     {
-        $obj = clone $this;
-        $obj['checks'] = $checks;
+        $self = clone $this;
+        $self['checks'] = $checks;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -183,10 +183,10 @@ final class GenericDocument implements BaseModel
      */
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $obj = clone $this;
-        $obj['createdAt'] = $createdAt;
+        $self = clone $this;
+        $self['createdAt'] = $createdAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -194,10 +194,10 @@ final class GenericDocument implements BaseModel
      */
     public function withDocumentType(string $documentType): self
     {
-        $obj = clone $this;
-        $obj['documentType'] = $documentType;
+        $self = clone $this;
+        $self['documentType'] = $documentType;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -205,10 +205,10 @@ final class GenericDocument implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -216,10 +216,10 @@ final class GenericDocument implements BaseModel
      */
     public function withSignedURL(string $signedURL): self
     {
-        $obj = clone $this;
-        $obj['signedURL'] = $signedURL;
+        $self = clone $this;
+        $self['signedURL'] = $signedURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -227,10 +227,10 @@ final class GenericDocument implements BaseModel
      */
     public function withState(string $state): self
     {
-        $obj = clone $this;
-        $obj['state'] = $state;
+        $self = clone $this;
+        $self['state'] = $state;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -238,10 +238,10 @@ final class GenericDocument implements BaseModel
      */
     public function withStatus(string $status): self
     {
-        $obj = clone $this;
-        $obj['status'] = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -251,10 +251,10 @@ final class GenericDocument implements BaseModel
      */
     public function withTables(array $tables): self
     {
-        $obj = clone $this;
-        $obj['tables'] = $tables;
+        $self = clone $this;
+        $self['tables'] = $tables;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -266,9 +266,9 @@ final class GenericDocument implements BaseModel
      */
     public function withValues(array $values): self
     {
-        $obj = clone $this;
-        $obj['values'] = $values;
+        $self = clone $this;
+        $self['values'] = $values;
 
-        return $obj;
+        return $self;
     }
 }

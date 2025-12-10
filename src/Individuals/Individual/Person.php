@@ -111,20 +111,20 @@ final class Person implements BaseModel
         ?string $nationality = null,
         ?string $phoneNumber = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $birthday && $obj['birthday'] = $birthday;
-        null !== $email && $obj['email'] = $email;
-        null !== $faceImageSignedURL && $obj['faceImageSignedURL'] = $faceImageSignedURL;
-        null !== $firstName && $obj['firstName'] = $firstName;
-        null !== $fullName && $obj['fullName'] = $fullName;
-        null !== $gender && $obj['gender'] = $gender;
-        null !== $lastName && $obj['lastName'] = $lastName;
-        null !== $maidenName && $obj['maidenName'] = $maidenName;
-        null !== $nationality && $obj['nationality'] = $nationality;
-        null !== $phoneNumber && $obj['phoneNumber'] = $phoneNumber;
+        null !== $birthday && $self['birthday'] = $birthday;
+        null !== $email && $self['email'] = $email;
+        null !== $faceImageSignedURL && $self['faceImageSignedURL'] = $faceImageSignedURL;
+        null !== $firstName && $self['firstName'] = $firstName;
+        null !== $fullName && $self['fullName'] = $fullName;
+        null !== $gender && $self['gender'] = $gender;
+        null !== $lastName && $self['lastName'] = $lastName;
+        null !== $maidenName && $self['maidenName'] = $maidenName;
+        null !== $nationality && $self['nationality'] = $nationality;
+        null !== $phoneNumber && $self['phoneNumber'] = $phoneNumber;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -132,10 +132,10 @@ final class Person implements BaseModel
      */
     public function withBirthday(string $birthday): self
     {
-        $obj = clone $this;
-        $obj['birthday'] = $birthday;
+        $self = clone $this;
+        $self['birthday'] = $birthday;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -143,10 +143,10 @@ final class Person implements BaseModel
      */
     public function withEmail(string $email): self
     {
-        $obj = clone $this;
-        $obj['email'] = $email;
+        $self = clone $this;
+        $self['email'] = $email;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -154,10 +154,10 @@ final class Person implements BaseModel
      */
     public function withFaceImageSignedURL(string $faceImageSignedURL): self
     {
-        $obj = clone $this;
-        $obj['faceImageSignedURL'] = $faceImageSignedURL;
+        $self = clone $this;
+        $self['faceImageSignedURL'] = $faceImageSignedURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -165,10 +165,10 @@ final class Person implements BaseModel
      */
     public function withFirstName(string $firstName): self
     {
-        $obj = clone $this;
-        $obj['firstName'] = $firstName;
+        $self = clone $this;
+        $self['firstName'] = $firstName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -176,10 +176,10 @@ final class Person implements BaseModel
      */
     public function withFullName(string $fullName): self
     {
-        $obj = clone $this;
-        $obj['fullName'] = $fullName;
+        $self = clone $this;
+        $self['fullName'] = $fullName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -187,10 +187,10 @@ final class Person implements BaseModel
      */
     public function withGender(string $gender): self
     {
-        $obj = clone $this;
-        $obj['gender'] = $gender;
+        $self = clone $this;
+        $self['gender'] = $gender;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -198,10 +198,10 @@ final class Person implements BaseModel
      */
     public function withLastName(string $lastName): self
     {
-        $obj = clone $this;
-        $obj['lastName'] = $lastName;
+        $self = clone $this;
+        $self['lastName'] = $lastName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -209,10 +209,10 @@ final class Person implements BaseModel
      */
     public function withMaidenName(string $maidenName): self
     {
-        $obj = clone $this;
-        $obj['maidenName'] = $maidenName;
+        $self = clone $this;
+        $self['maidenName'] = $maidenName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -220,10 +220,10 @@ final class Person implements BaseModel
      */
     public function withNationality(string $nationality): self
     {
-        $obj = clone $this;
-        $obj['nationality'] = $nationality;
+        $self = clone $this;
+        $self['nationality'] = $nationality;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -231,9 +231,9 @@ final class Person implements BaseModel
      */
     public function withPhoneNumber(string $phoneNumber): self
     {
-        $obj = clone $this;
-        $obj['phoneNumber'] = $phoneNumber;
+        $self = clone $this;
+        $self['phoneNumber'] = $phoneNumber;
 
-        return $obj;
+        return $self;
     }
 }

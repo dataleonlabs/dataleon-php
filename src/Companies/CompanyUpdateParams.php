@@ -136,15 +136,15 @@ final class CompanyUpdateParams implements BaseModel
         ?string $sourceID = null,
         TechnicalData|array|null $technicalData = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['company'] = $company;
-        $obj['workspaceID'] = $workspaceID;
+        $self['company'] = $company;
+        $self['workspaceID'] = $workspaceID;
 
-        null !== $sourceID && $obj['sourceID'] = $sourceID;
-        null !== $technicalData && $obj['technicalData'] = $technicalData;
+        null !== $sourceID && $self['sourceID'] = $sourceID;
+        null !== $technicalData && $self['technicalData'] = $technicalData;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -170,10 +170,10 @@ final class CompanyUpdateParams implements BaseModel
      */
     public function withCompany(Company|array $company): self
     {
-        $obj = clone $this;
-        $obj['company'] = $company;
+        $self = clone $this;
+        $self['company'] = $company;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -181,10 +181,10 @@ final class CompanyUpdateParams implements BaseModel
      */
     public function withWorkspaceID(string $workspaceID): self
     {
-        $obj = clone $this;
-        $obj['workspaceID'] = $workspaceID;
+        $self = clone $this;
+        $self['workspaceID'] = $workspaceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -192,10 +192,10 @@ final class CompanyUpdateParams implements BaseModel
      */
     public function withSourceID(string $sourceID): self
     {
-        $obj = clone $this;
-        $obj['sourceID'] = $sourceID;
+        $self = clone $this;
+        $self['sourceID'] = $sourceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -213,9 +213,9 @@ final class CompanyUpdateParams implements BaseModel
      */
     public function withTechnicalData(TechnicalData|array $technicalData): self
     {
-        $obj = clone $this;
-        $obj['technicalData'] = $technicalData;
+        $self = clone $this;
+        $self['technicalData'] = $technicalData;
 
-        return $obj;
+        return $self;
     }
 }

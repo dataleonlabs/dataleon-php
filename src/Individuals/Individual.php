@@ -316,30 +316,30 @@ final class Individual implements BaseModel
         ?string $webviewURL = null,
         ?string $workspaceID = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $id && $obj['id'] = $id;
-        null !== $amlSuspicions && $obj['amlSuspicions'] = $amlSuspicions;
-        null !== $authURL && $obj['authURL'] = $authURL;
-        null !== $certificat && $obj['certificat'] = $certificat;
-        null !== $checks && $obj['checks'] = $checks;
-        null !== $createdAt && $obj['createdAt'] = $createdAt;
-        null !== $documents && $obj['documents'] = $documents;
-        null !== $identityCard && $obj['identityCard'] = $identityCard;
-        null !== $number && $obj['number'] = $number;
-        null !== $person && $obj['person'] = $person;
-        null !== $portalURL && $obj['portalURL'] = $portalURL;
-        null !== $properties && $obj['properties'] = $properties;
-        null !== $risk && $obj['risk'] = $risk;
-        null !== $sourceID && $obj['sourceID'] = $sourceID;
-        null !== $state && $obj['state'] = $state;
-        null !== $status && $obj['status'] = $status;
-        null !== $tags && $obj['tags'] = $tags;
-        null !== $technicalData && $obj['technicalData'] = $technicalData;
-        null !== $webviewURL && $obj['webviewURL'] = $webviewURL;
-        null !== $workspaceID && $obj['workspaceID'] = $workspaceID;
+        null !== $id && $self['id'] = $id;
+        null !== $amlSuspicions && $self['amlSuspicions'] = $amlSuspicions;
+        null !== $authURL && $self['authURL'] = $authURL;
+        null !== $certificat && $self['certificat'] = $certificat;
+        null !== $checks && $self['checks'] = $checks;
+        null !== $createdAt && $self['createdAt'] = $createdAt;
+        null !== $documents && $self['documents'] = $documents;
+        null !== $identityCard && $self['identityCard'] = $identityCard;
+        null !== $number && $self['number'] = $number;
+        null !== $person && $self['person'] = $person;
+        null !== $portalURL && $self['portalURL'] = $portalURL;
+        null !== $properties && $self['properties'] = $properties;
+        null !== $risk && $self['risk'] = $risk;
+        null !== $sourceID && $self['sourceID'] = $sourceID;
+        null !== $state && $self['state'] = $state;
+        null !== $status && $self['status'] = $status;
+        null !== $tags && $self['tags'] = $tags;
+        null !== $technicalData && $self['technicalData'] = $technicalData;
+        null !== $webviewURL && $self['webviewURL'] = $webviewURL;
+        null !== $workspaceID && $self['workspaceID'] = $workspaceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -347,10 +347,10 @@ final class Individual implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj['id'] = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -370,10 +370,10 @@ final class Individual implements BaseModel
      */
     public function withAmlSuspicions(array $amlSuspicions): self
     {
-        $obj = clone $this;
-        $obj['amlSuspicions'] = $amlSuspicions;
+        $self = clone $this;
+        $self['amlSuspicions'] = $amlSuspicions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -381,10 +381,10 @@ final class Individual implements BaseModel
      */
     public function withAuthURL(string $authURL): self
     {
-        $obj = clone $this;
-        $obj['authURL'] = $authURL;
+        $self = clone $this;
+        $self['authURL'] = $authURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -396,10 +396,10 @@ final class Individual implements BaseModel
      */
     public function withCertificat(Certificat|array $certificat): self
     {
-        $obj = clone $this;
-        $obj['certificat'] = $certificat;
+        $self = clone $this;
+        $self['certificat'] = $certificat;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -415,10 +415,10 @@ final class Individual implements BaseModel
      */
     public function withChecks(array $checks): self
     {
-        $obj = clone $this;
-        $obj['checks'] = $checks;
+        $self = clone $this;
+        $self['checks'] = $checks;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -426,10 +426,10 @@ final class Individual implements BaseModel
      */
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $obj = clone $this;
-        $obj['createdAt'] = $createdAt;
+        $self = clone $this;
+        $self['createdAt'] = $createdAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -450,10 +450,10 @@ final class Individual implements BaseModel
      */
     public function withDocuments(array $documents): self
     {
-        $obj = clone $this;
-        $obj['documents'] = $documents;
+        $self = clone $this;
+        $self['documents'] = $documents;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -479,10 +479,10 @@ final class Individual implements BaseModel
      */
     public function withIdentityCard(IdentityCard|array $identityCard): self
     {
-        $obj = clone $this;
-        $obj['identityCard'] = $identityCard;
+        $self = clone $this;
+        $self['identityCard'] = $identityCard;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -490,10 +490,10 @@ final class Individual implements BaseModel
      */
     public function withNumber(int $number): self
     {
-        $obj = clone $this;
-        $obj['number'] = $number;
+        $self = clone $this;
+        $self['number'] = $number;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -514,10 +514,10 @@ final class Individual implements BaseModel
      */
     public function withPerson(Person|array $person): self
     {
-        $obj = clone $this;
-        $obj['person'] = $person;
+        $self = clone $this;
+        $self['person'] = $person;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -525,10 +525,10 @@ final class Individual implements BaseModel
      */
     public function withPortalURL(string $portalURL): self
     {
-        $obj = clone $this;
-        $obj['portalURL'] = $portalURL;
+        $self = clone $this;
+        $self['portalURL'] = $portalURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -540,10 +540,10 @@ final class Individual implements BaseModel
      */
     public function withProperties(array $properties): self
     {
-        $obj = clone $this;
-        $obj['properties'] = $properties;
+        $self = clone $this;
+        $self['properties'] = $properties;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -555,10 +555,10 @@ final class Individual implements BaseModel
      */
     public function withRisk(Risk|array $risk): self
     {
-        $obj = clone $this;
-        $obj['risk'] = $risk;
+        $self = clone $this;
+        $self['risk'] = $risk;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -566,10 +566,10 @@ final class Individual implements BaseModel
      */
     public function withSourceID(string $sourceID): self
     {
-        $obj = clone $this;
-        $obj['sourceID'] = $sourceID;
+        $self = clone $this;
+        $self['sourceID'] = $sourceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -577,10 +577,10 @@ final class Individual implements BaseModel
      */
     public function withState(string $state): self
     {
-        $obj = clone $this;
-        $obj['state'] = $state;
+        $self = clone $this;
+        $self['state'] = $state;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -588,10 +588,10 @@ final class Individual implements BaseModel
      */
     public function withStatus(string $status): self
     {
-        $obj = clone $this;
-        $obj['status'] = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -606,10 +606,10 @@ final class Individual implements BaseModel
      */
     public function withTags(array $tags): self
     {
-        $obj = clone $this;
-        $obj['tags'] = $tags;
+        $self = clone $this;
+        $self['tags'] = $tags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -643,10 +643,10 @@ final class Individual implements BaseModel
      */
     public function withTechnicalData(TechnicalData|array $technicalData): self
     {
-        $obj = clone $this;
-        $obj['technicalData'] = $technicalData;
+        $self = clone $this;
+        $self['technicalData'] = $technicalData;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -654,10 +654,10 @@ final class Individual implements BaseModel
      */
     public function withWebviewURL(string $webviewURL): self
     {
-        $obj = clone $this;
-        $obj['webviewURL'] = $webviewURL;
+        $self = clone $this;
+        $self['webviewURL'] = $webviewURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -665,9 +665,9 @@ final class Individual implements BaseModel
      */
     public function withWorkspaceID(string $workspaceID): self
     {
-        $obj = clone $this;
-        $obj['workspaceID'] = $workspaceID;
+        $self = clone $this;
+        $self['workspaceID'] = $workspaceID;
 
-        return $obj;
+        return $self;
     }
 }

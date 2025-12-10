@@ -58,12 +58,12 @@ final class DocumentResponse implements BaseModel
         ?array $documents = null,
         ?int $totalDocument = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $documents && $obj['documents'] = $documents;
-        null !== $totalDocument && $obj['totalDocument'] = $totalDocument;
+        null !== $documents && $self['documents'] = $documents;
+        null !== $totalDocument && $self['totalDocument'] = $totalDocument;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -82,10 +82,10 @@ final class DocumentResponse implements BaseModel
      */
     public function withDocuments(array $documents): self
     {
-        $obj = clone $this;
-        $obj['documents'] = $documents;
+        $self = clone $this;
+        $self['documents'] = $documents;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -93,9 +93,9 @@ final class DocumentResponse implements BaseModel
      */
     public function withTotalDocument(int $totalDocument): self
     {
-        $obj = clone $this;
-        $obj['totalDocument'] = $totalDocument;
+        $self = clone $this;
+        $self['totalDocument'] = $totalDocument;
 
-        return $obj;
+        return $self;
     }
 }
