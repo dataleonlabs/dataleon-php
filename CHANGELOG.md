@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.17.0 (2025-12-10)
+
+Full Changelog: [v0.16.1...v0.17.0](https://github.com/dataleonlabs/dataleon-php/compare/v0.16.1...v0.17.0)
+
+### ⚠ BREAKING CHANGES
+
+* use camel casing for all class properties
+
+### Features
+
+* add `BaseResponse` class for accessing raw responses ([c035e6e](https://github.com/dataleonlabs/dataleon-php/commit/c035e6e77e859a60f99576a4cba497c466314a39))
+* allow both model class instances and arrays in setters ([4b42c3b](https://github.com/dataleonlabs/dataleon-php/commit/4b42c3b405429d3a970e0efb0110b77496d0a724))
+* split out services into normal & raw types ([f7db91a](https://github.com/dataleonlabs/dataleon-php/commit/f7db91af52a17f95c9976c3f815f483820a8ae7e))
+* use camel casing for all class properties ([cf22293](https://github.com/dataleonlabs/dataleon-php/commit/cf22293cb15b53003246e4340d39521503d8d192))
+
+
+### Chores
+
+* be more targeted in suppressing superfluous linter warnings ([47944e2](https://github.com/dataleonlabs/dataleon-php/commit/47944e274f9b14660c979092157892daa11bc573))
+* better support for phpstan ([3c0b445](https://github.com/dataleonlabs/dataleon-php/commit/3c0b44526d3ea60da642aa3b603430912c1ee7ad))
+* ensure constant values are marked as optional in array types ([63b01bf](https://github.com/dataleonlabs/dataleon-php/commit/63b01bf5d7c6d78676248e149f69ab2b5f71da9d))
+* formatting ([0574c1b](https://github.com/dataleonlabs/dataleon-php/commit/0574c1ba246853c124cf04295a8e300f773b0eb3))
+* switch from `#[Api(optional: true|false)]` to `#[Required]|#[Optional]` for annotations ([1f849a3](https://github.com/dataleonlabs/dataleon-php/commit/1f849a3ab12a147298f74e1cf5e611dc7d9cd48c))
+* use `$self = clone $this;` instead of `$obj = clone $this;` ([0ac9f04](https://github.com/dataleonlabs/dataleon-php/commit/0ac9f046f03418ee83e21dc039a2fbea067abce5))
+* use non-trivial test assertions ([6212981](https://github.com/dataleonlabs/dataleon-php/commit/6212981b9fe0d9b78c5b1ebfd6bfe8e56c92598c))
+* use single quote strings ([45733a2](https://github.com/dataleonlabs/dataleon-php/commit/45733a215f349fda3b1857f01c0f8487995a229f))
+
 ## 0.16.1 (2025-11-25)
 
 Full Changelog: [v0.16.0...v0.16.1](https://github.com/dataleonlabs/dataleon-php/compare/v0.16.0...v0.16.1)
