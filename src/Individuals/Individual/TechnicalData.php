@@ -220,33 +220,33 @@ final class TechnicalData implements BaseModel
         ?\DateTimeInterface $transferAt = null,
         ?string $transferMode = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $activeAmlSuspicions && $obj['activeAmlSuspicions'] = $activeAmlSuspicions;
-        null !== $apiVersion && $obj['apiVersion'] = $apiVersion;
-        null !== $approvedAt && $obj['approvedAt'] = $approvedAt;
-        null !== $callbackURL && $obj['callbackURL'] = $callbackURL;
-        null !== $callbackURLNotification && $obj['callbackURLNotification'] = $callbackURLNotification;
-        null !== $disableNotification && $obj['disableNotification'] = $disableNotification;
-        null !== $disableNotificationDate && $obj['disableNotificationDate'] = $disableNotificationDate;
-        null !== $exportType && $obj['exportType'] = $exportType;
-        null !== $filteringScoreAmlSuspicions && $obj['filteringScoreAmlSuspicions'] = $filteringScoreAmlSuspicions;
-        null !== $finishedAt && $obj['finishedAt'] = $finishedAt;
-        null !== $ip && $obj['ip'] = $ip;
-        null !== $language && $obj['language'] = $language;
-        null !== $locationIP && $obj['locationIP'] = $locationIP;
-        null !== $needReviewAt && $obj['needReviewAt'] = $needReviewAt;
-        null !== $notificationConfirmation && $obj['notificationConfirmation'] = $notificationConfirmation;
-        null !== $portalSteps && $obj['portalSteps'] = $portalSteps;
-        null !== $qrCode && $obj['qrCode'] = $qrCode;
-        null !== $rawData && $obj['rawData'] = $rawData;
-        null !== $rejectedAt && $obj['rejectedAt'] = $rejectedAt;
-        null !== $sessionDuration && $obj['sessionDuration'] = $sessionDuration;
-        null !== $startedAt && $obj['startedAt'] = $startedAt;
-        null !== $transferAt && $obj['transferAt'] = $transferAt;
-        null !== $transferMode && $obj['transferMode'] = $transferMode;
+        null !== $activeAmlSuspicions && $self['activeAmlSuspicions'] = $activeAmlSuspicions;
+        null !== $apiVersion && $self['apiVersion'] = $apiVersion;
+        null !== $approvedAt && $self['approvedAt'] = $approvedAt;
+        null !== $callbackURL && $self['callbackURL'] = $callbackURL;
+        null !== $callbackURLNotification && $self['callbackURLNotification'] = $callbackURLNotification;
+        null !== $disableNotification && $self['disableNotification'] = $disableNotification;
+        null !== $disableNotificationDate && $self['disableNotificationDate'] = $disableNotificationDate;
+        null !== $exportType && $self['exportType'] = $exportType;
+        null !== $filteringScoreAmlSuspicions && $self['filteringScoreAmlSuspicions'] = $filteringScoreAmlSuspicions;
+        null !== $finishedAt && $self['finishedAt'] = $finishedAt;
+        null !== $ip && $self['ip'] = $ip;
+        null !== $language && $self['language'] = $language;
+        null !== $locationIP && $self['locationIP'] = $locationIP;
+        null !== $needReviewAt && $self['needReviewAt'] = $needReviewAt;
+        null !== $notificationConfirmation && $self['notificationConfirmation'] = $notificationConfirmation;
+        null !== $portalSteps && $self['portalSteps'] = $portalSteps;
+        null !== $qrCode && $self['qrCode'] = $qrCode;
+        null !== $rawData && $self['rawData'] = $rawData;
+        null !== $rejectedAt && $self['rejectedAt'] = $rejectedAt;
+        null !== $sessionDuration && $self['sessionDuration'] = $sessionDuration;
+        null !== $startedAt && $self['startedAt'] = $startedAt;
+        null !== $transferAt && $self['transferAt'] = $transferAt;
+        null !== $transferMode && $self['transferMode'] = $transferMode;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -254,10 +254,10 @@ final class TechnicalData implements BaseModel
      */
     public function withActiveAmlSuspicions(bool $activeAmlSuspicions): self
     {
-        $obj = clone $this;
-        $obj['activeAmlSuspicions'] = $activeAmlSuspicions;
+        $self = clone $this;
+        $self['activeAmlSuspicions'] = $activeAmlSuspicions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -265,10 +265,10 @@ final class TechnicalData implements BaseModel
      */
     public function withAPIVersion(int $apiVersion): self
     {
-        $obj = clone $this;
-        $obj['apiVersion'] = $apiVersion;
+        $self = clone $this;
+        $self['apiVersion'] = $apiVersion;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -276,10 +276,10 @@ final class TechnicalData implements BaseModel
      */
     public function withApprovedAt(\DateTimeInterface $approvedAt): self
     {
-        $obj = clone $this;
-        $obj['approvedAt'] = $approvedAt;
+        $self = clone $this;
+        $self['approvedAt'] = $approvedAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -287,10 +287,10 @@ final class TechnicalData implements BaseModel
      */
     public function withCallbackURL(string $callbackURL): self
     {
-        $obj = clone $this;
-        $obj['callbackURL'] = $callbackURL;
+        $self = clone $this;
+        $self['callbackURL'] = $callbackURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -299,10 +299,10 @@ final class TechnicalData implements BaseModel
     public function withCallbackURLNotification(
         string $callbackURLNotification
     ): self {
-        $obj = clone $this;
-        $obj['callbackURLNotification'] = $callbackURLNotification;
+        $self = clone $this;
+        $self['callbackURLNotification'] = $callbackURLNotification;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -310,10 +310,10 @@ final class TechnicalData implements BaseModel
      */
     public function withDisableNotification(bool $disableNotification): self
     {
-        $obj = clone $this;
-        $obj['disableNotification'] = $disableNotification;
+        $self = clone $this;
+        $self['disableNotification'] = $disableNotification;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -322,10 +322,10 @@ final class TechnicalData implements BaseModel
     public function withDisableNotificationDate(
         ?\DateTimeInterface $disableNotificationDate
     ): self {
-        $obj = clone $this;
-        $obj['disableNotificationDate'] = $disableNotificationDate;
+        $self = clone $this;
+        $self['disableNotificationDate'] = $disableNotificationDate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -333,10 +333,10 @@ final class TechnicalData implements BaseModel
      */
     public function withExportType(string $exportType): self
     {
-        $obj = clone $this;
-        $obj['exportType'] = $exportType;
+        $self = clone $this;
+        $self['exportType'] = $exportType;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -345,10 +345,10 @@ final class TechnicalData implements BaseModel
     public function withFilteringScoreAmlSuspicions(
         float $filteringScoreAmlSuspicions
     ): self {
-        $obj = clone $this;
-        $obj['filteringScoreAmlSuspicions'] = $filteringScoreAmlSuspicions;
+        $self = clone $this;
+        $self['filteringScoreAmlSuspicions'] = $filteringScoreAmlSuspicions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -356,10 +356,10 @@ final class TechnicalData implements BaseModel
      */
     public function withFinishedAt(\DateTimeInterface $finishedAt): self
     {
-        $obj = clone $this;
-        $obj['finishedAt'] = $finishedAt;
+        $self = clone $this;
+        $self['finishedAt'] = $finishedAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -367,10 +367,10 @@ final class TechnicalData implements BaseModel
      */
     public function withIP(string $ip): self
     {
-        $obj = clone $this;
-        $obj['ip'] = $ip;
+        $self = clone $this;
+        $self['ip'] = $ip;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -378,10 +378,10 @@ final class TechnicalData implements BaseModel
      */
     public function withLanguage(string $language): self
     {
-        $obj = clone $this;
-        $obj['language'] = $language;
+        $self = clone $this;
+        $self['language'] = $language;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -389,10 +389,10 @@ final class TechnicalData implements BaseModel
      */
     public function withLocationIP(string $locationIP): self
     {
-        $obj = clone $this;
-        $obj['locationIP'] = $locationIP;
+        $self = clone $this;
+        $self['locationIP'] = $locationIP;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -400,10 +400,10 @@ final class TechnicalData implements BaseModel
      */
     public function withNeedReviewAt(?\DateTimeInterface $needReviewAt): self
     {
-        $obj = clone $this;
-        $obj['needReviewAt'] = $needReviewAt;
+        $self = clone $this;
+        $self['needReviewAt'] = $needReviewAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -412,10 +412,10 @@ final class TechnicalData implements BaseModel
     public function withNotificationConfirmation(
         bool $notificationConfirmation
     ): self {
-        $obj = clone $this;
-        $obj['notificationConfirmation'] = $notificationConfirmation;
+        $self = clone $this;
+        $self['notificationConfirmation'] = $notificationConfirmation;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -425,10 +425,10 @@ final class TechnicalData implements BaseModel
      */
     public function withPortalSteps(array $portalSteps): self
     {
-        $obj = clone $this;
-        $obj['portalSteps'] = $portalSteps;
+        $self = clone $this;
+        $self['portalSteps'] = $portalSteps;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -436,10 +436,10 @@ final class TechnicalData implements BaseModel
      */
     public function withQrCode(string $qrCode): self
     {
-        $obj = clone $this;
-        $obj['qrCode'] = $qrCode;
+        $self = clone $this;
+        $self['qrCode'] = $qrCode;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -447,10 +447,10 @@ final class TechnicalData implements BaseModel
      */
     public function withRawData(bool $rawData): self
     {
-        $obj = clone $this;
-        $obj['rawData'] = $rawData;
+        $self = clone $this;
+        $self['rawData'] = $rawData;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -458,10 +458,10 @@ final class TechnicalData implements BaseModel
      */
     public function withRejectedAt(?\DateTimeInterface $rejectedAt): self
     {
-        $obj = clone $this;
-        $obj['rejectedAt'] = $rejectedAt;
+        $self = clone $this;
+        $self['rejectedAt'] = $rejectedAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -469,10 +469,10 @@ final class TechnicalData implements BaseModel
      */
     public function withSessionDuration(int $sessionDuration): self
     {
-        $obj = clone $this;
-        $obj['sessionDuration'] = $sessionDuration;
+        $self = clone $this;
+        $self['sessionDuration'] = $sessionDuration;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -480,10 +480,10 @@ final class TechnicalData implements BaseModel
      */
     public function withStartedAt(\DateTimeInterface $startedAt): self
     {
-        $obj = clone $this;
-        $obj['startedAt'] = $startedAt;
+        $self = clone $this;
+        $self['startedAt'] = $startedAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -491,10 +491,10 @@ final class TechnicalData implements BaseModel
      */
     public function withTransferAt(\DateTimeInterface $transferAt): self
     {
-        $obj = clone $this;
-        $obj['transferAt'] = $transferAt;
+        $self = clone $this;
+        $self['transferAt'] = $transferAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -502,9 +502,9 @@ final class TechnicalData implements BaseModel
      */
     public function withTransferMode(string $transferMode): self
     {
-        $obj = clone $this;
-        $obj['transferMode'] = $transferMode;
+        $self = clone $this;
+        $self['transferMode'] = $transferMode;
 
-        return $obj;
+        return $self;
     }
 }

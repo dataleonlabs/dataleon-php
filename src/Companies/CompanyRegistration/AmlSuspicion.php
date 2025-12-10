@@ -112,19 +112,19 @@ final class AmlSuspicion implements BaseModel
         Status|string|null $status = null,
         Type|string|null $type = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $caption && $obj['caption'] = $caption;
-        null !== $country && $obj['country'] = $country;
-        null !== $gender && $obj['gender'] = $gender;
-        null !== $relation && $obj['relation'] = $relation;
-        null !== $schema && $obj['schema'] = $schema;
-        null !== $score && $obj['score'] = $score;
-        null !== $source && $obj['source'] = $source;
-        null !== $status && $obj['status'] = $status;
-        null !== $type && $obj['type'] = $type;
+        null !== $caption && $self['caption'] = $caption;
+        null !== $country && $self['country'] = $country;
+        null !== $gender && $self['gender'] = $gender;
+        null !== $relation && $self['relation'] = $relation;
+        null !== $schema && $self['schema'] = $schema;
+        null !== $score && $self['score'] = $score;
+        null !== $source && $self['source'] = $source;
+        null !== $status && $self['status'] = $status;
+        null !== $type && $self['type'] = $type;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -132,10 +132,10 @@ final class AmlSuspicion implements BaseModel
      */
     public function withCaption(string $caption): self
     {
-        $obj = clone $this;
-        $obj['caption'] = $caption;
+        $self = clone $this;
+        $self['caption'] = $caption;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -143,10 +143,10 @@ final class AmlSuspicion implements BaseModel
      */
     public function withCountry(string $country): self
     {
-        $obj = clone $this;
-        $obj['country'] = $country;
+        $self = clone $this;
+        $self['country'] = $country;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -154,10 +154,10 @@ final class AmlSuspicion implements BaseModel
      */
     public function withGender(string $gender): self
     {
-        $obj = clone $this;
-        $obj['gender'] = $gender;
+        $self = clone $this;
+        $self['gender'] = $gender;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -165,10 +165,10 @@ final class AmlSuspicion implements BaseModel
      */
     public function withRelation(string $relation): self
     {
-        $obj = clone $this;
-        $obj['relation'] = $relation;
+        $self = clone $this;
+        $self['relation'] = $relation;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -176,10 +176,10 @@ final class AmlSuspicion implements BaseModel
      */
     public function withSchema(string $schema): self
     {
-        $obj = clone $this;
-        $obj['schema'] = $schema;
+        $self = clone $this;
+        $self['schema'] = $schema;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -187,10 +187,10 @@ final class AmlSuspicion implements BaseModel
      */
     public function withScore(float $score): self
     {
-        $obj = clone $this;
-        $obj['score'] = $score;
+        $self = clone $this;
+        $self['score'] = $score;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -198,10 +198,10 @@ final class AmlSuspicion implements BaseModel
      */
     public function withSource(string $source): self
     {
-        $obj = clone $this;
-        $obj['source'] = $source;
+        $self = clone $this;
+        $self['source'] = $source;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -211,10 +211,10 @@ final class AmlSuspicion implements BaseModel
      */
     public function withStatus(Status|string $status): self
     {
-        $obj = clone $this;
-        $obj['status'] = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -224,9 +224,9 @@ final class AmlSuspicion implements BaseModel
      */
     public function withType(Type|string $type): self
     {
-        $obj = clone $this;
-        $obj['type'] = $type;
+        $self = clone $this;
+        $self['type'] = $type;
 
-        return $obj;
+        return $self;
     }
 }

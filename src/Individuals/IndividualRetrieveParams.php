@@ -50,12 +50,12 @@ final class IndividualRetrieveParams implements BaseModel
         ?bool $document = null,
         ?string $scope = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $document && $obj['document'] = $document;
-        null !== $scope && $obj['scope'] = $scope;
+        null !== $document && $self['document'] = $document;
+        null !== $scope && $self['scope'] = $scope;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -63,10 +63,10 @@ final class IndividualRetrieveParams implements BaseModel
      */
     public function withDocument(bool $document): self
     {
-        $obj = clone $this;
-        $obj['document'] = $document;
+        $self = clone $this;
+        $self['document'] = $document;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -74,9 +74,9 @@ final class IndividualRetrieveParams implements BaseModel
      */
     public function withScope(string $scope): self
     {
-        $obj = clone $this;
-        $obj['scope'] = $scope;
+        $self = clone $this;
+        $self['scope'] = $scope;
 
-        return $obj;
+        return $self;
     }
 }

@@ -264,22 +264,22 @@ final class CompanyRegistration implements BaseModel
         TechnicalData|array|null $technicalData = null,
         ?string $webviewURL = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $amlSuspicions && $obj['amlSuspicions'] = $amlSuspicions;
-        null !== $certificat && $obj['certificat'] = $certificat;
-        null !== $checks && $obj['checks'] = $checks;
-        null !== $company && $obj['company'] = $company;
-        null !== $documents && $obj['documents'] = $documents;
-        null !== $members && $obj['members'] = $members;
-        null !== $portalURL && $obj['portalURL'] = $portalURL;
-        null !== $properties && $obj['properties'] = $properties;
-        null !== $risk && $obj['risk'] = $risk;
-        null !== $sourceID && $obj['sourceID'] = $sourceID;
-        null !== $technicalData && $obj['technicalData'] = $technicalData;
-        null !== $webviewURL && $obj['webviewURL'] = $webviewURL;
+        null !== $amlSuspicions && $self['amlSuspicions'] = $amlSuspicions;
+        null !== $certificat && $self['certificat'] = $certificat;
+        null !== $checks && $self['checks'] = $checks;
+        null !== $company && $self['company'] = $company;
+        null !== $documents && $self['documents'] = $documents;
+        null !== $members && $self['members'] = $members;
+        null !== $portalURL && $self['portalURL'] = $portalURL;
+        null !== $properties && $self['properties'] = $properties;
+        null !== $risk && $self['risk'] = $risk;
+        null !== $sourceID && $self['sourceID'] = $sourceID;
+        null !== $technicalData && $self['technicalData'] = $technicalData;
+        null !== $webviewURL && $self['webviewURL'] = $webviewURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -299,10 +299,10 @@ final class CompanyRegistration implements BaseModel
      */
     public function withAmlSuspicions(array $amlSuspicions): self
     {
-        $obj = clone $this;
-        $obj['amlSuspicions'] = $amlSuspicions;
+        $self = clone $this;
+        $self['amlSuspicions'] = $amlSuspicions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -314,10 +314,10 @@ final class CompanyRegistration implements BaseModel
      */
     public function withCertificat(Certificat|array $certificat): self
     {
-        $obj = clone $this;
-        $obj['certificat'] = $certificat;
+        $self = clone $this;
+        $self['certificat'] = $certificat;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -333,10 +333,10 @@ final class CompanyRegistration implements BaseModel
      */
     public function withChecks(array $checks): self
     {
-        $obj = clone $this;
-        $obj['checks'] = $checks;
+        $self = clone $this;
+        $self['checks'] = $checks;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -367,10 +367,10 @@ final class CompanyRegistration implements BaseModel
      */
     public function withCompany(Company|array $company): self
     {
-        $obj = clone $this;
-        $obj['company'] = $company;
+        $self = clone $this;
+        $self['company'] = $company;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -391,10 +391,10 @@ final class CompanyRegistration implements BaseModel
      */
     public function withDocuments(array $documents): self
     {
-        $obj = clone $this;
-        $obj['documents'] = $documents;
+        $self = clone $this;
+        $self['documents'] = $documents;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -429,10 +429,10 @@ final class CompanyRegistration implements BaseModel
      */
     public function withMembers(array $members): self
     {
-        $obj = clone $this;
-        $obj['members'] = $members;
+        $self = clone $this;
+        $self['members'] = $members;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -440,10 +440,10 @@ final class CompanyRegistration implements BaseModel
      */
     public function withPortalURL(string $portalURL): self
     {
-        $obj = clone $this;
-        $obj['portalURL'] = $portalURL;
+        $self = clone $this;
+        $self['portalURL'] = $portalURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -455,10 +455,10 @@ final class CompanyRegistration implements BaseModel
      */
     public function withProperties(array $properties): self
     {
-        $obj = clone $this;
-        $obj['properties'] = $properties;
+        $self = clone $this;
+        $self['properties'] = $properties;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -470,10 +470,10 @@ final class CompanyRegistration implements BaseModel
      */
     public function withRisk(Risk|array $risk): self
     {
-        $obj = clone $this;
-        $obj['risk'] = $risk;
+        $self = clone $this;
+        $self['risk'] = $risk;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -481,10 +481,10 @@ final class CompanyRegistration implements BaseModel
      */
     public function withSourceID(string $sourceID): self
     {
-        $obj = clone $this;
-        $obj['sourceID'] = $sourceID;
+        $self = clone $this;
+        $self['sourceID'] = $sourceID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -518,10 +518,10 @@ final class CompanyRegistration implements BaseModel
      */
     public function withTechnicalData(TechnicalData|array $technicalData): self
     {
-        $obj = clone $this;
-        $obj['technicalData'] = $technicalData;
+        $self = clone $this;
+        $self['technicalData'] = $technicalData;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -529,9 +529,9 @@ final class CompanyRegistration implements BaseModel
      */
     public function withWebviewURL(string $webviewURL): self
     {
-        $obj = clone $this;
-        $obj['webviewURL'] = $webviewURL;
+        $self = clone $this;
+        $self['webviewURL'] = $webviewURL;
 
-        return $obj;
+        return $self;
     }
 }

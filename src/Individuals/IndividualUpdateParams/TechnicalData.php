@@ -92,17 +92,17 @@ final class TechnicalData implements BaseModel
         ?array $portalSteps = null,
         ?bool $rawData = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $activeAmlSuspicions && $obj['activeAmlSuspicions'] = $activeAmlSuspicions;
-        null !== $callbackURL && $obj['callbackURL'] = $callbackURL;
-        null !== $callbackURLNotification && $obj['callbackURLNotification'] = $callbackURLNotification;
-        null !== $filteringScoreAmlSuspicions && $obj['filteringScoreAmlSuspicions'] = $filteringScoreAmlSuspicions;
-        null !== $language && $obj['language'] = $language;
-        null !== $portalSteps && $obj['portalSteps'] = $portalSteps;
-        null !== $rawData && $obj['rawData'] = $rawData;
+        null !== $activeAmlSuspicions && $self['activeAmlSuspicions'] = $activeAmlSuspicions;
+        null !== $callbackURL && $self['callbackURL'] = $callbackURL;
+        null !== $callbackURLNotification && $self['callbackURLNotification'] = $callbackURLNotification;
+        null !== $filteringScoreAmlSuspicions && $self['filteringScoreAmlSuspicions'] = $filteringScoreAmlSuspicions;
+        null !== $language && $self['language'] = $language;
+        null !== $portalSteps && $self['portalSteps'] = $portalSteps;
+        null !== $rawData && $self['rawData'] = $rawData;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -110,10 +110,10 @@ final class TechnicalData implements BaseModel
      */
     public function withActiveAmlSuspicions(bool $activeAmlSuspicions): self
     {
-        $obj = clone $this;
-        $obj['activeAmlSuspicions'] = $activeAmlSuspicions;
+        $self = clone $this;
+        $self['activeAmlSuspicions'] = $activeAmlSuspicions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -121,10 +121,10 @@ final class TechnicalData implements BaseModel
      */
     public function withCallbackURL(string $callbackURL): self
     {
-        $obj = clone $this;
-        $obj['callbackURL'] = $callbackURL;
+        $self = clone $this;
+        $self['callbackURL'] = $callbackURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -133,10 +133,10 @@ final class TechnicalData implements BaseModel
     public function withCallbackURLNotification(
         string $callbackURLNotification
     ): self {
-        $obj = clone $this;
-        $obj['callbackURLNotification'] = $callbackURLNotification;
+        $self = clone $this;
+        $self['callbackURLNotification'] = $callbackURLNotification;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -145,10 +145,10 @@ final class TechnicalData implements BaseModel
     public function withFilteringScoreAmlSuspicions(
         float $filteringScoreAmlSuspicions
     ): self {
-        $obj = clone $this;
-        $obj['filteringScoreAmlSuspicions'] = $filteringScoreAmlSuspicions;
+        $self = clone $this;
+        $self['filteringScoreAmlSuspicions'] = $filteringScoreAmlSuspicions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -156,10 +156,10 @@ final class TechnicalData implements BaseModel
      */
     public function withLanguage(string $language): self
     {
-        $obj = clone $this;
-        $obj['language'] = $language;
+        $self = clone $this;
+        $self['language'] = $language;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -169,10 +169,10 @@ final class TechnicalData implements BaseModel
      */
     public function withPortalSteps(array $portalSteps): self
     {
-        $obj = clone $this;
-        $obj['portalSteps'] = $portalSteps;
+        $self = clone $this;
+        $self['portalSteps'] = $portalSteps;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -180,9 +180,9 @@ final class TechnicalData implements BaseModel
      */
     public function withRawData(bool $rawData): self
     {
-        $obj = clone $this;
-        $obj['rawData'] = $rawData;
+        $self = clone $this;
+        $self['rawData'] = $rawData;
 
-        return $obj;
+        return $self;
     }
 }

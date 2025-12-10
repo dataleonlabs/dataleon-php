@@ -71,15 +71,15 @@ final class Contact implements BaseModel
         ?string $lastName = null,
         ?string $phoneNumber = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $department && $obj['department'] = $department;
-        null !== $email && $obj['email'] = $email;
-        null !== $firstName && $obj['firstName'] = $firstName;
-        null !== $lastName && $obj['lastName'] = $lastName;
-        null !== $phoneNumber && $obj['phoneNumber'] = $phoneNumber;
+        null !== $department && $self['department'] = $department;
+        null !== $email && $self['email'] = $email;
+        null !== $firstName && $self['firstName'] = $firstName;
+        null !== $lastName && $self['lastName'] = $lastName;
+        null !== $phoneNumber && $self['phoneNumber'] = $phoneNumber;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -87,10 +87,10 @@ final class Contact implements BaseModel
      */
     public function withDepartment(string $department): self
     {
-        $obj = clone $this;
-        $obj['department'] = $department;
+        $self = clone $this;
+        $self['department'] = $department;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -98,10 +98,10 @@ final class Contact implements BaseModel
      */
     public function withEmail(string $email): self
     {
-        $obj = clone $this;
-        $obj['email'] = $email;
+        $self = clone $this;
+        $self['email'] = $email;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -109,10 +109,10 @@ final class Contact implements BaseModel
      */
     public function withFirstName(string $firstName): self
     {
-        $obj = clone $this;
-        $obj['firstName'] = $firstName;
+        $self = clone $this;
+        $self['firstName'] = $firstName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -120,10 +120,10 @@ final class Contact implements BaseModel
      */
     public function withLastName(string $lastName): self
     {
-        $obj = clone $this;
-        $obj['lastName'] = $lastName;
+        $self = clone $this;
+        $self['lastName'] = $lastName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -131,9 +131,9 @@ final class Contact implements BaseModel
      */
     public function withPhoneNumber(string $phoneNumber): self
     {
-        $obj = clone $this;
-        $obj['phoneNumber'] = $phoneNumber;
+        $self = clone $this;
+        $self['phoneNumber'] = $phoneNumber;
 
-        return $obj;
+        return $self;
     }
 }
