@@ -7,6 +7,7 @@ namespace Dataleon\Services\Companies;
 use Dataleon\Client;
 use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
 use Dataleon\Core\Exceptions\APIException;
+use Dataleon\Core\Util;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
@@ -65,9 +66,9 @@ final class DocumentsService implements DocumentsContract
         ?string $url = null,
         ?RequestOptions $requestOptions = null,
     ): GenericDocument {
-        $params = ['documentType' => $documentType, 'file' => $file, 'url' => $url];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            ['documentType' => $documentType, 'file' => $file, 'url' => $url]
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->upload($companyID, params: $params, requestOptions: $requestOptions);

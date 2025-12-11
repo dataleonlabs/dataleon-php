@@ -10,6 +10,7 @@ use Dataleon\Companies\CompanyListParams\State;
 use Dataleon\Companies\CompanyListParams\Status;
 use Dataleon\Companies\CompanyRegistration;
 use Dataleon\Core\Exceptions\APIException;
+use Dataleon\Core\Util;
 use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\CompaniesContract;
 use Dataleon\Services\Companies\DocumentsService;
@@ -78,14 +79,14 @@ final class CompaniesService implements CompaniesContract
         ?array $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        $params = [
-            'company' => $company,
-            'workspaceID' => $workspaceID,
-            'sourceID' => $sourceID,
-            'technicalData' => $technicalData,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'company' => $company,
+                'workspaceID' => $workspaceID,
+                'sourceID' => $sourceID,
+                'technicalData' => $technicalData,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->create(params: $params, requestOptions: $requestOptions);
@@ -110,9 +111,7 @@ final class CompaniesService implements CompaniesContract
         ?string $scope = null,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        $params = ['document' => $document, 'scope' => $scope];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(['document' => $document, 'scope' => $scope]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->retrieve($companyID, params: $params, requestOptions: $requestOptions);
@@ -165,14 +164,14 @@ final class CompaniesService implements CompaniesContract
         ?array $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): CompanyRegistration {
-        $params = [
-            'company' => $company,
-            'workspaceID' => $workspaceID,
-            'sourceID' => $sourceID,
-            'technicalData' => $technicalData,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'company' => $company,
+                'workspaceID' => $workspaceID,
+                'sourceID' => $sourceID,
+                'technicalData' => $technicalData,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->update($companyID, params: $params, requestOptions: $requestOptions);
@@ -209,18 +208,18 @@ final class CompaniesService implements CompaniesContract
         ?string $workspaceID = null,
         ?RequestOptions $requestOptions = null,
     ): array {
-        $params = [
-            'endDate' => $endDate,
-            'limit' => $limit,
-            'offset' => $offset,
-            'sourceID' => $sourceID,
-            'startDate' => $startDate,
-            'state' => $state,
-            'status' => $status,
-            'workspaceID' => $workspaceID,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'endDate' => $endDate,
+                'limit' => $limit,
+                'offset' => $offset,
+                'sourceID' => $sourceID,
+                'startDate' => $startDate,
+                'state' => $state,
+                'status' => $status,
+                'workspaceID' => $workspaceID,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->list(params: $params, requestOptions: $requestOptions);

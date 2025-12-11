@@ -6,6 +6,7 @@ namespace Dataleon\Services;
 
 use Dataleon\Client;
 use Dataleon\Core\Exceptions\APIException;
+use Dataleon\Core\Util;
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams\Person\Gender;
 use Dataleon\Individuals\IndividualCreateParams\TechnicalData\PortalStep;
@@ -72,14 +73,14 @@ final class IndividualsService implements IndividualsContract
         ?array $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): Individual {
-        $params = [
-            'workspaceID' => $workspaceID,
-            'person' => $person,
-            'sourceID' => $sourceID,
-            'technicalData' => $technicalData,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'workspaceID' => $workspaceID,
+                'person' => $person,
+                'sourceID' => $sourceID,
+                'technicalData' => $technicalData,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->create(params: $params, requestOptions: $requestOptions);
@@ -104,9 +105,7 @@ final class IndividualsService implements IndividualsContract
         ?string $scope = null,
         ?RequestOptions $requestOptions = null,
     ): Individual {
-        $params = ['document' => $document, 'scope' => $scope];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(['document' => $document, 'scope' => $scope]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->retrieve($individualID, params: $params, requestOptions: $requestOptions);
@@ -152,14 +151,14 @@ final class IndividualsService implements IndividualsContract
         ?array $technicalData = null,
         ?RequestOptions $requestOptions = null,
     ): Individual {
-        $params = [
-            'workspaceID' => $workspaceID,
-            'person' => $person,
-            'sourceID' => $sourceID,
-            'technicalData' => $technicalData,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'workspaceID' => $workspaceID,
+                'person' => $person,
+                'sourceID' => $sourceID,
+                'technicalData' => $technicalData,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->update($individualID, params: $params, requestOptions: $requestOptions);
@@ -196,18 +195,18 @@ final class IndividualsService implements IndividualsContract
         ?string $workspaceID = null,
         ?RequestOptions $requestOptions = null,
     ): array {
-        $params = [
-            'endDate' => $endDate,
-            'limit' => $limit,
-            'offset' => $offset,
-            'sourceID' => $sourceID,
-            'startDate' => $startDate,
-            'state' => $state,
-            'status' => $status,
-            'workspaceID' => $workspaceID,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'endDate' => $endDate,
+                'limit' => $limit,
+                'offset' => $offset,
+                'sourceID' => $sourceID,
+                'startDate' => $startDate,
+                'state' => $state,
+                'status' => $status,
+                'workspaceID' => $workspaceID,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->list(params: $params, requestOptions: $requestOptions);
