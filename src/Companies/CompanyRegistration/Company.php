@@ -14,7 +14,7 @@ use Dataleon\Core\Contracts\BaseModel;
  *
  * @phpstan-type CompanyShape = array{
  *   address?: string|null,
- *   closureDate?: \DateTimeInterface|null,
+ *   closureDate?: string|null,
  *   commercialName?: string|null,
  *   contact?: Contact|null,
  *   country?: string|null,
@@ -26,7 +26,7 @@ use Dataleon\Core\Contracts\BaseModel;
  *   legalForm?: string|null,
  *   name?: string|null,
  *   phoneNumber?: string|null,
- *   registrationDate?: \DateTimeInterface|null,
+ *   registrationDate?: string|null,
  *   registrationID?: string|null,
  *   shareCapital?: string|null,
  *   status?: string|null,
@@ -50,7 +50,7 @@ final class Company implements BaseModel
      * Closure date of the company, if applicable.
      */
     #[Optional('closure_date')]
-    public ?\DateTimeInterface $closureDate;
+    public ?string $closureDate;
 
     /**
      * Trade or commercial name of the company.
@@ -122,7 +122,7 @@ final class Company implements BaseModel
      * Date when the company was officially registered.
      */
     #[Optional('registration_date')]
-    public ?\DateTimeInterface $registrationDate;
+    public ?string $registrationDate;
 
     /**
      * Official company registration number or ID.
@@ -180,7 +180,7 @@ final class Company implements BaseModel
      */
     public static function with(
         ?string $address = null,
-        ?\DateTimeInterface $closureDate = null,
+        ?string $closureDate = null,
         ?string $commercialName = null,
         Contact|array|null $contact = null,
         ?string $country = null,
@@ -192,7 +192,7 @@ final class Company implements BaseModel
         ?string $legalForm = null,
         ?string $name = null,
         ?string $phoneNumber = null,
-        ?\DateTimeInterface $registrationDate = null,
+        ?string $registrationDate = null,
         ?string $registrationID = null,
         ?string $shareCapital = null,
         ?string $status = null,
@@ -240,7 +240,7 @@ final class Company implements BaseModel
     /**
      * Closure date of the company, if applicable.
      */
-    public function withClosureDate(\DateTimeInterface $closureDate): self
+    public function withClosureDate(string $closureDate): self
     {
         $self = clone $this;
         $self['closureDate'] = $closureDate;
@@ -381,9 +381,8 @@ final class Company implements BaseModel
     /**
      * Date when the company was officially registered.
      */
-    public function withRegistrationDate(
-        \DateTimeInterface $registrationDate
-    ): self {
+    public function withRegistrationDate(string $registrationDate): self
+    {
         $self = clone $this;
         $self['registrationDate'] = $registrationDate;
 

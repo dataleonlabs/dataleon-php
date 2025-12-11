@@ -118,11 +118,11 @@ interface CompaniesContract
     /**
      * @api
      *
-     * @param string|\DateTimeInterface $endDate Filter companies created before this date (format YYYY-MM-DD)
+     * @param string $endDate Filter companies created before this date (format YYYY-MM-DD)
      * @param int $limit Number of results to return (between 1 and 100)
      * @param int $offset Number of results to skip (must be ≥ 0)
      * @param string $sourceID Filter by source ID
-     * @param string|\DateTimeInterface $startDate Filter companies created after this date (format YYYY-MM-DD)
+     * @param string $startDate Filter companies created after this date (format YYYY-MM-DD)
      * @param 'VOID'|'WAITING'|'STARTED'|'RUNNING'|'PROCESSED'|'FAILED'|'ABORTED'|'EXPIRED'|'DELETED'|State $state Filter by company state (must be one of the allowed values)
      * @param 'rejected'|'need_review'|'approved'|Status $status Filter by individual status (must be one of the allowed values)
      * @param string $workspaceID Filter by workspace ID
@@ -132,11 +132,11 @@ interface CompaniesContract
      * @throws APIException
      */
     public function list(
-        string|\DateTimeInterface|null $endDate = null,
+        ?string $endDate = null,
         ?int $limit = null,
         ?int $offset = null,
         ?string $sourceID = null,
-        string|\DateTimeInterface|null $startDate = null,
+        ?string $startDate = null,
         string|State|null $state = null,
         string|Status|null $status = null,
         ?string $workspaceID = null,

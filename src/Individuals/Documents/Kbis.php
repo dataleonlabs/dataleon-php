@@ -17,17 +17,17 @@ use Dataleon\Individuals\Documents\Kbis\Member\Type;
  *   activities?: string|null,
  *   address?: string|null,
  *   capitalSocial?: string|null,
- *   closureDate?: \DateTimeInterface|null,
+ *   closureDate?: string|null,
  *   companyName?: string|null,
- *   documentDate?: \DateTimeInterface|null,
+ *   documentDate?: string|null,
  *   documentType?: string|null,
- *   firstClosureDate?: \DateTimeInterface|null,
+ *   firstClosureDate?: string|null,
  *   fromGreffe?: string|null,
  *   legalForm?: string|null,
  *   members?: list<Member>|null,
  *   ngestion?: string|null,
  *   rcsNumber?: string|null,
- *   registrationDate?: \DateTimeInterface|null,
+ *   registrationDate?: string|null,
  *   sirenInfo?: string|null,
  * }
  */
@@ -58,7 +58,7 @@ final class Kbis implements BaseModel
      * Date of closure, if applicable.
      */
     #[Optional('closure_date')]
-    public ?\DateTimeInterface $closureDate;
+    public ?string $closureDate;
 
     /**
      * Official name of the company.
@@ -70,7 +70,7 @@ final class Kbis implements BaseModel
      * Date when the document was issued.
      */
     #[Optional('document_date')]
-    public ?\DateTimeInterface $documentDate;
+    public ?string $documentDate;
 
     /**
      * Fixed identifier for the document type.
@@ -82,7 +82,7 @@ final class Kbis implements BaseModel
      * Date of the first fiscal closure.
      */
     #[Optional('first_closure_date')]
-    public ?\DateTimeInterface $firstClosureDate;
+    public ?string $firstClosureDate;
 
     /**
      * Registry office that issued the document.
@@ -120,7 +120,7 @@ final class Kbis implements BaseModel
      * Date of registration with the registry.
      */
     #[Optional('registration_date')]
-    public ?\DateTimeInterface $registrationDate;
+    public ?string $registrationDate;
 
     /**
      * SIREN number of the company.
@@ -167,17 +167,17 @@ final class Kbis implements BaseModel
         ?string $activities = null,
         ?string $address = null,
         ?string $capitalSocial = null,
-        ?\DateTimeInterface $closureDate = null,
+        ?string $closureDate = null,
         ?string $companyName = null,
-        ?\DateTimeInterface $documentDate = null,
+        ?string $documentDate = null,
         ?string $documentType = null,
-        ?\DateTimeInterface $firstClosureDate = null,
+        ?string $firstClosureDate = null,
         ?string $fromGreffe = null,
         ?string $legalForm = null,
         ?array $members = null,
         ?string $ngestion = null,
         ?string $rcsNumber = null,
-        ?\DateTimeInterface $registrationDate = null,
+        ?string $registrationDate = null,
         ?string $sirenInfo = null,
     ): self {
         $self = new self;
@@ -237,7 +237,7 @@ final class Kbis implements BaseModel
     /**
      * Date of closure, if applicable.
      */
-    public function withClosureDate(\DateTimeInterface $closureDate): self
+    public function withClosureDate(string $closureDate): self
     {
         $self = clone $this;
         $self['closureDate'] = $closureDate;
@@ -259,7 +259,7 @@ final class Kbis implements BaseModel
     /**
      * Date when the document was issued.
      */
-    public function withDocumentDate(\DateTimeInterface $documentDate): self
+    public function withDocumentDate(string $documentDate): self
     {
         $self = clone $this;
         $self['documentDate'] = $documentDate;
@@ -281,9 +281,8 @@ final class Kbis implements BaseModel
     /**
      * Date of the first fiscal closure.
      */
-    public function withFirstClosureDate(
-        \DateTimeInterface $firstClosureDate
-    ): self {
+    public function withFirstClosureDate(string $firstClosureDate): self
+    {
         $self = clone $this;
         $self['firstClosureDate'] = $firstClosureDate;
 
@@ -373,9 +372,8 @@ final class Kbis implements BaseModel
     /**
      * Date of registration with the registry.
      */
-    public function withRegistrationDate(
-        \DateTimeInterface $registrationDate
-    ): self {
+    public function withRegistrationDate(string $registrationDate): self
+    {
         $self = clone $this;
         $self['registrationDate'] = $registrationDate;
 

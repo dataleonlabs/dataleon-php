@@ -17,11 +17,11 @@ use Dataleon\Individuals\IndividualListParams\Status;
  * @see Dataleon\Services\IndividualsService::list()
  *
  * @phpstan-type IndividualListParamsShape = array{
- *   endDate?: \DateTimeInterface,
+ *   endDate?: string,
  *   limit?: int,
  *   offset?: int,
  *   sourceID?: string,
- *   startDate?: \DateTimeInterface,
+ *   startDate?: string,
  *   state?: State|value-of<State>,
  *   status?: Status|value-of<Status>,
  *   workspaceID?: string,
@@ -37,7 +37,7 @@ final class IndividualListParams implements BaseModel
      * Filter individuals created before this date (format YYYY-MM-DD).
      */
     #[Optional]
-    public ?\DateTimeInterface $endDate;
+    public ?string $endDate;
 
     /**
      * Number of results to return (between 1 and 100).
@@ -61,7 +61,7 @@ final class IndividualListParams implements BaseModel
      * Filter individuals created after this date (format YYYY-MM-DD).
      */
     #[Optional]
-    public ?\DateTimeInterface $startDate;
+    public ?string $startDate;
 
     /**
      * Filter by individual status (must be one of the allowed values).
@@ -99,11 +99,11 @@ final class IndividualListParams implements BaseModel
      * @param Status|value-of<Status> $status
      */
     public static function with(
-        ?\DateTimeInterface $endDate = null,
+        ?string $endDate = null,
         ?int $limit = null,
         ?int $offset = null,
         ?string $sourceID = null,
-        ?\DateTimeInterface $startDate = null,
+        ?string $startDate = null,
         State|string|null $state = null,
         Status|string|null $status = null,
         ?string $workspaceID = null,
@@ -125,7 +125,7 @@ final class IndividualListParams implements BaseModel
     /**
      * Filter individuals created before this date (format YYYY-MM-DD).
      */
-    public function withEndDate(\DateTimeInterface $endDate): self
+    public function withEndDate(string $endDate): self
     {
         $self = clone $this;
         $self['endDate'] = $endDate;
@@ -169,7 +169,7 @@ final class IndividualListParams implements BaseModel
     /**
      * Filter individuals created after this date (format YYYY-MM-DD).
      */
-    public function withStartDate(\DateTimeInterface $startDate): self
+    public function withStartDate(string $startDate): self
     {
         $self = clone $this;
         $self['startDate'] = $startDate;

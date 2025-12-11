@@ -172,11 +172,11 @@ final class IndividualsService implements IndividualsContract
      *
      * Get all individuals
      *
-     * @param string|\DateTimeInterface $endDate Filter individuals created before this date (format YYYY-MM-DD)
+     * @param string $endDate Filter individuals created before this date (format YYYY-MM-DD)
      * @param int $limit Number of results to return (between 1 and 100)
      * @param int $offset Number of results to offset (must be ≥ 0)
      * @param string $sourceID Filter by source ID
-     * @param string|\DateTimeInterface $startDate Filter individuals created after this date (format YYYY-MM-DD)
+     * @param string $startDate Filter individuals created after this date (format YYYY-MM-DD)
      * @param 'VOID'|'WAITING'|'STARTED'|'RUNNING'|'PROCESSED'|'FAILED'|'ABORTED'|'EXPIRED'|'DELETED'|State $state Filter by individual status (must be one of the allowed values)
      * @param 'rejected'|'need_review'|'approved'|Status $status Filter by individual status (must be one of the allowed values)
      * @param string $workspaceID Filter by workspace ID
@@ -186,11 +186,11 @@ final class IndividualsService implements IndividualsContract
      * @throws APIException
      */
     public function list(
-        string|\DateTimeInterface|null $endDate = null,
+        ?string $endDate = null,
         ?int $limit = null,
         ?int $offset = null,
         ?string $sourceID = null,
-        string|\DateTimeInterface|null $startDate = null,
+        ?string $startDate = null,
         string|State|null $state = null,
         string|Status|null $status = null,
         ?string $workspaceID = null,

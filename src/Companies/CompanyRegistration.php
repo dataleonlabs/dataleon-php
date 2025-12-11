@@ -160,7 +160,7 @@ final class CompanyRegistration implements BaseModel
      * }> $checks
      * @param Company|array{
      *   address?: string|null,
-     *   closureDate?: \DateTimeInterface|null,
+     *   closureDate?: string|null,
      *   commercialName?: string|null,
      *   contact?: Contact|null,
      *   country?: string|null,
@@ -172,7 +172,7 @@ final class CompanyRegistration implements BaseModel
      *   legalForm?: string|null,
      *   name?: string|null,
      *   phoneNumber?: string|null,
-     *   registrationDate?: \DateTimeInterface|null,
+     *   registrationDate?: string|null,
      *   registrationID?: string|null,
      *   shareCapital?: string|null,
      *   status?: string|null,
@@ -344,7 +344,7 @@ final class CompanyRegistration implements BaseModel
      *
      * @param Company|array{
      *   address?: string|null,
-     *   closureDate?: \DateTimeInterface|null,
+     *   closureDate?: string|null,
      *   commercialName?: string|null,
      *   contact?: Contact|null,
      *   country?: string|null,
@@ -356,7 +356,7 @@ final class CompanyRegistration implements BaseModel
      *   legalForm?: string|null,
      *   name?: string|null,
      *   phoneNumber?: string|null,
-     *   registrationDate?: \DateTimeInterface|null,
+     *   registrationDate?: string|null,
      *   registrationID?: string|null,
      *   shareCapital?: string|null,
      *   status?: string|null,

@@ -173,11 +173,11 @@ final class IndividualsRawService implements IndividualsRawContract
      * Get all individuals
      *
      * @param array{
-     *   endDate?: string|\DateTimeInterface,
+     *   endDate?: string,
      *   limit?: int,
      *   offset?: int,
      *   sourceID?: string,
-     *   startDate?: string|\DateTimeInterface,
+     *   startDate?: string,
      *   state?: value-of<State>,
      *   status?: 'rejected'|'need_review'|'approved'|Status,
      *   workspaceID?: string,
