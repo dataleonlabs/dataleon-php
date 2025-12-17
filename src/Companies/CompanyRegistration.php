@@ -6,37 +6,40 @@ namespace Dataleon\Companies;
 
 use Dataleon\Check;
 use Dataleon\Companies\CompanyRegistration\AmlSuspicion;
-use Dataleon\Companies\CompanyRegistration\AmlSuspicion\Status;
-use Dataleon\Companies\CompanyRegistration\AmlSuspicion\Type;
 use Dataleon\Companies\CompanyRegistration\Certificat;
 use Dataleon\Companies\CompanyRegistration\Company;
-use Dataleon\Companies\CompanyRegistration\Company\Contact;
 use Dataleon\Companies\CompanyRegistration\Member;
-use Dataleon\Companies\CompanyRegistration\Member\Source;
 use Dataleon\Companies\CompanyRegistration\Property;
 use Dataleon\Companies\CompanyRegistration\Risk;
 use Dataleon\Companies\CompanyRegistration\TechnicalData;
-use Dataleon\Companies\CompanyRegistration\TechnicalData\PortalStep;
 use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\GenericDocument;
-use Dataleon\Individuals\Documents\GenericDocument\Table;
-use Dataleon\Individuals\Documents\GenericDocument\Value;
 
 /**
+ * @phpstan-import-type AmlSuspicionShape from \Dataleon\Companies\CompanyRegistration\AmlSuspicion
+ * @phpstan-import-type CertificatShape from \Dataleon\Companies\CompanyRegistration\Certificat
+ * @phpstan-import-type CheckShape from \Dataleon\Check
+ * @phpstan-import-type CompanyShape from \Dataleon\Companies\CompanyRegistration\Company
+ * @phpstan-import-type GenericDocumentShape from \Dataleon\Individuals\Documents\GenericDocument
+ * @phpstan-import-type MemberShape from \Dataleon\Companies\CompanyRegistration\Member
+ * @phpstan-import-type PropertyShape from \Dataleon\Companies\CompanyRegistration\Property
+ * @phpstan-import-type RiskShape from \Dataleon\Companies\CompanyRegistration\Risk
+ * @phpstan-import-type TechnicalDataShape from \Dataleon\Companies\CompanyRegistration\TechnicalData
+ *
  * @phpstan-type CompanyRegistrationShape = array{
- *   amlSuspicions?: list<AmlSuspicion>|null,
- *   certificat?: Certificat|null,
- *   checks?: list<Check>|null,
- *   company?: Company|null,
- *   documents?: list<GenericDocument>|null,
- *   members?: list<Member>|null,
+ *   amlSuspicions?: list<AmlSuspicionShape>|null,
+ *   certificat?: null|Certificat|CertificatShape,
+ *   checks?: list<CheckShape>|null,
+ *   company?: null|Company|CompanyShape,
+ *   documents?: list<GenericDocumentShape>|null,
+ *   members?: list<MemberShape>|null,
  *   portalURL?: string|null,
- *   properties?: list<Property>|null,
- *   risk?: Risk|null,
+ *   properties?: list<PropertyShape>|null,
+ *   risk?: null|Risk|RiskShape,
  *   sourceID?: string|null,
- *   technicalData?: TechnicalData|null,
+ *   technicalData?: null|TechnicalData|TechnicalDataShape,
  *   webviewURL?: string|null,
  * }
  */
@@ -137,118 +140,15 @@ final class CompanyRegistration implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AmlSuspicion|array{
-     *   caption?: string|null,
-     *   country?: string|null,
-     *   gender?: string|null,
-     *   relation?: string|null,
-     *   schema?: string|null,
-     *   score?: float|null,
-     *   source?: string|null,
-     *   status?: value-of<Status>|null,
-     *   type?: value-of<Type>|null,
-     * }> $amlSuspicions
-     * @param Certificat|array{
-     *   id?: string|null, createdAt?: \DateTimeInterface|null, filename?: string|null
-     * } $certificat
-     * @param list<Check|array{
-     *   masked?: bool|null,
-     *   message?: string|null,
-     *   name?: string|null,
-     *   validate?: bool|null,
-     *   weight?: int|null,
-     * }> $checks
-     * @param Company|array{
-     *   address?: string|null,
-     *   closureDate?: string|null,
-     *   commercialName?: string|null,
-     *   contact?: Contact|null,
-     *   country?: string|null,
-     *   email?: string|null,
-     *   employees?: int|null,
-     *   employerIdentificationNumber?: string|null,
-     *   insolvencyExists?: bool|null,
-     *   insolvencyOngoing?: bool|null,
-     *   legalForm?: string|null,
-     *   name?: string|null,
-     *   phoneNumber?: string|null,
-     *   registrationDate?: string|null,
-     *   registrationID?: string|null,
-     *   shareCapital?: string|null,
-     *   status?: string|null,
-     *   taxIdentificationNumber?: string|null,
-     *   type?: string|null,
-     *   websiteURL?: string|null,
-     * } $company
-     * @param list<GenericDocument|array{
-     *   id?: string|null,
-     *   checks?: list<Check>|null,
-     *   createdAt?: \DateTimeInterface|null,
-     *   documentType?: string|null,
-     *   name?: string|null,
-     *   signedURL?: string|null,
-     *   state?: string|null,
-     *   status?: string|null,
-     *   tables?: list<Table>|null,
-     *   values?: list<Value>|null,
-     * }> $documents
-     * @param list<Member|array{
-     *   id?: string|null,
-     *   address?: string|null,
-     *   birthday?: \DateTimeInterface|null,
-     *   birthplace?: string|null,
-     *   country?: string|null,
-     *   documents?: list<GenericDocument>|null,
-     *   email?: string|null,
-     *   firstName?: string|null,
-     *   isBeneficialOwner?: bool|null,
-     *   isDelegator?: bool|null,
-     *   lastName?: string|null,
-     *   livenessVerification?: bool|null,
-     *   name?: string|null,
-     *   ownershipPercentage?: int|null,
-     *   phoneNumber?: string|null,
-     *   postalCode?: string|null,
-     *   registrationID?: string|null,
-     *   relation?: string|null,
-     *   roles?: string|null,
-     *   source?: value-of<Source>|null,
-     *   state?: string|null,
-     *   status?: string|null,
-     *   type?: value-of<Member\Type>|null,
-     *   workspaceID?: string|null,
-     * }> $members
-     * @param list<Property|array{
-     *   name?: string|null, type?: string|null, value?: string|null
-     * }> $properties
-     * @param Risk|array{
-     *   code?: string|null, reason?: string|null, score?: float|null
-     * } $risk
-     * @param TechnicalData|array{
-     *   activeAmlSuspicions?: bool|null,
-     *   apiVersion?: int|null,
-     *   approvedAt?: \DateTimeInterface|null,
-     *   callbackURL?: string|null,
-     *   callbackURLNotification?: string|null,
-     *   disableNotification?: bool|null,
-     *   disableNotificationDate?: \DateTimeInterface|null,
-     *   exportType?: string|null,
-     *   filteringScoreAmlSuspicions?: float|null,
-     *   finishedAt?: \DateTimeInterface|null,
-     *   ip?: string|null,
-     *   language?: string|null,
-     *   locationIP?: string|null,
-     *   needReviewAt?: \DateTimeInterface|null,
-     *   notificationConfirmation?: bool|null,
-     *   portalSteps?: list<value-of<PortalStep>>|null,
-     *   qrCode?: string|null,
-     *   rawData?: bool|null,
-     *   rejectedAt?: \DateTimeInterface|null,
-     *   sessionDuration?: int|null,
-     *   startedAt?: \DateTimeInterface|null,
-     *   transferAt?: \DateTimeInterface|null,
-     *   transferMode?: string|null,
-     * } $technicalData
+     * @param list<AmlSuspicionShape> $amlSuspicions
+     * @param CertificatShape $certificat
+     * @param list<CheckShape> $checks
+     * @param CompanyShape $company
+     * @param list<GenericDocumentShape> $documents
+     * @param list<MemberShape> $members
+     * @param list<PropertyShape> $properties
+     * @param RiskShape $risk
+     * @param TechnicalDataShape $technicalData
      */
     public static function with(
         ?array $amlSuspicions = null,
@@ -285,17 +185,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the company, including their details.
      *
-     * @param list<AmlSuspicion|array{
-     *   caption?: string|null,
-     *   country?: string|null,
-     *   gender?: string|null,
-     *   relation?: string|null,
-     *   schema?: string|null,
-     *   score?: float|null,
-     *   source?: string|null,
-     *   status?: value-of<Status>|null,
-     *   type?: value-of<Type>|null,
-     * }> $amlSuspicions
+     * @param list<AmlSuspicionShape> $amlSuspicions
      */
     public function withAmlSuspicions(array $amlSuspicions): self
     {
@@ -308,9 +198,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * Digital certificate associated with the company, if any, including its creation timestamp and filename.
      *
-     * @param Certificat|array{
-     *   id?: string|null, createdAt?: \DateTimeInterface|null, filename?: string|null
-     * } $certificat
+     * @param CertificatShape $certificat
      */
     public function withCertificat(Certificat|array $certificat): self
     {
@@ -323,13 +211,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * List of verification or validation checks applied to the company, including their results and messages.
      *
-     * @param list<Check|array{
-     *   masked?: bool|null,
-     *   message?: string|null,
-     *   name?: string|null,
-     *   validate?: bool|null,
-     *   weight?: int|null,
-     * }> $checks
+     * @param list<CheckShape> $checks
      */
     public function withChecks(array $checks): self
     {
@@ -342,28 +224,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * Main information about the company being registered, including legal name, registration ID, and address.
      *
-     * @param Company|array{
-     *   address?: string|null,
-     *   closureDate?: string|null,
-     *   commercialName?: string|null,
-     *   contact?: Contact|null,
-     *   country?: string|null,
-     *   email?: string|null,
-     *   employees?: int|null,
-     *   employerIdentificationNumber?: string|null,
-     *   insolvencyExists?: bool|null,
-     *   insolvencyOngoing?: bool|null,
-     *   legalForm?: string|null,
-     *   name?: string|null,
-     *   phoneNumber?: string|null,
-     *   registrationDate?: string|null,
-     *   registrationID?: string|null,
-     *   shareCapital?: string|null,
-     *   status?: string|null,
-     *   taxIdentificationNumber?: string|null,
-     *   type?: string|null,
-     *   websiteURL?: string|null,
-     * } $company
+     * @param CompanyShape $company
      */
     public function withCompany(Company|array $company): self
     {
@@ -376,18 +237,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * All documents submitted or associated with the company, including their metadata and processing status.
      *
-     * @param list<GenericDocument|array{
-     *   id?: string|null,
-     *   checks?: list<Check>|null,
-     *   createdAt?: \DateTimeInterface|null,
-     *   documentType?: string|null,
-     *   name?: string|null,
-     *   signedURL?: string|null,
-     *   state?: string|null,
-     *   status?: string|null,
-     *   tables?: list<Table>|null,
-     *   values?: list<Value>|null,
-     * }> $documents
+     * @param list<GenericDocumentShape> $documents
      */
     public function withDocuments(array $documents): self
     {
@@ -400,32 +250,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * List of members or actors associated with the company, including personal and ownership information.
      *
-     * @param list<Member|array{
-     *   id?: string|null,
-     *   address?: string|null,
-     *   birthday?: \DateTimeInterface|null,
-     *   birthplace?: string|null,
-     *   country?: string|null,
-     *   documents?: list<GenericDocument>|null,
-     *   email?: string|null,
-     *   firstName?: string|null,
-     *   isBeneficialOwner?: bool|null,
-     *   isDelegator?: bool|null,
-     *   lastName?: string|null,
-     *   livenessVerification?: bool|null,
-     *   name?: string|null,
-     *   ownershipPercentage?: int|null,
-     *   phoneNumber?: string|null,
-     *   postalCode?: string|null,
-     *   registrationID?: string|null,
-     *   relation?: string|null,
-     *   roles?: string|null,
-     *   source?: value-of<Source>|null,
-     *   state?: string|null,
-     *   status?: string|null,
-     *   type?: value-of<Member\Type>|null,
-     *   workspaceID?: string|null,
-     * }> $members
+     * @param list<MemberShape> $members
      */
     public function withMembers(array $members): self
     {
@@ -449,9 +274,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * Custom key-value metadata fields associated with the company, allowing for flexible data storage.
      *
-     * @param list<Property|array{
-     *   name?: string|null, type?: string|null, value?: string|null
-     * }> $properties
+     * @param list<PropertyShape> $properties
      */
     public function withProperties(array $properties): self
     {
@@ -464,9 +287,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * Risk assessment associated with the company, including a risk code, reason, and confidence score.
      *
-     * @param Risk|array{
-     *   code?: string|null, reason?: string|null, score?: float|null
-     * } $risk
+     * @param RiskShape $risk
      */
     public function withRisk(Risk|array $risk): self
     {
@@ -490,31 +311,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * Technical metadata related to the request, such as IP address, QR code settings, and callback URLs.
      *
-     * @param TechnicalData|array{
-     *   activeAmlSuspicions?: bool|null,
-     *   apiVersion?: int|null,
-     *   approvedAt?: \DateTimeInterface|null,
-     *   callbackURL?: string|null,
-     *   callbackURLNotification?: string|null,
-     *   disableNotification?: bool|null,
-     *   disableNotificationDate?: \DateTimeInterface|null,
-     *   exportType?: string|null,
-     *   filteringScoreAmlSuspicions?: float|null,
-     *   finishedAt?: \DateTimeInterface|null,
-     *   ip?: string|null,
-     *   language?: string|null,
-     *   locationIP?: string|null,
-     *   needReviewAt?: \DateTimeInterface|null,
-     *   notificationConfirmation?: bool|null,
-     *   portalSteps?: list<value-of<PortalStep>>|null,
-     *   qrCode?: string|null,
-     *   rawData?: bool|null,
-     *   rejectedAt?: \DateTimeInterface|null,
-     *   sessionDuration?: int|null,
-     *   startedAt?: \DateTimeInterface|null,
-     *   transferAt?: \DateTimeInterface|null,
-     *   transferMode?: string|null,
-     * } $technicalData
+     * @param TechnicalDataShape $technicalData
      */
     public function withTechnicalData(TechnicalData|array $technicalData): self
     {

@@ -28,7 +28,7 @@ use Dataleon\Individuals\Individual\TechnicalData\PortalStep;
  *   locationIP?: string|null,
  *   needReviewAt?: \DateTimeInterface|null,
  *   notificationConfirmation?: bool|null,
- *   portalSteps?: list<value-of<PortalStep>>|null,
+ *   portalSteps?: list<PortalStep|value-of<PortalStep>>|null,
  *   qrCode?: string|null,
  *   rawData?: bool|null,
  *   rejectedAt?: \DateTimeInterface|null,

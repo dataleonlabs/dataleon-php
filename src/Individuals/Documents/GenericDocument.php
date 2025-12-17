@@ -14,17 +14,21 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
 /**
  * Represents a general document with metadata, verification checks, and extracted data.
  *
+ * @phpstan-import-type CheckShape from \Dataleon\Check
+ * @phpstan-import-type TableShape from \Dataleon\Individuals\Documents\GenericDocument\Table
+ * @phpstan-import-type ValueShape from \Dataleon\Individuals\Documents\GenericDocument\Value
+ *
  * @phpstan-type GenericDocumentShape = array{
  *   id?: string|null,
- *   checks?: list<Check>|null,
+ *   checks?: list<CheckShape>|null,
  *   createdAt?: \DateTimeInterface|null,
  *   documentType?: string|null,
  *   name?: string|null,
  *   signedURL?: string|null,
  *   state?: string|null,
  *   status?: string|null,
- *   tables?: list<Table>|null,
- *   values?: list<Value>|null,
+ *   tables?: list<TableShape>|null,
+ *   values?: list<ValueShape>|null,
  * }
  */
 final class GenericDocument implements BaseModel
@@ -108,17 +112,9 @@ final class GenericDocument implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Check|array{
-     *   masked?: bool|null,
-     *   message?: string|null,
-     *   name?: string|null,
-     *   validate?: bool|null,
-     *   weight?: int|null,
-     * }> $checks
-     * @param list<Table|array{operation?: list<mixed>|null}> $tables
-     * @param list<Value|array{
-     *   confidence?: float|null, name?: string|null, value?: list<int>|null
-     * }> $values
+     * @param list<CheckShape> $checks
+     * @param list<TableShape> $tables
+     * @param list<ValueShape> $values
      */
     public static function with(
         ?string $id = null,
@@ -162,13 +158,7 @@ final class GenericDocument implements BaseModel
     /**
      * List of verification checks performed on the document.
      *
-     * @param list<Check|array{
-     *   masked?: bool|null,
-     *   message?: string|null,
-     *   name?: string|null,
-     *   validate?: bool|null,
-     *   weight?: int|null,
-     * }> $checks
+     * @param list<CheckShape> $checks
      */
     public function withChecks(array $checks): self
     {
@@ -247,7 +237,7 @@ final class GenericDocument implements BaseModel
     /**
      * List of tables extracted from the document, each containing operations.
      *
-     * @param list<Table|array{operation?: list<mixed>|null}> $tables
+     * @param list<TableShape> $tables
      */
     public function withTables(array $tables): self
     {
@@ -260,9 +250,7 @@ final class GenericDocument implements BaseModel
     /**
      * Extracted key-value pairs from the document, including confidence scores.
      *
-     * @param list<Value|array{
-     *   confidence?: float|null, name?: string|null, value?: list<int>|null
-     * }> $values
+     * @param list<ValueShape> $values
      */
     public function withValues(array $values): self
     {

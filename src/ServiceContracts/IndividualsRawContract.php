@@ -18,7 +18,7 @@ interface IndividualsRawContract
     /**
      * @api
      *
-     * @param array<mixed>|IndividualCreateParams $params
+     * @param array<string,mixed>|IndividualCreateParams $params
      *
      * @return BaseResponse<Individual>
      *
@@ -33,7 +33,7 @@ interface IndividualsRawContract
      * @api
      *
      * @param string $individualID ID of the individual
-     * @param array<mixed>|IndividualRetrieveParams $params
+     * @param array<string,mixed>|IndividualRetrieveParams $params
      *
      * @return BaseResponse<Individual>
      *
@@ -49,7 +49,7 @@ interface IndividualsRawContract
      * @api
      *
      * @param string $individualID ID of the individual to update
-     * @param array<mixed>|IndividualUpdateParams $params
+     * @param array<string,mixed>|IndividualUpdateParams $params
      *
      * @return BaseResponse<Individual>
      *
@@ -64,7 +64,7 @@ interface IndividualsRawContract
     /**
      * @api
      *
-     * @param array<mixed>|IndividualListParams $params
+     * @param array<string,mixed>|IndividualListParams $params
      *
      * @return BaseResponse<list<Individual>>
      *

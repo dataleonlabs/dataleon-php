@@ -8,10 +8,11 @@ use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\Kbis\Member;
-use Dataleon\Individuals\Documents\Kbis\Member\Type;
 
 /**
  * A document representing official registration data from the KBIS (France).
+ *
+ * @phpstan-import-type MemberShape from \Dataleon\Individuals\Documents\Kbis\Member
  *
  * @phpstan-type KbisShape = array{
  *   activities?: string|null,
@@ -24,7 +25,7 @@ use Dataleon\Individuals\Documents\Kbis\Member\Type;
  *   firstClosureDate?: string|null,
  *   fromGreffe?: string|null,
  *   legalForm?: string|null,
- *   members?: list<Member>|null,
+ *   members?: list<MemberShape>|null,
  *   ngestion?: string|null,
  *   rcsNumber?: string|null,
  *   registrationDate?: string|null,
@@ -138,30 +139,7 @@ final class Kbis implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Member|array{
-     *   id?: string|null,
-     *   address?: string|null,
-     *   birthday?: \DateTimeInterface|null,
-     *   birthplace?: string|null,
-     *   country?: string|null,
-     *   email?: string|null,
-     *   firstName?: string|null,
-     *   isBeneficialOwner?: bool|null,
-     *   isDelegator?: bool|null,
-     *   lastName?: string|null,
-     *   livenessVerification?: bool|null,
-     *   name?: string|null,
-     *   ownershipPercentage?: int|null,
-     *   phoneNumber?: string|null,
-     *   postalCode?: string|null,
-     *   registrationID?: string|null,
-     *   relation?: string|null,
-     *   roles?: string|null,
-     *   source?: string|null,
-     *   status?: string|null,
-     *   type?: value-of<Type>|null,
-     *   workspaceID?: string|null,
-     * }> $members
+     * @param list<MemberShape> $members
      */
     public static function with(
         ?string $activities = null,
@@ -314,30 +292,7 @@ final class Kbis implements BaseModel
     /**
      * List of people or entities associated with the company.
      *
-     * @param list<Member|array{
-     *   id?: string|null,
-     *   address?: string|null,
-     *   birthday?: \DateTimeInterface|null,
-     *   birthplace?: string|null,
-     *   country?: string|null,
-     *   email?: string|null,
-     *   firstName?: string|null,
-     *   isBeneficialOwner?: bool|null,
-     *   isDelegator?: bool|null,
-     *   lastName?: string|null,
-     *   livenessVerification?: bool|null,
-     *   name?: string|null,
-     *   ownershipPercentage?: int|null,
-     *   phoneNumber?: string|null,
-     *   postalCode?: string|null,
-     *   registrationID?: string|null,
-     *   relation?: string|null,
-     *   roles?: string|null,
-     *   source?: string|null,
-     *   status?: string|null,
-     *   type?: value-of<Type>|null,
-     *   workspaceID?: string|null,
-     * }> $members
+     * @param list<MemberShape> $members
      */
     public function withMembers(array $members): self
     {

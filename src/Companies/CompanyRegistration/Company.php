@@ -12,11 +12,13 @@ use Dataleon\Core\Contracts\BaseModel;
 /**
  * Main information about the company being registered, including legal name, registration ID, and address.
  *
+ * @phpstan-import-type ContactShape from \Dataleon\Companies\CompanyRegistration\Company\Contact
+ *
  * @phpstan-type CompanyShape = array{
  *   address?: string|null,
  *   closureDate?: string|null,
  *   commercialName?: string|null,
- *   contact?: Contact|null,
+ *   contact?: null|Contact|ContactShape,
  *   country?: string|null,
  *   email?: string|null,
  *   employees?: int|null,
@@ -170,13 +172,7 @@ final class Company implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Contact|array{
-     *   department?: string|null,
-     *   email?: string|null,
-     *   firstName?: string|null,
-     *   lastName?: string|null,
-     *   phoneNumber?: string|null,
-     * } $contact
+     * @param ContactShape $contact
      */
     public static function with(
         ?string $address = null,
@@ -262,13 +258,7 @@ final class Company implements BaseModel
     /**
      * Contact information for the company, including email, phone number, and address.
      *
-     * @param Contact|array{
-     *   department?: string|null,
-     *   email?: string|null,
-     *   firstName?: string|null,
-     *   lastName?: string|null,
-     *   phoneNumber?: string|null,
-     * } $contact
+     * @param ContactShape $contact
      */
     public function withContact(Contact|array $contact): self
     {

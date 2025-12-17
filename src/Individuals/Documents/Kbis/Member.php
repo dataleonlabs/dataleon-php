@@ -33,7 +33,7 @@ use Dataleon\Individuals\Documents\Kbis\Member\Type;
  *   roles?: string|null,
  *   source?: string|null,
  *   status?: string|null,
- *   type?: value-of<Type>|null,
+ *   type?: null|Type|value-of<Type>,
  *   workspaceID?: string|null,
  * }
  */

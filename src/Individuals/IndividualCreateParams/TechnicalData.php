@@ -18,7 +18,7 @@ use Dataleon\Individuals\IndividualCreateParams\TechnicalData\PortalStep;
  *   callbackURLNotification?: string|null,
  *   filteringScoreAmlSuspicions?: float|null,
  *   language?: string|null,
- *   portalSteps?: list<value-of<PortalStep>>|null,
+ *   portalSteps?: list<PortalStep|value-of<PortalStep>>|null,
  *   rawData?: bool|null,
  * }
  */

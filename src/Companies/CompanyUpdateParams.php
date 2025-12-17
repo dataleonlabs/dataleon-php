@@ -6,7 +6,6 @@ namespace Dataleon\Companies;
 
 use Dataleon\Companies\CompanyUpdateParams\Company;
 use Dataleon\Companies\CompanyUpdateParams\TechnicalData;
-use Dataleon\Companies\CompanyUpdateParams\TechnicalData\PortalStep;
 use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Attributes\Required;
 use Dataleon\Core\Concerns\SdkModel;
@@ -18,35 +17,14 @@ use Dataleon\Core\Contracts\BaseModel;
  *
  * @see Dataleon\Services\CompaniesService::update()
  *
+ * @phpstan-import-type CompanyShape from \Dataleon\Companies\CompanyUpdateParams\Company
+ * @phpstan-import-type TechnicalDataShape from \Dataleon\Companies\CompanyUpdateParams\TechnicalData
+ *
  * @phpstan-type CompanyUpdateParamsShape = array{
- *   company: Company|array{
- *     name: string,
- *     address?: string|null,
- *     commercialName?: string|null,
- *     country?: string|null,
- *     email?: string|null,
- *     employerIdentificationNumber?: string|null,
- *     legalForm?: string|null,
- *     phoneNumber?: string|null,
- *     registrationDate?: string|null,
- *     registrationID?: string|null,
- *     shareCapital?: string|null,
- *     status?: string|null,
- *     taxIdentificationNumber?: string|null,
- *     type?: string|null,
- *     websiteURL?: string|null,
- *   },
+ *   company: CompanyShape,
  *   workspaceID: string,
- *   sourceID?: string,
- *   technicalData?: TechnicalData|array{
- *     activeAmlSuspicions?: bool|null,
- *     callbackURL?: string|null,
- *     callbackURLNotification?: string|null,
- *     filteringScoreAmlSuspicions?: float|null,
- *     language?: string|null,
- *     portalSteps?: list<value-of<PortalStep>>|null,
- *     rawData?: bool|null,
- *   },
+ *   sourceID?: string|null,
+ *   technicalData?: TechnicalDataShape|null,
  * }
  */
 final class CompanyUpdateParams implements BaseModel
@@ -103,32 +81,8 @@ final class CompanyUpdateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Company|array{
-     *   name: string,
-     *   address?: string|null,
-     *   commercialName?: string|null,
-     *   country?: string|null,
-     *   email?: string|null,
-     *   employerIdentificationNumber?: string|null,
-     *   legalForm?: string|null,
-     *   phoneNumber?: string|null,
-     *   registrationDate?: string|null,
-     *   registrationID?: string|null,
-     *   shareCapital?: string|null,
-     *   status?: string|null,
-     *   taxIdentificationNumber?: string|null,
-     *   type?: string|null,
-     *   websiteURL?: string|null,
-     * } $company
-     * @param TechnicalData|array{
-     *   activeAmlSuspicions?: bool|null,
-     *   callbackURL?: string|null,
-     *   callbackURLNotification?: string|null,
-     *   filteringScoreAmlSuspicions?: float|null,
-     *   language?: string|null,
-     *   portalSteps?: list<value-of<PortalStep>>|null,
-     *   rawData?: bool|null,
-     * } $technicalData
+     * @param CompanyShape $company
+     * @param TechnicalDataShape $technicalData
      */
     public static function with(
         Company|array $company,
@@ -150,23 +104,7 @@ final class CompanyUpdateParams implements BaseModel
     /**
      * Main information about the company being registered.
      *
-     * @param Company|array{
-     *   name: string,
-     *   address?: string|null,
-     *   commercialName?: string|null,
-     *   country?: string|null,
-     *   email?: string|null,
-     *   employerIdentificationNumber?: string|null,
-     *   legalForm?: string|null,
-     *   phoneNumber?: string|null,
-     *   registrationDate?: string|null,
-     *   registrationID?: string|null,
-     *   shareCapital?: string|null,
-     *   status?: string|null,
-     *   taxIdentificationNumber?: string|null,
-     *   type?: string|null,
-     *   websiteURL?: string|null,
-     * } $company
+     * @param CompanyShape $company
      */
     public function withCompany(Company|array $company): self
     {
@@ -201,15 +139,7 @@ final class CompanyUpdateParams implements BaseModel
     /**
      * Technical metadata and callback configuration.
      *
-     * @param TechnicalData|array{
-     *   activeAmlSuspicions?: bool|null,
-     *   callbackURL?: string|null,
-     *   callbackURLNotification?: string|null,
-     *   filteringScoreAmlSuspicions?: float|null,
-     *   language?: string|null,
-     *   portalSteps?: list<value-of<PortalStep>>|null,
-     *   rawData?: bool|null,
-     * } $technicalData
+     * @param TechnicalDataShape $technicalData
      */
     public function withTechnicalData(TechnicalData|array $technicalData): self
     {

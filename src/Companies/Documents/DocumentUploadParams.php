@@ -17,7 +17,9 @@ use Dataleon\Core\Contracts\BaseModel;
  * @see Dataleon\Services\Companies\DocumentsService::upload()
  *
  * @phpstan-type DocumentUploadParamsShape = array{
- *   documentType: DocumentType|value-of<DocumentType>, file?: string, url?: string
+ *   documentType: DocumentType|value-of<DocumentType>,
+ *   file?: string|null,
+ *   url?: string|null,
  * }
  */
 final class DocumentUploadParams implements BaseModel

@@ -15,7 +15,7 @@ use Dataleon\Core\Contracts\BaseModel;
  * @see Dataleon\Services\CompaniesService::retrieve()
  *
  * @phpstan-type CompanyRetrieveParamsShape = array{
- *   document?: bool, scope?: string
+ *   document?: bool|null, scope?: string|null
  * }
  */
 final class CompanyRetrieveParams implements BaseModel

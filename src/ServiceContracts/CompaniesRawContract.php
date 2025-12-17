@@ -18,7 +18,7 @@ interface CompaniesRawContract
     /**
      * @api
      *
-     * @param array<mixed>|CompanyCreateParams $params
+     * @param array<string,mixed>|CompanyCreateParams $params
      *
      * @return BaseResponse<CompanyRegistration>
      *
@@ -33,7 +33,7 @@ interface CompaniesRawContract
      * @api
      *
      * @param string $companyID ID of the company
-     * @param array<mixed>|CompanyRetrieveParams $params
+     * @param array<string,mixed>|CompanyRetrieveParams $params
      *
      * @return BaseResponse<CompanyRegistration>
      *
@@ -49,7 +49,7 @@ interface CompaniesRawContract
      * @api
      *
      * @param string $companyID ID of the company to update
-     * @param array<mixed>|CompanyUpdateParams $params
+     * @param array<string,mixed>|CompanyUpdateParams $params
      *
      * @return BaseResponse<CompanyRegistration>
      *
@@ -64,7 +64,7 @@ interface CompaniesRawContract
     /**
      * @api
      *
-     * @param array<mixed>|CompanyListParams $params
+     * @param array<string,mixed>|CompanyListParams $params
      *
      * @return BaseResponse<list<CompanyRegistration>>
      *

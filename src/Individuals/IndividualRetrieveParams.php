@@ -15,7 +15,7 @@ use Dataleon\Core\Contracts\BaseModel;
  * @see Dataleon\Services\IndividualsService::retrieve()
  *
  * @phpstan-type IndividualRetrieveParamsShape = array{
- *   document?: bool, scope?: string
+ *   document?: bool|null, scope?: string|null
  * }
  */
 final class IndividualRetrieveParams implements BaseModel

@@ -31,7 +31,7 @@ interface DocumentsRawContract
      * @api
      *
      * @param string $individualID ID of the individual to upload document
-     * @param array<mixed>|DocumentUploadParams $params
+     * @param array<string,mixed>|DocumentUploadParams $params
      *
      * @return BaseResponse<GenericDocument>
      *

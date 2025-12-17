@@ -16,7 +16,7 @@ use Dataleon\Individuals\IndividualUpdateParams\Person\Gender;
  *   birthday?: string|null,
  *   email?: string|null,
  *   firstName?: string|null,
- *   gender?: value-of<Gender>|null,
+ *   gender?: null|Gender|value-of<Gender>,
  *   lastName?: string|null,
  *   maidenName?: string|null,
  *   nationality?: string|null,

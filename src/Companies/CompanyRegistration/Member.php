@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Dataleon\Companies\CompanyRegistration;
 
-use Dataleon\Check;
 use Dataleon\Companies\CompanyRegistration\Member\Source;
 use Dataleon\Companies\CompanyRegistration\Member\Type;
 use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\GenericDocument;
-use Dataleon\Individuals\Documents\GenericDocument\Table;
-use Dataleon\Individuals\Documents\GenericDocument\Value;
 
 /**
  * Represents a member or actor of a company, including personal and ownership information.
+ *
+ * @phpstan-import-type GenericDocumentShape from \Dataleon\Individuals\Documents\GenericDocument
  *
  * @phpstan-type MemberShape = array{
  *   id?: string|null,
@@ -23,7 +22,7 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
  *   birthday?: \DateTimeInterface|null,
  *   birthplace?: string|null,
  *   country?: string|null,
- *   documents?: list<GenericDocument>|null,
+ *   documents?: list<GenericDocumentShape>|null,
  *   email?: string|null,
  *   firstName?: string|null,
  *   isBeneficialOwner?: bool|null,
@@ -37,10 +36,10 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
  *   registrationID?: string|null,
  *   relation?: string|null,
  *   roles?: string|null,
- *   source?: value-of<Source>|null,
+ *   source?: null|Source|value-of<Source>,
  *   state?: string|null,
  *   status?: string|null,
- *   type?: value-of<Type>|null,
+ *   type?: null|Type|value-of<Type>,
  *   workspaceID?: string|null,
  * }
  */
@@ -206,18 +205,7 @@ final class Member implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<GenericDocument|array{
-     *   id?: string|null,
-     *   checks?: list<Check>|null,
-     *   createdAt?: \DateTimeInterface|null,
-     *   documentType?: string|null,
-     *   name?: string|null,
-     *   signedURL?: string|null,
-     *   state?: string|null,
-     *   status?: string|null,
-     *   tables?: list<Table>|null,
-     *   values?: list<Value>|null,
-     * }> $documents
+     * @param list<GenericDocumentShape> $documents
      * @param Source|value-of<Source> $source
      * @param Type|value-of<Type> $type
      */
@@ -332,18 +320,7 @@ final class Member implements BaseModel
     /**
      * List of documents associated with the member, including their metadata and processing status.
      *
-     * @param list<GenericDocument|array{
-     *   id?: string|null,
-     *   checks?: list<Check>|null,
-     *   createdAt?: \DateTimeInterface|null,
-     *   documentType?: string|null,
-     *   name?: string|null,
-     *   signedURL?: string|null,
-     *   state?: string|null,
-     *   status?: string|null,
-     *   tables?: list<Table>|null,
-     *   values?: list<Value>|null,
-     * }> $documents
+     * @param list<GenericDocumentShape> $documents
      */
     public function withDocuments(array $documents): self
     {

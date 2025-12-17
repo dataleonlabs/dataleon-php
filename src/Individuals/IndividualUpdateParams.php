@@ -10,37 +10,21 @@ use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\IndividualUpdateParams\Person;
-use Dataleon\Individuals\IndividualUpdateParams\Person\Gender;
 use Dataleon\Individuals\IndividualUpdateParams\TechnicalData;
-use Dataleon\Individuals\IndividualUpdateParams\TechnicalData\PortalStep;
 
 /**
  * Update an individual by ID.
  *
  * @see Dataleon\Services\IndividualsService::update()
  *
+ * @phpstan-import-type PersonShape from \Dataleon\Individuals\IndividualUpdateParams\Person
+ * @phpstan-import-type TechnicalDataShape from \Dataleon\Individuals\IndividualUpdateParams\TechnicalData
+ *
  * @phpstan-type IndividualUpdateParamsShape = array{
  *   workspaceID: string,
- *   person?: Person|array{
- *     birthday?: string|null,
- *     email?: string|null,
- *     firstName?: string|null,
- *     gender?: value-of<Gender>|null,
- *     lastName?: string|null,
- *     maidenName?: string|null,
- *     nationality?: string|null,
- *     phoneNumber?: string|null,
- *   },
- *   sourceID?: string,
- *   technicalData?: TechnicalData|array{
- *     activeAmlSuspicions?: bool|null,
- *     callbackURL?: string|null,
- *     callbackURLNotification?: string|null,
- *     filteringScoreAmlSuspicions?: float|null,
- *     language?: string|null,
- *     portalSteps?: list<value-of<PortalStep>>|null,
- *     rawData?: bool|null,
- *   },
+ *   person?: PersonShape|null,
+ *   sourceID?: string|null,
+ *   technicalData?: TechnicalDataShape|null,
  * }
  */
 final class IndividualUpdateParams implements BaseModel
@@ -97,25 +81,8 @@ final class IndividualUpdateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Person|array{
-     *   birthday?: string|null,
-     *   email?: string|null,
-     *   firstName?: string|null,
-     *   gender?: value-of<Gender>|null,
-     *   lastName?: string|null,
-     *   maidenName?: string|null,
-     *   nationality?: string|null,
-     *   phoneNumber?: string|null,
-     * } $person
-     * @param TechnicalData|array{
-     *   activeAmlSuspicions?: bool|null,
-     *   callbackURL?: string|null,
-     *   callbackURLNotification?: string|null,
-     *   filteringScoreAmlSuspicions?: float|null,
-     *   language?: string|null,
-     *   portalSteps?: list<value-of<PortalStep>>|null,
-     *   rawData?: bool|null,
-     * } $technicalData
+     * @param PersonShape $person
+     * @param TechnicalDataShape $technicalData
      */
     public static function with(
         string $workspaceID,
@@ -148,16 +115,7 @@ final class IndividualUpdateParams implements BaseModel
     /**
      * Personal information about the individual.
      *
-     * @param Person|array{
-     *   birthday?: string|null,
-     *   email?: string|null,
-     *   firstName?: string|null,
-     *   gender?: value-of<Gender>|null,
-     *   lastName?: string|null,
-     *   maidenName?: string|null,
-     *   nationality?: string|null,
-     *   phoneNumber?: string|null,
-     * } $person
+     * @param PersonShape $person
      */
     public function withPerson(Person|array $person): self
     {
@@ -181,15 +139,7 @@ final class IndividualUpdateParams implements BaseModel
     /**
      * Technical metadata related to the request or processing.
      *
-     * @param TechnicalData|array{
-     *   activeAmlSuspicions?: bool|null,
-     *   callbackURL?: string|null,
-     *   callbackURLNotification?: string|null,
-     *   filteringScoreAmlSuspicions?: float|null,
-     *   language?: string|null,
-     *   portalSteps?: list<value-of<PortalStep>>|null,
-     *   rawData?: bool|null,
-     * } $technicalData
+     * @param TechnicalDataShape $technicalData
      */
     public function withTechnicalData(TechnicalData|array $technicalData): self
     {

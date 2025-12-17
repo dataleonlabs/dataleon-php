@@ -17,14 +17,14 @@ use Dataleon\Individuals\IndividualListParams\Status;
  * @see Dataleon\Services\IndividualsService::list()
  *
  * @phpstan-type IndividualListParamsShape = array{
- *   endDate?: string,
- *   limit?: int,
- *   offset?: int,
- *   sourceID?: string,
- *   startDate?: string,
- *   state?: State|value-of<State>,
- *   status?: Status|value-of<Status>,
- *   workspaceID?: string,
+ *   endDate?: string|null,
+ *   limit?: int|null,
+ *   offset?: int|null,
+ *   sourceID?: string|null,
+ *   startDate?: string|null,
+ *   state?: null|State|value-of<State>,
+ *   status?: null|Status|value-of<Status>,
+ *   workspaceID?: string|null,
  * }
  */
 final class IndividualListParams implements BaseModel

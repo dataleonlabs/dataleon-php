@@ -9,11 +9,7 @@ use Dataleon\Core\Attributes\Optional;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\GenericDocument;
-use Dataleon\Individuals\Documents\GenericDocument\Table;
-use Dataleon\Individuals\Documents\GenericDocument\Value;
 use Dataleon\Individuals\Individual\AmlSuspicion;
-use Dataleon\Individuals\Individual\AmlSuspicion\Status;
-use Dataleon\Individuals\Individual\AmlSuspicion\Type;
 use Dataleon\Individuals\Individual\Certificat;
 use Dataleon\Individuals\Individual\IdentityCard;
 use Dataleon\Individuals\Individual\Person;
@@ -21,30 +17,40 @@ use Dataleon\Individuals\Individual\Property;
 use Dataleon\Individuals\Individual\Risk;
 use Dataleon\Individuals\Individual\Tag;
 use Dataleon\Individuals\Individual\TechnicalData;
-use Dataleon\Individuals\Individual\TechnicalData\PortalStep;
 
 /**
  * Represents a single individual record, including identification, status, and associated metadata.
  *
+ * @phpstan-import-type AmlSuspicionShape from \Dataleon\Individuals\Individual\AmlSuspicion
+ * @phpstan-import-type CertificatShape from \Dataleon\Individuals\Individual\Certificat
+ * @phpstan-import-type CheckShape from \Dataleon\Check
+ * @phpstan-import-type GenericDocumentShape from \Dataleon\Individuals\Documents\GenericDocument
+ * @phpstan-import-type IdentityCardShape from \Dataleon\Individuals\Individual\IdentityCard
+ * @phpstan-import-type PersonShape from \Dataleon\Individuals\Individual\Person
+ * @phpstan-import-type PropertyShape from \Dataleon\Individuals\Individual\Property
+ * @phpstan-import-type RiskShape from \Dataleon\Individuals\Individual\Risk
+ * @phpstan-import-type TagShape from \Dataleon\Individuals\Individual\Tag
+ * @phpstan-import-type TechnicalDataShape from \Dataleon\Individuals\Individual\TechnicalData
+ *
  * @phpstan-type IndividualShape = array{
  *   id?: string|null,
- *   amlSuspicions?: list<AmlSuspicion>|null,
+ *   amlSuspicions?: list<AmlSuspicionShape>|null,
  *   authURL?: string|null,
- *   certificat?: Certificat|null,
- *   checks?: list<Check>|null,
+ *   certificat?: null|Certificat|CertificatShape,
+ *   checks?: list<CheckShape>|null,
  *   createdAt?: \DateTimeInterface|null,
- *   documents?: list<GenericDocument>|null,
- *   identityCard?: IdentityCard|null,
+ *   documents?: list<GenericDocumentShape>|null,
+ *   identityCard?: null|IdentityCard|IdentityCardShape,
  *   number?: int|null,
- *   person?: Person|null,
+ *   person?: null|Person|PersonShape,
  *   portalURL?: string|null,
- *   properties?: list<Property>|null,
- *   risk?: Risk|null,
+ *   properties?: list<PropertyShape>|null,
+ *   risk?: null|Risk|RiskShape,
  *   sourceID?: string|null,
  *   state?: string|null,
  *   status?: string|null,
- *   tags?: list<Tag>|null,
- *   technicalData?: TechnicalData|null,
+ *   tags?: list<TagShape>|null,
+ *   technicalData?: null|TechnicalData|TechnicalDataShape,
  *   webviewURL?: string|null,
  *   workspaceID?: string|null,
  * }
@@ -194,105 +200,16 @@ final class Individual implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AmlSuspicion|array{
-     *   caption?: string|null,
-     *   country?: string|null,
-     *   gender?: string|null,
-     *   relation?: string|null,
-     *   schema?: string|null,
-     *   score?: float|null,
-     *   source?: string|null,
-     *   status?: value-of<Status>|null,
-     *   type?: value-of<Type>|null,
-     * }> $amlSuspicions
-     * @param Certificat|array{
-     *   id?: string|null, createdAt?: \DateTimeInterface|null, filename?: string|null
-     * } $certificat
-     * @param list<Check|array{
-     *   masked?: bool|null,
-     *   message?: string|null,
-     *   name?: string|null,
-     *   validate?: bool|null,
-     *   weight?: int|null,
-     * }> $checks
-     * @param list<GenericDocument|array{
-     *   id?: string|null,
-     *   checks?: list<Check>|null,
-     *   createdAt?: \DateTimeInterface|null,
-     *   documentType?: string|null,
-     *   name?: string|null,
-     *   signedURL?: string|null,
-     *   state?: string|null,
-     *   status?: string|null,
-     *   tables?: list<Table>|null,
-     *   values?: list<Value>|null,
-     * }> $documents
-     * @param IdentityCard|array{
-     *   id?: string|null,
-     *   backDocumentSignedURL?: string|null,
-     *   birthPlace?: string|null,
-     *   birthday?: string|null,
-     *   country?: string|null,
-     *   expirationDate?: string|null,
-     *   firstName?: string|null,
-     *   frontDocumentSignedURL?: string|null,
-     *   gender?: string|null,
-     *   issueDate?: string|null,
-     *   lastName?: string|null,
-     *   mrzLine1?: string|null,
-     *   mrzLine2?: string|null,
-     *   mrzLine3?: string|null,
-     *   type?: string|null,
-     * } $identityCard
-     * @param Person|array{
-     *   birthday?: string|null,
-     *   email?: string|null,
-     *   faceImageSignedURL?: string|null,
-     *   firstName?: string|null,
-     *   fullName?: string|null,
-     *   gender?: string|null,
-     *   lastName?: string|null,
-     *   maidenName?: string|null,
-     *   nationality?: string|null,
-     *   phoneNumber?: string|null,
-     * } $person
-     * @param list<Property|array{
-     *   name?: string|null, type?: string|null, value?: string|null
-     * }> $properties
-     * @param Risk|array{
-     *   code?: string|null, reason?: string|null, score?: float|null
-     * } $risk
-     * @param list<Tag|array{
-     *   key?: string|null,
-     *   private?: bool|null,
-     *   type?: string|null,
-     *   value?: string|null,
-     * }> $tags
-     * @param TechnicalData|array{
-     *   activeAmlSuspicions?: bool|null,
-     *   apiVersion?: int|null,
-     *   approvedAt?: \DateTimeInterface|null,
-     *   callbackURL?: string|null,
-     *   callbackURLNotification?: string|null,
-     *   disableNotification?: bool|null,
-     *   disableNotificationDate?: \DateTimeInterface|null,
-     *   exportType?: string|null,
-     *   filteringScoreAmlSuspicions?: float|null,
-     *   finishedAt?: \DateTimeInterface|null,
-     *   ip?: string|null,
-     *   language?: string|null,
-     *   locationIP?: string|null,
-     *   needReviewAt?: \DateTimeInterface|null,
-     *   notificationConfirmation?: bool|null,
-     *   portalSteps?: list<value-of<PortalStep>>|null,
-     *   qrCode?: string|null,
-     *   rawData?: bool|null,
-     *   rejectedAt?: \DateTimeInterface|null,
-     *   sessionDuration?: int|null,
-     *   startedAt?: \DateTimeInterface|null,
-     *   transferAt?: \DateTimeInterface|null,
-     *   transferMode?: string|null,
-     * } $technicalData
+     * @param list<AmlSuspicionShape> $amlSuspicions
+     * @param CertificatShape $certificat
+     * @param list<CheckShape> $checks
+     * @param list<GenericDocumentShape> $documents
+     * @param IdentityCardShape $identityCard
+     * @param PersonShape $person
+     * @param list<PropertyShape> $properties
+     * @param RiskShape $risk
+     * @param list<TagShape> $tags
+     * @param TechnicalDataShape $technicalData
      */
     public static function with(
         ?string $id = null,
@@ -356,17 +273,7 @@ final class Individual implements BaseModel
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the individual.
      *
-     * @param list<AmlSuspicion|array{
-     *   caption?: string|null,
-     *   country?: string|null,
-     *   gender?: string|null,
-     *   relation?: string|null,
-     *   schema?: string|null,
-     *   score?: float|null,
-     *   source?: string|null,
-     *   status?: value-of<Status>|null,
-     *   type?: value-of<Type>|null,
-     * }> $amlSuspicions
+     * @param list<AmlSuspicionShape> $amlSuspicions
      */
     public function withAmlSuspicions(array $amlSuspicions): self
     {
@@ -390,9 +297,7 @@ final class Individual implements BaseModel
     /**
      * Digital certificate associated with the individual, if any.
      *
-     * @param Certificat|array{
-     *   id?: string|null, createdAt?: \DateTimeInterface|null, filename?: string|null
-     * } $certificat
+     * @param CertificatShape $certificat
      */
     public function withCertificat(Certificat|array $certificat): self
     {
@@ -405,13 +310,7 @@ final class Individual implements BaseModel
     /**
      * List of verification or validation checks applied to the individual.
      *
-     * @param list<Check|array{
-     *   masked?: bool|null,
-     *   message?: string|null,
-     *   name?: string|null,
-     *   validate?: bool|null,
-     *   weight?: int|null,
-     * }> $checks
+     * @param list<CheckShape> $checks
      */
     public function withChecks(array $checks): self
     {
@@ -435,18 +334,7 @@ final class Individual implements BaseModel
     /**
      * All documents submitted or associated with the individual.
      *
-     * @param list<GenericDocument|array{
-     *   id?: string|null,
-     *   checks?: list<Check>|null,
-     *   createdAt?: \DateTimeInterface|null,
-     *   documentType?: string|null,
-     *   name?: string|null,
-     *   signedURL?: string|null,
-     *   state?: string|null,
-     *   status?: string|null,
-     *   tables?: list<Table>|null,
-     *   values?: list<Value>|null,
-     * }> $documents
+     * @param list<GenericDocumentShape> $documents
      */
     public function withDocuments(array $documents): self
     {
@@ -459,23 +347,7 @@ final class Individual implements BaseModel
     /**
      * Reference to the individual's identity document.
      *
-     * @param IdentityCard|array{
-     *   id?: string|null,
-     *   backDocumentSignedURL?: string|null,
-     *   birthPlace?: string|null,
-     *   birthday?: string|null,
-     *   country?: string|null,
-     *   expirationDate?: string|null,
-     *   firstName?: string|null,
-     *   frontDocumentSignedURL?: string|null,
-     *   gender?: string|null,
-     *   issueDate?: string|null,
-     *   lastName?: string|null,
-     *   mrzLine1?: string|null,
-     *   mrzLine2?: string|null,
-     *   mrzLine3?: string|null,
-     *   type?: string|null,
-     * } $identityCard
+     * @param IdentityCardShape $identityCard
      */
     public function withIdentityCard(IdentityCard|array $identityCard): self
     {
@@ -499,18 +371,7 @@ final class Individual implements BaseModel
     /**
      * Personal details of the individual, such as name, date of birth, and contact info.
      *
-     * @param Person|array{
-     *   birthday?: string|null,
-     *   email?: string|null,
-     *   faceImageSignedURL?: string|null,
-     *   firstName?: string|null,
-     *   fullName?: string|null,
-     *   gender?: string|null,
-     *   lastName?: string|null,
-     *   maidenName?: string|null,
-     *   nationality?: string|null,
-     *   phoneNumber?: string|null,
-     * } $person
+     * @param PersonShape $person
      */
     public function withPerson(Person|array $person): self
     {
@@ -534,9 +395,7 @@ final class Individual implements BaseModel
     /**
      * Custom key-value metadata fields associated with the individual.
      *
-     * @param list<Property|array{
-     *   name?: string|null, type?: string|null, value?: string|null
-     * }> $properties
+     * @param list<PropertyShape> $properties
      */
     public function withProperties(array $properties): self
     {
@@ -549,9 +408,7 @@ final class Individual implements BaseModel
     /**
      * Risk assessment associated with the individual.
      *
-     * @param Risk|array{
-     *   code?: string|null, reason?: string|null, score?: float|null
-     * } $risk
+     * @param RiskShape $risk
      */
     public function withRisk(Risk|array $risk): self
     {
@@ -597,12 +454,7 @@ final class Individual implements BaseModel
     /**
      * List of tags assigned to the individual for categorization or metadata purposes.
      *
-     * @param list<Tag|array{
-     *   key?: string|null,
-     *   private?: bool|null,
-     *   type?: string|null,
-     *   value?: string|null,
-     * }> $tags
+     * @param list<TagShape> $tags
      */
     public function withTags(array $tags): self
     {
@@ -615,31 +467,7 @@ final class Individual implements BaseModel
     /**
      * Technical metadata related to the request (e.g., QR code settings, language).
      *
-     * @param TechnicalData|array{
-     *   activeAmlSuspicions?: bool|null,
-     *   apiVersion?: int|null,
-     *   approvedAt?: \DateTimeInterface|null,
-     *   callbackURL?: string|null,
-     *   callbackURLNotification?: string|null,
-     *   disableNotification?: bool|null,
-     *   disableNotificationDate?: \DateTimeInterface|null,
-     *   exportType?: string|null,
-     *   filteringScoreAmlSuspicions?: float|null,
-     *   finishedAt?: \DateTimeInterface|null,
-     *   ip?: string|null,
-     *   language?: string|null,
-     *   locationIP?: string|null,
-     *   needReviewAt?: \DateTimeInterface|null,
-     *   notificationConfirmation?: bool|null,
-     *   portalSteps?: list<value-of<PortalStep>>|null,
-     *   qrCode?: string|null,
-     *   rawData?: bool|null,
-     *   rejectedAt?: \DateTimeInterface|null,
-     *   sessionDuration?: int|null,
-     *   startedAt?: \DateTimeInterface|null,
-     *   transferAt?: \DateTimeInterface|null,
-     *   transferMode?: string|null,
-     * } $technicalData
+     * @param TechnicalDataShape $technicalData
      */
     public function withTechnicalData(TechnicalData|array $technicalData): self
     {

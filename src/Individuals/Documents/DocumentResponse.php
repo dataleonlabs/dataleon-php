@@ -10,8 +10,10 @@ use Dataleon\Core\Contracts\BaseModel;
 use Dataleon\Individuals\Documents\DocumentResponse\Document;
 
 /**
+ * @phpstan-import-type DocumentShape from \Dataleon\Individuals\Documents\DocumentResponse\Document
+ *
  * @phpstan-type DocumentResponseShape = array{
- *   documents?: list<Document>|null, totalDocument?: int|null
+ *   documents?: list<DocumentShape>|null, totalDocument?: int|null
  * }
  */
 final class DocumentResponse implements BaseModel
@@ -43,16 +45,7 @@ final class DocumentResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Document|array{
-     *   id?: string|null,
-     *   documentType?: string|null,
-     *   filename?: string|null,
-     *   name?: string|null,
-     *   signedURL?: string|null,
-     *   state?: string|null,
-     *   status?: string|null,
-     *   workspaceID?: string|null,
-     * }> $documents
+     * @param list<DocumentShape> $documents
      */
     public static function with(
         ?array $documents = null,
@@ -69,16 +62,7 @@ final class DocumentResponse implements BaseModel
     /**
      * List of documents associated with the response.
      *
-     * @param list<Document|array{
-     *   id?: string|null,
-     *   documentType?: string|null,
-     *   filename?: string|null,
-     *   name?: string|null,
-     *   signedURL?: string|null,
-     *   state?: string|null,
-     *   status?: string|null,
-     *   workspaceID?: string|null,
-     * }> $documents
+     * @param list<DocumentShape> $documents
      */
     public function withDocuments(array $documents): self
     {
