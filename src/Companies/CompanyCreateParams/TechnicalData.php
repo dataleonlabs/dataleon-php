@@ -81,7 +81,7 @@ final class TechnicalData implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<PortalStep|value-of<PortalStep>> $portalSteps
+     * @param list<PortalStep|value-of<PortalStep>>|null $portalSteps
      */
     public static function with(
         ?bool $activeAmlSuspicions = null,

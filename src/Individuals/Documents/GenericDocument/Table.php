@@ -34,7 +34,7 @@ final class Table implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<mixed> $operation
+     * @param list<mixed>|null $operation
      */
     public static function with(?array $operation = null): self
     {

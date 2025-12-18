@@ -21,10 +21,10 @@ use Dataleon\Core\Contracts\BaseModel;
  * @phpstan-import-type TechnicalDataShape from \Dataleon\Companies\CompanyCreateParams\TechnicalData
  *
  * @phpstan-type CompanyCreateParamsShape = array{
- *   company: CompanyShape,
+ *   company: Company|CompanyShape,
  *   workspaceID: string,
  *   sourceID?: string|null,
- *   technicalData?: TechnicalDataShape|null,
+ *   technicalData?: null|TechnicalData|TechnicalDataShape,
  * }
  */
 final class CompanyCreateParams implements BaseModel
@@ -81,8 +81,8 @@ final class CompanyCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param CompanyShape $company
-     * @param TechnicalDataShape $technicalData
+     * @param Company|CompanyShape $company
+     * @param TechnicalData|TechnicalDataShape|null $technicalData
      */
     public static function with(
         Company|array $company,
@@ -104,7 +104,7 @@ final class CompanyCreateParams implements BaseModel
     /**
      * Main information about the company being registered.
      *
-     * @param CompanyShape $company
+     * @param Company|CompanyShape $company
      */
     public function withCompany(Company|array $company): self
     {
@@ -139,7 +139,7 @@ final class CompanyCreateParams implements BaseModel
     /**
      * Technical metadata and callback configuration.
      *
-     * @param TechnicalDataShape $technicalData
+     * @param TechnicalData|TechnicalDataShape $technicalData
      */
     public function withTechnicalData(TechnicalData|array $technicalData): self
     {

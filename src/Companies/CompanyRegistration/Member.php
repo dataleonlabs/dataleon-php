@@ -205,9 +205,9 @@ final class Member implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<GenericDocumentShape> $documents
-     * @param Source|value-of<Source> $source
-     * @param Type|value-of<Type> $type
+     * @param list<GenericDocumentShape>|null $documents
+     * @param Source|value-of<Source>|null $source
+     * @param Type|value-of<Type>|null $type
      */
     public static function with(
         ?string $id = null,

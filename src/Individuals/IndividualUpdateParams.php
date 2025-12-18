@@ -22,9 +22,9 @@ use Dataleon\Individuals\IndividualUpdateParams\TechnicalData;
  *
  * @phpstan-type IndividualUpdateParamsShape = array{
  *   workspaceID: string,
- *   person?: PersonShape|null,
+ *   person?: null|Person|PersonShape,
  *   sourceID?: string|null,
- *   technicalData?: TechnicalDataShape|null,
+ *   technicalData?: null|TechnicalData|TechnicalDataShape,
  * }
  */
 final class IndividualUpdateParams implements BaseModel
@@ -81,8 +81,8 @@ final class IndividualUpdateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param PersonShape $person
-     * @param TechnicalDataShape $technicalData
+     * @param Person|PersonShape|null $person
+     * @param TechnicalData|TechnicalDataShape|null $technicalData
      */
     public static function with(
         string $workspaceID,
@@ -115,7 +115,7 @@ final class IndividualUpdateParams implements BaseModel
     /**
      * Personal information about the individual.
      *
-     * @param PersonShape $person
+     * @param Person|PersonShape $person
      */
     public function withPerson(Person|array $person): self
     {
@@ -139,7 +139,7 @@ final class IndividualUpdateParams implements BaseModel
     /**
      * Technical metadata related to the request or processing.
      *
-     * @param TechnicalDataShape $technicalData
+     * @param TechnicalData|TechnicalDataShape $technicalData
      */
     public function withTechnicalData(TechnicalData|array $technicalData): self
     {

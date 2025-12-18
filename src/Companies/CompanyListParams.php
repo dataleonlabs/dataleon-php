@@ -95,8 +95,8 @@ final class CompanyListParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param State|value-of<State> $state
-     * @param Status|value-of<Status> $status
+     * @param State|value-of<State>|null $state
+     * @param Status|value-of<Status>|null $status
      */
     public static function with(
         ?string $endDate = null,

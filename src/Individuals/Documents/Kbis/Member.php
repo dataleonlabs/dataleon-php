@@ -186,7 +186,7 @@ final class Member implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type|value-of<Type> $type
+     * @param Type|value-of<Type>|null $type
      */
     public static function with(
         ?string $id = null,

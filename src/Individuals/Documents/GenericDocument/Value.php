@@ -48,7 +48,7 @@ final class Value implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<int> $value
+     * @param list<int>|null $value
      */
     public static function with(
         ?float $confidence = null,

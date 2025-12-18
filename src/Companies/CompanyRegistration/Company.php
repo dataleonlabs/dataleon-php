@@ -172,7 +172,7 @@ final class Company implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param ContactShape $contact
+     * @param Contact|ContactShape|null $contact
      */
     public static function with(
         ?string $address = null,
@@ -258,7 +258,7 @@ final class Company implements BaseModel
     /**
      * Contact information for the company, including email, phone number, and address.
      *
-     * @param ContactShape $contact
+     * @param Contact|ContactShape $contact
      */
     public function withContact(Contact|array $contact): self
     {

@@ -140,15 +140,15 @@ final class CompanyRegistration implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AmlSuspicionShape> $amlSuspicions
-     * @param CertificatShape $certificat
-     * @param list<CheckShape> $checks
-     * @param CompanyShape $company
-     * @param list<GenericDocumentShape> $documents
-     * @param list<MemberShape> $members
-     * @param list<PropertyShape> $properties
-     * @param RiskShape $risk
-     * @param TechnicalDataShape $technicalData
+     * @param list<AmlSuspicionShape>|null $amlSuspicions
+     * @param Certificat|CertificatShape|null $certificat
+     * @param list<CheckShape>|null $checks
+     * @param Company|CompanyShape|null $company
+     * @param list<GenericDocumentShape>|null $documents
+     * @param list<MemberShape>|null $members
+     * @param list<PropertyShape>|null $properties
+     * @param Risk|RiskShape|null $risk
+     * @param TechnicalData|TechnicalDataShape|null $technicalData
      */
     public static function with(
         ?array $amlSuspicions = null,
@@ -198,7 +198,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * Digital certificate associated with the company, if any, including its creation timestamp and filename.
      *
-     * @param CertificatShape $certificat
+     * @param Certificat|CertificatShape $certificat
      */
     public function withCertificat(Certificat|array $certificat): self
     {
@@ -224,7 +224,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * Main information about the company being registered, including legal name, registration ID, and address.
      *
-     * @param CompanyShape $company
+     * @param Company|CompanyShape $company
      */
     public function withCompany(Company|array $company): self
     {
@@ -287,7 +287,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * Risk assessment associated with the company, including a risk code, reason, and confidence score.
      *
-     * @param RiskShape $risk
+     * @param Risk|RiskShape $risk
      */
     public function withRisk(Risk|array $risk): self
     {
@@ -311,7 +311,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * Technical metadata related to the request, such as IP address, QR code settings, and callback URLs.
      *
-     * @param TechnicalDataShape $technicalData
+     * @param TechnicalData|TechnicalDataShape $technicalData
      */
     public function withTechnicalData(TechnicalData|array $technicalData): self
     {

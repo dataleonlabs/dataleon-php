@@ -200,16 +200,16 @@ final class Individual implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AmlSuspicionShape> $amlSuspicions
-     * @param CertificatShape $certificat
-     * @param list<CheckShape> $checks
-     * @param list<GenericDocumentShape> $documents
-     * @param IdentityCardShape $identityCard
-     * @param PersonShape $person
-     * @param list<PropertyShape> $properties
-     * @param RiskShape $risk
-     * @param list<TagShape> $tags
-     * @param TechnicalDataShape $technicalData
+     * @param list<AmlSuspicionShape>|null $amlSuspicions
+     * @param Certificat|CertificatShape|null $certificat
+     * @param list<CheckShape>|null $checks
+     * @param list<GenericDocumentShape>|null $documents
+     * @param IdentityCard|IdentityCardShape|null $identityCard
+     * @param Person|PersonShape|null $person
+     * @param list<PropertyShape>|null $properties
+     * @param Risk|RiskShape|null $risk
+     * @param list<TagShape>|null $tags
+     * @param TechnicalData|TechnicalDataShape|null $technicalData
      */
     public static function with(
         ?string $id = null,
@@ -297,7 +297,7 @@ final class Individual implements BaseModel
     /**
      * Digital certificate associated with the individual, if any.
      *
-     * @param CertificatShape $certificat
+     * @param Certificat|CertificatShape $certificat
      */
     public function withCertificat(Certificat|array $certificat): self
     {
@@ -347,7 +347,7 @@ final class Individual implements BaseModel
     /**
      * Reference to the individual's identity document.
      *
-     * @param IdentityCardShape $identityCard
+     * @param IdentityCard|IdentityCardShape $identityCard
      */
     public function withIdentityCard(IdentityCard|array $identityCard): self
     {
@@ -371,7 +371,7 @@ final class Individual implements BaseModel
     /**
      * Personal details of the individual, such as name, date of birth, and contact info.
      *
-     * @param PersonShape $person
+     * @param Person|PersonShape $person
      */
     public function withPerson(Person|array $person): self
     {
@@ -408,7 +408,7 @@ final class Individual implements BaseModel
     /**
      * Risk assessment associated with the individual.
      *
-     * @param RiskShape $risk
+     * @param Risk|RiskShape $risk
      */
     public function withRisk(Risk|array $risk): self
     {
@@ -467,7 +467,7 @@ final class Individual implements BaseModel
     /**
      * Technical metadata related to the request (e.g., QR code settings, language).
      *
-     * @param TechnicalDataShape $technicalData
+     * @param TechnicalData|TechnicalDataShape $technicalData
      */
     public function withTechnicalData(TechnicalData|array $technicalData): self
     {

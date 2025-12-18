@@ -112,9 +112,9 @@ final class GenericDocument implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<CheckShape> $checks
-     * @param list<TableShape> $tables
-     * @param list<ValueShape> $values
+     * @param list<CheckShape>|null $checks
+     * @param list<TableShape>|null $tables
+     * @param list<ValueShape>|null $values
      */
     public static function with(
         ?string $id = null,
