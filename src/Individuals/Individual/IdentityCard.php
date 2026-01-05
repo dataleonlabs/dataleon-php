@@ -17,6 +17,7 @@ use Dataleon\Core\Contracts\BaseModel;
  *   birthPlace?: string|null,
  *   birthday?: string|null,
  *   country?: string|null,
+ *   entitlementDate?: string|null,
  *   expirationDate?: string|null,
  *   firstName?: string|null,
  *   frontDocumentSignedURL?: string|null,
@@ -63,6 +64,12 @@ final class IdentityCard implements BaseModel
      */
     #[Optional]
     public ?string $country;
+
+    /**
+     * Date of entitlement or validity start date, in YYYY-MM-DD format.
+     */
+    #[Optional('entitlement_date')]
+    public ?string $entitlementDate;
 
     /**
      * Expiration date of the document, in YYYY-MM-DD format.
@@ -140,6 +147,7 @@ final class IdentityCard implements BaseModel
         ?string $birthPlace = null,
         ?string $birthday = null,
         ?string $country = null,
+        ?string $entitlementDate = null,
         ?string $expirationDate = null,
         ?string $firstName = null,
         ?string $frontDocumentSignedURL = null,
@@ -158,6 +166,7 @@ final class IdentityCard implements BaseModel
         null !== $birthPlace && $self['birthPlace'] = $birthPlace;
         null !== $birthday && $self['birthday'] = $birthday;
         null !== $country && $self['country'] = $country;
+        null !== $entitlementDate && $self['entitlementDate'] = $entitlementDate;
         null !== $expirationDate && $self['expirationDate'] = $expirationDate;
         null !== $firstName && $self['firstName'] = $firstName;
         null !== $frontDocumentSignedURL && $self['frontDocumentSignedURL'] = $frontDocumentSignedURL;
@@ -224,6 +233,17 @@ final class IdentityCard implements BaseModel
     {
         $self = clone $this;
         $self['country'] = $country;
+
+        return $self;
+    }
+
+    /**
+     * Date of entitlement or validity start date, in YYYY-MM-DD format.
+     */
+    public function withEntitlementDate(string $entitlementDate): self
+    {
+        $self = clone $this;
+        $self['entitlementDate'] = $entitlementDate;
 
         return $self;
     }
