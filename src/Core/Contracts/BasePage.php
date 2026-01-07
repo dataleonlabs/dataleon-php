@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Dataleon\Core\Contracts;
 
 /**
- * @internal
+ * @phpstan-import-type NormalizedRequest from \Dataleon\Core\BaseClient
  *
- * @phpstan-import-type normalized_request from \Dataleon\Core\BaseClient
+ * @internal
  *
  * @template Item
  *
