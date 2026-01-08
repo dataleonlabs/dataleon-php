@@ -13,12 +13,16 @@ use Dataleon\Individuals\IndividualRetrieveParams;
 use Dataleon\Individuals\IndividualUpdateParams;
 use Dataleon\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Dataleon\RequestOptions
+ */
 interface IndividualsRawContract
 {
     /**
      * @api
      *
      * @param array<string,mixed>|IndividualCreateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<Individual>
      *
@@ -26,7 +30,7 @@ interface IndividualsRawContract
      */
     public function create(
         array|IndividualCreateParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
@@ -34,6 +38,7 @@ interface IndividualsRawContract
      *
      * @param string $individualID ID of the individual
      * @param array<string,mixed>|IndividualRetrieveParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<Individual>
      *
@@ -42,7 +47,7 @@ interface IndividualsRawContract
     public function retrieve(
         string $individualID,
         array|IndividualRetrieveParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
@@ -50,6 +55,7 @@ interface IndividualsRawContract
      *
      * @param string $individualID ID of the individual to update
      * @param array<string,mixed>|IndividualUpdateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<Individual>
      *
@@ -58,13 +64,14 @@ interface IndividualsRawContract
     public function update(
         string $individualID,
         array|IndividualUpdateParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|IndividualListParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<list<Individual>>
      *
@@ -72,13 +79,14 @@ interface IndividualsRawContract
      */
     public function list(
         array|IndividualListParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param string $individualID ID of the individual to delete
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<mixed>
      *
@@ -86,6 +94,6 @@ interface IndividualsRawContract
      */
     public function delete(
         string $individualID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse;
 }

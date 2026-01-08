@@ -25,7 +25,7 @@ use Dataleon\Individuals\Documents\Kbis\Member;
  *   firstClosureDate?: string|null,
  *   fromGreffe?: string|null,
  *   legalForm?: string|null,
- *   members?: list<MemberShape>|null,
+ *   members?: list<Member|MemberShape>|null,
  *   ngestion?: string|null,
  *   rcsNumber?: string|null,
  *   registrationDate?: string|null,
@@ -139,7 +139,7 @@ final class Kbis implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<MemberShape>|null $members
+     * @param list<Member|MemberShape>|null $members
      */
     public static function with(
         ?string $activities = null,
@@ -292,7 +292,7 @@ final class Kbis implements BaseModel
     /**
      * List of people or entities associated with the company.
      *
-     * @param list<MemberShape> $members
+     * @param list<Member|MemberShape> $members
      */
     public function withMembers(array $members): self
     {

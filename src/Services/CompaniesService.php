@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Dataleon\Services;
 
 use Dataleon\Client;
-use Dataleon\Companies\CompanyCreateParams\TechnicalData\PortalStep;
+use Dataleon\Companies\CompanyCreateParams\Company;
+use Dataleon\Companies\CompanyCreateParams\TechnicalData;
 use Dataleon\Companies\CompanyListParams\State;
 use Dataleon\Companies\CompanyListParams\Status;
 use Dataleon\Companies\CompanyRegistration;
@@ -15,6 +16,13 @@ use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\CompaniesContract;
 use Dataleon\Services\Companies\DocumentsService;
 
+/**
+ * @phpstan-import-type CompanyShape from \Dataleon\Companies\CompanyCreateParams\Company
+ * @phpstan-import-type TechnicalDataShape from \Dataleon\Companies\CompanyCreateParams\TechnicalData
+ * @phpstan-import-type CompanyShape from \Dataleon\Companies\CompanyUpdateParams\Company as CompanyShape1
+ * @phpstan-import-type TechnicalDataShape from \Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalDataShape1
+ * @phpstan-import-type RequestOpts from \Dataleon\RequestOptions
+ */
 final class CompaniesService implements CompaniesContract
 {
     /**
@@ -41,43 +49,20 @@ final class CompaniesService implements CompaniesContract
      *
      * Create a new company
      *
-     * @param array{
-     *   name: string,
-     *   address?: string,
-     *   commercialName?: string,
-     *   country?: string,
-     *   email?: string,
-     *   employerIdentificationNumber?: string,
-     *   legalForm?: string,
-     *   phoneNumber?: string,
-     *   registrationDate?: string,
-     *   registrationID?: string,
-     *   shareCapital?: string,
-     *   status?: string,
-     *   taxIdentificationNumber?: string,
-     *   type?: string,
-     *   websiteURL?: string,
-     * } $company Main information about the company being registered
+     * @param Company|CompanyShape $company main information about the company being registered
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
-     * @param array{
-     *   activeAmlSuspicions?: bool,
-     *   callbackURL?: string,
-     *   callbackURLNotification?: string,
-     *   filteringScoreAmlSuspicions?: float,
-     *   language?: string,
-     *   portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|PortalStep>,
-     *   rawData?: bool,
-     * } $technicalData Technical metadata and callback configuration
+     * @param TechnicalData|TechnicalDataShape $technicalData technical metadata and callback configuration
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function create(
-        array $company,
+        Company|array $company,
         string $workspaceID,
         ?string $sourceID = null,
-        ?array $technicalData = null,
-        ?RequestOptions $requestOptions = null,
+        TechnicalData|array|null $technicalData = null,
+        RequestOptions|array|null $requestOptions = null,
     ): CompanyRegistration {
         $params = Util::removeNulls(
             [
@@ -102,6 +87,7 @@ final class CompaniesService implements CompaniesContract
      * @param string $companyID ID of the company
      * @param bool $document Include document signed url
      * @param string $scope Scope filter (id or scope)
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
@@ -109,7 +95,7 @@ final class CompaniesService implements CompaniesContract
         string $companyID,
         ?bool $document = null,
         ?string $scope = null,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): CompanyRegistration {
         $params = Util::removeNulls(['document' => $document, 'scope' => $scope]);
 
@@ -125,44 +111,21 @@ final class CompaniesService implements CompaniesContract
      * Update a company by ID
      *
      * @param string $companyID ID of the company to update
-     * @param array{
-     *   name: string,
-     *   address?: string,
-     *   commercialName?: string,
-     *   country?: string,
-     *   email?: string,
-     *   employerIdentificationNumber?: string,
-     *   legalForm?: string,
-     *   phoneNumber?: string,
-     *   registrationDate?: string,
-     *   registrationID?: string,
-     *   shareCapital?: string,
-     *   status?: string,
-     *   taxIdentificationNumber?: string,
-     *   type?: string,
-     *   websiteURL?: string,
-     * } $company Main information about the company being registered
+     * @param \Dataleon\Companies\CompanyUpdateParams\Company|CompanyShape1 $company main information about the company being registered
      * @param string $workspaceID unique identifier of the workspace in which the company is being created
      * @param string $sourceID optional identifier to track the origin of the request or integration from your system
-     * @param array{
-     *   activeAmlSuspicions?: bool,
-     *   callbackURL?: string,
-     *   callbackURLNotification?: string,
-     *   filteringScoreAmlSuspicions?: float,
-     *   language?: string,
-     *   portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|\Dataleon\Companies\CompanyUpdateParams\TechnicalData\PortalStep>,
-     *   rawData?: bool,
-     * } $technicalData Technical metadata and callback configuration
+     * @param \Dataleon\Companies\CompanyUpdateParams\TechnicalData|TechnicalDataShape1 $technicalData technical metadata and callback configuration
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function update(
         string $companyID,
-        array $company,
+        \Dataleon\Companies\CompanyUpdateParams\Company|array $company,
         string $workspaceID,
         ?string $sourceID = null,
-        ?array $technicalData = null,
-        ?RequestOptions $requestOptions = null,
+        \Dataleon\Companies\CompanyUpdateParams\TechnicalData|array|null $technicalData = null,
+        RequestOptions|array|null $requestOptions = null,
     ): CompanyRegistration {
         $params = Util::removeNulls(
             [
@@ -189,9 +152,10 @@ final class CompaniesService implements CompaniesContract
      * @param int $offset Number of results to skip (must be ≥ 0)
      * @param string $sourceID Filter by source ID
      * @param string $startDate Filter companies created after this date (format YYYY-MM-DD)
-     * @param 'VOID'|'WAITING'|'STARTED'|'RUNNING'|'PROCESSED'|'FAILED'|'ABORTED'|'EXPIRED'|'DELETED'|State $state Filter by company state (must be one of the allowed values)
-     * @param 'rejected'|'need_review'|'approved'|Status $status Filter by individual status (must be one of the allowed values)
+     * @param State|value-of<State> $state Filter by company state (must be one of the allowed values)
+     * @param Status|value-of<Status> $status Filter by individual status (must be one of the allowed values)
      * @param string $workspaceID Filter by workspace ID
+     * @param RequestOpts|null $requestOptions
      *
      * @return list<CompanyRegistration>
      *
@@ -203,10 +167,10 @@ final class CompaniesService implements CompaniesContract
         ?int $offset = null,
         ?string $sourceID = null,
         ?string $startDate = null,
-        string|State|null $state = null,
-        string|Status|null $status = null,
+        State|string|null $state = null,
+        Status|string|null $status = null,
         ?string $workspaceID = null,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): array {
         $params = Util::removeNulls(
             [
@@ -233,12 +197,13 @@ final class CompaniesService implements CompaniesContract
      * Delete a company by ID
      *
      * @param string $companyID ID of the company to delete
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function delete(
         string $companyID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): mixed {
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->delete($companyID, requestOptions: $requestOptions);

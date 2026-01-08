@@ -11,8 +11,8 @@ use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Core\Util;
 use Dataleon\Individuals\Individual;
 use Dataleon\Individuals\IndividualCreateParams;
-use Dataleon\Individuals\IndividualCreateParams\Person\Gender;
-use Dataleon\Individuals\IndividualCreateParams\TechnicalData\PortalStep;
+use Dataleon\Individuals\IndividualCreateParams\Person;
+use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
 use Dataleon\Individuals\IndividualListParams;
 use Dataleon\Individuals\IndividualListParams\State;
 use Dataleon\Individuals\IndividualListParams\Status;
@@ -21,6 +21,13 @@ use Dataleon\Individuals\IndividualUpdateParams;
 use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\IndividualsRawContract;
 
+/**
+ * @phpstan-import-type PersonShape from \Dataleon\Individuals\IndividualCreateParams\Person
+ * @phpstan-import-type TechnicalDataShape from \Dataleon\Individuals\IndividualCreateParams\TechnicalData
+ * @phpstan-import-type PersonShape from \Dataleon\Individuals\IndividualUpdateParams\Person as PersonShape1
+ * @phpstan-import-type TechnicalDataShape from \Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalDataShape1
+ * @phpstan-import-type RequestOpts from \Dataleon\RequestOptions
+ */
 final class IndividualsRawService implements IndividualsRawContract
 {
     // @phpstan-ignore-next-line
@@ -36,27 +43,11 @@ final class IndividualsRawService implements IndividualsRawContract
      *
      * @param array{
      *   workspaceID: string,
-     *   person?: array{
-     *     birthday?: string,
-     *     email?: string,
-     *     firstName?: string,
-     *     gender?: 'M'|'F'|Gender,
-     *     lastName?: string,
-     *     maidenName?: string,
-     *     nationality?: string,
-     *     phoneNumber?: string,
-     *   },
+     *   person?: Person|PersonShape,
      *   sourceID?: string,
-     *   technicalData?: array{
-     *     activeAmlSuspicions?: bool,
-     *     callbackURL?: string,
-     *     callbackURLNotification?: string,
-     *     filteringScoreAmlSuspicions?: float,
-     *     language?: string,
-     *     portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|PortalStep>,
-     *     rawData?: bool,
-     *   },
+     *   technicalData?: TechnicalData|TechnicalDataShape,
      * }|IndividualCreateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<Individual>
      *
@@ -64,7 +55,7 @@ final class IndividualsRawService implements IndividualsRawContract
      */
     public function create(
         array|IndividualCreateParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = IndividualCreateParams::parseRequest(
             $params,
@@ -88,6 +79,7 @@ final class IndividualsRawService implements IndividualsRawContract
      *
      * @param string $individualID ID of the individual
      * @param array{document?: bool, scope?: string}|IndividualRetrieveParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<Individual>
      *
@@ -96,7 +88,7 @@ final class IndividualsRawService implements IndividualsRawContract
     public function retrieve(
         string $individualID,
         array|IndividualRetrieveParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = IndividualRetrieveParams::parseRequest(
             $params,
@@ -121,27 +113,11 @@ final class IndividualsRawService implements IndividualsRawContract
      * @param string $individualID ID of the individual to update
      * @param array{
      *   workspaceID: string,
-     *   person?: array{
-     *     birthday?: string,
-     *     email?: string,
-     *     firstName?: string,
-     *     gender?: 'M'|'F'|IndividualUpdateParams\Person\Gender,
-     *     lastName?: string,
-     *     maidenName?: string,
-     *     nationality?: string,
-     *     phoneNumber?: string,
-     *   },
+     *   person?: IndividualUpdateParams\Person|PersonShape1,
      *   sourceID?: string,
-     *   technicalData?: array{
-     *     activeAmlSuspicions?: bool,
-     *     callbackURL?: string,
-     *     callbackURLNotification?: string,
-     *     filteringScoreAmlSuspicions?: float,
-     *     language?: string,
-     *     portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|IndividualUpdateParams\TechnicalData\PortalStep>,
-     *     rawData?: bool,
-     *   },
+     *   technicalData?: IndividualUpdateParams\TechnicalData|TechnicalDataShape1,
      * }|IndividualUpdateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<Individual>
      *
@@ -150,7 +126,7 @@ final class IndividualsRawService implements IndividualsRawContract
     public function update(
         string $individualID,
         array|IndividualUpdateParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = IndividualUpdateParams::parseRequest(
             $params,
@@ -179,9 +155,10 @@ final class IndividualsRawService implements IndividualsRawContract
      *   sourceID?: string,
      *   startDate?: string,
      *   state?: value-of<State>,
-     *   status?: 'rejected'|'need_review'|'approved'|Status,
+     *   status?: Status|value-of<Status>,
      *   workspaceID?: string,
      * }|IndividualListParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<list<Individual>>
      *
@@ -189,7 +166,7 @@ final class IndividualsRawService implements IndividualsRawContract
      */
     public function list(
         array|IndividualListParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = IndividualListParams::parseRequest(
             $params,
@@ -220,6 +197,7 @@ final class IndividualsRawService implements IndividualsRawContract
      * Delete an individual by ID
      *
      * @param string $individualID ID of the individual to delete
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<mixed>
      *
@@ -227,7 +205,7 @@ final class IndividualsRawService implements IndividualsRawContract
      */
     public function delete(
         string $individualID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse {
         // @phpstan-ignore-next-line return.type
         return $this->client->request(

@@ -29,14 +29,14 @@ use Dataleon\Individuals\Documents\GenericDocument;
  * @phpstan-import-type TechnicalDataShape from \Dataleon\Companies\CompanyRegistration\TechnicalData
  *
  * @phpstan-type CompanyRegistrationShape = array{
- *   amlSuspicions?: list<AmlSuspicionShape>|null,
+ *   amlSuspicions?: list<AmlSuspicion|AmlSuspicionShape>|null,
  *   certificat?: null|Certificat|CertificatShape,
- *   checks?: list<CheckShape>|null,
+ *   checks?: list<Check|CheckShape>|null,
  *   company?: null|Company|CompanyShape,
- *   documents?: list<GenericDocumentShape>|null,
- *   members?: list<MemberShape>|null,
+ *   documents?: list<GenericDocument|GenericDocumentShape>|null,
+ *   members?: list<Member|MemberShape>|null,
  *   portalURL?: string|null,
- *   properties?: list<PropertyShape>|null,
+ *   properties?: list<Property|PropertyShape>|null,
  *   risk?: null|Risk|RiskShape,
  *   sourceID?: string|null,
  *   technicalData?: null|TechnicalData|TechnicalDataShape,
@@ -140,13 +140,13 @@ final class CompanyRegistration implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AmlSuspicionShape>|null $amlSuspicions
+     * @param list<AmlSuspicion|AmlSuspicionShape>|null $amlSuspicions
      * @param Certificat|CertificatShape|null $certificat
-     * @param list<CheckShape>|null $checks
+     * @param list<Check|CheckShape>|null $checks
      * @param Company|CompanyShape|null $company
-     * @param list<GenericDocumentShape>|null $documents
-     * @param list<MemberShape>|null $members
-     * @param list<PropertyShape>|null $properties
+     * @param list<GenericDocument|GenericDocumentShape>|null $documents
+     * @param list<Member|MemberShape>|null $members
+     * @param list<Property|PropertyShape>|null $properties
      * @param Risk|RiskShape|null $risk
      * @param TechnicalData|TechnicalDataShape|null $technicalData
      */
@@ -185,7 +185,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the company, including their details.
      *
-     * @param list<AmlSuspicionShape> $amlSuspicions
+     * @param list<AmlSuspicion|AmlSuspicionShape> $amlSuspicions
      */
     public function withAmlSuspicions(array $amlSuspicions): self
     {
@@ -211,7 +211,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * List of verification or validation checks applied to the company, including their results and messages.
      *
-     * @param list<CheckShape> $checks
+     * @param list<Check|CheckShape> $checks
      */
     public function withChecks(array $checks): self
     {
@@ -237,7 +237,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * All documents submitted or associated with the company, including their metadata and processing status.
      *
-     * @param list<GenericDocumentShape> $documents
+     * @param list<GenericDocument|GenericDocumentShape> $documents
      */
     public function withDocuments(array $documents): self
     {
@@ -250,7 +250,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * List of members or actors associated with the company, including personal and ownership information.
      *
-     * @param list<MemberShape> $members
+     * @param list<Member|MemberShape> $members
      */
     public function withMembers(array $members): self
     {
@@ -274,7 +274,7 @@ final class CompanyRegistration implements BaseModel
     /**
      * Custom key-value metadata fields associated with the company, allowing for flexible data storage.
      *
-     * @param list<PropertyShape> $properties
+     * @param list<Property|PropertyShape> $properties
      */
     public function withProperties(array $properties): self
     {

@@ -6,47 +6,38 @@ namespace Dataleon\ServiceContracts;
 
 use Dataleon\Core\Exceptions\APIException;
 use Dataleon\Individuals\Individual;
-use Dataleon\Individuals\IndividualCreateParams\Person\Gender;
-use Dataleon\Individuals\IndividualCreateParams\TechnicalData\PortalStep;
+use Dataleon\Individuals\IndividualCreateParams\Person;
+use Dataleon\Individuals\IndividualCreateParams\TechnicalData;
 use Dataleon\Individuals\IndividualListParams\State;
 use Dataleon\Individuals\IndividualListParams\Status;
 use Dataleon\RequestOptions;
 
+/**
+ * @phpstan-import-type PersonShape from \Dataleon\Individuals\IndividualCreateParams\Person
+ * @phpstan-import-type TechnicalDataShape from \Dataleon\Individuals\IndividualCreateParams\TechnicalData
+ * @phpstan-import-type PersonShape from \Dataleon\Individuals\IndividualUpdateParams\Person as PersonShape1
+ * @phpstan-import-type TechnicalDataShape from \Dataleon\Individuals\IndividualUpdateParams\TechnicalData as TechnicalDataShape1
+ * @phpstan-import-type RequestOpts from \Dataleon\RequestOptions
+ */
 interface IndividualsContract
 {
     /**
      * @api
      *
      * @param string $workspaceID unique identifier of the workspace where the individual is being registered
-     * @param array{
-     *   birthday?: string,
-     *   email?: string,
-     *   firstName?: string,
-     *   gender?: 'M'|'F'|Gender,
-     *   lastName?: string,
-     *   maidenName?: string,
-     *   nationality?: string,
-     *   phoneNumber?: string,
-     * } $person Personal information about the individual
+     * @param Person|PersonShape $person personal information about the individual
      * @param string $sourceID optional identifier for tracking the source system or integration from your system
-     * @param array{
-     *   activeAmlSuspicions?: bool,
-     *   callbackURL?: string,
-     *   callbackURLNotification?: string,
-     *   filteringScoreAmlSuspicions?: float,
-     *   language?: string,
-     *   portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|PortalStep>,
-     *   rawData?: bool,
-     * } $technicalData Technical metadata related to the request or processing
+     * @param TechnicalData|TechnicalDataShape $technicalData technical metadata related to the request or processing
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function create(
         string $workspaceID,
-        ?array $person = null,
+        Person|array|null $person = null,
         ?string $sourceID = null,
-        ?array $technicalData = null,
-        ?RequestOptions $requestOptions = null,
+        TechnicalData|array|null $technicalData = null,
+        RequestOptions|array|null $requestOptions = null,
     ): Individual;
 
     /**
@@ -55,6 +46,7 @@ interface IndividualsContract
      * @param string $individualID ID of the individual
      * @param bool $document Include document information
      * @param string $scope Scope filter (id or scope)
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
@@ -62,7 +54,7 @@ interface IndividualsContract
         string $individualID,
         ?bool $document = null,
         ?string $scope = null,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): Individual;
 
     /**
@@ -70,36 +62,20 @@ interface IndividualsContract
      *
      * @param string $individualID ID of the individual to update
      * @param string $workspaceID unique identifier of the workspace where the individual is being registered
-     * @param array{
-     *   birthday?: string,
-     *   email?: string,
-     *   firstName?: string,
-     *   gender?: 'M'|'F'|\Dataleon\Individuals\IndividualUpdateParams\Person\Gender,
-     *   lastName?: string,
-     *   maidenName?: string,
-     *   nationality?: string,
-     *   phoneNumber?: string,
-     * } $person Personal information about the individual
+     * @param \Dataleon\Individuals\IndividualUpdateParams\Person|PersonShape1 $person personal information about the individual
      * @param string $sourceID optional identifier for tracking the source system or integration from your system
-     * @param array{
-     *   activeAmlSuspicions?: bool,
-     *   callbackURL?: string,
-     *   callbackURLNotification?: string,
-     *   filteringScoreAmlSuspicions?: float,
-     *   language?: string,
-     *   portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|\Dataleon\Individuals\IndividualUpdateParams\TechnicalData\PortalStep>,
-     *   rawData?: bool,
-     * } $technicalData Technical metadata related to the request or processing
+     * @param \Dataleon\Individuals\IndividualUpdateParams\TechnicalData|TechnicalDataShape1 $technicalData technical metadata related to the request or processing
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function update(
         string $individualID,
         string $workspaceID,
-        ?array $person = null,
+        \Dataleon\Individuals\IndividualUpdateParams\Person|array|null $person = null,
         ?string $sourceID = null,
-        ?array $technicalData = null,
-        ?RequestOptions $requestOptions = null,
+        \Dataleon\Individuals\IndividualUpdateParams\TechnicalData|array|null $technicalData = null,
+        RequestOptions|array|null $requestOptions = null,
     ): Individual;
 
     /**
@@ -110,9 +86,10 @@ interface IndividualsContract
      * @param int $offset Number of results to offset (must be ≥ 0)
      * @param string $sourceID Filter by source ID
      * @param string $startDate Filter individuals created after this date (format YYYY-MM-DD)
-     * @param 'VOID'|'WAITING'|'STARTED'|'RUNNING'|'PROCESSED'|'FAILED'|'ABORTED'|'EXPIRED'|'DELETED'|State $state Filter by individual status (must be one of the allowed values)
-     * @param 'rejected'|'need_review'|'approved'|Status $status Filter by individual status (must be one of the allowed values)
+     * @param State|value-of<State> $state Filter by individual status (must be one of the allowed values)
+     * @param Status|value-of<Status> $status Filter by individual status (must be one of the allowed values)
      * @param string $workspaceID Filter by workspace ID
+     * @param RequestOpts|null $requestOptions
      *
      * @return list<Individual>
      *
@@ -124,21 +101,22 @@ interface IndividualsContract
         ?int $offset = null,
         ?string $sourceID = null,
         ?string $startDate = null,
-        string|State|null $state = null,
-        string|Status|null $status = null,
+        State|string|null $state = null,
+        Status|string|null $status = null,
         ?string $workspaceID = null,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): array;
 
     /**
      * @api
      *
      * @param string $individualID ID of the individual to delete
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function delete(
         string $individualID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): mixed;
 }

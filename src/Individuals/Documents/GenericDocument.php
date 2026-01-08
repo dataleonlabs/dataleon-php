@@ -20,15 +20,15 @@ use Dataleon\Individuals\Documents\GenericDocument\Value;
  *
  * @phpstan-type GenericDocumentShape = array{
  *   id?: string|null,
- *   checks?: list<CheckShape>|null,
+ *   checks?: list<Check|CheckShape>|null,
  *   createdAt?: \DateTimeInterface|null,
  *   documentType?: string|null,
  *   name?: string|null,
  *   signedURL?: string|null,
  *   state?: string|null,
  *   status?: string|null,
- *   tables?: list<TableShape>|null,
- *   values?: list<ValueShape>|null,
+ *   tables?: list<Table|TableShape>|null,
+ *   values?: list<Value|ValueShape>|null,
  * }
  */
 final class GenericDocument implements BaseModel
@@ -112,9 +112,9 @@ final class GenericDocument implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<CheckShape>|null $checks
-     * @param list<TableShape>|null $tables
-     * @param list<ValueShape>|null $values
+     * @param list<Check|CheckShape>|null $checks
+     * @param list<Table|TableShape>|null $tables
+     * @param list<Value|ValueShape>|null $values
      */
     public static function with(
         ?string $id = null,
@@ -158,7 +158,7 @@ final class GenericDocument implements BaseModel
     /**
      * List of verification checks performed on the document.
      *
-     * @param list<CheckShape> $checks
+     * @param list<Check|CheckShape> $checks
      */
     public function withChecks(array $checks): self
     {
@@ -237,7 +237,7 @@ final class GenericDocument implements BaseModel
     /**
      * List of tables extracted from the document, each containing operations.
      *
-     * @param list<TableShape> $tables
+     * @param list<Table|TableShape> $tables
      */
     public function withTables(array $tables): self
     {
@@ -250,7 +250,7 @@ final class GenericDocument implements BaseModel
     /**
      * Extracted key-value pairs from the document, including confidence scores.
      *
-     * @param list<ValueShape> $values
+     * @param list<Value|ValueShape> $values
      */
     public function withValues(array $values): self
     {

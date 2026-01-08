@@ -6,7 +6,8 @@ namespace Dataleon\Services;
 
 use Dataleon\Client;
 use Dataleon\Companies\CompanyCreateParams;
-use Dataleon\Companies\CompanyCreateParams\TechnicalData\PortalStep;
+use Dataleon\Companies\CompanyCreateParams\Company;
+use Dataleon\Companies\CompanyCreateParams\TechnicalData;
 use Dataleon\Companies\CompanyListParams;
 use Dataleon\Companies\CompanyListParams\State;
 use Dataleon\Companies\CompanyListParams\Status;
@@ -20,6 +21,13 @@ use Dataleon\Core\Util;
 use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\CompaniesRawContract;
 
+/**
+ * @phpstan-import-type CompanyShape from \Dataleon\Companies\CompanyCreateParams\Company
+ * @phpstan-import-type TechnicalDataShape from \Dataleon\Companies\CompanyCreateParams\TechnicalData
+ * @phpstan-import-type CompanyShape from \Dataleon\Companies\CompanyUpdateParams\Company as CompanyShape1
+ * @phpstan-import-type TechnicalDataShape from \Dataleon\Companies\CompanyUpdateParams\TechnicalData as TechnicalDataShape1
+ * @phpstan-import-type RequestOpts from \Dataleon\RequestOptions
+ */
 final class CompaniesRawService implements CompaniesRawContract
 {
     // @phpstan-ignore-next-line
@@ -34,35 +42,12 @@ final class CompaniesRawService implements CompaniesRawContract
      * Create a new company
      *
      * @param array{
-     *   company: array{
-     *     name: string,
-     *     address?: string,
-     *     commercialName?: string,
-     *     country?: string,
-     *     email?: string,
-     *     employerIdentificationNumber?: string,
-     *     legalForm?: string,
-     *     phoneNumber?: string,
-     *     registrationDate?: string,
-     *     registrationID?: string,
-     *     shareCapital?: string,
-     *     status?: string,
-     *     taxIdentificationNumber?: string,
-     *     type?: string,
-     *     websiteURL?: string,
-     *   },
+     *   company: Company|CompanyShape,
      *   workspaceID: string,
      *   sourceID?: string,
-     *   technicalData?: array{
-     *     activeAmlSuspicions?: bool,
-     *     callbackURL?: string,
-     *     callbackURLNotification?: string,
-     *     filteringScoreAmlSuspicions?: float,
-     *     language?: string,
-     *     portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|PortalStep>,
-     *     rawData?: bool,
-     *   },
+     *   technicalData?: TechnicalData|TechnicalDataShape,
      * }|CompanyCreateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<CompanyRegistration>
      *
@@ -70,7 +55,7 @@ final class CompaniesRawService implements CompaniesRawContract
      */
     public function create(
         array|CompanyCreateParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = CompanyCreateParams::parseRequest(
             $params,
@@ -94,6 +79,7 @@ final class CompaniesRawService implements CompaniesRawContract
      *
      * @param string $companyID ID of the company
      * @param array{document?: bool, scope?: string}|CompanyRetrieveParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<CompanyRegistration>
      *
@@ -102,7 +88,7 @@ final class CompaniesRawService implements CompaniesRawContract
     public function retrieve(
         string $companyID,
         array|CompanyRetrieveParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = CompanyRetrieveParams::parseRequest(
             $params,
@@ -126,35 +112,12 @@ final class CompaniesRawService implements CompaniesRawContract
      *
      * @param string $companyID ID of the company to update
      * @param array{
-     *   company: array{
-     *     name: string,
-     *     address?: string,
-     *     commercialName?: string,
-     *     country?: string,
-     *     email?: string,
-     *     employerIdentificationNumber?: string,
-     *     legalForm?: string,
-     *     phoneNumber?: string,
-     *     registrationDate?: string,
-     *     registrationID?: string,
-     *     shareCapital?: string,
-     *     status?: string,
-     *     taxIdentificationNumber?: string,
-     *     type?: string,
-     *     websiteURL?: string,
-     *   },
+     *   company: CompanyUpdateParams\Company|CompanyShape1,
      *   workspaceID: string,
      *   sourceID?: string,
-     *   technicalData?: array{
-     *     activeAmlSuspicions?: bool,
-     *     callbackURL?: string,
-     *     callbackURLNotification?: string,
-     *     filteringScoreAmlSuspicions?: float,
-     *     language?: string,
-     *     portalSteps?: list<'identity_verification'|'document_signing'|'proof_of_address'|'selfie'|'face_match'|CompanyUpdateParams\TechnicalData\PortalStep>,
-     *     rawData?: bool,
-     *   },
+     *   technicalData?: CompanyUpdateParams\TechnicalData|TechnicalDataShape1,
      * }|CompanyUpdateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<CompanyRegistration>
      *
@@ -163,7 +126,7 @@ final class CompaniesRawService implements CompaniesRawContract
     public function update(
         string $companyID,
         array|CompanyUpdateParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = CompanyUpdateParams::parseRequest(
             $params,
@@ -192,9 +155,10 @@ final class CompaniesRawService implements CompaniesRawContract
      *   sourceID?: string,
      *   startDate?: string,
      *   state?: value-of<State>,
-     *   status?: 'rejected'|'need_review'|'approved'|Status,
+     *   status?: Status|value-of<Status>,
      *   workspaceID?: string,
      * }|CompanyListParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<list<CompanyRegistration>>
      *
@@ -202,7 +166,7 @@ final class CompaniesRawService implements CompaniesRawContract
      */
     public function list(
         array|CompanyListParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = CompanyListParams::parseRequest(
             $params,
@@ -233,6 +197,7 @@ final class CompaniesRawService implements CompaniesRawContract
      * Delete a company by ID
      *
      * @param string $companyID ID of the company to delete
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<mixed>
      *
@@ -240,7 +205,7 @@ final class CompaniesRawService implements CompaniesRawContract
      */
     public function delete(
         string $companyID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse {
         // @phpstan-ignore-next-line return.type
         return $this->client->request(

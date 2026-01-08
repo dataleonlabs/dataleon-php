@@ -13,7 +13,7 @@ use Dataleon\Individuals\Documents\DocumentResponse\Document;
  * @phpstan-import-type DocumentShape from \Dataleon\Individuals\Documents\DocumentResponse\Document
  *
  * @phpstan-type DocumentResponseShape = array{
- *   documents?: list<DocumentShape>|null, totalDocument?: int|null
+ *   documents?: list<Document|DocumentShape>|null, totalDocument?: int|null
  * }
  */
 final class DocumentResponse implements BaseModel
@@ -45,7 +45,7 @@ final class DocumentResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<DocumentShape>|null $documents
+     * @param list<Document|DocumentShape>|null $documents
      */
     public static function with(
         ?array $documents = null,
@@ -62,7 +62,7 @@ final class DocumentResponse implements BaseModel
     /**
      * List of documents associated with the response.
      *
-     * @param list<DocumentShape> $documents
+     * @param list<Document|DocumentShape> $documents
      */
     public function withDocuments(array $documents): self
     {

@@ -22,7 +22,7 @@ use Dataleon\Individuals\Documents\GenericDocument;
  *   birthday?: \DateTimeInterface|null,
  *   birthplace?: string|null,
  *   country?: string|null,
- *   documents?: list<GenericDocumentShape>|null,
+ *   documents?: list<GenericDocument|GenericDocumentShape>|null,
  *   email?: string|null,
  *   firstName?: string|null,
  *   isBeneficialOwner?: bool|null,
@@ -205,7 +205,7 @@ final class Member implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<GenericDocumentShape>|null $documents
+     * @param list<GenericDocument|GenericDocumentShape>|null $documents
      * @param Source|value-of<Source>|null $source
      * @param Type|value-of<Type>|null $type
      */
@@ -320,7 +320,7 @@ final class Member implements BaseModel
     /**
      * List of documents associated with the member, including their metadata and processing status.
      *
-     * @param list<GenericDocumentShape> $documents
+     * @param list<GenericDocument|GenericDocumentShape> $documents
      */
     public function withDocuments(array $documents): self
     {

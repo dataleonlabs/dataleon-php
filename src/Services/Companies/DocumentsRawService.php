@@ -14,6 +14,9 @@ use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
 use Dataleon\ServiceContracts\Companies\DocumentsRawContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Dataleon\RequestOptions
+ */
 final class DocumentsRawService implements DocumentsRawContract
 {
     // @phpstan-ignore-next-line
@@ -28,6 +31,7 @@ final class DocumentsRawService implements DocumentsRawContract
      * Get documents to an company
      *
      * @param string $companyID ID of the company to upload document
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<DocumentResponse>
      *
@@ -35,7 +39,7 @@ final class DocumentsRawService implements DocumentsRawContract
      */
     public function list(
         string $companyID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse {
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
@@ -55,6 +59,7 @@ final class DocumentsRawService implements DocumentsRawContract
      * @param array{
      *   documentType: value-of<DocumentType>, file?: string, url?: string
      * }|DocumentUploadParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<GenericDocument>
      *
@@ -63,7 +68,7 @@ final class DocumentsRawService implements DocumentsRawContract
     public function upload(
         string $companyID,
         array|DocumentUploadParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = DocumentUploadParams::parseRequest(
             $params,

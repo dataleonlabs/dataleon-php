@@ -13,12 +13,16 @@ use Dataleon\Core\Contracts\BaseResponse;
 use Dataleon\Core\Exceptions\APIException;
 use Dataleon\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Dataleon\RequestOptions
+ */
 interface CompaniesRawContract
 {
     /**
      * @api
      *
      * @param array<string,mixed>|CompanyCreateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<CompanyRegistration>
      *
@@ -26,7 +30,7 @@ interface CompaniesRawContract
      */
     public function create(
         array|CompanyCreateParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
@@ -34,6 +38,7 @@ interface CompaniesRawContract
      *
      * @param string $companyID ID of the company
      * @param array<string,mixed>|CompanyRetrieveParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<CompanyRegistration>
      *
@@ -42,7 +47,7 @@ interface CompaniesRawContract
     public function retrieve(
         string $companyID,
         array|CompanyRetrieveParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
@@ -50,6 +55,7 @@ interface CompaniesRawContract
      *
      * @param string $companyID ID of the company to update
      * @param array<string,mixed>|CompanyUpdateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<CompanyRegistration>
      *
@@ -58,13 +64,14 @@ interface CompaniesRawContract
     public function update(
         string $companyID,
         array|CompanyUpdateParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|CompanyListParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<list<CompanyRegistration>>
      *
@@ -72,13 +79,14 @@ interface CompaniesRawContract
      */
     public function list(
         array|CompanyListParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param string $companyID ID of the company to delete
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<mixed>
      *
@@ -86,6 +94,6 @@ interface CompaniesRawContract
      */
     public function delete(
         string $companyID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse;
 }

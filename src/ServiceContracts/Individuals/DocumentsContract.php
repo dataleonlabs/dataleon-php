@@ -10,35 +10,40 @@ use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Dataleon\RequestOptions
+ */
 interface DocumentsContract
 {
     /**
      * @api
      *
      * @param string $individualID ID of the individual to upload document
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function list(
         string $individualID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): DocumentResponse;
 
     /**
      * @api
      *
      * @param string $individualID ID of the individual to upload document
-     * @param 'liasse_fiscale'|'amortised_loan_schedule'|'invoice'|'receipt'|'company_statuts'|'registration_company_certificate'|'kbis'|'rib'|'livret_famille'|'birth_certificate'|'payslip'|'social_security_card'|'vehicle_registration_certificate'|'carte_grise'|'criminal_record_extract'|'proof_of_address'|'identity_card_front'|'identity_card_back'|'driver_license_front'|'driver_license_back'|'identity_document'|'driver_license'|'passport'|'tax'|'certificate_of_incorporation'|'certificate_of_good_standing'|'lcb_ft_lab_aml_policies'|'niu_entreprise'|'financial_statements'|'rccm'|'proof_of_source_funds'|'organizational_chart'|'risk_policies'|DocumentType $documentType Filter by document type for upload (must be one of the allowed values)
+     * @param DocumentType|value-of<DocumentType> $documentType Filter by document type for upload (must be one of the allowed values)
      * @param string $file File to upload (required)
      * @param string $url URL of the file to upload (either `file` or `url` is required)
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function upload(
         string $individualID,
-        string|DocumentType $documentType,
+        DocumentType|string $documentType,
         ?string $file = null,
         ?string $url = null,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): GenericDocument;
 }

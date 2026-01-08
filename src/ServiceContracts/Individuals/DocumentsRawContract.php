@@ -11,12 +11,16 @@ use Dataleon\Individuals\Documents\DocumentUploadParams;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Dataleon\RequestOptions
+ */
 interface DocumentsRawContract
 {
     /**
      * @api
      *
      * @param string $individualID ID of the individual to upload document
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<DocumentResponse>
      *
@@ -24,7 +28,7 @@ interface DocumentsRawContract
      */
     public function list(
         string $individualID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse;
 
     /**
@@ -32,6 +36,7 @@ interface DocumentsRawContract
      *
      * @param string $individualID ID of the individual to upload document
      * @param array<string,mixed>|DocumentUploadParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<GenericDocument>
      *
@@ -40,6 +45,6 @@ interface DocumentsRawContract
     public function upload(
         string $individualID,
         array|DocumentUploadParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

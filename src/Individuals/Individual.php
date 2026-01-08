@@ -34,22 +34,22 @@ use Dataleon\Individuals\Individual\TechnicalData;
  *
  * @phpstan-type IndividualShape = array{
  *   id?: string|null,
- *   amlSuspicions?: list<AmlSuspicionShape>|null,
+ *   amlSuspicions?: list<AmlSuspicion|AmlSuspicionShape>|null,
  *   authURL?: string|null,
  *   certificat?: null|Certificat|CertificatShape,
- *   checks?: list<CheckShape>|null,
+ *   checks?: list<Check|CheckShape>|null,
  *   createdAt?: \DateTimeInterface|null,
- *   documents?: list<GenericDocumentShape>|null,
+ *   documents?: list<GenericDocument|GenericDocumentShape>|null,
  *   identityCard?: null|IdentityCard|IdentityCardShape,
  *   number?: int|null,
  *   person?: null|Person|PersonShape,
  *   portalURL?: string|null,
- *   properties?: list<PropertyShape>|null,
+ *   properties?: list<Property|PropertyShape>|null,
  *   risk?: null|Risk|RiskShape,
  *   sourceID?: string|null,
  *   state?: string|null,
  *   status?: string|null,
- *   tags?: list<TagShape>|null,
+ *   tags?: list<Tag|TagShape>|null,
  *   technicalData?: null|TechnicalData|TechnicalDataShape,
  *   webviewURL?: string|null,
  *   workspaceID?: string|null,
@@ -200,15 +200,15 @@ final class Individual implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AmlSuspicionShape>|null $amlSuspicions
+     * @param list<AmlSuspicion|AmlSuspicionShape>|null $amlSuspicions
      * @param Certificat|CertificatShape|null $certificat
-     * @param list<CheckShape>|null $checks
-     * @param list<GenericDocumentShape>|null $documents
+     * @param list<Check|CheckShape>|null $checks
+     * @param list<GenericDocument|GenericDocumentShape>|null $documents
      * @param IdentityCard|IdentityCardShape|null $identityCard
      * @param Person|PersonShape|null $person
-     * @param list<PropertyShape>|null $properties
+     * @param list<Property|PropertyShape>|null $properties
      * @param Risk|RiskShape|null $risk
-     * @param list<TagShape>|null $tags
+     * @param list<Tag|TagShape>|null $tags
      * @param TechnicalData|TechnicalDataShape|null $technicalData
      */
     public static function with(
@@ -273,7 +273,7 @@ final class Individual implements BaseModel
     /**
      * List of AML (Anti-Money Laundering) suspicion entries linked to the individual.
      *
-     * @param list<AmlSuspicionShape> $amlSuspicions
+     * @param list<AmlSuspicion|AmlSuspicionShape> $amlSuspicions
      */
     public function withAmlSuspicions(array $amlSuspicions): self
     {
@@ -310,7 +310,7 @@ final class Individual implements BaseModel
     /**
      * List of verification or validation checks applied to the individual.
      *
-     * @param list<CheckShape> $checks
+     * @param list<Check|CheckShape> $checks
      */
     public function withChecks(array $checks): self
     {
@@ -334,7 +334,7 @@ final class Individual implements BaseModel
     /**
      * All documents submitted or associated with the individual.
      *
-     * @param list<GenericDocumentShape> $documents
+     * @param list<GenericDocument|GenericDocumentShape> $documents
      */
     public function withDocuments(array $documents): self
     {
@@ -395,7 +395,7 @@ final class Individual implements BaseModel
     /**
      * Custom key-value metadata fields associated with the individual.
      *
-     * @param list<PropertyShape> $properties
+     * @param list<Property|PropertyShape> $properties
      */
     public function withProperties(array $properties): self
     {
@@ -454,7 +454,7 @@ final class Individual implements BaseModel
     /**
      * List of tags assigned to the individual for categorization or metadata purposes.
      *
-     * @param list<TagShape> $tags
+     * @param list<Tag|TagShape> $tags
      */
     public function withTags(array $tags): self
     {
