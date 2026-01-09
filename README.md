@@ -99,14 +99,13 @@ You can use the `maxRetries` option to configure or disable this:
 <?php
 
 use Dataleon\Client;
-use Dataleon\RequestOptions;
 
 // Configure the default for all requests:
-$client = new Client(maxRetries: 0);
+$client = new Client(requestOptions: ['maxRetries' => 0]);
 
 // Or, configure per-request:
 $result = $client->individuals->create(
-  workspaceID: 'wk_123', requestOptions: RequestOptions::with(maxRetries: 5)
+  workspaceID: 'wk_123', requestOptions: ['maxRetries' => 5]
 );
 ```
 
@@ -123,15 +122,13 @@ Note: the `extra*` parameters of the same name overrides the documented paramete
 ```php
 <?php
 
-use Dataleon\RequestOptions;
-
 $individual = $client->individuals->create(
   workspaceID: 'wk_123',
-  requestOptions: RequestOptions::with(
-    extraQueryParams: ['my_query_parameter' => 'value'],
-    extraBodyParams: ['my_body_parameter' => 'value'],
-    extraHeaders: ['my-header' => 'value'],
-  ),
+  requestOptions: [
+    'extraQueryParams' => ['my_query_parameter' => 'value'],
+    'extraBodyParams' => ['my_body_parameter' => 'value'],
+    'extraHeaders' => ['my-header' => 'value'],
+  ],
 );
 ```
 
