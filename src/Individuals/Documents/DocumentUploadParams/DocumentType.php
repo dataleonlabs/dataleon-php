@@ -25,6 +25,8 @@ enum DocumentType: string
 
     case RIB = 'rib';
 
+    case CHECK = 'check';
+
     case LIVRET_FAMILLE = 'livret_famille';
 
     case BIRTH_CERTIFICATE = 'birth_certificate';
