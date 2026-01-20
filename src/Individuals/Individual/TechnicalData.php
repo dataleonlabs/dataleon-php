@@ -16,6 +16,7 @@ use Dataleon\Individuals\Individual\TechnicalData\PortalStep;
  *   activeAmlSuspicions?: bool|null,
  *   apiVersion?: int|null,
  *   approvedAt?: \DateTimeInterface|null,
+ *   approvedBy?: string|null,
  *   callbackURL?: string|null,
  *   callbackURLNotification?: string|null,
  *   disableNotification?: bool|null,
@@ -27,11 +28,13 @@ use Dataleon\Individuals\Individual\TechnicalData\PortalStep;
  *   language?: string|null,
  *   locationIP?: string|null,
  *   needReviewAt?: \DateTimeInterface|null,
+ *   needReviewBy?: string|null,
  *   notificationConfirmation?: bool|null,
  *   portalSteps?: list<PortalStep|value-of<PortalStep>>|null,
  *   qrCode?: string|null,
  *   rawData?: bool|null,
  *   rejectedAt?: \DateTimeInterface|null,
+ *   rejectedBy?: string|null,
  *   sessionDuration?: int|null,
  *   startedAt?: \DateTimeInterface|null,
  *   transferAt?: \DateTimeInterface|null,
@@ -60,6 +63,12 @@ final class TechnicalData implements BaseModel
      */
     #[Optional('approved_at')]
     public ?\DateTimeInterface $approvedAt;
+
+    /**
+     * Identifier of the actor who approved (e.g., user id or username).
+     */
+    #[Optional('approved_by', nullable: true)]
+    public ?string $approvedBy;
 
     /**
      * URL to receive callback data from the AML system.
@@ -128,6 +137,12 @@ final class TechnicalData implements BaseModel
     public ?\DateTimeInterface $needReviewAt;
 
     /**
+     * Identifier of the actor who requested review (e.g., user id or username).
+     */
+    #[Optional('need_review_by', nullable: true)]
+    public ?string $needReviewBy;
+
+    /**
      * Flag indicating if notification confirmation is required or received.
      */
     #[Optional('notification_confirmation')]
@@ -158,6 +173,12 @@ final class TechnicalData implements BaseModel
      */
     #[Optional('rejected_at', nullable: true)]
     public ?\DateTimeInterface $rejectedAt;
+
+    /**
+     * Identifier of the actor who rejected (e.g., user id or username).
+     */
+    #[Optional('rejected_by', nullable: true)]
+    public ?string $rejectedBy;
 
     /**
      * Duration of the user session in seconds.
@@ -199,6 +220,7 @@ final class TechnicalData implements BaseModel
         ?bool $activeAmlSuspicions = null,
         ?int $apiVersion = null,
         ?\DateTimeInterface $approvedAt = null,
+        ?string $approvedBy = null,
         ?string $callbackURL = null,
         ?string $callbackURLNotification = null,
         ?bool $disableNotification = null,
@@ -210,11 +232,13 @@ final class TechnicalData implements BaseModel
         ?string $language = null,
         ?string $locationIP = null,
         ?\DateTimeInterface $needReviewAt = null,
+        ?string $needReviewBy = null,
         ?bool $notificationConfirmation = null,
         ?array $portalSteps = null,
         ?string $qrCode = null,
         ?bool $rawData = null,
         ?\DateTimeInterface $rejectedAt = null,
+        ?string $rejectedBy = null,
         ?int $sessionDuration = null,
         ?\DateTimeInterface $startedAt = null,
         ?\DateTimeInterface $transferAt = null,
@@ -225,6 +249,7 @@ final class TechnicalData implements BaseModel
         null !== $activeAmlSuspicions && $self['activeAmlSuspicions'] = $activeAmlSuspicions;
         null !== $apiVersion && $self['apiVersion'] = $apiVersion;
         null !== $approvedAt && $self['approvedAt'] = $approvedAt;
+        null !== $approvedBy && $self['approvedBy'] = $approvedBy;
         null !== $callbackURL && $self['callbackURL'] = $callbackURL;
         null !== $callbackURLNotification && $self['callbackURLNotification'] = $callbackURLNotification;
         null !== $disableNotification && $self['disableNotification'] = $disableNotification;
@@ -236,11 +261,13 @@ final class TechnicalData implements BaseModel
         null !== $language && $self['language'] = $language;
         null !== $locationIP && $self['locationIP'] = $locationIP;
         null !== $needReviewAt && $self['needReviewAt'] = $needReviewAt;
+        null !== $needReviewBy && $self['needReviewBy'] = $needReviewBy;
         null !== $notificationConfirmation && $self['notificationConfirmation'] = $notificationConfirmation;
         null !== $portalSteps && $self['portalSteps'] = $portalSteps;
         null !== $qrCode && $self['qrCode'] = $qrCode;
         null !== $rawData && $self['rawData'] = $rawData;
         null !== $rejectedAt && $self['rejectedAt'] = $rejectedAt;
+        null !== $rejectedBy && $self['rejectedBy'] = $rejectedBy;
         null !== $sessionDuration && $self['sessionDuration'] = $sessionDuration;
         null !== $startedAt && $self['startedAt'] = $startedAt;
         null !== $transferAt && $self['transferAt'] = $transferAt;
@@ -278,6 +305,17 @@ final class TechnicalData implements BaseModel
     {
         $self = clone $this;
         $self['approvedAt'] = $approvedAt;
+
+        return $self;
+    }
+
+    /**
+     * Identifier of the actor who approved (e.g., user id or username).
+     */
+    public function withApprovedBy(?string $approvedBy): self
+    {
+        $self = clone $this;
+        $self['approvedBy'] = $approvedBy;
 
         return $self;
     }
@@ -407,6 +445,17 @@ final class TechnicalData implements BaseModel
     }
 
     /**
+     * Identifier of the actor who requested review (e.g., user id or username).
+     */
+    public function withNeedReviewBy(?string $needReviewBy): self
+    {
+        $self = clone $this;
+        $self['needReviewBy'] = $needReviewBy;
+
+        return $self;
+    }
+
+    /**
      * Flag indicating if notification confirmation is required or received.
      */
     public function withNotificationConfirmation(
@@ -460,6 +509,17 @@ final class TechnicalData implements BaseModel
     {
         $self = clone $this;
         $self['rejectedAt'] = $rejectedAt;
+
+        return $self;
+    }
+
+    /**
+     * Identifier of the actor who rejected (e.g., user id or username).
+     */
+    public function withRejectedBy(?string $rejectedBy): self
+    {
+        $self = clone $this;
+        $self['rejectedBy'] = $rejectedBy;
 
         return $self;
     }
