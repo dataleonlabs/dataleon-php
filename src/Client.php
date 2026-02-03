@@ -37,9 +37,9 @@ class Client extends BaseClient
         ?string $baseUrl = null,
         RequestOptions|array|null $requestOptions = null,
     ) {
-        $this->apiKey = (string) ($apiKey ?? getenv('DATALEON_API_KEY'));
+        $this->apiKey = (string) ($apiKey ?? Util::getenv('DATALEON_API_KEY'));
 
-        $baseUrl ??= getenv(
+        $baseUrl ??= Util::getenv(
             'DATALEON_BASE_URL'
         ) ?: 'https://inference.eu-west-1.dataleon.ai';
 
