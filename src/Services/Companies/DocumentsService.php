@@ -7,6 +7,7 @@ namespace Dataleon\Services\Companies;
 use Dataleon\Client;
 use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
 use Dataleon\Core\Exceptions\APIException;
+use Dataleon\Core\FileParam;
 use Dataleon\Core\Util;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\GenericDocument;
@@ -58,7 +59,7 @@ final class DocumentsService implements DocumentsContract
      *
      * @param string $companyID ID of the company to upload document
      * @param DocumentType|value-of<DocumentType> $documentType Filter by document type for upload (must be one of the allowed values)
-     * @param string $file File to upload (required)
+     * @param string|FileParam $file File to upload (required)
      * @param string $url URL of the file to upload (either `file` or `url` is required)
      * @param RequestOpts|null $requestOptions
      *
@@ -67,7 +68,7 @@ final class DocumentsService implements DocumentsContract
     public function upload(
         string $companyID,
         DocumentType|string $documentType,
-        ?string $file = null,
+        string|FileParam|null $file = null,
         ?string $url = null,
         RequestOptions|array|null $requestOptions = null,
     ): GenericDocument {

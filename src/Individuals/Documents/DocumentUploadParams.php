@@ -9,6 +9,7 @@ use Dataleon\Core\Attributes\Required;
 use Dataleon\Core\Concerns\SdkModel;
 use Dataleon\Core\Concerns\SdkParams;
 use Dataleon\Core\Contracts\BaseModel;
+use Dataleon\Core\FileParam;
 use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
 
 /**
@@ -18,7 +19,7 @@ use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
  *
  * @phpstan-type DocumentUploadParamsShape = array{
  *   documentType: DocumentType|value-of<DocumentType>,
- *   file?: string|null,
+ *   file?: string|null|FileParam,
  *   url?: string|null,
  * }
  */
@@ -76,8 +77,8 @@ final class DocumentUploadParams implements BaseModel
      */
     public static function with(
         DocumentType|string $documentType,
-        ?string $file = null,
-        ?string $url = null
+        string|FileParam|null $file = null,
+        ?string $url = null,
     ): self {
         $self = new self;
 
@@ -105,7 +106,7 @@ final class DocumentUploadParams implements BaseModel
     /**
      * File to upload (required).
      */
-    public function withFile(string $file): self
+    public function withFile(string|FileParam $file): self
     {
         $self = clone $this;
         $self['file'] = $file;

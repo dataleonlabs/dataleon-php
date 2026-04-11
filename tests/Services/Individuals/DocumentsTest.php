@@ -3,6 +3,7 @@
 namespace Tests\Services\Individuals;
 
 use Dataleon\Client;
+use Dataleon\Core\FileParam;
 use Dataleon\Core\Util;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\GenericDocument;
@@ -68,7 +69,7 @@ final class DocumentsTest extends TestCase
         $result = $this->client->individuals->documents->upload(
             'individual_id',
             documentType: 'liasse_fiscale',
-            file: 'file',
+            file: FileParam::fromString('Example data', filename: uniqid('file-upload-', true)),
             url: 'https://example.com/sample.pdf',
         );
 

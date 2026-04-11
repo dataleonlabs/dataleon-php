@@ -9,6 +9,7 @@ use Dataleon\Companies\Documents\DocumentUploadParams;
 use Dataleon\Companies\Documents\DocumentUploadParams\DocumentType;
 use Dataleon\Core\Contracts\BaseResponse;
 use Dataleon\Core\Exceptions\APIException;
+use Dataleon\Core\FileParam;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\GenericDocument;
 use Dataleon\RequestOptions;
@@ -57,7 +58,7 @@ final class DocumentsRawService implements DocumentsRawContract
      *
      * @param string $companyID ID of the company to upload document
      * @param array{
-     *   documentType: value-of<DocumentType>, file?: string, url?: string
+     *   documentType: value-of<DocumentType>, file?: string|FileParam, url?: string
      * }|DocumentUploadParams $params
      * @param RequestOpts|null $requestOptions
      *

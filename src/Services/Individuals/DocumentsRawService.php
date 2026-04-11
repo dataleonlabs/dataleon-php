@@ -7,6 +7,7 @@ namespace Dataleon\Services\Individuals;
 use Dataleon\Client;
 use Dataleon\Core\Contracts\BaseResponse;
 use Dataleon\Core\Exceptions\APIException;
+use Dataleon\Core\FileParam;
 use Dataleon\Individuals\Documents\DocumentResponse;
 use Dataleon\Individuals\Documents\DocumentUploadParams;
 use Dataleon\Individuals\Documents\DocumentUploadParams\DocumentType;
@@ -57,7 +58,7 @@ final class DocumentsRawService implements DocumentsRawContract
      *
      * @param string $individualID ID of the individual to upload document
      * @param array{
-     *   documentType: value-of<DocumentType>, file?: string, url?: string
+     *   documentType: value-of<DocumentType>, file?: string|FileParam, url?: string
      * }|DocumentUploadParams $params
      * @param RequestOpts|null $requestOptions
      *
