@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dataleon;
 
 use Dataleon\Core\BaseClient;
+use Dataleon\Core\Implementation\StreamingHttpClient;
 use Dataleon\Core\Util;
 use Dataleon\Services\CompaniesService;
 use Dataleon\Services\IndividualsService;
@@ -52,6 +53,11 @@ class Client extends BaseClient
             ),
             $requestOptions,
         );
+
+        if (is_null($options->streamingTransporter)) {
+            assert(!is_null($options->transporter));
+            $options->streamingTransporter = new StreamingHttpClient($options->transporter);
+        }
 
         /** @var array<string, string|null> $headers */
         $headers = [
